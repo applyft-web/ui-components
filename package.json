@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "a library with basic css rules and ui react components",
   "main": "build/index.js",
-  "peerDependencies": {
+  "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -26,6 +26,5 @@
     "url": "https://github.com/geozilla-web/ui-components/issues"
   },
   "homepage": "https://github.com/geozilla-web/ui-components#readme",
-  "dependencies": {},
   "keywords": []
 }
