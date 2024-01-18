@@ -1,1 +1,3 @@
-export { default as MyComponent } from './components/MyComponent';
+import MyComponent from './components/MyComponent';
+
+exports.MyComponent = MyComponent;
