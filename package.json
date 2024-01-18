@@ -1,9 +1,9 @@
 {
-  "name": "ui-components",
+  "name": "onboardings-ui-components",
   "version": "1.0.0",
   "description": "a library with basic css rules and ui react components",
-  "main": "./build/index.js",
-  "dependencies": {
+  "main": "build/index.js",
+  "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -25,5 +25,7 @@
   "bugs": {
     "url": "https://github.com/geozilla-web/ui-components/issues"
   },
-  "homepage": "https://github.com/geozilla-web/ui-components#readme"
+  "homepage": "https://github.com/geozilla-web/ui-components#readme",
+  "dependencies": {},
+  "keywords": []
 }
