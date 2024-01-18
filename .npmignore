@@ -1,0 +1,6 @@
+/src
+/node_modules
+/.idea
+package-lock.json
+webpack.config.js
+.babelrc
