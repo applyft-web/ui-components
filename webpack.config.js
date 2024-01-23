@@ -7,9 +7,6 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: '[name].js',
-    publicPath: '',
-    chunkFilename: '[name].js',
-    sourceMapFilename: '[name].js.map',
     library: '[name]'
   },
   module: {

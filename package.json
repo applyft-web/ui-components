@@ -1,12 +1,8 @@
 {
   "name": "onboardings-ui-components",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "a library with basic css rules and ui react components",
   "main": "build/main.js",
-  "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  },
   "devDependencies": {
     "@babel/core": "^7.23.7",
     "@babel/preset-env": "^7.23.8",
