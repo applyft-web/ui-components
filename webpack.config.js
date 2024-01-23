@@ -2,7 +2,7 @@ const path = require('path');
 // const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
-  mode: 'production',
+  mode: 'development',
   entry: path.resolve(__dirname, './src/index.js'),
   output: {
     path: path.resolve(__dirname, 'build'),
@@ -31,7 +31,7 @@ module.exports = {
     ],
   },
   externals: {
-    react: 'react',
+    'react': 'react',
     'react-dom': 'react-dom',
   },
   resolve: {

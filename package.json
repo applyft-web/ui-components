@@ -1,6 +1,6 @@
 {
   "name": "onboardings-ui-components",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "a library with basic css rules and ui react components",
   "main": "build/main.js",
   "dependencies": {
