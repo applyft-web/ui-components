@@ -3,28 +3,31 @@ const path = require('path');
 
 module.exports = {
   mode: 'development',
-  entry: './src/index.js',
+  entry: path.resolve(__dirname, './src/index.js'),
   output: {
     path: path.resolve(__dirname, 'build'),
-    filename: 'index.js',
+    filename: '[name].js',
+    publicPath: '',
+    chunkFilename: '[name].js',
+    sourceMapFilename: '[name].js.map',
+    library: '[name]'
   },
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
-        // test: /\.(js|jsx)$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
-          /*options: {
-            presets: ['@babel/preset-env', '@babel/preset-react'],
-          },*/
-        },
+          options: {
+            presets: ['@babel/preset-react', '@babel/preset-env']
+          }
+        }
       },
-      /*{
+      {
         test: /\.(png|jpg|jpeg|gif|webp|mp4)/,
         use: ['file-loader']
-      },*/
+      },
     ],
   },
   externals: {
