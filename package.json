@@ -1,8 +1,8 @@
 {
   "name": "onboardings-ui-components",
-  "version": "1.0.18",
+  "version": "1.0.20",
   "description": "a library with basic css rules and ui react components",
-  "main": "index.js",
+  "main": "dist/bundle.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/geozilla-web/ui-components.git"
