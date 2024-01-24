@@ -4,4 +4,8 @@
 package-lock.json
 webpack.config.js
 rollup.config.js
-.babelrc
+.editorconfig
+.eslintignore
+.eslintrc.js
+.gitignore
+tsconfig.json
