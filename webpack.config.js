@@ -6,8 +6,7 @@ module.exports = {
   entry: path.resolve(__dirname, './src/index.js'),
   output: {
     path: path.resolve(__dirname, 'build'),
-    filename: 'index.js',
-    library: '[name]'
+    filename: 'index.js'
   },
   module: {
     rules: [
@@ -27,24 +26,7 @@ module.exports = {
       },
     ],
   },
-  externals: {
-    React: 'React',
-    'react-dom': 'react-dom',
-  },
   resolve: {
     extensions: ['.js', '.jsx'],
   },
-  /*optimization: {
-    minimize: true,
-    minimizer: [
-      new TerserPlugin({
-        terserOptions: {
-          format: {
-            comments: false,
-          },
-        },
-        extractComments: false,
-      }),
-    ],
-  },*/
 };
