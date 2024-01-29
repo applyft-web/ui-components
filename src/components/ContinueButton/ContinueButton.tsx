@@ -1,15 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 
-type StyledButtonProps = {
+interface StyledButtonProps {
   isDisabled: boolean,
+  bgColor: string,
   customStyles?: string,
 }
 
 const StyledButton = styled.button<StyledButtonProps>`
   width: 100%;
   max-width: 327px;
-  background-color: ${(props) => props.theme.colorPrimary};
+  background-color: ${({ bgColor }) => bgColor};
   border-radius: 12px;
   border: none;
   padding: 20px 0;
@@ -23,14 +24,16 @@ const StyledButton = styled.button<StyledButtonProps>`
     opacity: 0.5;
     pointer-events: none;        
   `};
+  ${({ customStyles }) => customStyles}
 
   &:focus {
     outline: none;
   }
 `;
 
-type ContinueButtonProps = {
+interface ContinueButtonProps {
   onClick: () => void;
+  bgColor: string;
   children?: any;
   isDisabled?: boolean,
   customId?: string,
@@ -40,6 +43,7 @@ type ContinueButtonProps = {
 export const ContinueButton = ({
   children = 'Continue',
   onClick,
+  bgColor = '#000',
   isDisabled = false,
   customId = 'continue-button',
   customStyles,
@@ -48,6 +52,7 @@ export const ContinueButton = ({
     onClick={onClick}
     isDisabled={isDisabled}
     id={customId}
+    bgColor={bgColor}
     customStyles={customStyles}
   >
     {children}
