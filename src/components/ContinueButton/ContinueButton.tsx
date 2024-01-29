@@ -1,16 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const desktopMinWidth: string = '1280';
+
 interface StyledButtonProps {
-  isDisabled: boolean,
-  bgColor: string,
-  customStyles?: string,
+  readonly $isDisabled: boolean,
+  readonly $bgColor: string,
+  readonly $customStyles?: string,
 }
 
 const StyledButton = styled.button<StyledButtonProps>`
   width: 100%;
   max-width: 327px;
-  background-color: ${({ bgColor }) => bgColor};
+  background-color: ${({ $bgColor }) => $bgColor};
   border-radius: 12px;
   border: none;
   padding: 20px 0;
@@ -20,18 +22,29 @@ const StyledButton = styled.button<StyledButtonProps>`
   color: #FFFFFF;
   position: relative;
   transition: .3s;
-  ${({ isDisabled }) => isDisabled && `
+  ${({ $isDisabled }) => $isDisabled && `
     opacity: 0.5;
     pointer-events: none;        
   `};
-  ${({ customStyles }) => customStyles}
+  ${({ $customStyles }) => $customStyles};
 
   &:focus {
     outline: none;
   }
+
+  @media screen and (min-width: ${desktopMinWidth}px) {
+    ${({ $isDisabled }) => !$isDisabled && 'cursor: pointer;'}
+    
+    &:hover {
+      background-color: #F99B57;
+    }
+  }
 `;
 
-interface ContinueButtonProps extends StyledButtonProps {
+interface ContinueButtonProps {
+  isDisabled: boolean,
+  bgColor: string,
+  customStyles?: string,
   onClick: () => void;
   children?: React.ReactNode | string;
   customId?: string,
@@ -47,10 +60,10 @@ export const ContinueButton: React.FC<ContinueButtonProps> = ({
 }) => (
   <StyledButton
     onClick={onClick}
-    isDisabled={isDisabled}
+    $isDisabled={isDisabled}
     id={customId}
-    bgColor={bgColor}
-    customStyles={customStyles}
+    $bgColor={bgColor}
+    $customStyles={customStyles}
   >
     {children}
   </StyledButton>
