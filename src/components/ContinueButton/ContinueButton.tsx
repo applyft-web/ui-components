@@ -31,23 +31,20 @@ const StyledButton = styled.button<StyledButtonProps>`
   }
 `;
 
-interface ContinueButtonProps {
+interface ContinueButtonProps extends StyledButtonProps {
   onClick: () => void;
-  bgColor: string;
-  children?: any;
-  isDisabled?: boolean,
+  children?: React.ReactNode | string;
   customId?: string,
-  customStyles?: string,
 }
 
-export const ContinueButton = ({
+export const ContinueButton: React.FC<ContinueButtonProps> = ({
   children = 'Continue',
   onClick,
   bgColor = '#000',
   isDisabled = false,
   customId = 'continue-button',
   customStyles,
-}: ContinueButtonProps) => (
+}) => (
   <StyledButton
     onClick={onClick}
     isDisabled={isDisabled}
@@ -57,4 +54,4 @@ export const ContinueButton = ({
   >
     {children}
   </StyledButton>
-)
+);
