@@ -18,7 +18,7 @@ module.exports = [
         format: 'esm'
       }
     ],
-    external: ['react'],
+    external: ['react', 'styled-components'],
     plugins: [
       typescript({
         tsconfig: './tsconfig.json',
