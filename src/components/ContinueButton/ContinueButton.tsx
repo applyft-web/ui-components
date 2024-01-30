@@ -1,5 +1,5 @@
 import React from 'react';
-import { default as styled } from 'styled-components';
+import styled from 'styled-components';
 
 const desktopMinWidth: string = '1280';
 
