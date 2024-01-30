@@ -11,14 +11,16 @@ module.exports = [
     output: [
       {
         file: packageJson.module,
-        format: 'cjs'
+        format: 'cjs',
+        interop: 'compat',
       },
       {
         file: packageJson.main,
-        format: 'esm'
+        format: 'esm',
+        interop: 'compat',
       }
     ],
-    external: ['react'],
+    external: ['react', 'styled-components'],
     plugins: [
       typescript({
         tsconfig: './tsconfig.json',

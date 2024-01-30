@@ -1,6 +1,6 @@
 {
   "name": "onboardings-ui-components",
-  "version": "1.0.33",
+  "version": "1.0.37",
   "description": "a library with basic css rules and ui react components",
   "main": "dist/esm/index.js",
   "module": "dist/cjs/index.js",
@@ -51,7 +51,7 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "react": "^18.2.0",
-    "styled-components": "^6.1.8"
+    "react": "^17.0.2",
+    "styled-components": "^5.2.3"
   }
 }
