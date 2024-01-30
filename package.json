@@ -1,9 +1,9 @@
 {
   "name": "onboardings-ui-components",
-  "version": "1.0.26",
+  "version": "1.0.29",
   "description": "a library with basic css rules and ui react components",
-  "main": "dist/esm/index.js",
-  "module": "dist/cjs/index.js",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist/**/*"

@@ -42,8 +42,8 @@ const StyledButton = styled.button<StyledButtonProps>`
 `;
 
 interface ContinueButtonProps {
-  isDisabled: boolean,
   bgColor: string,
+  isDisabled?: boolean,
   customStyles?: string,
   onClick: () => void;
   children?: React.ReactNode | string;
