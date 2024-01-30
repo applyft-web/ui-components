@@ -1,25 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const desktopMinWidth: string = '1280';
-
 interface StyledButtonProps {
   readonly $isDisabled: boolean,
-  readonly $bgColor: string,
   readonly $customStyles?: string,
 }
 
 const StyledButton = styled.button<StyledButtonProps>`
   width: 100%;
   max-width: 327px;
-  background-color: ${({ $bgColor }) => $bgColor};
+  background-color: ${({ theme }) => theme?.colors?.colorPrimary};
   border-radius: 12px;
   border: none;
-  padding: 20px 0;
+  padding: 20px;
   font-weight: 700;
   font-size: 16px;
   line-height: 1;
   color: #FFFFFF;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   position: relative;
   transition: .3s;
   ${({ $isDisabled }) => $isDisabled && `
@@ -32,38 +32,38 @@ const StyledButton = styled.button<StyledButtonProps>`
     outline: none;
   }
 
-  @media screen and (min-width: ${desktopMinWidth}px) {
-    ${({ $isDisabled }) => !$isDisabled && 'cursor: pointer;'}
+  @media screen and (min-width: ${({ theme }) => theme?.desktopMinWidth}px) {
+    ${({ $isDisabled }) => !$isDisabled && 'cursor: pointer;'};
     
     &:hover {
-      background-color: #F99B57;
+      background-color: ${({ theme }) => theme?.colors?.colorButtonHover};
     }
   }
 `;
 
 interface ContinueButtonProps {
-  bgColor: string,
+  onClick: () => void;
   isDisabled?: boolean,
   customStyles?: string,
-  onClick: () => void;
   children?: React.ReactNode | string;
   customId?: string,
+  theme?: object | string,
 }
 
-export const ContinueButton: React.FC<ContinueButtonProps> = ({
+export const ContinueButton = ({
   children = 'Continue',
   onClick,
-  bgColor = '#000',
   isDisabled = false,
   customId = 'continue-button',
   customStyles,
-}) => (
+  ...rest
+}: ContinueButtonProps) => (
   <StyledButton
     onClick={onClick}
     $isDisabled={isDisabled}
     id={customId}
-    $bgColor={bgColor}
     $customStyles={customStyles}
+    {...rest}
   >
     {children}
   </StyledButton>
