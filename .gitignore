@@ -4,6 +4,7 @@
 .history
 /.pnp
 .pnp.js
+.npmrc
 storybook-static
 
 # testing
