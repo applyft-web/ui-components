@@ -1,7 +1,8 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { ContinueButton } from '../../components';
-import { GlobalThemeProvider, themes } from '../../core';
+import { GlobalThemeProvider } from '../../core';
+import { themes } from './theme';
 import styled from 'styled-components';
 
 const TestWrapper = styled.div`
@@ -35,6 +36,11 @@ const meta: Meta<typeof GlobalThemeProvider> = {
     projectName: {
       options: Object.keys(themes),
       control: 'inline-radio',
+    },
+  },
+  parameters: {
+    controls: {
+      exclude: ['children']
     },
   },
 };

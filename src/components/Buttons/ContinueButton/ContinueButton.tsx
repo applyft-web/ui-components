@@ -9,11 +9,12 @@ interface StyledButtonProps {
 const StyledButton = styled.button<StyledButtonProps>`
   width: 100%;
   max-width: 327px;
+  height: 56px;
   background-color: ${({ theme }) => theme?.colors?.colorPrimary};
   border-radius: 12px;
   border: none;
   padding: 20px;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 16px;
   line-height: 1;
   color: #FFFFFF;
@@ -22,8 +23,8 @@ const StyledButton = styled.button<StyledButtonProps>`
   white-space: nowrap;
   position: relative;
   transition: .3s;
-  ${({ $isDisabled }) => $isDisabled && `
-    opacity: 0.5;
+  ${({ $isDisabled, theme }) => $isDisabled && `
+    background-color: ${theme?.colors?.colorButtonDisabled};
     pointer-events: none;        
   `};
   ${({ $customStyles }) => $customStyles};

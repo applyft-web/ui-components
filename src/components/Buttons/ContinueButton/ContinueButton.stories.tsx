@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { ContinueButton } from './ContinueButton';
-import { themes, themesMapping } from '../../core';
+import { themesToControls } from '../../../stories/themesToControls';
 
 const meta: Meta<typeof ContinueButton> = {
   component: ContinueButton,
@@ -11,11 +11,7 @@ const meta: Meta<typeof ContinueButton> = {
     },
   },
   argTypes: {
-    theme: {
-      options: Object.keys(themes),
-      mapping: themesMapping(),
-      control: 'inline-radio',
-    },
+    ...themesToControls,
   },
 };
 

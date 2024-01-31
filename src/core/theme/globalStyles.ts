@@ -25,7 +25,10 @@ const GlobalStyles = createGlobalStyle`
 
   body {
     width: 100%;
-    height: 100%;
+    height: 100vh;
+    height: 100dvh;
+    height: 100svh;
+    height: calc(var(--vh,1vh) * 100);
 
     > * {
       width: 100%;

@@ -2,8 +2,8 @@ const packageJson = require('./package.json')
 const typescript = require('@rollup/plugin-typescript')
 const terser = require('@rollup/plugin-terser')
 const dts = require('rollup-plugin-dts')
-// const url = require('@rollup/plugin-url')
-// const svgr = require('@svgr/rollup')
+const url = require('@rollup/plugin-url')
+const svgr = require('@svgr/rollup')
 
 module.exports = [
   {
@@ -27,8 +27,8 @@ module.exports = [
         exclude: ['**/*.stories.tsx']
       }),
       terser(),
-      // url(),
-      // svgr({ icon: true }),
+      url(),
+      svgr({ icon: true }),
     ]
   },
   {

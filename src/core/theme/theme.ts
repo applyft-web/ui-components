@@ -1,4 +1,4 @@
-interface ThemesObject {
+export interface ThemesObject {
   [key: string]: object;
 }
 
@@ -22,31 +22,44 @@ export const themes: ThemesObject = {
     ...mergeKeys('colors', {
       colorPrimary: '#00BFA5',
       colorButtonHover: '#00A08B',
-      colorButtonDisabled: '#00A08B',
+      colorButtonDisabled: '#9bdfd2',
+      colorOptionInactive: '#EBFAF8',
+      colorOptionActive: '#C2F0EA',
+      colorOptionBorderActive: '#00BFA5',
     }),
   },
   'Family-Locator': {
     ...mergeKeys('colors', {
       colorPrimary: '#3393EC',
       colorButtonHover: '#1F7ACE',
-      colorButtonDisabled: '#3393EC',
+      colorButtonDisabled: '#9ec9f6',
+      colorOptionInactive: '#C5E3FF',
+      colorOptionActive: '#F0F8FF',
+      colorOptionBorderActive: '#007AFF',
     }),
   },
   Familo: {
     ...mergeKeys('colors', {
       colorPrimary: '#F58A3C',
       colorButtonHover: '#C56A28',
-      colorButtonDisabled: '#C56A28',
+      colorButtonDisabled: '#fcc5a1',
+      colorOptionInactive: '#FEF7F1',
+      colorOptionActive: '#FFE5D2',
+      colorOptionBorderActive: '#F58A3C',
+    }),
+  },
+  Closer: {
+    ...mergeKeys('colors', {
+      colorPrimary: '#00BFA5',
+      colorButtonHover: '#00A08B',
+      colorButtonDisabled: '#9bdfd2',
+      colorOptionInactive: '#EBFAF8',
+      colorOptionActive: '#C2F0EA',
+      colorOptionBorderActive: '#00BFA5',
     }),
   },
 };
 
 export const theme = (projectName: string = 'Geozilla'): object => {
   return { ...defaultTheme, ...themes[projectName] };
-};
-
-export const themesMapping = (): object => {
-  let obj: ThemesObject = {};
-  Object.keys(themes).map((k: string) => obj[k] = theme(k));
-  return obj;
 };

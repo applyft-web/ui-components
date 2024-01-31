@@ -1,6 +1,6 @@
 {
   "name": "onboardings-ui-components",
-  "version": "1.0.38",
+  "version": "1.1.0",
   "description": "a library with basic css rules and ui react components",
   "main": "dist/esm/index.js",
   "module": "dist/cjs/index.js",
@@ -26,6 +26,7 @@
   "devDependencies": {
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^11.1.6",
+    "@rollup/plugin-url": "^8.0.2",
     "@storybook/addon-controls": "^7.6.10",
     "@storybook/addon-essentials": "^7.6.10",
     "@storybook/addon-interactions": "^7.6.10",
@@ -34,6 +35,8 @@
     "@storybook/react": "^7.6.10",
     "@storybook/react-webpack5": "^7.6.10",
     "@storybook/test": "^7.6.10",
+    "@svgr/rollup": "^8.1.0",
+    "@svgr/webpack": "^8.1.0",
     "@types/react": "^18.2.48",
     "@types/styled-components": "^5.1.34",
     "@typescript-eslint/eslint-plugin": "^6.19.1",
@@ -44,6 +47,7 @@
     "eslint-plugin-n": "^16.6.2",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-react": "^7.33.2",
+    "file-loader": "^6.2.0",
     "react-dom": "^18.2.0",
     "rollup": "^4.9.6",
     "rollup-plugin-dts": "^6.1.0",
@@ -52,6 +56,6 @@
   },
   "dependencies": {
     "react": ">=17",
-    "styled-components": "^>=5"
+    "styled-components": ">=5"
   }
 }
