@@ -6,8 +6,10 @@ import { ReactComponent as PaypalIconComponent } from '../../core/assets/icons/P
 
 export type IconProps = Partial<HTMLProps<SVGElement>>
 
-const createIcon = (Icon: FC<IconProps>): FC<IconProps> => (props: IconProps) => <Icon {...props} />;
+const createIcon = (Icon: FC<IconProps>, width?: string, height?: string): FC<IconProps> => (props: IconProps) => (
+  <Icon {...props} {...{width, height}} />
+);
 
-export const GooglePlayIcon = createIcon(GooglePlayIconComponent)
-export const AppStoreIcon = createIcon(AppStoreIconComponent)
-export const PaypalIcon = createIcon(PaypalIconComponent)
+export const GooglePlayIcon = createIcon(GooglePlayIconComponent, '163px', '40px')
+export const AppStoreIcon = createIcon(AppStoreIconComponent, '148px', '38px')
+export const PaypalIcon = createIcon(PaypalIconComponent, '85px', '34px')
