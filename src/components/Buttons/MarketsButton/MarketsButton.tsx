@@ -3,7 +3,7 @@ import { ContinueButton } from '../../index';
 import { AppStoreIcon, GooglePlayIcon } from '../../Icons';
 
 const marketsImages: {[key: string]: React.JSX.Element} = {
-  google: <GooglePlayIcon />,
+  google: <GooglePlayIcon width={'163px'} height={'40px'}/>,
   apple: <AppStoreIcon />,
 };
 
