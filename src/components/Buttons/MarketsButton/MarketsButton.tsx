@@ -1,5 +1,6 @@
 import React from 'react';
-import { ContinueButton, AppStoreIcon, GooglePlayIcon } from '../../index';
+import { ContinueButton } from '../../index';
+import { AppStoreIcon, GooglePlayIcon } from '../../Icons';
 
 const marketsImages: {[key: string]: React.JSX.Element} = {
   google: <GooglePlayIcon />,
