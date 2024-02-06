@@ -13,6 +13,8 @@ interface StyledOptionProps extends StyledProps{
   readonly $isLarge?: boolean;
   readonly $multiChoice?: boolean;
   readonly $customStyles?: string;
+  readonly mt?: string,
+  readonly mb?: string,
 }
 
 interface StyledImgProps extends StyledProps {
@@ -42,6 +44,8 @@ const StyledOption = styled.button<StyledOptionProps>`
   color: ${({ theme }) => theme?.colors?.colorText};
   position: relative;
   transition: .3s;
+  ${({ mt }) => mt && `margin-top: ${mt}`};
+  ${({ mb }) => mb && `margin-bottom: ${mb}`};
   ${({ $customStyles }) => $customStyles};
 
   &:focus {
@@ -57,9 +61,7 @@ const StyledImg = styled.div<StyledImgProps>`
   width: 64px;
   height: 64px;
   border-radius: 7px;
-  background-color: ${({ theme, $isActive, $imgSrc }) =>
-    $imgSrc ? 'transparent' : theme?.colors?.[`colorOptionImg${$isActive ? 'Active' : 'Inactive'}`]
-  };
+  background-color: ${({ theme, $isActive }) => theme?.colors?.[`colorOptionImg${$isActive ? 'Active' : 'Inactive'}`]};
   ${({ $imgSrc }) => $imgSrc && `
     background-image: url(${$imgSrc});
     background-size: cover;
@@ -119,6 +121,8 @@ interface OptionsItemProps {
   customId?: string;
   customStyles?: string;
   theme?: Theme;
+  mt?: string,
+  mb?: string,
   [propName: string]: any;
 }
 

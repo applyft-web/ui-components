@@ -19,11 +19,13 @@ export const MarketsButton = ({
   marketName,
   onClick,
   customStyles,
+  ...rest
 }: MarketsButtonProps) => (
   <ContinueButton
     onClick={onClick}
     customId={`${marketName}MarketButton`}
     customStyles={styles.concat(customStyles)}
+    {...rest}
   >
     {marketsImages[marketName]}
   </ContinueButton>

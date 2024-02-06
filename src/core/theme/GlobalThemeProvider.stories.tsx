@@ -60,7 +60,7 @@ export default meta;
 export const GlobalThemeProviderStoryTemplate: StoryObj<typeof meta> = {
   args: {
     projectName: 'Geozilla',
-    children: <Test />
+    children: <Test />,
   },
 };
 

@@ -6,7 +6,7 @@ const meta: Meta<typeof PaypalButton> = {
   component: PaypalButton,
   parameters: {
     controls: {
-      exclude: ['onClick'],
+      include: ['transparentStyle', 'customStyles'],
     },
   },
   argTypes: {

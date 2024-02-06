@@ -1,14 +1,14 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { OptionsItem } from './OptionsItem';
-import { themesToControls } from '../../stories/themesToControls';
+import { themesToControls } from '../../stories';
 import { themes } from '../../core/theme';
 
 const meta: Meta<typeof OptionsItem> = {
   component: OptionsItem,
   parameters: {
     controls: {
-      exclude: ['customId', 'onClick']
+      exclude: ['customId', 'onClick', 'mt', 'mb']
     },
   },
   argTypes: {

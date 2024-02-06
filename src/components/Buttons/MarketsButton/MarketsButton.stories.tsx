@@ -6,7 +6,7 @@ const meta: Meta<typeof MarketsButton> = {
   component: MarketsButton,
   parameters: {
     controls: {
-      exclude: ['onClick'],
+      include: ['marketName', 'customStyles'],
     },
   },
   argTypes: {

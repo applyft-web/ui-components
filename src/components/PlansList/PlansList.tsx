@@ -46,7 +46,7 @@ interface PlansListProps {
   customStyles?: string,
   children?: React.ReactNode | string;
   customId?: string,
-  theme?: object | string,
+  theme?: object,
 }
 
 export const PlansList = ({

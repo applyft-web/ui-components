@@ -1,13 +1,14 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { ContinueButton } from './ContinueButton';
-import { themesToControls } from '../../../stories/themesToControls';
+import { themesToControls } from '../../../stories';
+import { themes } from '../../../core/theme';
 
 const meta: Meta<typeof ContinueButton> = {
   component: ContinueButton,
   parameters: {
     controls: {
-      exclude: ['customId', 'onClick']
+      include: ['children', 'theme', 'isDisabled', 'customStyles'],
     },
   },
   argTypes: {
@@ -21,7 +22,7 @@ export const ContinueButtonStoryTemplate: StoryObj<typeof meta> = {
   args: {
     children: 'Test!',
     onClick: () => console.log('test'),
-    theme: 'Geozilla',
+    theme: themes['Geozilla'],
     isDisabled: false
   },
 };

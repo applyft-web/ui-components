@@ -4,6 +4,8 @@ import styled from 'styled-components';
 interface StyledButtonProps {
   readonly $isDisabled: boolean,
   readonly $customStyles?: string,
+  readonly mt?: string,
+  readonly mb?: string,
 }
 
 const StyledButton = styled.button<StyledButtonProps>`
@@ -27,6 +29,8 @@ const StyledButton = styled.button<StyledButtonProps>`
     background-color: ${theme?.colors?.colorButtonDisabled};
     pointer-events: none;        
   `};
+  ${({ mt }) => mt && `margin-top: ${mt}`};
+  ${({ mb }) => mb && `margin-bottom: ${mb}`};
   ${({ $customStyles }) => $customStyles};
 
   &:focus {
@@ -42,13 +46,15 @@ const StyledButton = styled.button<StyledButtonProps>`
   }
 `;
 
-interface ContinueButtonProps {
+export interface ContinueButtonProps {
   onClick: () => void;
   isDisabled?: boolean,
   customStyles?: string,
   children?: React.ReactNode | string;
   customId?: string,
-  theme?: object | string,
+  theme?: object,
+  mt?: string,
+  mb?: string,
 }
 
 export const ContinueButton = ({

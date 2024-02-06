@@ -15,11 +15,13 @@ export const PaypalButton = ({
   transparentStyle = false,
   onClick,
   customStyles,
+  ...rest
 }: PaypalButtonProps) => (
   <ContinueButton
     onClick={onClick}
     customId={'paypalButton'}
     customStyles={styles.concat(transparentStyle ? transparentStyles : '', customStyles)}
+    {...rest}
   >
     <PaypalIcon />
   </ContinueButton>
