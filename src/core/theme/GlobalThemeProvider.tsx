@@ -1,6 +1,6 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
-import { theme, GlobalStyles } from '../../core/theme';
+import { getTheme, GlobalStyles } from '../../core/theme';
 
 const GZ: string = 'Geozilla';
 const FL: string = 'Family-Locator';
@@ -24,11 +24,21 @@ interface ProviderComponentProps {
   children?: React.ReactNode | string;
 }
 
-export const GlobalThemeProvider = ({ children, projectName = fallback }: ProviderComponentProps) => (
-  <>
-    <GlobalStyles />
-    <ThemeProvider theme={theme(namesList[projectName.toLowerCase()] || fallback)}>
-      {children}
+export const GlobalThemeProvider = ({ children, projectName = fallback }: ProviderComponentProps) => {
+  const currentTheme = getTheme(namesList[projectName.toLowerCase()] || fallback);
+
+  return <>
+    <GlobalStyles theme={currentTheme}/>
+    <ThemeProvider theme={currentTheme}>
+      {children && (
+        <>
+          {React.Children.map(children, (child) => {
+            if (React.isValidElement(child)) {
+              return React.cloneElement(child, {...child.props, theme: currentTheme})
+            }
+          })}
+        </>
+      )}
     </ThemeProvider>
   </>
-);
+};

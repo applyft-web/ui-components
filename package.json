@@ -3,7 +3,7 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/geozilla-web"
   },
-  "version": "1.1.7",
+  "version": "1.1.8",
   "description": "a library with basic css rules and ui react components",
   "main": "dist/esm/index.js",
   "module": "dist/cjs/index.js",
@@ -24,7 +24,8 @@
   "scripts": {
     "build": "rollup -c",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "deploy-storybook": "npm run build-storybook && gh-pages -d storybook-static"
   },
   "devDependencies": {
     "@rollup/plugin-terser": "^0.4.4",
@@ -51,6 +52,7 @@
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-react": "^7.33.2",
     "file-loader": "^6.2.0",
+    "gh-pages": "^6.1.1",
     "react-dom": "^18.2.0",
     "rollup": "^4.9.6",
     "rollup-plugin-dts": "^6.1.0",

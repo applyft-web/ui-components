@@ -1,10 +1,25 @@
+interface Colors {
+  colorPrimary?: string;
+  colorButtonHover?: string;
+  colorButtonDisabled?: string;
+  colorOptionInactive?: string;
+  colorOptionActive?: string;
+  colorOptionBorderActive?: string;
+}
+
+export interface Theme {
+  colors?: Colors;
+  [propName: string]: any;
+}
+
 export interface ThemesObject {
-  [key: string]: object;
+  [key: string]: Theme;
 }
 
 const defaultTheme: {[key: string]: any} = {
   colors: {
     colorText: '#323232',
+    colorBodyBackground: '#fff',
   },
   mobileWidth: '350',
   tabletMinWidth: '744',
@@ -26,6 +41,10 @@ export const themes: ThemesObject = {
       colorOptionInactive: '#EBFAF8',
       colorOptionActive: '#C2F0EA',
       colorOptionBorderActive: '#00BFA5',
+      colorOptionImgActive: '#94E3D9',
+      colorOptionImgInactive: '#C2F0EA',
+      colorOptionCheckInactive: '#BBE1DC',
+      colorThreeDots: '#00BFA5',
     }),
   },
   'Family-Locator': {
@@ -36,6 +55,10 @@ export const themes: ThemesObject = {
       colorOptionInactive: '#F0F8FF',
       colorOptionActive: '#C5E3FF',
       colorOptionBorderActive: '#007AFF',
+      colorOptionImgActive: '#8BB6DE',
+      colorOptionImgInactive: '#C3E1FF',
+      colorOptionCheckInactive: '#CCDDF0',
+      colorThreeDots: '#5281BD',
     }),
   },
   Familo: {
@@ -46,6 +69,10 @@ export const themes: ThemesObject = {
       colorOptionInactive: '#FEF7F1',
       colorOptionActive: '#FFE5D2',
       colorOptionBorderActive: '#F58A3C',
+      colorOptionImgActive: '#ECC6AA',
+      colorOptionImgInactive: '#FFE4D0',
+      colorOptionCheckInactive: '#EED6C5',
+      colorThreeDots: '#F58A3C',
     }),
   },
   Closer: {
@@ -56,10 +83,14 @@ export const themes: ThemesObject = {
       colorOptionInactive: '#EBFAF8',
       colorOptionActive: '#C2F0EA',
       colorOptionBorderActive: '#00BFA5',
+      colorOptionImgActive: '#94E3D9',
+      colorOptionImgInactive: '#C2F0EA',
+      colorOptionCheckInactive: '#BBE1DC',
+      colorThreeDots: '#00BFA5',
     }),
   },
 };
 
-export const theme = (projectName: string = 'Geozilla'): object => {
+export const getTheme = (projectName: string = 'Geozilla'): object => {
   return { ...defaultTheme, ...themes[projectName] };
 };

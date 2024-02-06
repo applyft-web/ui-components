@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { ContinueButton } from '../../components';
+import { ContinueButton, OptionsItem } from '../../components';
 import { GlobalThemeProvider } from '../../core';
 import { themes } from './theme';
 import styled from 'styled-components';
@@ -24,13 +24,23 @@ const TestWrapper = styled.div`
   }
 `;
 
-const Test = () => (
+const Test = (props: any) => (
   <TestWrapper>
+    <OptionsItem
+      onClick={null}
+      customStyles={'margin-bottom: 20px'}
+      // img={'https://quiz.geodzilla.info/assets/track_target/partner.png'}
+      img={'other'}
+      multiChoice
+      isActive
+      {...props}
+    />
     <ContinueButton onClick={null} />
   </TestWrapper>
 );
 
 const meta: Meta<typeof GlobalThemeProvider> = {
+  title: 'core/GlobalThemeProvider',
   component: GlobalThemeProvider,
   argTypes: {
     projectName: {

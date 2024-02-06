@@ -29,6 +29,7 @@ const GlobalStyles = createGlobalStyle`
     height: 100dvh;
     height: 100svh;
     height: calc(var(--vh,1vh) * 100);
+    background-color: ${({ theme }) => theme?.colors?.colorBodyBackground || '#fff'};
 
     > * {
       width: 100%;
