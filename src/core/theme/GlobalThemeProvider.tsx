@@ -1,6 +1,7 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { getTheme, GlobalStyles } from '../../core/theme';
+import {reactChildrenMapping} from "../../utils";
 
 const GZ: string = 'Geozilla';
 const FL: string = 'Family-Locator';
@@ -30,15 +31,7 @@ export const GlobalThemeProvider = ({ children, projectName = fallback }: Provid
   return <>
     <GlobalStyles theme={currentTheme}/>
     <ThemeProvider theme={currentTheme}>
-      {children && (
-        <>
-          {React.Children.map(children, (child) => {
-            if (React.isValidElement(child)) {
-              return React.cloneElement(child, {...child.props, theme: currentTheme})
-            }
-          })}
-        </>
-      )}
+      {reactChildrenMapping(children, { theme: currentTheme })}
     </ThemeProvider>
   </>
 };

@@ -23,7 +23,7 @@ export const ContinueButtonStoryTemplate: StoryObj<typeof meta> = {
     children: 'Test!',
     onClick: () => console.log('test'),
     theme: themes['Geozilla'],
-    isDisabled: false
+    isDisabled: false,
   },
 };
 

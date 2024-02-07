@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { reactChildrenMapping } from '../../utils';
 
 interface StyledOptionsListProps {
   readonly $customStyles?: string,
@@ -8,6 +9,7 @@ interface StyledOptionsListProps {
 const StyledOptionsList = styled.div<StyledOptionsListProps>`
   display: flex;
   flex-direction: column;
+  ${({ $customStyles }) => $customStyles};
 `;
 
 interface OptionsListProps {
@@ -25,14 +27,9 @@ export const OptionsList = ({
     $customStyles={customStyles}
     {...rest}
   >
-    {children && (
-      <>
-        {React.Children.map(children, (child) => {
-          if (React.isValidElement(child)) {
-            return React.cloneElement(child, {...child.props, theme: rest?.theme})
-          }
-        })}
-      </>
-    )}
+    {reactChildrenMapping(children, {
+      theme: rest?.theme,
+      mt: 12,
+    })}
   </StyledOptionsList>
 );
