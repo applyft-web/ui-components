@@ -5,16 +5,8 @@ import { OptionsList } from './OptionsList';
 import { themesToControls } from '../../stories';
 import { themes } from '../../core/theme';
 
-interface ObjProps {
-  [propName: string]: any;
-}
-
 const test = () => {
-  const options: ObjProps[] = [
-    {mt: '0'},
-    {},
-    {},
-  ];
+  const options = new Array(3).fill(0);
   return options.map((el, i) => (
     <OptionsItem
       onClick={null}

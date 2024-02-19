@@ -13,6 +13,7 @@ const GlobalStyles = createGlobalStyle`
     -webkit-tap-highlight-color: rgba(0,0,0,0);
     -webkit-tap-highlight-color: transparent;
     -webkit-text-size-adjust: none;
+    color: ${({ theme }) => theme?.colors?.colorText || '#323232'};
 
     &::-webkit-scrollbar {
       width: 0;
@@ -28,7 +29,7 @@ const GlobalStyles = createGlobalStyle`
     height: 100vh;
     height: 100dvh;
     height: 100svh;
-    height: calc(var(--vh,1vh) * 100);
+    height: calc(var(--vh,1svh) * 100);
     background-color: ${({ theme }) => theme?.colors?.colorBodyBackground || '#fff'};
 
     > * {

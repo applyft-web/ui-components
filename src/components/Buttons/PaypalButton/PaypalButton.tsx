@@ -21,6 +21,7 @@ export const PaypalButton = ({
   <ContinueButton
     onClick={onClick}
     customId={'paypalButton'}
+    staticPosition={true}
     customStyles={styles.concat(transparentStyle ? transparentStyles : '', customStyles)}
     {...rest}
   >

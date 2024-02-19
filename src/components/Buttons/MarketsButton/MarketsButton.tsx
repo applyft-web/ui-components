@@ -24,6 +24,7 @@ export const MarketsButton = ({
   <ContinueButton
     onClick={onClick}
     customId={`${marketName}MarketButton`}
+    staticPosition={true}
     customStyles={styles.concat(customStyles)}
     {...rest}
   >

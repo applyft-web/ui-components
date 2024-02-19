@@ -8,7 +8,7 @@ const meta: Meta<typeof ContinueButton> = {
   component: ContinueButton,
   parameters: {
     controls: {
-      include: ['children', 'theme', 'isDisabled', 'customStyles'],
+      include: ['children', 'theme', 'isDisabled', 'customStyles', 'staticPosition'],
     },
   },
   argTypes: {
@@ -24,6 +24,7 @@ export const ContinueButtonStoryTemplate: StoryObj<typeof meta> = {
     onClick: () => console.log('test'),
     theme: themes['Geozilla'],
     isDisabled: false,
+    staticPosition: false,
   },
 };
 

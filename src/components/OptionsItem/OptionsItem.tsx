@@ -13,8 +13,8 @@ interface StyledOptionProps extends StyledProps{
   readonly $isLarge?: boolean;
   readonly $multiChoice?: boolean;
   readonly $customStyles?: string;
-  readonly mt?: string | number,
-  readonly mb?: string | number,
+  readonly $mt?: string | number,
+  readonly $mb?: string | number,
 }
 
 interface StyledImgProps extends StyledProps {
@@ -44,9 +44,13 @@ const StyledOption = styled.button<StyledOptionProps>`
   color: ${({ theme }) => theme?.colors?.colorText};
   position: relative;
   transition: .3s;
-  ${({ mt }) => mt && `margin-top: ${mt}${typeof mt === 'number' ? 'px' : ''}`};
-  ${({ mb }) => mb && `margin-bottom: ${mb}${typeof mb === 'number' ? 'px' : ''}`};
+  ${({ $mt }) => $mt && `margin-top: ${$mt}${typeof $mt === 'number' || !isNaN(+$mt) ? 'px' : ''}`};
+  ${({ $mb }) => $mb && `margin-bottom: ${$mb}${typeof $mb === 'number' || !isNaN(+$mb) ? 'px' : ''}`};
   ${({ $customStyles }) => $customStyles};
+
+  &:first-child {
+    margin-top: 0;
+  }
 
   &:focus {
     outline: none;
@@ -121,8 +125,8 @@ interface OptionsItemProps {
   customId?: string;
   customStyles?: string;
   theme?: Theme;
-  mt?: string | number,
-  mb?: string | number,
+  mt?: string | number;
+  mb?: string | number;
   [propName: string]: any;
 }
 
@@ -134,6 +138,8 @@ export const OptionsItem = ({
   multiChoice = false,
   img,
   customId = 'option-1',
+  mt,
+  mb,
   customStyles,
   ...rest
 }: OptionsItemProps) => {
@@ -147,6 +153,8 @@ export const OptionsItem = ({
       $isLarge={!!img}
       $multiChoice={multiChoice}
       id={customId}
+      $mt={mt}
+      $mb={mb}
       $customStyles={customStyles}
       {...rest}
     >
