@@ -1,5 +1,5 @@
 import React from 'react';
-import { ThemeProvider } from 'styled-components';
+import { DefaultTheme, ThemeProvider } from 'styled-components';
 import { getTheme, GlobalStyles } from '../../core/theme';
 import {reactChildrenMapping} from "../../utils";
 
@@ -22,15 +22,16 @@ const fallback = namesList['gz'];
 
 interface ProviderComponentProps {
   projectName: string;
+  theme: DefaultTheme;
   children?: React.ReactNode | string;
 }
 
-export const GlobalThemeProvider = ({ children, projectName = fallback }: ProviderComponentProps) => {
-  const currentTheme = getTheme(namesList[projectName.toLowerCase()] || fallback);
+export const GlobalThemeProvider = ({ children, projectName = fallback, theme }: ProviderComponentProps) => {
+  const currentTheme = theme ?? getTheme(namesList[projectName.toLowerCase()] ?? fallback);
 
   return <>
-    <GlobalStyles theme={currentTheme}/>
     <ThemeProvider theme={currentTheme}>
+      <GlobalStyles />
       {reactChildrenMapping(children, { theme: currentTheme })}
     </ThemeProvider>
   </>

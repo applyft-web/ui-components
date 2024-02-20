@@ -24,7 +24,7 @@ const TestWrapper = styled.div`
   }
 `;
 
-const Test = (props: any) => (
+const Test = () => (
   <TestWrapper>
     <OptionsItem
       onClick={null}
@@ -33,9 +33,8 @@ const Test = (props: any) => (
       img={'other'}
       multiChoice
       isActive
-      {...props}
     />
-    <ContinueButton onClick={null} />
+    <ContinueButton onClick={null} staticPosition={true} />
   </TestWrapper>
 );
 

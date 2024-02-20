@@ -26,6 +26,8 @@ const StyledButton = styled.button<StyledButtonProps>`
   white-space: nowrap;
   position: fixed;
   bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
   transition: .3s;
   ${({ $isDisabled, theme }) => $isDisabled && `
     background-color: ${theme?.colors?.colorButtonDisabled};
@@ -35,7 +37,9 @@ const StyledButton = styled.button<StyledButtonProps>`
   ${({ $mb }) => $mb && `margin-bottom: ${+$mb}${typeof $mb === 'number' || !isNaN(+$mb) ? 'px' : ''}`};
   ${({ $staticPosition }) => $staticPosition && `
     position: static;
-    bottom: 0;
+    bottom: auto;
+    left: auto;
+    transform: none;
   `};
 
   ${({ $customStyles }) => $customStyles};

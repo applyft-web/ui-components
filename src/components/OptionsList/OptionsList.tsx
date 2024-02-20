@@ -9,6 +9,7 @@ interface StyledOptionsListProps {
 const StyledOptionsList = styled.div<StyledOptionsListProps>`
   display: flex;
   flex-direction: column;
+  overflow: auto;
   ${({ $customStyles }) => $customStyles};
 `;
 

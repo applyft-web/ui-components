@@ -82,7 +82,7 @@ const StyledCheckIcon = styled.div<StyledCheckIconProps>`
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background-color: ${({ theme, $isActive }) => theme?.colors?.[`colorOption${$isActive ? 'BorderActive' : 'CheckInactive'}`]};
+  background-color: ${({ theme, $isActive }) => theme?.colors?.[`colorOptionCheck${$isActive ? 'Active' : 'Inactive'}`]};
   position: absolute;
   top: calc(50% - 10px);
   ${({ $isArabic }) => getTextAlign($isArabic)}: 16px;
@@ -175,7 +175,7 @@ export const OptionsItem = ({
           $isActive={isActive}
           theme={rest?.theme}
         >
-          <CheckIcon color={rest?.theme?.colors?.[`colorOption${isActive ? 'Active' : 'Inactive'}`]}/>
+          <CheckIcon isActive={isActive} theme={rest?.theme} />
         </StyledCheckIcon>
       )}
     </StyledOption>
