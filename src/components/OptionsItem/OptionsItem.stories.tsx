@@ -23,7 +23,12 @@ export default meta;
 
 export const OptionsItemStoryTemplate: StoryObj<typeof meta> = {
   args: {
-    children: 'Test!',
+    children: (
+      <div>
+        <div>Test 1</div>
+        <div>Test 2</div>
+      </div>
+    ),
     onClick: () => console.log('test'),
     theme: themes['Geozilla'],
     isArabic: false,

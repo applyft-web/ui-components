@@ -17,7 +17,9 @@ const test = () => {
       multiChoice
       isActive
       {...el}
-    />
+    >
+      {i===1 ? <div><div>Test 123</div><div>Test 321</div></div> : undefined}
+    </OptionsItem>
   ))
 };
 

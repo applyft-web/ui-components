@@ -116,7 +116,7 @@ const ThreeDots = styled.div`
 `;
 
 interface OptionsItemProps {
-  children?: string;
+  children?: any;
   onClick: () => void;
   isArabic?: boolean;
   isActive?: boolean;

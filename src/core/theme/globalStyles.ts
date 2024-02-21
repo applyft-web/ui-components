@@ -14,6 +14,7 @@ const GlobalStyles = createGlobalStyle`
     -webkit-tap-highlight-color: transparent;
     -webkit-text-size-adjust: none;
     color: ${({ theme }) => theme?.colors?.colorText || '#323232'};
+    overscroll-behavior: none;
 
     &::-webkit-scrollbar {
       width: 0;
