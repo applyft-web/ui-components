@@ -15,7 +15,7 @@ const test = () => {
         : 'https://quiz.geodzilla.info/assets/track_target/partner.png'
       }
       multiChoice
-      isActive
+      isActive={i > 0}
       {...el}
     >
       {i===1 ? <div><div>Test 123</div><div>Test 321</div></div> : undefined}
