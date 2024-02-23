@@ -18,11 +18,13 @@ const GlobalStyles = createGlobalStyle`
 
     &::-webkit-scrollbar {
       width: 0;
+      height: 0;
     }
   }
 
   html {
     height: 100%;
+    background-color: ${({ theme }) => theme?.colors?.colorBodyBackground || '#fff'};
   }
 
   body {
