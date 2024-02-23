@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
-const GlobalStyles = createGlobalStyle`
+const GlobalStyles = createGlobalStyle<{ $customStyles?: string }>`
   :root {
     --system-ui: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   }
@@ -13,7 +13,6 @@ const GlobalStyles = createGlobalStyle`
     -webkit-tap-highlight-color: rgba(0,0,0,0);
     -webkit-tap-highlight-color: transparent;
     -webkit-text-size-adjust: none;
-    color: ${({ theme }) => theme?.colors?.colorText || '#323232'};
     overscroll-behavior: none;
 
     &::-webkit-scrollbar {
@@ -22,9 +21,12 @@ const GlobalStyles = createGlobalStyle`
     }
   }
 
+  html, body {
+    background-color: ${({ theme }) => theme?.colors?.colorBodyBackground || '#fff'};
+  }
+
   html {
     height: 100%;
-    background-color: ${({ theme }) => theme?.colors?.colorBodyBackground || '#fff'};
   }
 
   body {
@@ -33,7 +35,7 @@ const GlobalStyles = createGlobalStyle`
     height: 100dvh;
     height: 100svh;
     height: calc(var(--vh,1svh) * 100);
-    background-color: ${({ theme }) => theme?.colors?.colorBodyBackground || '#fff'};
+    color: ${({ theme }) => theme?.colors?.colorText || '#323232'};
 
     > * {
       width: 100%;
@@ -62,6 +64,8 @@ const GlobalStyles = createGlobalStyle`
   a, input, button {
     font-family: var(--system-ui);
   }
+  
+  ${({ $customStyles }) => $customStyles};
 `;
 
 export default GlobalStyles;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { getTheme, GlobalStyles } from '../../core/theme';
 import {reactChildrenMapping} from "../../utils";
@@ -27,6 +27,20 @@ interface ProviderComponentProps {
 
 export const GlobalThemeProvider = ({ children, projectName = fallback }: ProviderComponentProps) => {
   const currentTheme = getTheme(namesList[projectName.toLowerCase()] ?? fallback);
+
+  useEffect(() => {
+    const setDynamicVH = () => {
+      let vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    };
+
+    setTimeout(() => {
+      setDynamicVH();
+      window.addEventListener('resize', setDynamicVH, false);
+    },100);
+
+    return () => window.removeEventListener('resize', setDynamicVH, false);
+  }, []);
 
   return <>
     <ThemeProvider theme={currentTheme}>
