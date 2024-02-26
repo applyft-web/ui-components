@@ -1,1 +1,1 @@
-export { GlobalThemeProvider, GlobalStyles } from './theme'
+export { GlobalThemeProvider, GlobalStyles, useDynamicHeight } from './theme'
