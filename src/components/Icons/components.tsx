@@ -7,7 +7,7 @@ const StyledSVG = styled.svg<{ $customStyles?: string }>`
 
 const StyledPath = styled.path<{ $isActive: boolean; $color?: string }>`
   fill: ${({ theme, $isActive, $color }) =>
-  $color ?? theme?.colors?.[`colorOption${$isActive ? 'Active' : 'Inactive'}`] ?? '#fff'};
+  $color ?? theme?.colors?.[`option${$isActive ? 'Active' : 'Inactive'}`] ?? '#fff'};
 `;
 
 interface CheckIconProps {

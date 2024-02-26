@@ -1,10 +1,5 @@
 interface Colors {
-  colorPrimary?: string;
-  colorButtonHover?: string;
-  colorButtonDisabled?: string;
-  colorOptionInactive?: string;
-  colorOptionActive?: string;
-  colorOptionBorderActive?: string;
+  [propName: string]: string;
 }
 
 export interface Theme {
@@ -18,8 +13,8 @@ export interface ThemesObject {
 
 const defaultTheme: {[key: string]: any} = {
   colors: {
-    colorText: '#323232',
-    colorBodyBackground: '#fff',
+    text: '#323232',
+    bodyBackground: '#fff',
   },
   mobileWidth: '350',
   tabletMinWidth: '744',
@@ -35,62 +30,62 @@ const mergeKeys = (k: string, obj: object): object => {
 export const themes: ThemesObject = {
   Geozilla: {
     ...mergeKeys('colors', {
-      colorPrimary: '#00BFA5',
-      colorButtonHover: '#00A08B',
-      colorButtonDisabled: '#9bdfd2',
-      colorOptionInactive: '#EBFAF8',
-      colorOptionActive: '#C2F0EA',
-      colorOptionBorderActive: '#00BFA5',
-      colorOptionImgActive: '#94E3D9',
-      colorOptionImgInactive: '#C2F0EA',
-      colorOptionCheckActive: '#00BFA5',
-      colorOptionCheckInactive: '#BBE1DC',
-      colorThreeDots: '#00BFA5',
+      primary: '#00BFA5',
+      buttonHover: '#00A08B',
+      buttonDisabled: '#9bdfd2',
+      optionInactive: '#EBFAF8',
+      optionActive: '#C2F0EA',
+      optionBorderActive: '#00BFA5',
+      optionImgActive: '#94E3D9',
+      optionImgInactive: '#C2F0EA',
+      optionCheckActive: '#00BFA5',
+      optionCheckInactive: '#BBE1DC',
+      threeDots: '#00BFA5',
     }),
   },
   'Family-Locator': {
     ...mergeKeys('colors', {
-      colorPrimary: '#3393EC',
-      colorButtonHover: '#1F7ACE',
-      colorButtonDisabled: '#9ec9f6',
-      colorOptionInactive: '#F0F8FF',
-      colorOptionActive: '#C5E3FF',
-      colorOptionBorderActive: '#007AFF',
-      colorOptionImgActive: '#8BB6DE',
-      colorOptionImgInactive: '#C3E1FF',
-      colorOptionCheckActive: '#007AFF',
-      colorOptionCheckInactive: '#CCDDF0',
-      colorThreeDots: '#5281BD',
+      primary: '#3393EC',
+      buttonHover: '#1F7ACE',
+      buttonDisabled: '#9ec9f6',
+      optionInactive: '#F0F8FF',
+      optionActive: '#C5E3FF',
+      optionBorderActive: '#007AFF',
+      optionImgActive: '#8BB6DE',
+      optionImgInactive: '#C3E1FF',
+      optionCheckActive: '#007AFF',
+      optionCheckInactive: '#CCDDF0',
+      threeDots: '#5281BD',
     }),
   },
   Familo: {
     ...mergeKeys('colors', {
-      colorPrimary: '#F58A3C',
-      colorButtonHover: '#C56A28',
-      colorButtonDisabled: '#fcc5a1',
-      colorOptionInactive: '#FEF7F1',
-      colorOptionActive: '#FFE5D2',
-      colorOptionBorderActive: '#F58A3C',
-      colorOptionImgActive: '#ECC6AA',
-      colorOptionImgInactive: '#FFE4D0',
-      colorOptionCheckActive: '#F58A3C',
-      colorOptionCheckInactive: '#EED6C5',
-      colorThreeDots: '#F58A3C',
+      primary: '#F58A3C',
+      buttonHover: '#C56A28',
+      buttonDisabled: '#fcc5a1',
+      optionInactive: '#FEF7F1',
+      optionActive: '#FFE5D2',
+      optionBorderActive: '#F58A3C',
+      optionImgActive: '#ECC6AA',
+      optionImgInactive: '#FFE4D0',
+      optionCheckActive: '#F58A3C',
+      optionCheckInactive: '#EED6C5',
+      threeDots: '#F58A3C',
     }),
   },
   Closer: {
     ...mergeKeys('colors', {
-      colorPrimary: '#00BFA5',
-      colorButtonHover: '#00A08B',
-      colorButtonDisabled: '#9bdfd2',
-      colorOptionInactive: '#EBFAF8',
-      colorOptionActive: '#C2F0EA',
-      colorOptionBorderActive: '#00BFA5',
-      colorOptionImgActive: '#94E3D9',
-      colorOptionImgInactive: '#C2F0EA',
-      colorOptionCheckActive: '#00BFA5',
-      colorOptionCheckInactive: '#BBE1DC',
-      colorThreeDots: '#00BFA5',
+      primary: '#00BFA5',
+      buttonHover: '#00A08B',
+      buttonDisabled: '#9bdfd2',
+      optionInactive: '#EBFAF8',
+      optionActive: '#C2F0EA',
+      optionBorderActive: '#00BFA5',
+      optionImgActive: '#94E3D9',
+      optionImgInactive: '#C2F0EA',
+      optionCheckActive: '#00BFA5',
+      optionCheckInactive: '#BBE1DC',
+      threeDots: '#00BFA5',
     }),
   },
 };

@@ -13,7 +13,7 @@ const StyledButton = styled.button<StyledButtonProps>`
   width: 100%;
   max-width: 327px;
   height: 56px;
-  background-color: ${({ theme }) => theme?.colors?.colorPrimary};
+  background-color: ${({ theme }) => theme?.colors?.primary};
   border-radius: 12px;
   border: none;
   padding: 20px;
@@ -30,7 +30,7 @@ const StyledButton = styled.button<StyledButtonProps>`
   transform: translateX(-50%);
   transition: .3s;
   ${({ $isDisabled, theme }) => $isDisabled && `
-    background-color: ${theme?.colors?.colorButtonDisabled};
+    background-color: ${theme?.colors?.buttonDisabled};
     pointer-events: none;
   `};
   ${({ $mt }) => $mt && `margin-top: ${+$mt}${typeof $mt === 'number' || !isNaN(+$mt) ? 'px' : ''}`};
@@ -52,7 +52,7 @@ const StyledButton = styled.button<StyledButtonProps>`
     ${({ $isDisabled }) => !$isDisabled && 'cursor: pointer;'};
     
     &:hover {
-      background-color: ${({ theme }) => theme?.colors?.colorButtonHover};
+      background-color: ${({ theme }) => theme?.colors?.buttonHover};
     }
   }
 `;

@@ -29,11 +29,11 @@ const StyledOption = styled.button<StyledOptionProps>`
   align-items: center;
   width: 100%;
   max-width: 327px;
-  background-color: ${({ theme, $isActive }) => theme?.colors?.[`colorOption${$isActive ? 'Active' : 'Inactive'}`]};
+  background-color: ${({ theme, $isActive }) => theme?.colors?.[`option${$isActive ? 'Active' : 'Inactive'}`]};
   border-radius: 12px;
   border: ${({ theme, $isActive, $isLarge }) =>
     $isLarge
-      ? `1px solid ${theme?.colors?.[`colorOption${$isActive ? 'BorderActive' : 'Inactive'}`]}`
+      ? `1px solid ${theme?.colors?.[`option${$isActive ? 'BorderActive' : 'Inactive'}`]}`
       : 'none'
   };
   padding: ${({ $isLarge }) => $isLarge ? 15 : 16}px 16px;
@@ -41,7 +41,7 @@ const StyledOption = styled.button<StyledOptionProps>`
   font-weight: 500;
   font-size: 16px;
   line-height: 1.5;
-  color: ${({ theme }) => theme?.colors?.colorText};
+  color: ${({ theme }) => theme?.colors?.text};
   position: relative;
   transition: .3s;
   ${({ $mt }) => $mt && `margin-top: ${$mt}${typeof $mt === 'number' || !isNaN(+$mt) ? 'px' : ''}`};
@@ -65,7 +65,7 @@ const StyledImg = styled.div<StyledImgProps>`
   width: 64px;
   height: 64px;
   border-radius: 7px;
-  background-color: ${({ theme, $isActive }) => theme?.colors?.[`colorOptionImg${$isActive ? 'Active' : 'Inactive'}`]};
+  background-color: ${({ theme, $isActive }) => theme?.colors?.[`optionImg${$isActive ? 'Active' : 'Inactive'}`]};
   ${({ $imgSrc }) => $imgSrc && `
     background-image: url(${$imgSrc});
     background-size: cover;
@@ -82,7 +82,7 @@ const StyledCheckIcon = styled.div<StyledCheckIconProps>`
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background-color: ${({ theme, $isActive }) => theme?.colors?.[`colorOptionCheck${$isActive ? 'Active' : 'Inactive'}`]};
+  background-color: ${({ theme, $isActive }) => theme?.colors?.[`optionCheck${$isActive ? 'Active' : 'Inactive'}`]};
   position: absolute;
   top: calc(50% - 10px);
   ${({ $isArabic }) => getTextAlign($isArabic)}: 16px;
@@ -93,7 +93,7 @@ const ThreeDots = styled.div`
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: ${({ theme }) => theme?.colors?.colorThreeDots};
+  background-color: ${({ theme }) => theme?.colors?.threeDots};
   position: absolute;
   top: calc(50% - 4px);
   left: calc(50% - 4px);

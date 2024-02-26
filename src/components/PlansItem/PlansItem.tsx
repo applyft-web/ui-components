@@ -13,18 +13,18 @@ const StyledOption = styled.button<StyledOptionProps>`
   flex-direction: ${({ $isArabic }) => `row${$isArabic ? '-reverse' : ''}`};
   width: 100%;
   max-width: 327px;
-  background-color: ${({ theme, $isActive }) => theme?.colors?.[`colorOption${$isActive ? 'Active' : 'Inactive'}`]};
+  background-color: ${({ theme, $isActive }) => theme?.colors?.[`option${$isActive ? 'Active' : 'Inactive'}`]};
   border-radius: 12px;
   border: ${({ theme, $isActive, $isLarge }) =>
     $isLarge
-      ? `1px solid ${theme?.colors?.[`colorOption${$isActive ? 'BorderActive' : 'Inactive'}`]}`
+      ? `1px solid ${theme?.colors?.[`option${$isActive ? 'BorderActive' : 'Inactive'}`]}`
       : 'none'
   };
   padding: 16px;
   font-weight: 500;
   font-size: 16px;
   line-height: 1.5;
-  color: ${({ theme }) => theme?.colors?.colorText};
+  color: ${({ theme }) => theme?.colors?.text};
   position: relative;
   transition: .3s;
   ${({ $customStyles }) => $customStyles};

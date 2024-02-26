@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { ThemeProvider } from 'styled-components';
-import { getTheme, GlobalStyles } from '../../core/theme';
-import {reactChildrenMapping} from "../../utils";
+import { getTheme, GlobalStyles, useDynamicHeight } from '../../core/theme';
+import { reactChildrenMapping } from '../../utils';
 
 const GZ: string = 'Geozilla';
 const FL: string = 'Family-Locator';
@@ -28,19 +28,7 @@ interface ProviderComponentProps {
 export const GlobalThemeProvider = ({ children, projectName = fallback }: ProviderComponentProps) => {
   const currentTheme = getTheme(namesList[projectName.toLowerCase()] ?? fallback);
 
-  useEffect(() => {
-    const setDynamicVH = () => {
-      let vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty('--vh', `${vh}px`);
-    };
-
-    setTimeout(() => {
-      setDynamicVH();
-      window.addEventListener('resize', setDynamicVH, false);
-    },100);
-
-    return () => window.removeEventListener('resize', setDynamicVH, false);
-  }, []);
+  useDynamicHeight();
 
   return <>
     <ThemeProvider theme={currentTheme}>
