@@ -9,12 +9,6 @@ const meta: Meta<typeof PaypalButton> = {
       include: ['transparentStyle', 'customStyles'],
     },
   },
-  argTypes: {
-    transparentStyle: {
-      options: ['transparent (familo style)'],
-      control: 'boolean',
-    }
-  },
 };
 
 export default meta;

@@ -20,7 +20,7 @@ export const PaypalButton = ({
 }: PaypalButtonProps) => (
   <ContinueButton
     onClick={onClick}
-    customId={'paypalButton'}
+    customId={'paypal-pay-button'}
     staticPosition={true}
     customStyles={styles.concat(transparentStyle ? transparentStyles : '', customStyles)}
     {...rest}

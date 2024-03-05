@@ -27,15 +27,13 @@ const StyledOption = styled.button<StyledOptionProps>`
   color: ${({ theme }) => theme?.colors?.text};
   position: relative;
   transition: .3s;
-  ${({ $customStyles }) => $customStyles};
+  cursor: pointer;
 
   &:focus {
     outline: none;
   }
 
-  @media screen and (min-width: ${({ theme }) => theme?.desktopMinWidth}px) {
-    cursor: pointer;
-  }
+  ${({ $customStyles }) => $customStyles};
 `;
 
 interface PlansItemProps {

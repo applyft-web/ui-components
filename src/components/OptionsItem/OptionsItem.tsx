@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { CheckIcon } from '../Icons';
 import type { Theme } from '../../core/theme';
-import { getTextAlign } from '../../utils';
+import { getTextAlign, getCssSize } from '../../utils';
 
 interface StyledProps {
   readonly $isArabic?: boolean;
@@ -44,9 +44,9 @@ const StyledOption = styled.button<StyledOptionProps>`
   color: ${({ theme }) => theme?.colors?.text};
   position: relative;
   transition: .3s;
-  ${({ $mt }) => $mt && `margin-top: ${$mt}${typeof $mt === 'number' || !isNaN(+$mt) ? 'px' : ''}`};
-  ${({ $mb }) => $mb && `margin-bottom: ${$mb}${typeof $mb === 'number' || !isNaN(+$mb) ? 'px' : ''}`};
-  ${({ $customStyles }) => $customStyles};
+  cursor: pointer;
+  ${({ $mt }) => $mt && `margin-top: ${getCssSize($mt)}`};
+  ${({ $mb }) => $mb && `margin-bottom: ${getCssSize($mb)}`};
 
   &:first-child {
     margin-top: 0;
@@ -56,9 +56,13 @@ const StyledOption = styled.button<StyledOptionProps>`
     outline: none;
   }
 
-  @media screen and (min-width: ${({ theme }) => theme?.desktopMinWidth}px) {
-    cursor: pointer;
+  @media screen and (min-width: ${({ theme }) => theme?.desktopMinWidth}px ) and (hover: hover) {
+    &:hover {
+      background-color: ${({ theme }) => theme?.colors?.optionActive};
+    }
   }
+  
+  ${({ $customStyles }) => $customStyles};
 `;
 
 const StyledImg = styled.div<StyledImgProps>`

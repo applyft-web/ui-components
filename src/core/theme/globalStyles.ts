@@ -36,6 +36,7 @@ export const GlobalStyles = createGlobalStyle<{ $customStyles?: string }>`
     height: 100svh;
     height: calc(var(--vh,1svh) * 100);
     color: ${({ theme }) => theme?.colors?.text || '#323232'};
+    user-select: none;
 
     > * {
       width: 100%;

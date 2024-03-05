@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { getCssSize } from '../../../utils';
 
 interface StyledButtonProps {
-  readonly $isDisabled: boolean;
   readonly $customStyles?: string;
   readonly $mt?: string | number;
   readonly $mb?: string | number;
@@ -29,12 +29,9 @@ const StyledButton = styled.button<StyledButtonProps>`
   left: 50%;
   transform: translateX(-50%);
   transition: .3s;
-  ${({ $isDisabled, theme }) => $isDisabled && `
-    background-color: ${theme?.colors?.buttonDisabled};
-    pointer-events: none;
-  `};
-  ${({ $mt }) => $mt && `margin-top: ${+$mt}${typeof $mt === 'number' || !isNaN(+$mt) ? 'px' : ''}`};
-  ${({ $mb }) => $mb && `margin-bottom: ${+$mb}${typeof $mb === 'number' || !isNaN(+$mb) ? 'px' : ''}`};
+  cursor: pointer;
+  ${({ $mt }) => $mt && `margin-top: ${getCssSize($mt)}`};
+  ${({ $mb }) => $mb && `margin-bottom: ${getCssSize($mb)}`};
   ${({ $staticPosition }) => $staticPosition && `
     position: static;
     bottom: auto;
@@ -42,24 +39,28 @@ const StyledButton = styled.button<StyledButtonProps>`
     transform: none;
   `};
 
-  ${({ $customStyles }) => $customStyles};
+  &:disabled {
+    ${({ theme }) => `
+      background-color: ${theme?.colors?.buttonDisabled};
+      pointer-events: none;
+    `};
+  }
 
   &:focus {
     outline: none;
   }
 
-  @media screen and (min-width: ${({ theme }) => theme?.desktopMinWidth}px) {
-    ${({ $isDisabled }) => !$isDisabled && 'cursor: pointer;'};
-    
+  @media screen and (min-width: ${({ theme }) => theme?.desktopMinWidth}px) and (hover: hover) {
     &:hover {
       background-color: ${({ theme }) => theme?.colors?.buttonHover};
     }
   }
+
+  ${({ $customStyles }) => $customStyles};
 `;
 
 export interface ContinueButtonProps {
   onClick: () => void;
-  isDisabled?: boolean;
   customStyles?: string;
   children?: React.ReactNode | string;
   customId?: string;
@@ -67,12 +68,12 @@ export interface ContinueButtonProps {
   mt?: string | number;
   mb?: string | number;
   staticPosition?: boolean;
+  [propName: string]: any;
 }
 
 export const ContinueButton = ({
   children = 'Continue',
   onClick,
-  isDisabled = false,
   customId = 'continue-button',
   mt,
   mb,
@@ -82,7 +83,6 @@ export const ContinueButton = ({
 }: ContinueButtonProps) => (
   <StyledButton
     onClick={onClick}
-    $isDisabled={isDisabled}
     id={customId}
     $mt={mt}
     $mb={mb}
