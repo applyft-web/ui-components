@@ -66,6 +66,17 @@ export const GlobalStyles = createGlobalStyle<{ $customStyles?: string }>`
     font-family: var(--system-ui);
   }
   
+  .scrollable {
+    overflow-x: auto;
+    overflow-y: auto;
+    
+    &::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+      display: none;
+    }
+  }
+  
   ${({ $customStyles }) => $customStyles};
 `;
 

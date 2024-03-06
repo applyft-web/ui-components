@@ -25,6 +25,7 @@ export const OptionsList = ({
   ...rest
 }: OptionsListProps) => (
   <StyledOptionsList
+    className={'scrollable'}
     $customStyles={customStyles}
     {...rest}
   >
