@@ -1,9 +1,9 @@
 {
-  "name": "@geozilla-web/ui-components",
+  "name": "@applyft-web/ui-components",
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/geozilla-web"
+    "registry": "https://npm.pkg.github.com/applyft-web"
   },
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "a library with basic css rules and ui react components",
   "main": "dist/esm/index.js",
   "module": "dist/cjs/index.js",
@@ -13,14 +13,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/geozilla-web/ui-components.git"
+    "url": "git+https://github.com/applyft-web/ui-components.git"
   },
   "author": "Aliaksei Drabushau",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/geozilla-web/ui-components/issues"
+    "url": "https://github.com/applyft-web/ui-components/issues"
   },
-  "homepage": "https://github.com/geozilla-web/ui-components#readme",
+  "homepage": "https://github.com/applyft-web/ui-components#readme",
   "scripts": {
     "build": "rollup -c",
     "package-publish": "npm publish",
