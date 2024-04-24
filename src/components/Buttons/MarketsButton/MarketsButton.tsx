@@ -1,5 +1,5 @@
 import React from 'react';
-import { ContinueButton } from '../../index';
+import { ContinueButton, type ContinueButtonProps } from '../../index';
 import { AppStoreIcon, GooglePlayIcon } from '../../Icons';
 
 const marketsImages: {[key: string]: React.JSX.Element} = {
@@ -9,10 +9,8 @@ const marketsImages: {[key: string]: React.JSX.Element} = {
 
 const styles: string = 'width:182px;background-color:#000;padding:0;';
 
-interface MarketsButtonProps {
+interface MarketsButtonProps extends ContinueButtonProps {
   marketName: string;
-  onClick: () => void;
-  customStyles?: string;
 }
 
 export const MarketsButton = ({

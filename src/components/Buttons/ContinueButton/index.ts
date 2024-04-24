@@ -1,1 +1,1 @@
-export { ContinueButton } from './ContinueButton'
+export { ContinueButton, type ContinueButtonProps } from './ContinueButton'
