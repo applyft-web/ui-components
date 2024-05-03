@@ -7,10 +7,20 @@ const marketsImages: {[key: string]: React.JSX.Element} = {
   apple: <AppStoreIcon />,
 };
 
-const styles: string = 'width:182px;background-color:#000;padding:0;';
+const styles: string = `
+  width: 182px;
+  background-color: #000;
+  padding: 0;
+  
+  @media screen and (hover: hover) {
+    &:hover {
+      background-color: #fff;
+    }
+  }
+`;
 
 interface MarketsButtonProps extends ContinueButtonProps {
-  marketName: string;
+  marketName: 'apple' | 'google';
 }
 
 export const MarketsButton = ({
