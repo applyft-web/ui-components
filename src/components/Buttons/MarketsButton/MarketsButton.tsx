@@ -14,7 +14,7 @@ const styles: string = `
   
   @media screen and (hover: hover) {
     &:hover {
-      background-color: #fff;
+      background-color: #000;
     }
   }
 `;
