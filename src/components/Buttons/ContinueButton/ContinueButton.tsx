@@ -11,7 +11,7 @@ interface StyledButtonProps {
 
 const StyledButton = styled.button<StyledButtonProps>`
   width: 100%;
-  max-width: 327px;
+  max-width: ${({ theme }) => theme?.maxContentWidth}px;
   height: 56px;
   background-color: ${({ theme }) => theme?.colors?.primary};
   border-radius: 12px;
@@ -30,6 +30,8 @@ const StyledButton = styled.button<StyledButtonProps>`
   transform: translateX(-50%);
   transition: .3s;
   cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
   ${({ $mt }) => $mt && `margin-top: ${getCssSize($mt)}`};
   ${({ $mb }) => $mb && `margin-bottom: ${getCssSize($mb)}`};
   ${({ $staticPosition }) => $staticPosition && `

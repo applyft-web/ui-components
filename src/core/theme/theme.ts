@@ -19,6 +19,7 @@ const defaultTheme: {[key: string]: any} = {
   mobileWidth: '350',
   tabletMinWidth: '744',
   desktopMinWidth: '1280',
+  maxContentWidth: '327',
 };
 
 const mergeKeys = (k: string, obj: object): object => {

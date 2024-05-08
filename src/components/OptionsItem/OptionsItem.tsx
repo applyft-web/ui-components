@@ -28,7 +28,7 @@ const StyledOption = styled.button<StyledOptionProps>`
   flex-direction: ${({ $isArabic }) => `row${$isArabic ? '-reverse' : ''}`};
   align-items: center;
   width: 100%;
-  max-width: 327px;
+  max-width: ${({ theme }) => theme?.maxContentWidth}px;
   background-color: ${({ theme, $isActive }) => theme?.colors?.[`option${$isActive ? 'Active' : 'Inactive'}`]};
   border-radius: 12px;
   border: ${({ theme, $isActive, $isLarge }) =>
@@ -45,6 +45,8 @@ const StyledOption = styled.button<StyledOptionProps>`
   position: relative;
   transition: .3s;
   cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
   ${({ $mt }) => $mt && `margin-top: ${getCssSize($mt)}`};
   ${({ $mb }) => $mb && `margin-bottom: ${getCssSize($mb)}`};
 
