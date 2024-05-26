@@ -2,13 +2,13 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { OptionsItem } from './OptionsItem';
 import { themesToControls } from '../../stories';
-import { themes } from '../../core/theme';
+import { getTheme } from '../../core/theme';
 
 const meta: Meta<typeof OptionsItem> = {
   component: OptionsItem,
   parameters: {
     controls: {
-      exclude: ['customId', 'onClick', 'mt', 'mb']
+      exclude: ['customId', 'onClick', 'mt', 'mb', 'customStyles']
     },
   },
   argTypes: {
@@ -25,7 +25,7 @@ export const OptionsItemStoryTemplate: StoryObj<typeof meta> = {
   args: {
     children: 'Test',
     onClick: () => console.log('test'),
-    theme: themes['Geozilla'],
+    theme: getTheme(),
     isArabic: false,
     isActive: false,
     multiChoice: false,

@@ -1,23 +1,21 @@
 import React from 'react';
-import { ContinueButton, type ContinueButtonProps } from '../../index';
+import { ContinueButton, type ContinueButtonProps, type CustomStylesWithStatesProps } from '../ContinueButton';
 import { AppStoreIcon, GooglePlayIcon } from '../../Icons';
+import { mergeStyleObjects } from '../../../utils';
 
 const marketsImages: {[key: string]: React.JSX.Element} = {
   google: <GooglePlayIcon />,
   apple: <AppStoreIcon />,
 };
 
-const styles: string = `
-  width: 182px;
-  background-color: #000;
-  padding: 0;
-  
-  @media screen and (hover: hover) {
-    &:hover {
-      background-color: #000;
-    }
-  }
-`;
+const typeStyles: CustomStylesWithStatesProps = {
+  default: `
+    width: 182px;
+    background-color: #000;
+    padding: 0;
+  `,
+  hover: 'background-color: #000;',
+};
 
 interface MarketsButtonProps extends ContinueButtonProps {
   marketName: 'apple' | 'google';
@@ -28,14 +26,27 @@ export const MarketsButton = ({
   onClick,
   customStyles,
   ...rest
-}: MarketsButtonProps) => (
-  <ContinueButton
-    onClick={onClick}
-    customId={`${marketName}MarketButton`}
-    staticPosition={true}
-    customStyles={styles.concat(customStyles)}
-    {...rest}
-  >
-    {marketsImages[marketName]}
-  </ContinueButton>
-);
+}: MarketsButtonProps) => {
+  let styles: CustomStylesWithStatesProps;
+  if (typeof(customStyles) === 'string') {
+    styles = {
+      default: customStyles,
+      hover: '',
+      disabled: '',
+    };
+  } else {
+    styles = customStyles;
+  }
+
+  return(
+    <ContinueButton
+      onClick={onClick}
+      customId={`${marketName}MarketButton`}
+      staticPosition={true}
+      customStyles={mergeStyleObjects(typeStyles, styles)}
+      {...rest}
+    >
+      {marketsImages[marketName]}
+    </ContinueButton>
+  );
+};

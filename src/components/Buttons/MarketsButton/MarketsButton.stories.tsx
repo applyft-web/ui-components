@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { MarketsButton } from './MarketsButton';
+import { getTheme } from '../../../core/theme';
 
 const meta: Meta<typeof MarketsButton> = {
   component: MarketsButton,
@@ -13,7 +14,7 @@ const meta: Meta<typeof MarketsButton> = {
     marketName: {
       options: ['google', 'apple'],
       control: 'inline-radio',
-    }
+    },
   },
 };
 
@@ -23,6 +24,7 @@ export const MarketsButtonStoryTemplate: StoryObj<typeof meta> = {
   args: {
     onClick: () => console.log('test'),
     marketName: 'google',
+    theme: getTheme(),
   },
 };
 

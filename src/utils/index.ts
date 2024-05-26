@@ -4,7 +4,7 @@ export const getTextAlign = (isArabic: boolean = false): string => {
   return isArabic ? 'left' : 'right';
 };
 
-export const reactChildrenMapping = (children: React.ReactNode, customProps: object) => {
+export const reactChildrenMapping = (children: React.ReactNode, customProps: object = {}) => {
   if (children) {
     return (
       React.Children.map(children, (child, index) => {
@@ -40,4 +40,14 @@ export const useDynamicHeight = () => {
 export const getCssSize = (val: string | number = 0): string => {
   if (!isNaN(+val)) return `${val || 0}px`
   return val.toString();
+};
+
+export const mergeStyleObjects = (obj1: any = {}, obj2: any = {}): object => {
+  const mergedTheme = Object.keys(obj1).reduce((acc, key) => {
+    return obj1[key] && obj2[key]
+      ? { ...acc, ...{ [key]: [obj1[key], obj2[key]].join(';') } }
+      : acc;
+  }, {});
+
+  return { ...obj1, ...obj2, ...mergedTheme };
 };

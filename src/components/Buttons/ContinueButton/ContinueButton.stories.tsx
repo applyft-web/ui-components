@@ -2,7 +2,7 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { ContinueButton } from './ContinueButton';
 import { themesToControls } from '../../../stories';
-import { themes } from '../../../core/theme';
+import { getTheme } from '../../../core/theme';
 
 const meta: Meta<typeof ContinueButton> = {
   component: ContinueButton,
@@ -22,7 +22,7 @@ export const ContinueButtonStoryTemplate: StoryObj<typeof meta> = {
   args: {
     children: 'Test!',
     onClick: () => console.log('test'),
-    theme: themes['Geozilla'],
+    theme: getTheme(),
     disabled: false,
     staticPosition: false,
   },

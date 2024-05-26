@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { OptionsItem } from '../OptionsItem';
 import { OptionsList } from './OptionsList';
 import { themesToControls } from '../../stories';
-import { themes } from '../../core/theme';
+import { getTheme } from '../../core/theme';
 
 const test = () => {
   const options = new Array(3).fill(0);
@@ -40,7 +40,7 @@ export default meta;
 export const OptionsItemStoryTemplate: StoryObj<typeof meta> = {
   args: {
     children: test(),
-    theme: themes['Geozilla'],
+    theme: getTheme(),
   },
 };
 

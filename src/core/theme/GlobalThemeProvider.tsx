@@ -1,12 +1,11 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
-import { getTheme, GlobalStyles, useDynamicHeight } from '../../core/theme';
-import { reactChildrenMapping } from '../../utils';
+import { getTheme, GlobalStyles, type Theme, useDynamicHeight } from '../../core/theme';
 
 const GZ: string = 'Geozilla';
 const FL: string = 'Family-Locator';
 const FO: string = 'Familo';
-const CL: string = 'Closer';
+const BB: string = 'BrainBloom';
 const namesList: {[key: string]: string} = {
   geozilla: GZ,
   gz: GZ,
@@ -14,26 +13,30 @@ const namesList: {[key: string]: string} = {
   fl: FL,
   familo: FO,
   fo: FO,
-  closer: CL,
-  cl: CL,
+  brainbloom: BB,
+  bb: BB,
 };
 
 const fallback = namesList['gz'];
 
 interface ProviderComponentProps {
-  projectName: string;
   children?: React.ReactNode | string;
+  projectTheme: string | Theme;
+  customGlobalStyles?: string;
+  customTheme?: {[propName: string]: string};
 }
 
-export const GlobalThemeProvider = ({ children, projectName = fallback }: ProviderComponentProps) => {
-  const currentTheme = getTheme(namesList[projectName.toLowerCase()] ?? fallback);
+export const GlobalThemeProvider = ({ children, projectTheme = fallback, customTheme = {}, customGlobalStyles }: ProviderComponentProps) => {
+  const currentTheme = typeof projectTheme === 'string'
+    ? getTheme(namesList[projectTheme.toLowerCase()] ?? fallback)
+    : projectTheme;
 
   useDynamicHeight();
 
   return <>
-    <ThemeProvider theme={currentTheme}>
-      <GlobalStyles />
-      {reactChildrenMapping(children, { theme: currentTheme })}
+    <ThemeProvider theme={{ ...currentTheme, ...{ custom: customTheme } }}>
+      <GlobalStyles $customStyles={customGlobalStyles} />
+      {children}
     </ThemeProvider>
   </>
 };

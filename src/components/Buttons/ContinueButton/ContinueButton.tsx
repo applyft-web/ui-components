@@ -2,14 +2,21 @@ import React from 'react';
 import styled from 'styled-components';
 import { getCssSize } from '../../../utils';
 
+export interface CustomStylesWithStatesProps {
+  readonly default?: string;
+  readonly disabled?: string;
+  readonly hover?: string;
+}
+
 interface StyledButtonProps {
-  readonly $customStyles?: string;
-  readonly $mt?: string | number;
-  readonly $mb?: string | number;
+  readonly $customStyles?: CustomStylesWithStatesProps;
+  readonly $mt?: number | string;
+  readonly $mb?: number | string;
   readonly $staticPosition?: boolean;
 }
 
 const StyledButton = styled.button<StyledButtonProps>`
+  display: block;
   width: 100%;
   max-width: ${({ theme }) => theme?.maxContentWidth}px;
   height: 56px;
@@ -35,7 +42,7 @@ const StyledButton = styled.button<StyledButtonProps>`
   ${({ $mt }) => $mt && `margin-top: ${getCssSize($mt)}`};
   ${({ $mb }) => $mb && `margin-bottom: ${getCssSize($mb)}`};
   ${({ $staticPosition }) => $staticPosition && `
-    position: static;
+    position: relative;
     bottom: auto;
     left: auto;
     transform: none;
@@ -46,6 +53,8 @@ const StyledButton = styled.button<StyledButtonProps>`
       background-color: ${theme?.colors?.buttonDisabled};
       pointer-events: none;
     `};
+
+    ${({ $customStyles }) => $customStyles?.disabled};
   }
 
   &:focus {
@@ -55,21 +64,23 @@ const StyledButton = styled.button<StyledButtonProps>`
   @media screen and (min-width: ${({ theme }) => theme?.desktopMinWidth}px) and (hover: hover) {
     &:hover {
       background-color: ${({ theme }) => theme?.colors?.buttonHover};
+
+      ${({ $customStyles }) => $customStyles?.hover};
     }
   }
 
-  ${({ $customStyles }) => $customStyles};
+  ${({ $customStyles }) => $customStyles?.default};
 `;
 
 export interface ContinueButtonProps {
-  onClick: () => void;
-  customStyles?: string;
   children?: React.ReactNode | string;
+  onClick: () => void;
   customId?: string;
-  theme?: object;
   mt?: string | number;
   mb?: string | number;
   staticPosition?: boolean;
+  customStyles?: CustomStylesWithStatesProps | string;
+  theme?: object;
   [propName: string]: any;
 }
 
@@ -82,16 +93,29 @@ export const ContinueButton = ({
   staticPosition,
   customStyles,
   ...rest
-}: ContinueButtonProps) => (
-  <StyledButton
-    onClick={onClick}
-    id={customId}
-    $mt={mt}
-    $mb={mb}
-    $staticPosition={staticPosition}
-    $customStyles={customStyles}
-    {...rest}
-  >
-    {children}
-  </StyledButton>
-);
+}: ContinueButtonProps) => {
+  let styles: CustomStylesWithStatesProps;
+  if (typeof(customStyles) === 'string') {
+    styles = {
+      default: customStyles,
+      hover: '',
+      disabled: '',
+    };
+  } else {
+    styles = customStyles;
+  }
+
+  return (
+    <StyledButton
+      onClick={onClick}
+      id={customId}
+      $mt={mt}
+      $mb={mb}
+      $staticPosition={staticPosition}
+      $customStyles={styles}
+      {...rest}
+    >
+      {children}
+    </StyledButton>
+  );
+};

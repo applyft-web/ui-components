@@ -10,17 +10,20 @@ const StyledOptionsList = styled.div<StyledOptionsListProps>`
   display: flex;
   flex-direction: column;
   overflow: auto;
+
   ${({ $customStyles }) => $customStyles};
 `;
 
 interface OptionsListProps {
   children?: React.ReactNode | string;
+  gap?: number;
   customStyles?: string,
   theme?: object,
 }
 
 export const OptionsList = ({
   children,
+  gap = 12,
   customStyles,
   ...rest
 }: OptionsListProps) => (
@@ -31,7 +34,7 @@ export const OptionsList = ({
   >
     {reactChildrenMapping(children, {
       theme: rest?.theme,
-      mt: 12,
+      mt: gap,
     })}
   </StyledOptionsList>
 );
