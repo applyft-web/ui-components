@@ -48,6 +48,7 @@ const Test = () => {
               }
               multiChoice
               isActive={i > 1}
+              key={i}
               {...el}
             >
               {i === 2 ? <div><div>Test 123</div><div>Test 321</div></div> : undefined}
@@ -91,7 +92,7 @@ const customTheme = {
 
 export const GlobalThemeProviderStoryTemplate: StoryObj<typeof meta> = {
   args: {
-    projectTheme: 'Geozilla',
+    projectTheme: 'geozilla',
     // projectTheme: customTheme,
     customTheme,
     children: <Test />,

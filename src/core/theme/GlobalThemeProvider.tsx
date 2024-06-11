@@ -1,12 +1,12 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
-import { getTheme, GlobalStyles, type Theme, useDynamicHeight } from '../../core/theme';
+import { getTheme, GlobalStyles, type Theme, type ProjectName, useDynamicHeight } from '../../core/theme';
 
-const GZ: string = 'Geozilla';
-const FL: string = 'Family-Locator';
-const FO: string = 'Familo';
-const BB: string = 'BrainBloom';
-const namesList: {[key: string]: string} = {
+const GZ = 'geozilla';
+const FL = 'family-locator';
+const FO = 'familo';
+const BB = 'brainbloom';
+const namesList: {[key: string]: ProjectName} = {
   geozilla: GZ,
   gz: GZ,
   'family-locator': FL,

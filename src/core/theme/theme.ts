@@ -11,6 +11,8 @@ export interface ThemesObject {
   [key: string]: Theme;
 }
 
+export type ProjectName = 'geozilla' | 'family-locator' | 'familo' | 'brainbloom';
+
 const defaultTheme: {[key: string]: any} = {
   colors: {
     text: '#323232',
@@ -20,10 +22,11 @@ const defaultTheme: {[key: string]: any} = {
   tabletMinWidth: '744',
   desktopMinWidth: '1280',
   maxContentWidth: '327',
+  sidePadding: '24',
 };
 
 export const themes: ThemesObject = {
-  Geozilla: {
+  geozilla: {
     colors: {
       primary: '#00BFA5',
       buttonHover: '#00A08B',
@@ -31,6 +34,7 @@ export const themes: ThemesObject = {
       optionInactive: '#EBFAF8',
       optionActive: '#C2F0EA',
       optionBorderActive: '#00BFA5',
+      optionBorderActiveText: '#323232',
       optionImgActive: '#94E3D9',
       optionImgInactive: '#C2F0EA',
       optionCheckActive: '#00BFA5',
@@ -38,9 +42,15 @@ export const themes: ThemesObject = {
       threeDots: '#00BFA5',
       progressBarActive: '#00bfa5',
       progressBarBg: '#f0efef',
+      circularProgressBg: '#F2F2F2',
+      inputBg: '#fff',
+      reviewItemBg: '#f4f4f4',
+      planItemBg: '#fff',
+      planItemBorder: '#c3c3c3',
+      planItemLabelBg: '#fff',
     },
   },
-  'Family-Locator': {
+  'family-locator': {
     colors: {
       primary: '#3393EC',
       buttonHover: '#1F7ACE',
@@ -48,6 +58,7 @@ export const themes: ThemesObject = {
       optionInactive: '#F0F8FF',
       optionActive: '#C5E3FF',
       optionBorderActive: '#007AFF',
+      optionBorderActiveText: '#323232',
       optionImgActive: '#8BB6DE',
       optionImgInactive: '#C3E1FF',
       optionCheckActive: '#007AFF',
@@ -55,9 +66,15 @@ export const themes: ThemesObject = {
       threeDots: '#5281BD',
       progressBarActive: '#3393ec',
       progressBarBg: '#f3f3f3',
+      circularProgressBg: '#F2F2F2',
+      inputBg: '#fff',
+      reviewItemBg: '#f4f4f4',
+      planItemBg: '#fff',
+      planItemBorder: '#c3c3c3',
+      planItemLabelBg: '#fff',
     },
   },
-  Familo: {
+  familo: {
     colors: {
       primary: '#F58A3C',
       buttonHover: '#C56A28',
@@ -65,6 +82,7 @@ export const themes: ThemesObject = {
       optionInactive: '#FEF7F1',
       optionActive: '#FFE5D2',
       optionBorderActive: '#F58A3C',
+      optionBorderActiveText: '#323232',
       optionImgActive: '#ECC6AA',
       optionImgInactive: '#FFE4D0',
       optionCheckActive: '#F58A3C',
@@ -72,9 +90,15 @@ export const themes: ThemesObject = {
       threeDots: '#F58A3C',
       progressBarActive: '#f58a3c',
       progressBarBg: '#f3f3f3',
+      circularProgressBg: '#F2F2F2',
+      inputBg: '#fff',
+      reviewItemBg: '#f4f4f4',
+      planItemBg: '#fff',
+      planItemBorder: '#c4c4c4',
+      planItemLabelBg: '#fff',
     },
   },
-  BrainBloom: {
+  brainbloom: {
     colors: {
       text: '#fff',
       bodyBackground: '#292C44',
@@ -85,6 +109,7 @@ export const themes: ThemesObject = {
       optionInactive: '#404464',
       optionActive: '#FDC21C',
       optionBorderActive: '#fdc21c',
+      optionBorderActiveText: '#292C44',
       optionImgActive: '#292C44',
       optionImgInactive: '#898FBD',
       optionCheckActive: '#292C44',
@@ -92,8 +117,15 @@ export const themes: ThemesObject = {
       threeDots: '#fff',
       progressBarActive: '#FDC21C',
       progressBarBg: '#F0EFEF',
+      circularProgressBg: '#404464',
+      inputBg: '#404464',
+      reviewItemBg: '#404464',
+      planItemBg: '#404464',
+      planItemBorder: '#5D638F',
+      planItemLabelBg: '#515684',
     },
     maxContentWidth: '343',
+    sidePadding: '16',
   },
 };
 
@@ -104,8 +136,8 @@ const mergeKeys = (k: string, obj: ThemesObject): object => {
   } : {};
 };
 
-export const getTheme = (projectName: string = 'Geozilla'): object => {
-  const currentTheme = themes[projectName];
+export const getTheme = (projectName: ProjectName = 'geozilla'): object => {
+  const currentTheme = themes[projectName.toLowerCase()];
   const mergedTheme = Object.keys(currentTheme).reduce((acc, key) => {
     return { ...acc, ...mergeKeys(key, currentTheme) };
   }, {});

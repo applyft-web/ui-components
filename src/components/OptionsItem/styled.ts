@@ -80,6 +80,7 @@ export const StyledOption = styled.button<StyledOptionProps & CustomStylesWithSt
     &:hover {
       background-color: ${({ theme }) => theme?.colors?.optionActive};
       border-color: ${({ theme }) => theme?.colors?.optionBorderActive};
+      color: ${({ theme }) => theme?.colors?.optionBorderActiveText};
       
       .check-element {
         background-color: ${({ theme }) => theme?.colors?.optionCheckActive};
