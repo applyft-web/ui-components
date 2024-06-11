@@ -1,8 +1,8 @@
-import { getTheme, themes, type ThemesObject } from '../core/theme';
+import { getTheme, themes, type ThemesObject, type ProjectName } from '../core/theme';
 
 const themesMapping = (): object => {
   let obj: ThemesObject = {};
-  Object.keys(themes).map((k: string) => obj[k] = getTheme(k));
+  Object.keys(themes).map((k: string) => obj[k] = getTheme(k as ProjectName));
   return obj;
 };
 
