@@ -48,6 +48,7 @@ export const themes: ThemesObject = {
       planItemBg: '#fff',
       planItemBorder: '#c3c3c3',
       planItemLabelBg: '#fff',
+      planItemCheckBorder: '#00BFA5',
     },
   },
   'family-locator': {
@@ -72,6 +73,7 @@ export const themes: ThemesObject = {
       planItemBg: '#fff',
       planItemBorder: '#c3c3c3',
       planItemLabelBg: '#fff',
+      planItemCheckBorder: '#3393EC',
     },
   },
   familo: {
@@ -96,6 +98,7 @@ export const themes: ThemesObject = {
       planItemBg: '#fff',
       planItemBorder: '#c4c4c4',
       planItemLabelBg: '#fff',
+      planItemCheckBorder: '#F58A3C',
     },
   },
   brainbloom: {
@@ -123,6 +126,7 @@ export const themes: ThemesObject = {
       planItemBg: '#404464',
       planItemBorder: '#5D638F',
       planItemLabelBg: '#515684',
+      planItemCheckBorder: '#CF9B08',
     },
     maxContentWidth: '343',
     sidePadding: '16',

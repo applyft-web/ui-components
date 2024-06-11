@@ -4,4 +4,5 @@ export {
   useDynamicHeight,
   getTheme,
   type Theme,
+  type ProjectName,
 } from './theme'
