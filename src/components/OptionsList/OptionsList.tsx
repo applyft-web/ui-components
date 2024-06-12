@@ -14,7 +14,7 @@ const StyledOptionsList = styled.div<StyledOptionsListProps>`
   ${({ $customStyles }) => $customStyles};
 `;
 
-interface OptionsListProps {
+export interface OptionsListProps {
   children?: React.ReactNode | string;
   gap?: number;
   customStyles?: string,

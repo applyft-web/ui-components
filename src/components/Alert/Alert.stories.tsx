@@ -1,25 +1,25 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { ProgressBar, type ProgressBarProps } from './ProgressBar';
+import { Alert, type AlertProps } from './Alert';
 import { themesToControls } from '../../stories';
 import { getTheme, GlobalThemeProvider } from '../../core';
 import { MainLayout } from '../Layouts';
 
-const Wrapper = (props: ProgressBarProps) => {
+const Wrapper = (props: AlertProps) => {
   return (
     <GlobalThemeProvider projectTheme={props.theme}>
       <MainLayout>
-        <ProgressBar {...props} />
+        <Alert {...props} />
       </MainLayout>
     </GlobalThemeProvider>
   );
-};
+}
 
-const meta: Meta<typeof ProgressBar> = {
+const meta: Meta<typeof Alert> = {
   component: Wrapper,
   parameters: {
     controls: {
-      exclude: ['onContinueClick'],
+      exclude: ['show', 'clearError'],
     },
   },
   argTypes: {
@@ -29,14 +29,13 @@ const meta: Meta<typeof ProgressBar> = {
 
 export default meta;
 
-export const ProgressBarStoryTemplate: StoryObj<typeof meta> = {
+export const AlertStoryTemplate: StoryObj<typeof meta> = {
   args: {
     theme: getTheme(),
-    isSegmented: true,
-    totalCount: 15,
-    currentRoute: 5,
-    skipButton: 'skip',
+    show: true,
+    message: 'This is an alert message',
+    isArabic: false,
   },
 };
 
-ProgressBarStoryTemplate.storyName = 'ProgressBar';
+AlertStoryTemplate.storyName = 'Alert';

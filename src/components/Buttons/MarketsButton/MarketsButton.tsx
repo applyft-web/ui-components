@@ -17,7 +17,7 @@ const typeStyles: CustomStylesWithStatesProps = {
   hover: 'background-color: #000;',
 };
 
-interface MarketsButtonProps extends ContinueButtonProps {
+export interface MarketsButtonProps extends ContinueButtonProps {
   marketName: 'apple' | 'google';
 }
 

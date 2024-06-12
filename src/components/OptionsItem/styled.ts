@@ -55,7 +55,10 @@ export const StyledOption = styled.button<StyledOptionProps & CustomStylesWithSt
       border: none;
     `
   };
-  ${({ $multiChoice, $isArabic }) => $multiChoice && `padding-${getTextAlign($isArabic)}: 56px`};
+  ${({ $multiChoice, $isArabic }) => $multiChoice && `
+    padding: 15px 56px;
+    padding-${getTextAlign($isArabic)}: 16px;
+  `};
   font-weight: 500;
   font-size: 16px;
   line-height: 1.5;
@@ -107,8 +110,9 @@ export const StyledImg = styled.div<StyledImgProps>`
   ${({ $imgSrc }) => $imgSrc && `
     background-image: url(${$imgSrc});
     background-size: cover;
-  `}
-  margin-${({ $isArabic }) => getTextAlign($isArabic)}: 16px;
+  `};
+  margin: 0 16px;
+  margin-${({ $isArabic }) => getTextAlign($isArabic)}: 0;
   position: relative;
   transition: background-color .3s;
 
@@ -125,8 +129,10 @@ export const StyledCheckIcon = styled.div<StyledCheckIconProps>`
   background-color: ${({ theme, $isActive }) => theme?.colors?.[`optionCheck${$isActive ? 'Active' : 'Inactive'}`]};
   position: absolute;
   top: 50%;
+  left: 16px;
+  right: 16px;
+  ${({ $isArabic }) => getTextAlign($isArabic)}: auto;
   transform: translateY(-50%);
-  ${({ $isArabic }) => getTextAlign($isArabic)}: 16px;
   transition: background-color .3s;
 
   ${({ $customStyles }) => $customStyles};

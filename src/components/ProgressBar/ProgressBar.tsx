@@ -8,7 +8,7 @@ interface CustomStylesProps {
   readonly skip?: string;
 }
 
-interface ProgressBarProps {
+export interface ProgressBarProps {
   isSegmented?: boolean;
   totalCount: number;
   currentRoute: number;

@@ -1,42 +1,43 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { ProgressBar, type ProgressBarProps } from './ProgressBar';
+import { CircularProgress, type CircularProgressProps } from './CircularProgress';
 import { themesToControls } from '../../stories';
 import { getTheme, GlobalThemeProvider } from '../../core';
 import { MainLayout } from '../Layouts';
 
-const Wrapper = (props: ProgressBarProps) => {
+const Wrapper = (props: CircularProgressProps) => {
   return (
     <GlobalThemeProvider projectTheme={props.theme}>
       <MainLayout>
-        <ProgressBar {...props} />
+        <CircularProgress {...props} />
       </MainLayout>
     </GlobalThemeProvider>
   );
 };
 
-const meta: Meta<typeof ProgressBar> = {
+const meta: Meta<typeof CircularProgress> = {
   component: Wrapper,
   parameters: {
     controls: {
-      exclude: ['onContinueClick'],
+      exclude: ['mt', 'mb', 'customStyles'],
     },
   },
   argTypes: {
     ...themesToControls,
+    progress: {
+      control: 'number',
+    },
   },
 };
 
 export default meta;
 
-export const ProgressBarStoryTemplate: StoryObj<typeof meta> = {
+export const CircularProgressStoryTemplate: StoryObj<typeof meta> = {
   args: {
     theme: getTheme(),
-    isSegmented: true,
-    totalCount: 15,
-    currentRoute: 5,
-    skipButton: 'skip',
+    progress: 35,
+    customStyles: 'margin: 0 auto;',
   },
 };
 
-ProgressBarStoryTemplate.storyName = 'ProgressBar';
+CircularProgressStoryTemplate.storyName = 'CircularProgress';

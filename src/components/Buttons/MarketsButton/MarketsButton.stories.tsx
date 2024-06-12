@@ -1,16 +1,31 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { MarketsButton } from './MarketsButton';
-import { getTheme } from '../../../core/theme';
+import { MarketsButton, type MarketsButtonProps } from './MarketsButton';
+import { themesToControls } from '../../../stories';
+import { getTheme, GlobalThemeProvider } from '../../../core';
+import { MainLayout } from '../../Layouts';
+
+const Wrapper = (props: MarketsButtonProps) => {
+  return (
+    <GlobalThemeProvider projectTheme={props.theme}>
+      <MainLayout>
+        <div>
+          <MarketsButton {...props} />
+        </div>
+      </MainLayout>
+    </GlobalThemeProvider>
+  );
+};
 
 const meta: Meta<typeof MarketsButton> = {
-  component: MarketsButton,
+  component: Wrapper,
   parameters: {
     controls: {
-      include: ['marketName', 'customStyles'],
+      include: ['theme', 'marketName', 'customStyles'],
     },
   },
   argTypes: {
+    ...themesToControls,
     marketName: {
       options: ['google', 'apple'],
       control: 'inline-radio',
@@ -22,9 +37,9 @@ export default meta;
 
 export const MarketsButtonStoryTemplate: StoryObj<typeof meta> = {
   args: {
+    theme: getTheme(),
     onClick: () => console.log('test'),
     marketName: 'google',
-    theme: getTheme(),
   },
 };
 

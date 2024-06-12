@@ -1,41 +1,24 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { ContinueButton, OptionsItem, OptionsList, ProgressBar } from '../../components';
+import {
+  ContinueButton,
+  MainLayout,
+  OptionsItem,
+  OptionsList,
+  ProgressBar,
+} from '../../components';
 import { GlobalThemeProvider } from '../../core';
 import { themes } from './theme';
-import styled from 'styled-components';
-
-const TestWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-  padding: 5rem;
-  position: relative;
-  
-  &:before {
-    content: '';
-    display: block;
-    width: 100%;
-    height: 100%;
-    background-color: ${({theme}) => theme?.colors?.primary};
-    opacity: .3;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-`;
 
 const Test = () => {
   const options = new Array(4).fill(0);
   return (
-    <TestWrapper>
+    <MainLayout pt={56} pb={88}>
       <ProgressBar
         totalCount={15}
         currentRoute={5}
         isSegmented
         skipButton={'Text'}
-        customStyles={{ container: 'top:32px;' }}
       />
       <OptionsList>
         {
@@ -56,8 +39,8 @@ const Test = () => {
           ))
         }
       </OptionsList>
-      <ContinueButton onClick={null} staticPosition={true} mt={16} />
-    </TestWrapper>
+      <ContinueButton onClick={null} mt={16} />
+    </MainLayout>
   );
 };
 

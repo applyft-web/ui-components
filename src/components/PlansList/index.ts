@@ -1,1 +1,1 @@
-export * from './PlansList'
+export { PlansList } from './PlansList'

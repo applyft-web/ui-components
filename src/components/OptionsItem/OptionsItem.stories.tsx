@@ -1,11 +1,22 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { OptionsItem } from './OptionsItem';
+import { OptionsItem, type OptionsItemProps } from './OptionsItem';
 import { themesToControls } from '../../stories';
-import { getTheme } from '../../core/theme';
+import { getTheme, GlobalThemeProvider } from '../../core';
+import { MainLayout } from '../Layouts';
+
+const Wrapper = (props: OptionsItemProps) => {
+  return (
+    <GlobalThemeProvider projectTheme={props.theme}>
+      <MainLayout>
+        <OptionsItem {...props} />
+      </MainLayout>
+    </GlobalThemeProvider>
+  );
+};
 
 const meta: Meta<typeof OptionsItem> = {
-  component: OptionsItem,
+  component: Wrapper,
   parameters: {
     controls: {
       exclude: ['customId', 'onClick', 'mt', 'mb', 'customStyles']

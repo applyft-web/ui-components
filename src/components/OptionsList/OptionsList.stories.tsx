@@ -1,9 +1,20 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { OptionsItem } from '../OptionsItem';
-import { OptionsList } from './OptionsList';
+import { OptionsList, type OptionsListProps } from './OptionsList';
 import { themesToControls } from '../../stories';
-import { getTheme } from '../../core/theme';
+import { getTheme, GlobalThemeProvider } from '../../core';
+import { MainLayout } from '../Layouts';
+
+const Wrapper = (props: OptionsListProps) => {
+  return (
+    <GlobalThemeProvider projectTheme={props.theme}>
+      <MainLayout>
+        <OptionsList {...props} />
+      </MainLayout>
+    </GlobalThemeProvider>
+  );
+};
 
 const test = () => {
   const options = new Array(3).fill(0);
@@ -24,7 +35,7 @@ const test = () => {
 };
 
 const meta: Meta<typeof OptionsList> = {
-  component: OptionsList,
+  component: Wrapper,
   parameters: {
     controls: {
       exclude: ['children']
@@ -39,8 +50,8 @@ export default meta;
 
 export const OptionsItemStoryTemplate: StoryObj<typeof meta> = {
   args: {
-    children: test(),
     theme: getTheme(),
+    children: test(),
   },
 };
 

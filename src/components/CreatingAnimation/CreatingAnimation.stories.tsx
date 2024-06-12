@@ -1,25 +1,25 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { ProgressBar, type ProgressBarProps } from './ProgressBar';
+import { type CreatingAnimationProps, CreatingAnimation } from './CreatingAnimation';
 import { themesToControls } from '../../stories';
 import { getTheme, GlobalThemeProvider } from '../../core';
-import { MainLayout } from '../Layouts';
+import {MainLayout} from "../Layouts";
 
-const Wrapper = (props: ProgressBarProps) => {
+const Wrapper = (props: CreatingAnimationProps) => {
   return (
     <GlobalThemeProvider projectTheme={props.theme}>
       <MainLayout>
-        <ProgressBar {...props} />
+        <CreatingAnimation {...props} />
       </MainLayout>
     </GlobalThemeProvider>
   );
-};
+}
 
-const meta: Meta<typeof ProgressBar> = {
+const meta: Meta<typeof CreatingAnimation> = {
   component: Wrapper,
   parameters: {
     controls: {
-      exclude: ['onContinueClick'],
+      exclude: ['mt', 'mb', 'doneCallback'],
     },
   },
   argTypes: {
@@ -29,14 +29,12 @@ const meta: Meta<typeof ProgressBar> = {
 
 export default meta;
 
-export const ProgressBarStoryTemplate: StoryObj<typeof meta> = {
+export const CircularProgressStoryTemplate: StoryObj<typeof meta> = {
   args: {
     theme: getTheme(),
-    isSegmented: true,
-    totalCount: 15,
-    currentRoute: 5,
-    skipButton: 'skip',
+    doneCallback: () => alert('Done!'),
+    duration: 10,
   },
 };
 
-ProgressBarStoryTemplate.storyName = 'ProgressBar';
+CircularProgressStoryTemplate.storyName = 'CreatingAnimation';

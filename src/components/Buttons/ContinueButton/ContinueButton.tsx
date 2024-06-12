@@ -27,7 +27,7 @@ const StyledButton = styled.button<StyledButtonProps>`
   font-weight: 500;
   font-size: 16px;
   line-height: 1;
-  color: #FFFFFF;
+  color: ${({ theme }) => theme?.colors?.bodyBackground};
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

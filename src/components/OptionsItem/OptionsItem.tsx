@@ -11,7 +11,7 @@ interface CustomStylesProps {
   checkIcon?: CheckIconStyledProps | string,
 }
 
-interface OptionsItemProps {
+export interface OptionsItemProps {
   children?: any;
   onClick: () => void;
   isArabic?: boolean;

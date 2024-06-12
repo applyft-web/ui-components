@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
 export const getTextAlign = (isArabic: boolean = false): string => {
-  return isArabic ? 'left' : 'right';
+  return isArabic ? 'right' : 'left';
 };
 
 export const reactChildrenMapping = (children: React.ReactNode, customProps: object = {}) => {

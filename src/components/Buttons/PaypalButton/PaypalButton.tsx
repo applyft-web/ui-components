@@ -12,7 +12,7 @@ const transparentStyles: CustomStylesWithStatesProps = {
   hover: 'background-color:rgba(0,157,225,.13);',
 };
 
-interface PaypalButtonProps extends ContinueButtonProps {
+export interface PaypalButtonProps extends ContinueButtonProps {
   transparentStyle?: boolean;
 }
 
