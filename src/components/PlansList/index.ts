@@ -1,1 +1,1 @@
-export { PlansList } from './PlansList'
+export { PlansList, type PlanProps } from './PlansList'
