@@ -37,17 +37,16 @@ export const StyledOption = styled.button<StyledOptionProps & CustomStylesWithSt
   align-items: center;
   width: 100%;
   max-width: ${({ theme }) => theme?.maxContentWidth}px;
-  ${({ theme, $isActive }) => $isActive
-    ? `
-      background-color: ${theme?.colors?.optionActive};
-      border: 1px solid ${theme?.colors?.optionBorderActive};
-    `
-    : `
-      background-color: ${theme?.colors?.optionInactive};
-      border: 1px solid ${theme?.colors?.optionInactive};
-    `
-  };
   border-radius: 12px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  color: ${({ theme }) => theme?.colors?.text};
+  position: relative;
+  transition: .3s;
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
   ${({ $isLarge }) => $isLarge
     ? `padding: 15px 16px;`
     : `
@@ -59,15 +58,17 @@ export const StyledOption = styled.button<StyledOptionProps & CustomStylesWithSt
     padding: 15px 56px;
     padding-${getTextAlign($isArabic)}: 16px;
   `};
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 1.5;
-  color: ${({ theme }) => theme?.colors?.text};
-  position: relative;
-  transition: .3s;
-  cursor: pointer;
-  margin-left: auto;
-  margin-right: auto;
+  ${({ theme, $isActive }) => $isActive
+    ? `
+      background-color: ${theme?.colors?.optionActive};
+      border: 1px solid ${theme?.colors?.optionBorderActive};
+      color: ${theme?.colors?.optionActiveText};
+    `
+    : `
+      background-color: ${theme?.colors?.optionInactive};
+      border: 1px solid ${theme?.colors?.optionInactive};
+    `
+  };
   ${({ $mt }) => $mt && `margin-top: ${getCssSize($mt)}`};
   ${({ $mb }) => $mb && `margin-bottom: ${getCssSize($mb)}`};
 
@@ -83,7 +84,7 @@ export const StyledOption = styled.button<StyledOptionProps & CustomStylesWithSt
     &:hover {
       background-color: ${({ theme }) => theme?.colors?.optionActive};
       border-color: ${({ theme }) => theme?.colors?.optionBorderActive};
-      color: ${({ theme }) => theme?.colors?.optionBorderActiveText};
+      color: ${({ theme }) => theme?.colors?.optionActiveText};
       
       .check-element {
         background-color: ${({ theme }) => theme?.colors?.optionCheckActive};
