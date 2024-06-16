@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { DefaultTheme } from 'styled-components';
+import { getFormattedStyles } from '../../utils';
 
 interface CommonProps {
   readonly $isActive: boolean;
@@ -32,16 +33,7 @@ export const CheckIcon = ({
   theme,
   customStyles,
 }: CheckIconProps) => {
-  let styles: CheckIconStyledProps;
-
-  if (typeof(customStyles) === 'string') {
-    styles = {
-      svg: customStyles,
-      path: '',
-    };
-  } else {
-    styles = customStyles;
-  }
+  const styles: CheckIconStyledProps = getFormattedStyles(customStyles, 'svg');
 
   return (
     <StyledSVG

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { getTextAlign, getCssSize } from '../../utils';
 
 interface CommonProps {
-  readonly $customStyles?: string;
+  $customStyles?: string;
 }
 
 export interface CustomStylesWithStatesProps {
@@ -12,7 +12,7 @@ export interface CustomStylesWithStatesProps {
   readonly active?: string;
 }
 
-interface StyledProps extends CommonProps {
+interface StyledProps {
   readonly $isArabic?: boolean;
   readonly $isActive?: boolean;
 }
@@ -20,18 +20,16 @@ interface StyledProps extends CommonProps {
 interface StyledOptionProps extends StyledProps {
   readonly $isLarge?: boolean;
   readonly $multiChoice?: boolean;
-  readonly $customStyles?: string;
   readonly $mt?: number | string,
   readonly $mb?: number | string,
+  readonly $customStyles?: CustomStylesWithStatesProps;
 }
 
 interface StyledImgProps extends StyledProps {
   readonly $imgSrc?: string;
 }
 
-interface StyledCheckIconProps extends StyledProps {}
-
-export const StyledOption = styled.button<StyledOptionProps & CustomStylesWithStatesProps>`
+export const StyledOption = styled.button<StyledOptionProps>`
   display: flex;
   flex-direction: ${({ $isArabic }) => `row${$isArabic ? '-reverse' : ''}`};
   align-items: center;
@@ -79,6 +77,14 @@ export const StyledOption = styled.button<StyledOptionProps & CustomStylesWithSt
   &:focus {
     outline: none;
   }
+  
+  &:disabled {
+    ${({ $customStyles }) => $customStyles?.disabled};
+  }
+  
+  &:active {
+    ${({ $customStyles }) => $customStyles?.active};
+  }
 
   @media screen and (min-width: ${({ theme }) => theme?.desktopMinWidth}px ) and (hover: hover) {
     &:hover {
@@ -97,13 +103,15 @@ export const StyledOption = styled.button<StyledOptionProps & CustomStylesWithSt
       .option-img {
         background-color: ${({ theme }) => theme?.colors?.optionImgActive};
       }
+      
+      ${({ $customStyles }) => $customStyles?.hover};
     }
   }
   
-  ${({ $customStyles }) => $customStyles};
+  ${({ $customStyles }) => $customStyles?.default};
 `;
 
-export const StyledImg = styled.div<StyledImgProps>`
+export const StyledImg = styled.div<StyledImgProps & CommonProps>`
   width: 64px;
   height: 64px;
   border-radius: 7px;
@@ -120,7 +128,7 @@ export const StyledImg = styled.div<StyledImgProps>`
   ${({ $customStyles }) => $customStyles};
 `;
 
-export const StyledCheckIcon = styled.div<StyledCheckIconProps>`
+export const StyledCheckIcon = styled.div<StyledProps & CommonProps>`
   display: flex;
   justify-content: center;
   align-items: center;

@@ -1,10 +1,11 @@
 import React from 'react';
 import { CheckIcon, type CheckIconStyledProps } from '../Icons';
 import type { Theme } from '../../core';
+import { getFormattedStyles } from '../../utils';
 import * as S from './styled';
 
 interface CustomStylesProps {
-  option?: string,
+  option?: S.CustomStylesWithStatesProps | string,
   img?: string,
   dots?: string,
   check?: string,
@@ -41,19 +42,8 @@ export const OptionsItem = ({
 }: OptionsItemProps) => {
   const theme = rest?.theme;
   const imgSrc: string | null = img && img.trim() !== 'other' ? img.trim() : null;
-  let styles: CustomStylesProps;
-
-  if (typeof(customStyles) === 'string') {
-    styles = {
-      option: customStyles,
-      img: '',
-      dots: '',
-      check: '',
-      checkIcon: '',
-    };
-  } else {
-    styles = customStyles;
-  }
+  const styles = getFormattedStyles(customStyles, 'option');
+  const optionStyles: S.CustomStylesWithStatesProps = getFormattedStyles(styles.option, 'default');
 
   return (
     <S.StyledOption
@@ -65,7 +55,7 @@ export const OptionsItem = ({
       id={customId}
       $mt={mt}
       $mb={mb}
-      $customStyles={styles?.option}
+      $customStyles={optionStyles}
       {...rest}
     >
       {!!img && (

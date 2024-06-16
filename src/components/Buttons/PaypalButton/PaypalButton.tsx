@@ -1,13 +1,13 @@
 import React from 'react';
-import { ContinueButton, type ContinueButtonProps, type CustomStylesWithStatesProps } from '../../index';
+import { ContinueButton, type ContinueButtonProps, type ButtonCustomStylesWithStatesProps } from '../../index';
 import { PaypalIcon } from '../../Icons';
-import { mergeStyleObjects } from '../../../utils';
+import { mergeStyleObjects, getFormattedStyles } from '../../../utils';
 
-const typeStyles: CustomStylesWithStatesProps = {
+const typeStyles: ButtonCustomStylesWithStatesProps = {
   default: 'background-color:#F9C456;padding: 0 20px;',
   hover: 'background-color:#F9C456;',
 };
-const transparentStyles: CustomStylesWithStatesProps = {
+const transparentStyles: ButtonCustomStylesWithStatesProps = {
   default: 'background-color:rgba(0,157,225,.13);border:1px solid #009DE1;',
   hover: 'background-color:rgba(0,157,225,.13);',
 };
@@ -23,16 +23,7 @@ export const PaypalButton = ({
   ...rest
 }: PaypalButtonProps) => {
   const localStyles = mergeStyleObjects(typeStyles, transparentStyle ? transparentStyles : {});
-  let styles: CustomStylesWithStatesProps;
-  if (typeof(customStyles) === 'string') {
-    styles = {
-      default: customStyles,
-      hover: '',
-      disabled: '',
-    };
-  } else {
-    styles = customStyles;
-  }
+  const styles: ButtonCustomStylesWithStatesProps = getFormattedStyles(customStyles, 'default');
 
   return (
     <ContinueButton

@@ -1,4 +1,5 @@
 import React from 'react';
+import { getFormattedStyles } from '../../utils';
 import * as S from './styled';
 
 interface CustomStylesProps {
@@ -28,18 +29,7 @@ export const ProgressBar = ({
 }: ProgressBarProps) => {
   const theme = rest?.theme;
   const pages = new Array(totalCount).fill(0);
-  let styles: CustomStylesProps;
-
-  if (typeof(customStyles) === 'string') {
-    styles = {
-      container: customStyles,
-      bar: '',
-      segment: '',
-      skip: '',
-    };
-  } else {
-    styles = customStyles;
-  }
+  const styles: CustomStylesProps = getFormattedStyles(customStyles, 'container');
 
   const renderProgress = (_: any, i: number) => (
     <S.StyledBarItem

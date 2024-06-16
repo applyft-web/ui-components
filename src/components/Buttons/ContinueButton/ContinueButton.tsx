@@ -1,15 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
-import { getCssSize } from '../../../utils';
+import { getCssSize, getFormattedStyles } from '../../../utils';
 
-export interface CustomStylesWithStatesProps {
+export interface ButtonCustomStylesWithStatesProps {
   readonly default?: string;
   readonly disabled?: string;
   readonly hover?: string;
 }
 
 interface StyledButtonProps {
-  readonly $customStyles?: CustomStylesWithStatesProps;
+  readonly $customStyles?: ButtonCustomStylesWithStatesProps;
   readonly $mt?: number | string;
   readonly $mb?: number | string;
   readonly $staticPosition?: boolean;
@@ -79,7 +79,7 @@ export interface ContinueButtonProps {
   mt?: string | number;
   mb?: string | number;
   staticPosition?: boolean;
-  customStyles?: CustomStylesWithStatesProps | string;
+  customStyles?: ButtonCustomStylesWithStatesProps | string;
   theme?: object;
   [propName: string]: any;
 }
@@ -94,16 +94,7 @@ export const ContinueButton = ({
   customStyles,
   ...rest
 }: ContinueButtonProps) => {
-  let styles: CustomStylesWithStatesProps;
-  if (typeof(customStyles) === 'string') {
-    styles = {
-      default: customStyles,
-      hover: '',
-      disabled: '',
-    };
-  } else {
-    styles = customStyles;
-  }
+  const styles: ButtonCustomStylesWithStatesProps = getFormattedStyles(customStyles, 'default');
 
   return (
     <StyledButton

@@ -1,10 +1,16 @@
 import styled from 'styled-components';
 import { getCssSize } from '../../../utils';
 
+export interface MainLayoutCustomStylesWithStatesProps {
+  readonly default?: string;
+  readonly tablet?: string;
+  readonly mobile?: string;
+}
+
 interface StyledLayoutProps {
   readonly $pt?: string | number;
   readonly $pb?: string | number;
-  readonly $customStyles?: string;
+  readonly $customStyles?: MainLayoutCustomStylesWithStatesProps;
 }
 
 export const StyledLayout = styled.div<StyledLayoutProps>`
@@ -24,15 +30,19 @@ export const StyledLayout = styled.div<StyledLayoutProps>`
   text-align: center;
   box-sizing: border-box;
 
-  @media screen and (min-width: ${({ theme }) => theme?.tabletMinWidth}px) {
-    justify-content: center;
-  }
-
-  @media screen and (max-width: ${({ theme }) => theme?.mobileWidth}px) {}
-
   & > * {
     width: 100%;
   }
+
+  @media screen and (min-width: ${({ theme }) => theme?.tabletMinWidth}px) {
+    justify-content: center;
+
+    ${({ $customStyles }) => $customStyles?.tablet};
+  }
+
+  @media screen and (max-width: ${({ theme }) => theme?.mobileWidth}px) {
+    ${({ $customStyles }) => $customStyles?.mobile};
+  }
   
-  ${({ $customStyles }) => $customStyles};
+  ${({ $customStyles }) => $customStyles?.default};
 `;

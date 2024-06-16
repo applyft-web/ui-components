@@ -1,20 +1,16 @@
 import React from 'react';
-import { ContinueButton, type ContinueButtonProps, type CustomStylesWithStatesProps } from '../ContinueButton';
+import { ContinueButton, type ContinueButtonProps, type ButtonCustomStylesWithStatesProps } from '../ContinueButton';
 import { AppStoreIcon, GooglePlayIcon } from '../../Icons';
-import { mergeStyleObjects } from '../../../utils';
+import { mergeStyleObjects, getFormattedStyles } from '../../../utils';
 
 const marketsImages: {[key: string]: React.JSX.Element} = {
   google: <GooglePlayIcon />,
   apple: <AppStoreIcon />,
 };
 
-const typeStyles: CustomStylesWithStatesProps = {
-  default: `
-    width: 182px;
-    background-color: #000;
-    padding: 0;
-  `,
-  hover: 'background-color: #000;',
+const typeStyles: ButtonCustomStylesWithStatesProps = {
+  default: 'width:182px;background-color:#000;padding:0;',
+  hover: 'background-color:#000;',
 };
 
 export interface MarketsButtonProps extends ContinueButtonProps {
@@ -27,16 +23,7 @@ export const MarketsButton = ({
   customStyles,
   ...rest
 }: MarketsButtonProps) => {
-  let styles: CustomStylesWithStatesProps;
-  if (typeof(customStyles) === 'string') {
-    styles = {
-      default: customStyles,
-      hover: '',
-      disabled: '',
-    };
-  } else {
-    styles = customStyles;
-  }
+  const styles: ButtonCustomStylesWithStatesProps = getFormattedStyles(customStyles, 'default');
 
   return(
     <ContinueButton

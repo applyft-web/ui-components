@@ -44,10 +44,22 @@ export const getCssSize = (val: string | number = 0): string => {
 
 export const mergeStyleObjects = (obj1: any = {}, obj2: any = {}): object => {
   const mergedTheme = Object.keys(obj1).reduce((acc, key) => {
-    return obj1[key] && obj2[key]
-      ? { ...acc, ...{ [key]: [obj1[key], obj2[key]].join(';') } }
-      : acc;
+    return { ...acc, ...{ [key]: [obj1[key], obj2[key]].join(';') } };
   }, {});
 
   return { ...obj1, ...obj2, ...mergedTheme };
+};
+
+export const getFormattedStyles = (styles: any, defaultKey: string) => {
+  if (styles) {
+    if (typeof(styles) === 'string') {
+      return {
+        [defaultKey]: styles,
+      };
+    } else {
+      return styles;
+    }
+  } else {
+    return {[defaultKey]: ''};
+  }
 };

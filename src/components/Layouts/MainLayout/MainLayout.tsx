@@ -1,11 +1,12 @@
 import React from 'react';
 import * as S from './styled';
+import { getFormattedStyles } from '../../../utils';
 
 export interface MainLayoutProps {
   children?: any;
   pt?: string | number;
   pb?: string | number;
-  customStyles?: string;
+  customStyles?: S.MainLayoutCustomStylesWithStatesProps | string;
   [propName: string]: any;
 }
 
@@ -16,14 +17,14 @@ export const MainLayout = ({
   customStyles,
   ...rest
 }: MainLayoutProps) => {
-  const theme = rest?.theme;
+  const styles: S.MainLayoutCustomStylesWithStatesProps = getFormattedStyles(customStyles, 'default');
 
   return (
     <S.StyledLayout
       $pt={pt}
       $pb={pb}
-      $customStyles={customStyles}
-      theme={theme}
+      $customStyles={styles}
+      {...rest}
     >
       {children}
     </S.StyledLayout>
