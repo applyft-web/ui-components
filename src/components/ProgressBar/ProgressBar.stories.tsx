@@ -33,6 +33,7 @@ export const ProgressBarStoryTemplate: StoryObj<typeof meta> = {
   args: {
     theme: getTheme(),
     isSegmented: true,
+    staticPosition: false,
     totalCount: 15,
     currentRoute: 5,
     skipButton: 'skip',

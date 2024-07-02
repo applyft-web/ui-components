@@ -15,6 +15,7 @@ export interface ProgressBarProps {
   currentRoute: number;
   skipButton?: string;
   customStyles?: CustomStylesProps | string;
+  staticPosition?: boolean;
   onContinueClick?: () => void;
   [propName: string]: any;
 }
@@ -25,6 +26,7 @@ export const ProgressBar = ({
   currentRoute,
   skipButton,
   customStyles,
+  staticPosition = false,
   ...rest
 }: ProgressBarProps) => {
   const theme = rest?.theme;
@@ -34,6 +36,7 @@ export const ProgressBar = ({
   const renderProgress = (_: any, i: number) => (
     <S.StyledBarItem
       $isActive={i <= currentRoute}
+      $isLastActive={i === currentRoute}
       $isSegmented={isSegmented}
       theme={theme}
       $customStyles={styles?.segment}
@@ -42,7 +45,11 @@ export const ProgressBar = ({
   );
 
   return (
-    <S.StyledContainer theme={theme} $customStyles={styles?.container}>
+    <S.StyledContainer
+      $customStyles={styles?.container}
+      $staticPosition={staticPosition}
+      theme={theme}
+    >
       <S.StyledBar
         $isSegmented={isSegmented}
         theme={theme}

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 interface CommonProps {
   readonly $customStyles?: string;
@@ -10,19 +10,22 @@ interface StyledBarProps {
 
 interface StyledBarItemProps {
   readonly $isActive: boolean;
+  readonly $isLastActive: boolean;
   readonly $isSegmented: boolean;
 }
 
-export const StyledContainer = styled.div<CommonProps>`
+export const StyledContainer = styled.div<CommonProps & { $staticPosition: boolean }>`
   display: flex;
   align-items: center;
-  width: 90%;
   max-width: ${({ theme }) => theme?.maxContentWidth}px;
   height: 20px;
-  position: fixed;
-  top: 16px;
-  left: 50%;
-  transform: translateX(-50%);
+  ${({ $staticPosition, theme }) => !$staticPosition && css`
+    width: calc(100% - ${theme.sidePadding}px);
+    position: fixed;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+  `};
 
   ${({ $customStyles }) => $customStyles};
 `;
@@ -58,13 +61,19 @@ export const StyledBarItem = styled.div<StyledBarItemProps & CommonProps>`
   flex-grow: 1;
   background-color: ${({ theme, $isActive }) => theme?.colors?.[`progressBar${$isActive ? 'Active' : 'Bg'}`]};
   transition: background-color 300ms;
+  
+  ${({ $isLastActive }) => $isLastActive && css`
+    border-top-right-radius: 14px;
+    border-bottom-right-radius: 14px;
+  `};
 
-  ${({ $isSegmented }) => $isSegmented && `
+  ${({ $isSegmented }) => $isSegmented && css`
     border-radius: 14px;
+
     &:not(:first-child) {
       margin-left: 5px;
     }
-  `}
+  `};
 
   ${({ $customStyles }) => $customStyles};
 `;
