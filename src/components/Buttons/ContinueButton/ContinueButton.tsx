@@ -21,7 +21,7 @@ const StyledButton = styled.button<StyledButtonProps>`
   max-width: ${({ theme }) => theme?.maxContentWidth}px;
   height: 56px;
   background-color: ${({ theme }) => theme?.colors?.primary};
-  border-radius: 12px;
+  border-radius: ${({ theme }) => theme?.buttonBorderRadius};
   border: none;
   padding: 20px;
   font-weight: 500;
@@ -51,6 +51,7 @@ const StyledButton = styled.button<StyledButtonProps>`
   &:disabled {
     ${({ theme }) => `
       background-color: ${theme?.colors?.buttonDisabled};
+      color: ${theme?.colors?.buttonDisabledTextColor};
       pointer-events: none;
     `};
 

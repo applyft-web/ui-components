@@ -64,7 +64,7 @@ export const StyledOption = styled.button<StyledOptionProps>`
     `
     : `
       background-color: ${theme?.colors?.optionInactive};
-      border: 1px solid ${theme?.colors?.optionInactive};
+      border: 1px solid ${theme?.colors?.optionBorderInactive};
     `
   };
   ${({ $mt }) => $mt && `margin-top: ${getCssSize($mt)}`};

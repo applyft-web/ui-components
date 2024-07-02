@@ -9,7 +9,7 @@ const marketsImages: {[key: string]: React.JSX.Element} = {
 };
 
 const typeStyles: ButtonCustomStylesWithStatesProps = {
-  default: 'width:182px;background-color:#000;padding:0;',
+  default: 'width:182px;background-color:#000;padding:0;border-radius:12px;',
   hover: 'background-color:#000;',
 };
 
