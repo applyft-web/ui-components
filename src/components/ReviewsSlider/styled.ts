@@ -33,7 +33,7 @@ export const ReviewsBlock = styled.div<StaticProps>`
 `;
 
 export const ReviewsItem = styled.div<StaticProps & { $isArabic?: boolean }>`
-  background-color: ${({ theme }) => theme?.colos?.reviewItemBg};
+  background-color: ${({ theme }) => theme?.colors?.reviewItemBg};
   border: 1px solid #DEE0E6;
   border-radius: 12px;
   flex: 1 0 calc(100vw - ${({ theme }) => (theme?.sidePadding || 16)*2}px);

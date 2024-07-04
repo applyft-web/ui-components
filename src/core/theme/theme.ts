@@ -24,6 +24,7 @@ const defaultTheme: {[key: string]: any} = {
   maxContentWidth: '327',
   sidePadding: '24',
   buttonBorderRadius: '12px',
+  buttonBottomPosition: '24px',
 };
 
 export const themes: ThemesObject = {

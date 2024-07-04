@@ -36,7 +36,6 @@ export const StyledOption = styled.button<StyledOptionProps>`
   width: 100%;
   max-width: ${({ theme }) => theme?.maxContentWidth}px;
   border-radius: 12px;
-  font-weight: 500;
   font-size: 16px;
   line-height: 1.5;
   color: ${({ theme }) => theme?.colors?.text};

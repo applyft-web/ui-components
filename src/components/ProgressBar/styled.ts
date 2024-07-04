@@ -59,13 +59,14 @@ export const StyledBar = styled.div<StyledBarProps & CommonProps>`
 
 export const StyledBarItem = styled.div<StyledBarItemProps & CommonProps>`
   flex-grow: 1;
-  background-color: ${({ theme, $isActive }) => theme?.colors?.[`progressBar${$isActive ? 'Active' : 'Bg'}`]};
-  transition: background-color 300ms;
-  
-  ${({ $isLastActive }) => $isLastActive && css`
-    border-top-right-radius: 14px;
-    border-bottom-right-radius: 14px;
+  ${({ theme, $isActive, $isLastActive }) => css`
+    background-color: ${theme?.colors?.[`progressBar${$isActive ? 'Active' : 'Bg'}`]};
+    ${!$isLastActive
+      ? `box-shadow: 1px 0 0 ${theme?.colors?.[`progressBar${$isActive ? 'Active' : 'Bg'}`]};`
+      : 'border-radius: 0 14px 14px 0;'
+    };
   `};
+  transition: background-color 300ms;
 
   ${({ $isSegmented }) => $isSegmented && css`
     border-radius: 14px;

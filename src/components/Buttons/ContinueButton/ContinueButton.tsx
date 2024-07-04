@@ -32,7 +32,7 @@ const StyledButton = styled.button<StyledButtonProps>`
   text-overflow: ellipsis;
   white-space: nowrap;
   position: fixed;
-  bottom: 24px;
+  bottom: ${({ theme }) => theme?.buttonBottomPosition};
   left: 50%;
   transform: translateX(-50%);
   transition: .3s;
