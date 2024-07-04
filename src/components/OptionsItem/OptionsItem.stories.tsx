@@ -41,6 +41,7 @@ export const OptionsItemStoryTemplate: StoryObj<typeof meta> = {
     isActive: false,
     multiChoice: false,
     img: 'https://quiz.geodzilla.info/assets/track_target/partner.png',
+    imgSize: [80, 50],
   },
 };
 

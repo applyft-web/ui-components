@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { getTextAlign, getCssSize } from '../../utils';
 
 interface CommonProps {
@@ -12,13 +12,14 @@ export interface CustomStylesWithStatesProps {
   readonly active?: string;
 }
 
+export type SizeProps = [number | string, number | string];
+
 interface StyledProps {
   readonly $isArabic?: boolean;
   readonly $isActive?: boolean;
 }
 
 interface StyledOptionProps extends StyledProps {
-  readonly $isLarge?: boolean;
   readonly $multiChoice?: boolean;
   readonly $mt?: number | string,
   readonly $mb?: number | string,
@@ -27,6 +28,7 @@ interface StyledOptionProps extends StyledProps {
 
 interface StyledImgProps extends StyledProps {
   readonly $imgSrc?: string;
+  readonly $size?: SizeProps;
 }
 
 export const StyledOption = styled.button<StyledOptionProps>`
@@ -42,30 +44,18 @@ export const StyledOption = styled.button<StyledOptionProps>`
   position: relative;
   transition: .3s;
   cursor: pointer;
+  padding: 16px;
   margin-left: auto;
   margin-right: auto;
-  ${({ $isLarge }) => $isLarge
-    ? `padding: 15px 16px;`
-    : `
-      padding: 16px;
-      border: none;
-    `
-  };
   ${({ $multiChoice, $isArabic }) => $multiChoice && `
-    padding: 15px 56px;
+    padding: 16px 56px;
     padding-${getTextAlign($isArabic)}: 16px;
   `};
-  ${({ theme, $isActive }) => $isActive
-    ? `
-      background-color: ${theme?.colors?.optionActive};
-      border: 1px solid ${theme?.colors?.optionBorderActive};
-      color: ${theme?.colors?.optionActiveText};
-    `
-    : `
-      background-color: ${theme?.colors?.optionInactive};
-      border: 1px solid ${theme?.colors?.optionBorderInactive};
-    `
-  };
+  ${({ theme, $isActive }) => css`
+    background-color: ${theme?.colors?.[`option${$isActive ? 'A' : 'Ina'}ctive`]};
+    border: 1px solid ${theme?.colors?.[`optionBorder${$isActive ? 'A' : 'Ina'}ctive`]};
+    color: ${theme?.colors?.[$isActive ? 'optionActiveText' : 'text']};
+  `};
   ${({ $mt }) => $mt && `margin-top: ${getCssSize($mt)}`};
   ${({ $mb }) => $mb && `margin-bottom: ${getCssSize($mb)}`};
 
@@ -111,11 +101,13 @@ export const StyledOption = styled.button<StyledOptionProps>`
 `;
 
 export const StyledImg = styled.div<StyledImgProps & CommonProps>`
-  width: 64px;
-  height: 64px;
+  ${({ $size }) => css`
+    width: ${getCssSize($size?.[0] || 64)};
+    height: ${getCssSize($size?.[1] || 64)}
+  `};
   border-radius: 7px;
   background-color: ${({ theme, $isActive }) => theme?.colors?.[`optionImg${$isActive ? 'Active' : 'Inactive'}`]};
-  ${({ $imgSrc }) => $imgSrc && `
+  ${({ $imgSrc }) => $imgSrc && css`
     background-image: url(${$imgSrc});
     background-size: cover;
   `};
@@ -146,7 +138,7 @@ export const StyledCheckIcon = styled.div<StyledProps & CommonProps>`
   ${({ $customStyles }) => $customStyles};
 `;
 
-export const ThreeDots = styled.div<CommonProps>`
+export const ThreeDots = styled.div<CommonProps & { $size?: SizeProps }>`
   width: 8px;
   height: 8px;
   border-radius: 50%;
@@ -155,6 +147,7 @@ export const ThreeDots = styled.div<CommonProps>`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  ${({ $size }) => `zoom: calc(${$size?.[0] || 64}/64)`};
   
   &:before, &:after {
     content: '';

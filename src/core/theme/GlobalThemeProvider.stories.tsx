@@ -11,7 +11,7 @@ import { GlobalThemeProvider } from '../../core';
 import { themes } from './theme';
 
 const Test = () => {
-  const options = new Array(4).fill(0);
+  const options = new Array(5).fill(0);
   return (
     <MainLayout pt={56} pb={88}>
       <ProgressBar
@@ -26,12 +26,13 @@ const Test = () => {
             <OptionsItem
               onClick={null}
               img={i === options.length - 1 || i === 1
-                ? 'other'
+                ? i === 1 ? ' ' : ''
                 : 'https://quiz.geodzilla.info/assets/track_target/partner.png'
               }
               multiChoice
               isActive={i > 1}
               key={i}
+              imgSize={i === 2 ? 40 : null}
               {...el}
             >
               {i === 2 ? <div><div>Test 123</div><div>Test 321</div></div> : undefined}

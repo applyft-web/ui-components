@@ -17,16 +17,17 @@ const Wrapper = (props: OptionsListProps) => {
 };
 
 const test = () => {
-  const options = new Array(3).fill(0);
+  const options = new Array(4).fill(0);
   return options.map((el, i) => (
     <OptionsItem
       onClick={null}
       img={i === options.length - 1
-        ? 'other'
+        ? ' '
         : 'https://quiz.geodzilla.info/assets/track_target/partner.png'
       }
       multiChoice
       isActive={i > 0}
+      imgSize={i*40}
       {...el}
     >
       {i===1 ? <div><div>Test 123</div><div>Test 321</div></div> : undefined}

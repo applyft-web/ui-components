@@ -18,6 +18,7 @@ export interface OptionsItemProps {
   isArabic?: boolean;
   isActive?: boolean;
   img?: string;
+  imgSize?: S.SizeProps | string | number;
   multiChoice?: boolean;
   customId?: string;
   mt?: string | number;
@@ -33,7 +34,8 @@ export const OptionsItem = ({
   isArabic = false,
   isActive = false,
   multiChoice = false,
-  img,
+  img = '',
+  imgSize,
   customId = 'option-1',
   mt,
   mb,
@@ -41,16 +43,21 @@ export const OptionsItem = ({
   ...rest
 }: OptionsItemProps) => {
   const theme = rest?.theme;
-  const imgSrc: string | null = img && img.trim() !== 'other' ? img.trim() : null;
+  const imgSrc: string | null = img ? img.trim() : null;
   const styles = getFormattedStyles(customStyles, 'option');
   const optionStyles: S.CustomStylesWithStatesProps = getFormattedStyles(styles.option, 'default');
+  const size = (): S.SizeProps => {
+    if (typeof imgSize === 'string' || typeof imgSize === 'number') {
+      return [imgSize, imgSize];
+    }
+    return imgSize;
+  };
 
   return (
     <S.StyledOption
       onClick={onClick}
       $isArabic={isArabic}
       $isActive={isActive}
-      $isLarge={!!img}
       $multiChoice={multiChoice}
       id={customId}
       $mt={mt}
@@ -62,12 +69,13 @@ export const OptionsItem = ({
         <S.StyledImg
           className={'option-img'}
           $imgSrc={imgSrc}
+          $size={size()}
           $isArabic={isArabic}
           $isActive={isActive}
           theme={theme}
           $customStyles={styles?.img}
         >
-          {!imgSrc && <S.ThreeDots theme={theme} $customStyles={styles?.dots}/>}
+          {!imgSrc && <S.ThreeDots theme={theme} $customStyles={styles?.dots} $size={size()} />}
         </S.StyledImg>
       )}
       {children}
