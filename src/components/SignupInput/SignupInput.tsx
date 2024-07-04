@@ -64,7 +64,7 @@ export const SignupInput = ({
     }
   };
   const onKeyPressHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && isValid) {
       e.preventDefault();
       submitEmail();
     }
