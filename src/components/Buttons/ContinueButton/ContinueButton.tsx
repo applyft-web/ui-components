@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { getCssSize, getFormattedStyles } from '../../../utils';
 
 export interface ButtonCustomStylesWithStatesProps {
@@ -86,7 +87,7 @@ export interface ContinueButtonProps {
 }
 
 export const ContinueButton = ({
-  children = 'Continue',
+  children,
   onClick,
   customId = 'continue-button',
   mt,
@@ -95,6 +96,7 @@ export const ContinueButton = ({
   customStyles,
   ...rest
 }: ContinueButtonProps) => {
+  const { t } = useTranslation();
   const styles: ButtonCustomStylesWithStatesProps = getFormattedStyles(customStyles, 'default');
 
   return (
@@ -107,7 +109,7 @@ export const ContinueButton = ({
       $customStyles={styles}
       {...rest}
     >
-      {children}
+      {children ?? t('Continue')}
     </StyledButton>
   );
 };
