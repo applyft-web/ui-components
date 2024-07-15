@@ -16,7 +16,7 @@ interface StyledLayoutProps {
 export const StyledLayout = styled.div<StyledLayoutProps>`
   width: 100%;
   height: 100%;
-  max-width: ${({ theme }) => theme?.maxContentWidth}px;
+  max-width: ${({ theme }) => parseInt(theme?.maxContentWidth || 375) + parseInt(theme?.sidePadding || 0)*2}px;
   margin: 0 auto;
   ${({ $pt }) => $pt && `padding-top: ${getCssSize($pt)}`};
   ${({ $pb }) => $pb && `padding-bottom: ${getCssSize($pb)}`};
