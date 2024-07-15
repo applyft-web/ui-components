@@ -21,10 +21,11 @@ const StyledButton = styled.button<StyledButtonProps>`
   width: 100%;
   max-width: ${({ theme }) => theme?.maxContentWidth}px;
   height: 56px;
+  min-height: 30px;
   background-color: ${({ theme }) => theme?.colors?.primary};
   border-radius: ${({ theme }) => theme?.buttonBorderRadius};
   border: none;
-  padding: 20px;
+  padding: 0 20px;
   font-weight: 500;
   font-size: 16px;
   line-height: 1;
