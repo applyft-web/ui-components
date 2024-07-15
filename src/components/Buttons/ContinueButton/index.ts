@@ -1,5 +1,5 @@
 export {
   ContinueButton,
   type ContinueButtonProps,
-  type ButtonCustomStylesWithStatesProps,
 } from './ContinueButton';
+export { type ButtonCustomStylesWithStatesProps } from './styled';
