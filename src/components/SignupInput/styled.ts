@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { getTextAlign } from '../../utils';
 
 interface InputProps {
@@ -6,6 +6,30 @@ interface InputProps {
   readonly $isArabic?: boolean;
   readonly $customStyles?: string;
 }
+
+export const InputWrapper = styled.label<{ $isArabic?: boolean; $showPlaceholder: boolean }>`
+  --side-padding: 15px;
+  position: relative;
+  cursor: text;
+  
+  ${({ $showPlaceholder, $isArabic }) => $showPlaceholder && css`
+    &:after {
+      content: attr(data-placeholder);
+      display: block;
+      font-size: 12px;
+      line-height: 14px;
+      color: #8696A6;
+      white-space: pre-line;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: var(--side-padding);
+      left: var(--side-padding);
+      padding-${getTextAlign($isArabic)}: 5px;
+      text-align: ${getTextAlign($isArabic)};
+    }
+  `};
+`;
 
 export const Input = styled.input<InputProps>`
   --side-padding: 15px;
@@ -20,20 +44,6 @@ export const Input = styled.input<InputProps>`
   color: ${({ theme }) => theme?.colors?.text};
   text-align: ${({ $isArabic }) => getTextAlign($isArabic)};
   position: relative;
-  
-  &::placeholder {
-    font-size: 12px;
-    color: #8696A6;
-    white-space: pre-line;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    padding-left: 3px;
-    ${({ $isArabic }) => `
-      text-align: ${getTextAlign($isArabic)};
-      ${getTextAlign($isArabic)}: var(--side-padding);
-    `};
-  }
   
   &:focus,
   &:active {

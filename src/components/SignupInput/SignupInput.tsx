@@ -79,20 +79,25 @@ export const SignupInput = ({
 
   return (
     <>
-      <S.Input
-        type="email"
-        autoComplete="email"
-        value={value}
-        onChange={onChangeHandler}
-        onBlur={onBlurHandler}
-        onKeyPress={onKeyPressHandler}
-        placeholder={placeholder}
-        id={'sign-up-input'}
-        $error={error}
+      <S.InputWrapper
         $isArabic={isArabic}
-        $customStyles={customStyles}
-        theme={theme}
-      />
+        $showPlaceholder={!value}
+        data-placeholder={placeholder}
+      >
+        <S.Input
+          type="email"
+          autoComplete="email"
+          value={value}
+          onChange={onChangeHandler}
+          onBlur={onBlurHandler}
+          onKeyPress={onKeyPressHandler}
+          id={'sign-up-input'}
+          $error={error}
+          $isArabic={isArabic}
+          $customStyles={customStyles}
+          theme={theme}
+        />
+      </S.InputWrapper>
       <DomainsList />
     </>
   )
