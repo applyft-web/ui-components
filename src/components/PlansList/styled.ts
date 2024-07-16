@@ -23,7 +23,7 @@ export const PlansBlock = styled.ul<MarginProps>`
 
 export const PlanLi = styled.li<CommonProps & { $withLabel: boolean }>`
   --border-width: 1px;
-  --border-radius: 8px;
+  --border-radius: ${({ theme }) => theme?.planItemBorderRadius || '8px'};
   display: flex;
   flex-direction: ${({ $isArabic }) => $isArabic ? 'row-reverse' : 'row'};
   justify-content: space-between;
@@ -115,21 +115,18 @@ export const StyledFullPrice = styled.div`
 
 export const Strike = styled.span`
   text-decoration: line-through;
-  text-decoration-color: #ff6363;
 `;
 
 export const StyledPriceWrapper = styled.div`
   display: flex;
 `;
 
-export const OldPrice = styled.div`
+export const OldPrice = styled(Strike)`
   color: #7F84A7;
   font-weight: 500;
   font-size: 14px;
   line-height: 21px;
-  //text-decoration-color: #ff6363;
-  text-decoration-line: line-through;
-  //margin-right: 9px;
+  text-decoration-color: #ff6363;
   align-self: flex-end;
 `;
 
