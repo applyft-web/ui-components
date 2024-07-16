@@ -23,7 +23,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
   background-color: ${({ theme }) => theme?.colors?.primary};
   border-radius: ${({ theme }) => theme?.buttonBorderRadius};
   border: none;
-  padding: 0 20px;
+  padding: 0 10px;
   font-weight: 500;
   font-size: 16px;
   line-height: 1;

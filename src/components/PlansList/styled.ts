@@ -90,7 +90,7 @@ export const PlanCheck = styled.div<CommonProps>`
   }
 `;
 
-export const PlanTitle = styled.div`
+export const PlanTitle = styled.div<CommonProps>`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -98,18 +98,19 @@ export const PlanTitle = styled.div`
   font-weight: 700;
   font-size: 16px;
   line-height: 24px;
+  color: ${({ $isActive, theme }) => theme?.colors?.[$isActive ? 'text' : 'planItemTextColorInactive']};
 `;
 
 export const StyledFullPrice = styled.div`
   font-weight: 500;
   font-size: 14px;
   line-height: 21px;
-  color: #7F84A7;
+  color: ${({ theme }) => theme?.colors?.planItemTextColorInactive};
   margin-top: 8px;
 
   span {
     margin-right: 6px;
-    color: #7F84A7;
+    color: ${({ theme }) => theme?.colors?.planItemTextColorInactive};
   }
 `;
 
@@ -122,7 +123,7 @@ export const StyledPriceWrapper = styled.div`
 `;
 
 export const OldPrice = styled(Strike)`
-  color: #7F84A7;
+  color: ${({ theme }) => theme?.colors?.planItemTextColorInactive};
   font-weight: 500;
   font-size: 14px;
   line-height: 21px;
@@ -136,7 +137,7 @@ export const PriceWrapper = styled.div<CommonProps>`
   font-size: 60px;
   line-height: 46px;
   text-align: center;
-  color: ${({ $isActive, theme }) => $isActive ? theme?.colors?.text : '#7F84A7'};
+  color: ${({ $isActive, theme }) => theme?.colors?.[$isActive ? 'text' : 'planItemTextColorInactive']};
   padding-left: 13px;
   position: relative;
 

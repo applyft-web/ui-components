@@ -71,7 +71,7 @@ export const PlansList = ({
           <S.PlanCheck $isActive={isActive} $isArabic={isArabic}>
             <CheckIcon customStyles={{path: `fill: ${currentTheme?.colors?.planItemCheckBg};`}} />
           </S.PlanCheck>
-          <S.PlanTitle>
+          <S.PlanTitle $isActive={isActive}>
             <div>{duration}</div>
             <S.StyledFullPrice>
               <S.Strike>{priceWithCurrency(oldFullPrice)}</S.Strike> {priceWithCurrency(fullPrice)}
