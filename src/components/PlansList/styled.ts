@@ -52,7 +52,7 @@ export const PlanLi = styled.li<CommonProps & { $withLabel: boolean }>`
       left: calc(var(--border-width)*(-1));
       background-color: ${$isActive ? theme?.colors?.primary : theme?.colors?.planItemLabelBg};
       border: var(--border-width) solid ${$isActive ? theme?.colors?.primary : theme?.colors?.planItemBorder};
-      color: ${$isActive ? theme?.colors?.bodyBackground : '#8A8FB2'};
+      color: ${theme?.colors?.[`planItemLabelColor${$isActive ? 'Active' : 'Inactive'}`]};
       border-radius: var(--border-radius) var(--border-radius) 0 0;
       font-weight: 600;
       font-size: 12px;
