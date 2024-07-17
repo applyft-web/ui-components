@@ -16,8 +16,8 @@ export const ReviewsContainer = styled.div<MarginProps>`
   max-width: ${({ theme }) => theme?.maxContentWidth}px;
   margin: 0 auto;
   overflow: hidden;
-  ${({ $mt }) => $mt && `margin-top: ${getCssSize($mt)}`};
-  ${({ $mb }) => $mb && `margin-bottom: ${getCssSize($mb)}`};
+  ${({ $mt }) => $mt !== undefined && `margin-top: ${getCssSize($mt)}`};
+  ${({ $mb }) => $mb !== undefined && `margin-bottom: ${getCssSize($mb)}`};
   position: relative;
   flex-shrink: 0;
 `;

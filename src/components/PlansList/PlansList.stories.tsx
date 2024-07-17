@@ -66,6 +66,9 @@ const meta: Meta<typeof PlansList> = {
     mb: {
       control: 'number',
     },
+    gap: {
+      control: 'number',
+    },
   },
 };
 

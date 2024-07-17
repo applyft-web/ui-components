@@ -17,11 +17,11 @@ export const PlansBlock = styled.ul<MarginProps>`
   width: 100%;
   padding: 0;
   list-style: none;
-  ${({ $mt }) => $mt && `margin-top: ${getCssSize($mt)}`};
-  ${({ $mb }) => $mb && `margin-bottom: ${getCssSize($mb)}`};
+  ${({ $mt }) => $mt !== undefined && `margin-top: ${getCssSize($mt)}`};
+  ${({ $mb }) => $mb !== undefined && `margin-bottom: ${getCssSize($mb)}`};
 `;
 
-export const PlanLi = styled.li<CommonProps & { $withLabel: boolean }>`
+export const PlanLi = styled.li<CommonProps & { $withLabel: boolean; $gap?: string | number }>`
   --border-width: 1px;
   --border-radius: ${({ theme }) => theme?.planItemBorderRadius || '8px'};
   display: flex;
@@ -38,7 +38,7 @@ export const PlanLi = styled.li<CommonProps & { $withLabel: boolean }>`
   cursor: pointer;
 
   &:not(:last-child) {
-    margin-bottom: 8px;
+    margin-bottom: ${({ $gap }) => $gap !== undefined ? getCssSize($gap) : '8px'};
   }
   
   ${({ theme, $withLabel, $isActive }) => $withLabel && `
@@ -106,7 +106,7 @@ export const StyledFullPrice = styled.div`
   font-size: 14px;
   line-height: 21px;
   color: ${({ theme }) => theme?.colors?.planItemTextColorInactive};
-  margin-top: 8px;
+  margin-top: 2px;
 
   span {
     margin-right: 6px;

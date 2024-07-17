@@ -21,6 +21,7 @@ export interface PlansListProps {
   plans: PlanProps[];
   onPlanClick: (plan: PlanProps) => void;
   isArabic?: boolean;
+  gap?: string | number;
   mt?: string | number;
   mb?: string | number;
   [propName: string]: any;
@@ -31,6 +32,7 @@ export const PlansList = ({
   plans,
   onPlanClick,
   isArabic,
+  gap,
   mt,
   mb,
   ...rest
@@ -62,6 +64,7 @@ export const PlansList = ({
         $isActive={isActive}
         $isArabic={isArabic}
         $withLabel={!!label}
+        $gap={gap}
         data-label={label}
         onClick={() => onPlanClick(planInfo)}
         id={'plan-button-' + (index + 1)}

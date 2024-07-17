@@ -18,8 +18,8 @@ export const StyledLayout = styled.div<StyledLayoutProps>`
   height: 100%;
   max-width: ${({ theme }) => parseInt(theme?.maxContentWidth || 375) + parseInt(theme?.sidePadding || 0)*2}px;
   margin: 0 auto;
-  ${({ $pt }) => $pt && `padding-top: ${getCssSize($pt)}`};
-  ${({ $pb }) => $pb && `padding-bottom: ${getCssSize($pb)}`};
+  ${({ $pt }) => $pt !== undefined && `padding-top: ${getCssSize($pt)}`};
+  ${({ $pb }) => $pb !== undefined && `padding-bottom: ${getCssSize($pb)}`};
   ${({ theme }) => `
     padding-right: ${theme?.sidePadding || 16}px;
     padding-left: ${theme?.sidePadding || 16}px;

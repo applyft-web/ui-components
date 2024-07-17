@@ -56,8 +56,8 @@ export const StyledOption = styled.button<StyledOptionProps>`
     border: 1px solid ${theme?.colors?.[`optionBorder${$isActive ? 'A' : 'Ina'}ctive`]};
     color: ${theme?.colors?.[$isActive ? 'optionActiveText' : 'text']};
   `};
-  ${({ $mt }) => $mt && `margin-top: ${getCssSize($mt)}`};
-  ${({ $mb }) => $mb && `margin-bottom: ${getCssSize($mb)}`};
+  ${({ $mt }) => $mt !== undefined && `margin-top: ${getCssSize($mt)}`};
+  ${({ $mb }) => $mb !== undefined && `margin-bottom: ${getCssSize($mb)}`};
 
   &:first-child {
     margin-top: 0;

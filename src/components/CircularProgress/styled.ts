@@ -16,8 +16,8 @@ export const ProgressWrapper = styled.div<ProgressWrapperProps>`
   box-shadow: inset 0 0 0 12px ${({ theme }) => theme?.colors?.circularProgressBg || '$fff'};
   border-radius: 50%;
   position: relative;
-  ${({ $mt }) => $mt && `margin-top: ${getCssSize($mt)}`};
-  ${({ $mb }) => $mb && `margin-bottom: ${getCssSize($mb)}`};
+  ${({ $mt }) => $mt !== undefined && `margin-top: ${getCssSize($mt)}`};
+  ${({ $mb }) => $mb !== undefined && `margin-bottom: ${getCssSize($mb)}`};
   ${({ $customStyles }) => $customStyles}
 `;
 

@@ -39,8 +39,8 @@ export const StyledButton = styled.button<StyledButtonProps>`
   cursor: pointer;
   margin-left: auto;
   margin-right: auto;
-  ${({ $mt }) => $mt && `margin-top: ${getCssSize($mt)}`};
-  ${({ $mb }) => $mb && `margin-bottom: ${getCssSize($mb)}`};
+  ${({ $mt }) => $mt !== undefined && `margin-top: ${getCssSize($mt)}`};
+  ${({ $mb }) => $mb !== undefined && `margin-bottom: ${getCssSize($mb)}`};
   ${({ $staticPosition }) => $staticPosition && `
     position: relative;
     bottom: auto;
