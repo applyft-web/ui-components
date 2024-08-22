@@ -1,7 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
-const ScrollableContainer = styled.div<{ $topGradient: boolean; $bottomGradient: boolean }>`
+interface ScrollableContainerProps {
+  $topGradient: boolean;
+  $bottomGradient: boolean;
+  $customStyles?: string;
+}
+
+const ScrollableContainer = styled.div<ScrollableContainerProps>`
   overflow-x: auto;
   overflow-y: auto;
   position: relative;
@@ -36,6 +42,8 @@ const ScrollableContainer = styled.div<{ $topGradient: boolean; $bottomGradient:
     bottom: 0;
     transform: rotate(180deg);
   }
+  
+  ${({ $customStyles }) => $customStyles};
 `;
 
 interface GradientScrollableProps {
@@ -43,21 +51,30 @@ interface GradientScrollableProps {
   [propName: string]: any;
 }
 
-export const GradientScrollable = ({ children, ...rest }: GradientScrollableProps) => {
+export const GradientScrollable = ({ children, customStyles, ref: customRef, ...rest }: GradientScrollableProps) => {
   const [topGradient, setTopGradient] = useState(false);
   const [bottomGradient, setBottomGradient] = useState(true);
-  
+  const ref = customRef || useRef<HTMLDivElement>(null);
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
     const { scrollTop, scrollHeight, clientHeight } = e.target as HTMLDivElement;
     setTopGradient(scrollTop > 1);
     setBottomGradient(scrollTop + clientHeight + 1 < scrollHeight); // +1 to prevent flickering or non-disappearing bottom gradient
   };
   
+  useEffect(() => {
+    if (ref.current) {
+      const { scrollHeight, clientHeight } = ref.current;
+      setBottomGradient(scrollHeight !== clientHeight);
+    }
+  }, []);
+
   return (
     <ScrollableContainer
       $topGradient={topGradient}
       $bottomGradient={bottomGradient}
+      $customStyles={customStyles}
       onScroll={handleScroll}
+      ref={ref}
       {...rest}
     >
       {children}
