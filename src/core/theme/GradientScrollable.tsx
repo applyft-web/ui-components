@@ -43,14 +43,14 @@ interface GradientScrollableProps {
   [propName: string]: any;
 }
 
-export const GradientScrollable = ({ children }: GradientScrollableProps) => {
+export const GradientScrollable = ({ children, ...rest }: GradientScrollableProps) => {
   const [topGradient, setTopGradient] = useState(false);
   const [bottomGradient, setBottomGradient] = useState(true);
   
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
     const { scrollTop, scrollHeight, clientHeight } = e.target as HTMLDivElement;
-    setTopGradient(scrollTop > 0);
-    setBottomGradient(scrollTop + clientHeight < scrollHeight);
+    setTopGradient(scrollTop > 1);
+    setBottomGradient(scrollTop + clientHeight + 1 < scrollHeight); // +1 to prevent flickering or non-disappearing bottom gradient
   };
   
   return (
@@ -58,6 +58,7 @@ export const GradientScrollable = ({ children }: GradientScrollableProps) => {
       $topGradient={topGradient}
       $bottomGradient={bottomGradient}
       onScroll={handleScroll}
+      {...rest}
     >
       {children}
     </ScrollableContainer>
