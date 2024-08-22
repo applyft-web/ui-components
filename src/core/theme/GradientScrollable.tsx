@@ -51,7 +51,7 @@ interface GradientScrollableProps {
   [propName: string]: any;
 }
 
-export const GradientScrollable = ({ children, customStyles, ref: customRef, ...rest }: GradientScrollableProps) => {
+export const GradientScrollable = ({ children, customStyles, customRef, ...rest }: GradientScrollableProps) => {
   const [topGradient, setTopGradient] = useState(false);
   const [bottomGradient, setBottomGradient] = useState(true);
   const ref = customRef || useRef<HTMLDivElement>(null);
@@ -60,7 +60,7 @@ export const GradientScrollable = ({ children, customStyles, ref: customRef, ...
     setTopGradient(scrollTop > 1);
     setBottomGradient(scrollTop + clientHeight + 1 < scrollHeight); // +1 to prevent flickering or non-disappearing bottom gradient
   };
-  
+
   useEffect(() => {
     if (ref.current) {
       const { scrollHeight, clientHeight } = ref.current;
