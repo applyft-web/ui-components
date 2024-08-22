@@ -24,12 +24,12 @@ const ScrollableContainer = styled.div<ScrollableContainerProps>`
     right: 0;
     left: 0;
     display: block;
-    min-height: 20px;
+    min-height: 10px;
     background-color: ${({theme}) => theme?.colors?.bodyBackground || '#fff'};
     box-shadow: 0 0 30px 30px ${({theme}) => theme?.colors?.bodyBackground || '#fff'};
     pointer-events: none;
     z-index: 10;
-    transition: opacity 600ms ease;
+    transition: opacity 400ms ease;
   }
   
   &:before {
