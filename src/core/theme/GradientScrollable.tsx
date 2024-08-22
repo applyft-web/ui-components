@@ -38,11 +38,12 @@ const ScrollableContainer = styled.div<{ $topGradient: boolean; $bottomGradient:
   }
 `;
 
-// const ScrollableContent = styled.div`
-//   padding: 20px; /* Adjust as needed */
-// `;
+interface GradientScrollableProps {
+  children?: any;
+  [propName: string]: any;
+}
 
-export const GradientScrollable = ({ children }: { children: any }) => {
+export const GradientScrollable = ({ children }: GradientScrollableProps) => {
   const [topGradient, setTopGradient] = useState(false);
   const [bottomGradient, setBottomGradient] = useState(true);
   
@@ -58,9 +59,7 @@ export const GradientScrollable = ({ children }: { children: any }) => {
       $bottomGradient={bottomGradient}
       onScroll={handleScroll}
     >
-      {/*<ScrollableContent>*/}
-        {children}
-      {/*</ScrollableContent>*/}
+      {children}
     </ScrollableContainer>
   );
 };
