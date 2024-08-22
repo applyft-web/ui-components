@@ -18,17 +18,19 @@ const StyledOptionsList = styled.div<StyledOptionsListProps>`
 export interface OptionsListProps {
   children?: React.ReactNode | string;
   gap?: number;
-  customStyles?: string,
-  theme?: object,
+  customStyles?: string;
+  theme?: object;
+  scrollable?: boolean;
 }
 
 export const OptionsList = ({
   children,
   gap = 12,
   customStyles,
+  scrollable = true,
   ...rest
-}: OptionsListProps) => (
-  <GradientScrollable>
+}: OptionsListProps) => {
+  const content = (
     <StyledOptionsList
       $customStyles={customStyles}
       {...rest}
@@ -38,5 +40,7 @@ export const OptionsList = ({
         mt: gap,
       })}
     </StyledOptionsList>
-  </GradientScrollable>
-);
+  );
+
+  return scrollable ? <GradientScrollable>{content}</GradientScrollable> : content;
+};
