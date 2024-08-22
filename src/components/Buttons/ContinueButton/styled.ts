@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { getCssSize } from '../../../utils';
 
 export interface ButtonCustomStylesWithStatesProps {
@@ -16,7 +16,7 @@ interface StyledButtonProps {
 
 export const StyledButton = styled.button<StyledButtonProps>`
   display: block;
-  width: 100%;
+  width: calc(100% - ${({ theme }) => (theme?.sidePadding || 0) * 2}px);
   max-width: ${({ theme }) => theme?.maxContentWidth}px;
   height: 56px;
   min-height: 30px;
@@ -41,7 +41,8 @@ export const StyledButton = styled.button<StyledButtonProps>`
   margin-right: auto;
   ${({ $mt }) => $mt !== undefined && `margin-top: ${getCssSize($mt)}`};
   ${({ $mb }) => $mb !== undefined && `margin-bottom: ${getCssSize($mb)}`};
-  ${({ $staticPosition }) => $staticPosition && `
+  ${({ $staticPosition }) => $staticPosition && css`
+    width: 100%;
     position: relative;
     bottom: auto;
     left: auto;
@@ -49,7 +50,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
   `};
 
   &:disabled {
-    ${({ theme }) => `
+    ${({ theme }) => css`
       background-color: ${theme?.colors?.buttonDisabled};
       color: ${theme?.colors?.buttonDisabledTextColor};
       pointer-events: none;
