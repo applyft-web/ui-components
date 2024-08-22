@@ -42,9 +42,7 @@ const Wrapper = (props: ReviewsSliderProps) => {
   return (
     <GlobalThemeProvider projectTheme={props.theme}>
       <MainLayout>
-        <div className={'scrollable'}>
-          <ReviewsSlider {...props} reviewsList={reviewsList} />
-        </div>
+        <ReviewsSlider {...props} reviewsList={reviewsList} />
       </MainLayout>
     </GlobalThemeProvider>
   );

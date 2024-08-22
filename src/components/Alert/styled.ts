@@ -52,9 +52,9 @@ export const CloseAlert = styled.div<{ $isArabic?: boolean }>`
   left: 16px;
   ${({ $isArabic }) => `${getTextAlign($isArabic)}: auto`};
   margin-top: -12px;
-  color: #fff;
-  line-height: 18px;
   font-size: 24px;
+  line-height: 1;
+  color: #fff;
   text-align: center;
   cursor: pointer;
 `;

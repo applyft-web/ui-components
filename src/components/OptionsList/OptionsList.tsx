@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { reactChildrenMapping } from '../../utils';
+import { GradientScrollable } from '../../core';
 
 interface StyledOptionsListProps {
   readonly $customStyles?: string,
@@ -27,14 +28,15 @@ export const OptionsList = ({
   customStyles,
   ...rest
 }: OptionsListProps) => (
-  <StyledOptionsList
-    className={'scrollable'}
-    $customStyles={customStyles}
-    {...rest}
-  >
-    {reactChildrenMapping(children, {
-      theme: rest?.theme,
-      mt: gap,
-    })}
-  </StyledOptionsList>
+  <GradientScrollable>
+    <StyledOptionsList
+      $customStyles={customStyles}
+      {...rest}
+    >
+      {reactChildrenMapping(children, {
+        theme: rest?.theme,
+        mt: gap,
+      })}
+    </StyledOptionsList>
+  </GradientScrollable>
 );

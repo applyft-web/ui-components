@@ -9,6 +9,7 @@ export interface SignupInputProps {
   submitEmail: () => void;
   isArabic?: boolean;
   customStyles?: string;
+  autoFocus?: boolean;
   [propName: string]: any;
 }
 
@@ -20,6 +21,7 @@ export const SignupInput = ({
   submitEmail,
   isArabic = false,
   customStyles = '',
+  autoFocus = true,
   ...rest
 }: SignupInputProps) => {
   const theme = rest?.theme;
@@ -96,6 +98,7 @@ export const SignupInput = ({
           $isArabic={isArabic}
           $customStyles={customStyles}
           theme={theme}
+          autoFocus={autoFocus}
         />
       </S.InputWrapper>
       <DomainsList />

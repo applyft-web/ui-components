@@ -32,7 +32,6 @@ export const InputWrapper = styled.label<{ $isArabic?: boolean; $showPlaceholder
 `;
 
 export const Input = styled.input<InputProps>`
-  --side-padding: 15px;
   width: 100%;
   border-radius: 12px;
   border: none;
