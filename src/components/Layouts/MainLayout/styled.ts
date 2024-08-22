@@ -31,7 +31,7 @@ export const StyledLayout = styled.div<StyledLayoutProps>`
   box-sizing: border-box;
 
   & > * {
-    width: 100%;
+    align-self: stretch;
   }
 
   @media screen and (min-width: ${({ theme }) => theme?.tabletMinWidth}px) {

@@ -53,7 +53,7 @@ interface GradientScrollableProps {
 
 export const GradientScrollable = ({ children, customStyles, customRef, ...rest }: GradientScrollableProps) => {
   const [topGradient, setTopGradient] = useState(false);
-  const [bottomGradient, setBottomGradient] = useState(true);
+  const [bottomGradient, setBottomGradient] = useState(false);
   const ref = customRef || useRef<HTMLDivElement>(null);
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
     const { scrollTop, scrollHeight, clientHeight } = e.target as HTMLDivElement;
