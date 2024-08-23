@@ -1,24 +1,17 @@
 import React from 'react';
-import styled from 'styled-components';
-import { reactChildrenMapping } from '../../utils';
+import { getFormattedStyles, reactChildrenMapping } from '../../utils';
 import { GradientScrollable } from '../../core';
+import * as S from './styled';
 
-interface StyledOptionsListProps {
-  readonly $customStyles?: string,
+interface CustomStylesProps {
+  readonly wrapper?: string;
+  readonly list?: string;
 }
-
-const StyledOptionsList = styled.div<StyledOptionsListProps>`
-  display: flex;
-  flex-direction: column;
-  overflow: auto;
-
-  ${({ $customStyles }) => $customStyles};
-`;
 
 export interface OptionsListProps {
   children?: React.ReactNode | string;
   gap?: number;
-  customStyles?: string;
+  customStyles?: CustomStylesProps | string;
   theme?: object;
   scrollable?: boolean;
 }
@@ -30,17 +23,18 @@ export const OptionsList = ({
   scrollable = true,
   ...rest
 }: OptionsListProps) => {
+  const styles: CustomStylesProps = getFormattedStyles(customStyles, scrollable ? 'wrapper' : 'list');
   const content = (
-    <StyledOptionsList
-      $customStyles={customStyles}
+    <S.StyledOptionsList
+      $customStyles={styles?.list}
       {...rest}
     >
       {reactChildrenMapping(children, {
         theme: rest?.theme,
         mt: gap,
       })}
-    </StyledOptionsList>
+    </S.StyledOptionsList>
   );
 
-  return scrollable ? <GradientScrollable>{content}</GradientScrollable> : content;
+  return scrollable ? <GradientScrollable customStyles={styles?.wrapper}>{content}</GradientScrollable> : content;
 };
