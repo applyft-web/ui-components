@@ -18,11 +18,11 @@ const Wrapper = (props: MainLayoutProps) => {
   return (
     <GlobalThemeProvider projectTheme={props.theme}>
       <MainLayout {...props}>
-        <ChildComponent>
           <ProgressBar totalCount={15} currentRoute={5} />
-          <h1>Content</h1>
+          <ChildComponent>
+            <h1>Content</h1>
+          </ChildComponent>
           <ContinueButton onClick={() => null} />
-        </ChildComponent>
       </MainLayout>
     </GlobalThemeProvider>
   );

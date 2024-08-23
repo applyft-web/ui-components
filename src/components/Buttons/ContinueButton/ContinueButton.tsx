@@ -28,7 +28,7 @@ export const ContinueButton = ({
   const { t } = useTranslation();
   const styles: S.ButtonCustomStylesWithStatesProps = getFormattedStyles(customStyles, 'default');
 
-  return (
+  const btn = (
     <S.StyledButton
       onClick={onClick}
       id={customId}
@@ -41,4 +41,6 @@ export const ContinueButton = ({
       {children ?? t('Continue')}
     </S.StyledButton>
   );
+  
+  return staticPosition ? btn : <S.FixedButtonWrapper>{btn}</S.FixedButtonWrapper>;
 };

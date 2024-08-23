@@ -14,9 +14,17 @@ interface StyledButtonProps {
   readonly $staticPosition?: boolean;
 }
 
+export const FixedButtonWrapper = styled.div`
+  position: fixed;
+  bottom: ${({ theme }) => theme?.buttonBottomPosition};
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0 ${({ theme }) => theme?.sidePadding || 16}px;
+`;
+
 export const StyledButton = styled.button<StyledButtonProps>`
   display: block;
-  width: calc(100% - ${({ theme }) => (theme?.sidePadding || 0) * 2}px);
+  width: 100%;
   max-width: ${({ theme }) => theme?.maxContentWidth}px;
   height: 56px;
   min-height: 30px;
@@ -31,23 +39,12 @@ export const StyledButton = styled.button<StyledButtonProps>`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  position: fixed;
-  bottom: ${({ theme }) => theme?.buttonBottomPosition};
-  left: 50%;
-  transform: translateX(-50%);
   transition: .3s;
   cursor: pointer;
   margin-left: auto;
   margin-right: auto;
   ${({ $mt }) => $mt !== undefined && `margin-top: ${getCssSize($mt)}`};
   ${({ $mb }) => $mb !== undefined && `margin-bottom: ${getCssSize($mb)}`};
-  ${({ $staticPosition }) => $staticPosition && css`
-    width: 100%;
-    position: relative;
-    bottom: auto;
-    left: auto;
-    transform: none;
-  `};
 
   &:disabled {
     ${({ theme }) => css`
