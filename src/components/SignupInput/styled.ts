@@ -25,7 +25,7 @@ export const InputWrapper = styled.label<{ $isArabic?: boolean; $showPlaceholder
       transform: translateY(-50%);
       right: var(--side-padding);
       left: var(--side-padding);
-      padding-${getTextAlign($isArabic)}: 5px;
+      //padding-${getTextAlign($isArabic)}: 5px;
       text-align: ${getTextAlign($isArabic)};
     }
   `};

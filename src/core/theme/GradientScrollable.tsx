@@ -11,6 +11,7 @@ const ScrollableContainer = styled.div<ScrollableContainerProps>`
   overflow-x: auto;
   overflow-y: auto;
   position: relative;
+  padding: 10px 0;
   
   &::-webkit-scrollbar {
     width: 0;
@@ -24,7 +25,7 @@ const ScrollableContainer = styled.div<ScrollableContainerProps>`
     right: 0;
     left: 0;
     display: block;
-    min-height: 10px;
+    min-height: 1px;
     background-color: ${({theme}) => theme?.colors?.bodyBackground || '#fff'};
     box-shadow: 0 0 30px 30px ${({theme}) => theme?.colors?.bodyBackground || '#fff'};
     pointer-events: none;
@@ -34,12 +35,12 @@ const ScrollableContainer = styled.div<ScrollableContainerProps>`
   
   &:before {
     opacity: ${({ $topGradient }) => $topGradient ? 1 : 0};
-    top: 0;
+    top: -10px;
   }
   
   &:after {
     opacity: ${({ $bottomGradient }) => $bottomGradient ? 1 : 0};
-    bottom: 0;
+    bottom: -10px;
     transform: rotate(180deg);
   }
   
