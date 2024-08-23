@@ -15,6 +15,7 @@ interface StyledButtonProps {
 }
 
 export const FixedButtonWrapper = styled.div`
+  width: 100%;
   position: fixed;
   bottom: ${({ theme }) => theme?.buttonBottomPosition};
   left: 50%;
@@ -28,6 +29,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
   max-width: ${({ theme }) => theme?.maxContentWidth}px;
   height: 56px;
   min-height: 30px;
+  flex-shrink: 0;
   background-color: ${({ theme }) => theme?.colors?.primary};
   border-radius: ${({ theme }) => theme?.buttonBorderRadius};
   border: none;
