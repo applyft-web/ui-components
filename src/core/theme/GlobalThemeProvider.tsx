@@ -35,8 +35,8 @@ export const GlobalThemeProvider = ({ children, projectTheme = fallback, customT
 
   return <>
     <ThemeProvider theme={{ ...currentTheme, ...{ custom: customTheme } }}>
-      <GlobalStyles $customStyles={customGlobalStyles} />
       {children}
+      <GlobalStyles $customStyles={customGlobalStyles} />
     </ThemeProvider>
   </>
 };
