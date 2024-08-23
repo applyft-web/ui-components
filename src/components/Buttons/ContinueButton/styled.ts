@@ -11,16 +11,17 @@ interface StyledButtonProps {
   readonly $customStyles?: ButtonCustomStylesWithStatesProps;
   readonly $mt?: number | string;
   readonly $mb?: number | string;
-  readonly $staticPosition?: boolean;
 }
 
-export const FixedButtonWrapper = styled.div`
+export const FixedButtonWrapper = styled.div<{ $customStyles?: string }>`
   width: 100%;
   position: fixed;
   bottom: ${({ theme }) => theme?.buttonBottomPosition};
   left: 50%;
   transform: translateX(-50%);
   padding: 0 ${({ theme }) => theme?.sidePadding || 16}px;
+
+  ${({ $customStyles }) => $customStyles};
 `;
 
 export const StyledButton = styled.button<StyledButtonProps>`

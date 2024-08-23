@@ -27,6 +27,11 @@ export const ContinueButton = ({
 }: ContinueButtonProps) => {
   const { t } = useTranslation();
   const styles: S.ButtonCustomStylesWithStatesProps = getFormattedStyles(customStyles, 'default');
+  const extractPositioningRules = (cssString: string): string => {
+    const positioningRules = cssString.match(/(position|top|right|bottom|left|z-index)\s*:\s*[^;]+;/g);
+    return positioningRules ? positioningRules.join(' ') : '';
+  };
+  const wrapperStyles: string = !staticPosition ? extractPositioningRules(styles.default) : '';
 
   const btn = (
     <S.StyledButton
@@ -34,7 +39,6 @@ export const ContinueButton = ({
       id={customId}
       $mt={mt}
       $mb={mb}
-      $staticPosition={staticPosition}
       $customStyles={styles}
       {...rest}
     >
@@ -42,5 +46,5 @@ export const ContinueButton = ({
     </S.StyledButton>
   );
   
-  return staticPosition ? btn : <S.FixedButtonWrapper>{btn}</S.FixedButtonWrapper>;
+  return staticPosition ? btn : <S.FixedButtonWrapper $customStyles={wrapperStyles}>{btn}</S.FixedButtonWrapper>;
 };
