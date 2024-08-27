@@ -2,7 +2,7 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { type ReviewProps, type ReviewsSliderProps, ReviewsSlider } from './ReviewsSlider';
 import { themesToControls } from '../../stories';
-import { getTheme, GlobalThemeProvider } from '../../core';
+import { getTheme, GlobalThemeProvider, GradientScrollable } from '../../core';
 import { MainLayout } from '../Layouts';
 
 const reviewsList: ReviewProps[] = [
@@ -38,11 +38,29 @@ const reviewsList: ReviewProps[] = [
   },
 ];
 
+const reviewsList2 = [
+  <>
+    <span>1</span>
+    <span>2</span>
+    <span>3</span>
+  </>,
+  <>
+    <span>4</span>
+    <div>5</div>
+    <span>6</span>
+  </>,
+  <img src={'https://placehold.co/100x100'} width={100} height={100} alt={'placeholder'}/>,
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nunc. Nulla facilisi.',
+];
+
 const Wrapper = (props: ReviewsSliderProps) => {
   return (
     <GlobalThemeProvider projectTheme={props.theme}>
       <MainLayout>
-        <ReviewsSlider {...props} reviewsList={reviewsList} />
+        <GradientScrollable>
+          <ReviewsSlider {...props} reviewsList={reviewsList2} />
+        </GradientScrollable>
+        <div style={{fontSize:'12px',whiteSpace:'nowrap',color:'gray',marginTop:30}}>{'Edit ReviewsSlider.stories.tsx to see classic reviews'}</div>
       </MainLayout>
     </GlobalThemeProvider>
   );

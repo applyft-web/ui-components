@@ -27,7 +27,7 @@ const Test = () => {
               onClick={null}
               img={i === options.length - 1 || i === 1
                 ? i === 1 ? ' ' : ''
-                : 'https://quiz.geodzilla.info/assets/track_target/partner.png'
+                : 'https://placehold.co/100x100'
               }
               multiChoice
               isActive={i > 1}

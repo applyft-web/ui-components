@@ -40,7 +40,7 @@ export const OptionsItemStoryTemplate: StoryObj<typeof meta> = {
     isArabic: false,
     isActive: false,
     multiChoice: false,
-    img: 'https://quiz.geodzilla.info/assets/track_target/partner.png',
+    img: 'https://placehold.co/100x100',
     imgSize: [80, 50],
   },
 };

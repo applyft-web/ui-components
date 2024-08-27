@@ -110,6 +110,8 @@ export const StyledImg = styled.div<StyledImgProps & CommonProps>`
   ${({ $imgSrc }) => $imgSrc && css`
     background-image: url(${$imgSrc});
     background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   `};
   margin: 0 16px;
   margin-${({ $isArabic }) => getTextAlign($isArabic)}: 0;

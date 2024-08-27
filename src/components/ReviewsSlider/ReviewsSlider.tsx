@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { ReactNode, useEffect, useRef, useState } from 'react';
 import { useTheme } from 'styled-components';
 import * as S from './styled';
 
@@ -11,7 +11,7 @@ export interface ReviewProps {
 }
 
 export interface ReviewsSliderProps {
-  reviewsList: ReviewProps[];
+  reviewsList: ReviewProps[] | ReactNode[];
   mt?: number | string;
   mb?: number | string;
   interval?: number;
@@ -35,8 +35,8 @@ export const ReviewsSlider = ({
   const sliderRef = useRef<HTMLDivElement>(null);
   const [stopAutoScroll, setStopAutoScroll] = useState(false);
   const [lastItemAdded, setLastItemAdded] = useState(false);
-  const renderReviews = (r: ReviewProps, index: number) => {
-    const { name, text, img } = r;
+  const renderReviews = (r: ReviewProps | ReactNode, index: number) => {
+    const { name, text, img } = r as ReviewProps;
     return (
       <S.ReviewsItem
         $staticMode={staticMode}
@@ -44,8 +44,12 @@ export const ReviewsSlider = ({
         theme={theme}
         key={index}
       >
-        <S.Reviewer $image={img} theme={theme}>{name || '\u00A0'}</S.Reviewer>
-        <S.ReviewText theme={theme}>{text}</S.ReviewText>
+        { (React.isValidElement(r) || typeof r === 'string') ? r : (
+          <>
+            <S.Reviewer $image={img} theme={theme}>{name || '\u00A0'}</S.Reviewer>
+            <S.ReviewText theme={theme}>{text}</S.ReviewText>
+          </>
+        )}
       </S.ReviewsItem>
     );
   };
