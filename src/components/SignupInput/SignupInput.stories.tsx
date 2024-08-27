@@ -37,6 +37,19 @@ export const SignupInputStoryTemplate: StoryObj<typeof meta> = {
     // value: window.sessionStorage.getItem('email'),
     placeholder: 'Enter your email address here. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     isArabic: false,
+    withDomainButtons: true,
+    withWrapper: true,
+    customStyles: {
+      wrapper: '',
+      label: '',
+      placeholder: '',
+      input: '',
+      error: '',
+      buttons: {
+        wrapper: '',
+        button: '',
+      },
+    },
   },
 };
 

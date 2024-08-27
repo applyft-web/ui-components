@@ -1,18 +1,33 @@
 import styled, { css } from 'styled-components';
 import { getTextAlign } from '../../utils';
 
-interface InputProps {
-  readonly $error?: boolean;
-  readonly $isArabic?: boolean;
+interface CommonProps {
   readonly $customStyles?: string;
 }
 
-export const InputWrapper = styled.label<{ $isArabic?: boolean; $showPlaceholder: boolean }>`
-  --side-padding: 15px;
+interface LabelProps {
+  readonly $error?: boolean;
+  readonly $isArabic?: boolean;
+  readonly $showPlaceholder: boolean;
+  readonly $placeholderStyles?: string;
+}
+
+interface InputProps {
+  readonly $error?: boolean;
+  readonly $isArabic?: boolean;
+}
+
+export const Wrapper = styled.div<CommonProps>`
+  ${({ $customStyles }) => $customStyles};
+`;
+
+export const InputWrapper = styled.label<LabelProps & CommonProps>`
+  --side-padding: 16px;
+  display: block;
   position: relative;
   cursor: text;
   
-  ${({ $showPlaceholder, $isArabic }) => $showPlaceholder && css`
+  ${({ $showPlaceholder, $isArabic, $placeholderStyles }) => $showPlaceholder && css`
     &:after {
       content: attr(data-placeholder);
       display: block;
@@ -27,11 +42,15 @@ export const InputWrapper = styled.label<{ $isArabic?: boolean; $showPlaceholder
       left: var(--side-padding);
       //padding-${getTextAlign($isArabic)}: 5px;
       text-align: ${getTextAlign($isArabic)};
+      
+      ${$placeholderStyles};
     }
   `};
+  
+  ${({ $customStyles }) => $customStyles};
 `;
 
-export const Input = styled.input<InputProps>`
+export const Input = styled.input<InputProps & CommonProps>`
   width: 100%;
   border-radius: 12px;
   border: none;
@@ -48,26 +67,45 @@ export const Input = styled.input<InputProps>`
   &:active {
     outline: none;
     border: none;
+    box-shadow: inset 0 0 0 1px ${({ theme, $error }) => `1px solid ${!$error ? theme?.colors?.primary : '#E55656'}`};
   }
   
   ${({ $customStyles }) => $customStyles};
 `;
 
-export const DomainBtn = styled.button`
+export const ErrorState = styled.div<CommonProps>`
+  font-size: 14px;
+  line-height: 19px;
+  text-align: left;
+  color: #E55656;
+  padding: 0 15px;
+  position: absolute;
+  left: 0;
+  top: calc(var(--input-height) + 2px);
+  
+  ${({ $customStyles }) => $customStyles};
+`;
+
+export const DomainBtn = styled.button<CommonProps>`
   width: 90px;
   height: 28px;
   min-width: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: transparent;
   border: 1px solid rgb(229,229,229);
   border-radius: 10px;
   font-size: 12px;
-  line-height: 28px;
+  line-height: 1;
   color: #8696A6;
   padding: 0 5px;
   cursor: pointer;
+  
+  ${({ $customStyles }) => $customStyles};
 `;
 
-export const BtnContainer = styled.div<{ $isArabic?: boolean }>`
+export const BtnContainer = styled.div<{ $isArabic?: boolean } & CommonProps>`
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -81,4 +119,6 @@ export const BtnContainer = styled.div<{ $isArabic?: boolean }>`
     gap: 5px;
     row-gap: 5px;
   }
+  
+  ${({ $customStyles }) => $customStyles};
 `;
