@@ -23,15 +23,27 @@ export const ContinueButton = ({
   mb,
   staticPosition,
   customStyles,
+  style,
   ...rest
 }: ContinueButtonProps) => {
   const { t } = useTranslation();
   const styles: S.ButtonCustomStylesWithStatesProps = getFormattedStyles(customStyles, 'default');
   const extractPositioningRules = (cssString: string): string => {
-    const positioningRules = cssString.match(/(position|top|right|bottom|left|z-index)\s*:\s*[^;]+;/g);
+    const positioningRules = cssString.match(/(position|top|right|bottom|left|z-index)\s*:\s*[^;]+;?/g);
     return positioningRules ? positioningRules.join(' ') : '';
   };
-  const wrapperStyles: string = !staticPosition ? extractPositioningRules(styles.default) : '';
+  const extractPositioningRulesFromObject = (style: { [key: string]: any }): { [key: string]: any } => {
+    const positioningProperties = ['position', 'top', 'right', 'bottom', 'left', 'zIndex'];
+    const extractedStyles: { [key: string]: any } = {};
+    
+    for (const property in style) {
+      if (positioningProperties.includes(property)) {
+        extractedStyles[property] = style[property];
+      }
+    }
+    
+    return extractedStyles;
+  };
 
   const btn = (
     <S.StyledButton
@@ -46,5 +58,12 @@ export const ContinueButton = ({
     </S.StyledButton>
   );
   
-  return staticPosition ? btn : <S.FixedButtonWrapper $customStyles={wrapperStyles}>{btn}</S.FixedButtonWrapper>;
+  return staticPosition ? btn : (
+    <S.FixedButtonWrapper
+      $customStyles={extractPositioningRules(styles.default)}
+      style={extractPositioningRulesFromObject(style)}
+    >
+      {btn}
+    </S.FixedButtonWrapper>
+  );
 };
