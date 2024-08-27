@@ -23,7 +23,6 @@ export const ContinueButton = ({
   mb,
   staticPosition,
   customStyles,
-  style,
   ...rest
 }: ContinueButtonProps) => {
   const { t } = useTranslation();
@@ -33,6 +32,8 @@ export const ContinueButton = ({
     return positioningRules ? positioningRules.join(' ') : '';
   };
   const extractPositioningRulesFromObject = (style: { [key: string]: any }): { [key: string]: any } => {
+    if (!style) return {};
+
     const positioningProperties = ['position', 'top', 'right', 'bottom', 'left', 'zIndex'];
     const extractedStyles: { [key: string]: any } = {};
     
@@ -61,7 +62,7 @@ export const ContinueButton = ({
   return staticPosition ? btn : (
     <S.FixedButtonWrapper
       $customStyles={extractPositioningRules(styles.default)}
-      style={extractPositioningRulesFromObject(style)}
+      style={extractPositioningRulesFromObject(rest?.style)}
     >
       {btn}
     </S.FixedButtonWrapper>
