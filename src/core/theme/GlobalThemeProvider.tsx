@@ -33,10 +33,12 @@ export const GlobalThemeProvider = ({ children, projectTheme = fallback, customT
 
   useDynamicHeight();
 
-  return <>
-    <ThemeProvider theme={{ ...currentTheme, ...{ custom: customTheme } }}>
-      <GlobalStyles $customStyles={customGlobalStyles} />
-      {children}
-    </ThemeProvider>
-  </>
+  return (
+    <>
+      <ThemeProvider theme={{ ...currentTheme, ...{ custom: customTheme } }}>
+        <GlobalStyles $customStyles={customGlobalStyles} />
+        {children}
+      </ThemeProvider>
+    </>
+  );
 };

@@ -24,7 +24,7 @@ export const reactChildrenMapping = (children: React.ReactNode, customProps: obj
 export const useDynamicHeight = () => {
   useEffect(() => {
     const setDynamicVH = () => {
-      const vh = window.innerHeight * 0.01;
+      const vh = (window.innerHeight * 0.01).toFixed(2);
       document.documentElement.style.setProperty('--vh', `${vh}px`);
     };
 
