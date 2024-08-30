@@ -97,6 +97,7 @@ export const themes: ThemesObject = {
       progressBarBg: '#f3f3f3',
       planItemCheckBorder: '#F58A3C',
     },
+    sidePadding: '16',
   },
   brainbloom: {
     colors: {
