@@ -98,6 +98,7 @@ export const themes: ThemesObject = {
       planItemCheckBorder: '#F58A3C',
     },
     sidePadding: '16',
+    maxContentWidth: '343',
   },
   brainbloom: {
     colors: {
