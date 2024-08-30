@@ -18,7 +18,7 @@ const defaultTheme: {[key: string]: any} = {
     text: '#323232',
     bodyBackground: '#fff',
     optionActiveText: '#323232',
-    buttonDisabledTextColor: '#323232',
+    buttonDisabledTextColor: '#fff',
     inputBg: '#fff',
     circularProgressBg: '#F2F2F2',
     reviewItemBg: '#f4f4f4',

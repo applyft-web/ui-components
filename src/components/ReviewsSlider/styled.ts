@@ -34,7 +34,7 @@ export const ReviewsBlock = styled.div<StaticProps>`
 
 export const ReviewsItem = styled.div<StaticProps & { $isArabic?: boolean }>`
   background-color: ${({ theme }) => theme?.colors?.reviewItemBg};
-  border: 1px solid #DEE0E6;
+  border: 1px solid #DEDEDE;
   border-radius: 12px;
   flex: 1 0 calc(100vw - ${({ theme }) => (theme?.sidePadding || 16)*2}px);
   max-width: ${({ theme }) => theme?.maxContentWidth}px;
@@ -44,7 +44,7 @@ export const ReviewsItem = styled.div<StaticProps & { $isArabic?: boolean }>`
   
   &:not(:last-child) {
     ${({ $staticMode, theme }) => $staticMode ? `
-      margin-bottom: 16px;
+      margin-bottom: 12px;
     ` : `
       margin-right: ${theme?.sidePadding || 16}px
     `};
@@ -75,4 +75,7 @@ export const Reviewer = styled.div<{ $image?: string }>`
   }
 `;
 
-export const ReviewText = styled.div``;
+export const ReviewText = styled.div`
+  font-size: 14px;
+  line-height: 19px;
+`;
