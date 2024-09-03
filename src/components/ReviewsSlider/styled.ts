@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 import { getCssSize, getTextAlign } from '../../utils';
 
+interface CommonProps {
+  readonly $customStyles?: string;
+}
+
 interface MarginProps {
   readonly $mt?: string | number;
   readonly $mb?: string | number;
@@ -10,7 +14,7 @@ interface StaticProps {
   readonly $staticMode?: boolean;
 }
 
-export const ReviewsContainer = styled.div<MarginProps>`
+export const ReviewsContainer = styled.div<MarginProps & CommonProps>`
   display: flex;
   width: 100%;
   max-width: ${({ theme }) => theme?.maxContentWidth}px;
@@ -20,6 +24,8 @@ export const ReviewsContainer = styled.div<MarginProps>`
   ${({ $mb }) => $mb !== undefined && `margin-bottom: ${getCssSize($mb)}`};
   position: relative;
   flex-shrink: 0;
+  
+  ${({ $customStyles }) => $customStyles};
 `;
 
 export const ReviewsBlock = styled.div<StaticProps>`
@@ -32,7 +38,7 @@ export const ReviewsBlock = styled.div<StaticProps>`
   `};
 `;
 
-export const ReviewsItem = styled.div<StaticProps & { $isArabic?: boolean }>`
+export const ReviewsItem = styled.div<StaticProps & CommonProps & { $isArabic?: boolean }>`
   background-color: ${({ theme }) => theme?.colors?.reviewItemBg};
   border: 1px solid #DEDEDE;
   border-radius: 12px;
@@ -41,6 +47,7 @@ export const ReviewsItem = styled.div<StaticProps & { $isArabic?: boolean }>`
   padding: 12px 16px;
   text-align: ${({ $isArabic }) => getTextAlign($isArabic)};
   transition: transform 0.5s ease;
+  ${({ $staticMode }) => $staticMode && 'margin: 0 auto;'};
   
   &:not(:last-child) {
     ${({ $staticMode, theme }) => $staticMode ? `
@@ -49,6 +56,8 @@ export const ReviewsItem = styled.div<StaticProps & { $isArabic?: boolean }>`
       margin-right: ${theme?.sidePadding || 16}px
     `};
   }
+  
+  ${({ $customStyles }) => $customStyles};
 `;
 
 export const Reviewer = styled.div<{ $image?: string }>`

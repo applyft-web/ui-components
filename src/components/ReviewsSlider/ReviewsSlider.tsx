@@ -1,6 +1,7 @@
 import React, { ReactNode, useEffect, useRef, useState } from 'react';
 import { useTheme } from 'styled-components';
 import * as S from './styled';
+import {getFormattedStyles} from "../../utils";
 
 // TODO draggable slider
 
@@ -10,6 +11,11 @@ export interface ReviewProps {
   img?: string;
 }
 
+interface CustomStylesProps {
+  readonly container?: string;
+  readonly item?: string;
+}
+
 export interface ReviewsSliderProps {
   reviewsList: ReviewProps[] | ReactNode[];
   mt?: number | string;
@@ -17,6 +23,7 @@ export interface ReviewsSliderProps {
   interval?: number;
   staticMode?: boolean;
   isArabic?: boolean;
+  customStyles?: CustomStylesProps | string;
   [propName: string]: any;
 }
 
@@ -27,10 +34,12 @@ export const ReviewsSlider = ({
   interval = 2,
   staticMode = false,
   isArabic = false,
+  customStyles,
   ...rest
 }: ReviewsSliderProps) => {
   const theme = rest?.theme;
   const currentTheme = useTheme();
+  const styles: CustomStylesProps = getFormattedStyles(customStyles, 'container');
   const sliderInterval = interval * 1000;
   const sliderRef = useRef<HTMLDivElement>(null);
   const [stopAutoScroll, setStopAutoScroll] = useState(false);
@@ -42,6 +51,7 @@ export const ReviewsSlider = ({
         $staticMode={staticMode}
         $isArabic={isArabic}
         theme={theme}
+        $customStyles={styles?.item}
         key={index}
       >
         { (React.isValidElement(r) || typeof r === 'string') ? r : (
@@ -120,7 +130,12 @@ export const ReviewsSlider = ({
   }, [staticMode, stopAutoScroll, reviewsList.length, sliderInterval]);
 
   return (
-    <S.ReviewsContainer $mt={mt} $mb={mb} theme={theme}>
+    <S.ReviewsContainer
+      $mt={mt}
+      $mb={mb}
+      $customStyles={styles?.container}
+      {...rest}
+    >
       <S.ReviewsBlock
         ref={sliderRef}
         id={'slider'}
