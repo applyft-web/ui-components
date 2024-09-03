@@ -63,6 +63,7 @@ export const ReviewsSlider = ({
       </S.ReviewsItem>
     );
   };
+  const items = reviewsList.map(renderReviews);
   const touchMoveHandler = (e: React.TouchEvent) => {
     if (staticMode) return;
     /*e.preventDefault();
@@ -134,19 +135,23 @@ export const ReviewsSlider = ({
       $mt={mt}
       $mb={mb}
       $customStyles={styles?.container}
+      $staticMode={staticMode}
       {...rest}
     >
-      <S.ReviewsBlock
-        ref={sliderRef}
-        id={'slider'}
-        onTouchStart={touchStartHandler}
-        onTouchMove={touchMoveHandler}
-        onTouchEnd={touchEndHandler}
-        $staticMode={staticMode}
-        theme={theme}
-      >
-        {reviewsList.map(renderReviews)}
-      </S.ReviewsBlock>
+      {staticMode ? (
+        items
+      ) : (
+        <S.ReviewsBlock
+          ref={sliderRef}
+          id={'slider'}
+          onTouchStart={touchStartHandler}
+          onTouchMove={touchMoveHandler}
+          onTouchEnd={touchEndHandler}
+          theme={theme}
+        >
+          {items}
+        </S.ReviewsBlock>
+      )}
     </S.ReviewsContainer>
   );
 };
