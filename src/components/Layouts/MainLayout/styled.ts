@@ -27,6 +27,7 @@ export const StyledLayout = styled.div<StyledLayoutProps>`
     
     & > *:not(.ignore-inheritance) {
       max-width: 100%;
+      width: 100%;
       margin-left: auto;
       margin-right: auto;
     }
