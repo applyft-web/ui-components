@@ -86,25 +86,6 @@ export const ErrorState = styled.div<CommonProps>`
   ${({ $customStyles }) => $customStyles};
 `;
 
-export const DomainBtn = styled.button<CommonProps>`
-  width: 90px;
-  height: 28px;
-  min-width: 90px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: transparent;
-  border: 1px solid rgb(229,229,229);
-  border-radius: 10px;
-  font-size: 12px;
-  line-height: 1;
-  color: #8696A6;
-  padding: 0 5px;
-  cursor: pointer;
-  
-  ${({ $customStyles }) => $customStyles};
-`;
-
 export const BtnContainer = styled.div<{ $isArabic?: boolean } & CommonProps>`
   width: 100%;
   display: flex;
@@ -112,13 +93,32 @@ export const BtnContainer = styled.div<{ $isArabic?: boolean } & CommonProps>`
   flex-direction: ${({ $isArabic }) => $isArabic ? 'row-reverse' : 'row'};
   margin-top: 16px;
   height: 28px;
-  gap: 9px;
-  row-gap: 9px;
+  gap: 12px;
+  row-gap: 12px;
 
   @media screen and (max-width: ${({ theme }) => theme?.mobileWidth}px) {
     gap: 5px;
     row-gap: 5px;
   }
+  
+  ${({ $customStyles }) => $customStyles};
+`;
+
+export const DomainBtn = styled.button<CommonProps>`
+  flex: 1 0 90px;
+  height: 28px;
+  min-width: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: 1px solid rgb(229,229,229);
+  border-radius: 100px;
+  font-size: 12px;
+  line-height: 1;
+  color: #8696A6;
+  padding: 0 5px;
+  cursor: pointer;
   
   ${({ $customStyles }) => $customStyles};
 `;
