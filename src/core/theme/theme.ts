@@ -30,7 +30,7 @@ const defaultTheme: {[key: string]: any} = {
     planItemLabelColorInactive: '#323232',
   },
   mobileWidth: '350',
-  tabletMinWidth: '744',
+  tabletMinWidth: '432',
   desktopMinWidth: '992',
   maxContentWidth: '343',
   sidePadding: '16',
