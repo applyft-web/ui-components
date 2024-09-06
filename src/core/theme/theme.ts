@@ -25,16 +25,15 @@ const defaultTheme: {[key: string]: any} = {
     planItemBorder: '#c3c3c3',
     planItemBg: '#fff',
     planItemTextColorInactive: '#7F84A7',
-    planItemLabelBg: '#fff',
     planItemCheckBg: '#fff',
     planItemLabelColorActive: '#fff',
     planItemLabelColorInactive: '#323232',
   },
   mobileWidth: '350',
   tabletMinWidth: '744',
-  desktopMinWidth: '1280',
-  maxContentWidth: '327',
-  sidePadding: '24',
+  desktopMinWidth: '992',
+  maxContentWidth: '343',
+  sidePadding: '16',
   buttonBorderRadius: '12px',
   buttonBottomPosition: '24px',
   planItemBorderRadius: '8px',
@@ -58,6 +57,7 @@ export const themes: ThemesObject = {
       progressBarActive: '#00bfa5',
       progressBarBg: '#f0efef',
       planItemCheckBorder: '#00BFA5',
+      planItemLabelBg: '#E5F6F3',
     },
   },
   'family-locator': {
@@ -77,6 +77,7 @@ export const themes: ThemesObject = {
       progressBarActive: '#3393ec',
       progressBarBg: '#f3f3f3',
       planItemCheckBorder: '#3393EC',
+      planItemLabelBg: '#EBF3FE',
     },
   },
   familo: {
@@ -96,9 +97,8 @@ export const themes: ThemesObject = {
       progressBarActive: '#f58a3c',
       progressBarBg: '#f3f3f3',
       planItemCheckBorder: '#F58A3C',
+      planItemLabelBg: '#FEF3EB',
     },
-    sidePadding: '16',
-    maxContentWidth: '343',
   },
   brainbloom: {
     colors: {
@@ -131,8 +131,6 @@ export const themes: ThemesObject = {
       planItemLabelColorActive: '#292C44',
       planItemLabelColorInactive: '#8A8FB2',
     },
-    maxContentWidth: '343',
-    sidePadding: '16',
   },
 };
 
