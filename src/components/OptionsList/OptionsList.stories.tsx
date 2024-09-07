@@ -53,6 +53,12 @@ export const OptionsItemStoryTemplate: StoryObj<typeof meta> = {
   args: {
     theme: getTheme(),
     children: test(),
+    gap: 12,
+    scrollable: true,
+    customStyles: {
+      wrapper: '',
+      list: '',
+    }
   },
 };
 

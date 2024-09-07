@@ -19,7 +19,7 @@ const meta: Meta<typeof OptionsItem> = {
   component: Wrapper,
   parameters: {
     controls: {
-      exclude: ['customId', 'onClick', 'mt', 'mb', 'customStyles']
+      exclude: ['customId', 'onClick']
     },
   },
   argTypes: {
@@ -42,6 +42,22 @@ export const OptionsItemStoryTemplate: StoryObj<typeof meta> = {
     multiChoice: false,
     img: 'https://placehold.co/100x100',
     imgSize: [80, 50],
+    mt: 0,
+    mb: 0,
+    customStyles: {
+      option: {
+        default: '',
+        disabled: '',
+        hover: '',
+        active: '',
+      },
+      img: '',
+      check: '',
+      checkIcon: {
+        svg: '',
+        path: '',
+      },
+    },
   },
 };
 

@@ -13,7 +13,8 @@ export const ProgressWrapper = styled.div<ProgressWrapperProps>`
     width: ${$size}px!important;
     height: ${$size}px!important;
   `};;
-  box-shadow: inset 0 0 0 12px ${({ theme }) => theme?.colors?.circularProgressBg || '$fff'};
+  color: ${({ theme }) => theme?.colors?.circularProgressBg || '$fff'};
+  ${({ $size }) => `box-shadow: inset 0 0 0 ${$size < 100 ? 6: 12}px`};
   border-radius: 50%;
   position: relative;
   ${({ $mt }) => $mt !== undefined && `margin-top: ${getCssSize($mt)}`};

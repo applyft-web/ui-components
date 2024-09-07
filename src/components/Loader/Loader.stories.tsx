@@ -45,6 +45,7 @@ export const LoaderStoryTemplate: StoryObj<typeof meta> = {
   args: {
     theme: getTheme(),
     transparent: false,
+    message: 'Loading...',
   },
 };
 

@@ -10,8 +10,23 @@ const ChildComponent = styled.div`
   flex-grow: 1;
   background-color: rgb(109 138 184);
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+`;
+
+const LegendBlock = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  
+  div {
+    width: 20px;
+    height: 20px;
+    background-color: rgb(162 220 150);
+    margin-right: 10px;
+  }
 `;
 
 const Wrapper = (props: MainLayoutProps) => {
@@ -21,6 +36,9 @@ const Wrapper = (props: MainLayoutProps) => {
           <ProgressBar totalCount={15} currentRoute={5} />
           <ChildComponent>
             <h1>Content</h1>
+            <LegendBlock>
+              <div /> &mdash; padding
+            </LegendBlock>
           </ChildComponent>
           <ContinueButton onClick={() => null} />
       </MainLayout>
@@ -54,6 +72,7 @@ export const MainLayoutStoryTemplate: StoryObj<typeof meta> = {
     customStyles: 'background-color: rgb(162 220 150); height: 100%;',
     pt: 52,
     pb: 88,
+    adaptive: true,
   },
 };
 

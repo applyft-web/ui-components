@@ -85,6 +85,10 @@ export const ReviewsSliderStoryTemplate: StoryObj<typeof meta> = {
     theme: getTheme(),
     interval: 3,
     staticMode: true,
+    customStyles: {
+      container: '',
+      item: '',
+    },
   },
 };
 

@@ -19,7 +19,7 @@ const meta: Meta<typeof SignupInput> = {
   component: Wrapper,
   parameters: {
     controls: {
-      exclude: ['setValue', 'submitEmail', 'placeholder', 'value'],
+      exclude: ['setValue', 'submitEmail', 'value'],
     },
   },
   argTypes: {

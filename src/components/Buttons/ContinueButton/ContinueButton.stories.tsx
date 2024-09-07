@@ -19,7 +19,7 @@ const meta: Meta<typeof ContinueButton> = {
   component: Wrapper,
   parameters: {
     controls: {
-      include: ['children', 'theme', 'disabled', 'customStyles', 'staticPosition'],
+      exclude: ['onClick'],
     },
   },
   argTypes: {
@@ -32,10 +32,16 @@ export default meta;
 export const ContinueButtonStoryTemplate: StoryObj<typeof meta> = {
   args: {
     children: 'Test!',
-    onClick: () => console.log('test'),
     theme: getTheme(),
     disabled: false,
     staticPosition: false,
+    mt: 0,
+    mb: 0,
+    customStyles: {
+      default: '',
+      disabled: '',
+      hover: '',
+    },
   },
 };
 

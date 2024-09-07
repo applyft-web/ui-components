@@ -19,7 +19,7 @@ const meta: Meta<typeof CircularProgress> = {
   component: Wrapper,
   parameters: {
     controls: {
-      exclude: ['mt', 'mb', 'customStyles'],
+      exclude: ['children'],
     },
   },
   argTypes: {
@@ -35,7 +35,10 @@ export default meta;
 export const CircularProgressStoryTemplate: StoryObj<typeof meta> = {
   args: {
     theme: getTheme(),
+    size: 174,
     progress: 35,
+    mt: 0,
+    mb: 0,
     customStyles: 'margin: 0 auto;',
   },
 };

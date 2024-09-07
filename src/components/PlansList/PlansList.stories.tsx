@@ -55,7 +55,7 @@ const meta: Meta<typeof PlansList> = {
   component: Wrapper,
   parameters: {
     controls: {
-      exclude: ['plans'],
+      exclude: ['plans', 'onPlanClick'],
     },
   },
   argTypes: {
@@ -77,10 +77,24 @@ export default meta;
 export const PlansListStoryTemplate: StoryObj<typeof meta> = {
   args: {
     theme: getTheme(),
-    isArabic: false,
-    plans,
     activePlan: '1-month',
-    onPlanClick: (plan) => console.log(plan),
+    plans,
+    isArabic: false,
+    gap: 8,
+    mt: 0,
+    mb: 0,
+    customStyles: {
+      container: '',
+      item: {
+        default: '',
+        active: 'box-shadow: 0 6px 24px rgba(24,25,37,.1);',
+      },
+      label: '',
+      title: '',
+      fullPrice: '',
+      oldPrice: '',
+      price: '',
+    },
   },
 };
 

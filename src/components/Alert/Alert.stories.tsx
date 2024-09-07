@@ -35,6 +35,7 @@ export const AlertStoryTemplate: StoryObj<typeof meta> = {
     show: true,
     message: 'This is an alert message',
     isArabic: false,
+    customStyles: '',
   },
 };
 

@@ -42,6 +42,7 @@ export const Alert = ({
       $isArabic={isArabic}
       $customStyles={customStyles}
       theme={theme}
+      {...rest}
     >
       <p>{message}</p>
       {show && (

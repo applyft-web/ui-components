@@ -23,7 +23,9 @@ export const StyledLayout = styled.div<StyledLayoutProps>`
   align-items: center;
   text-align: center;
   box-sizing: border-box;
-  ${({ $adaptive, $pt, $pb, $customStyles, theme }) => $adaptive ? css`
+  ${({ $pt }) => $pt !== undefined && `padding-top: ${getCssSize($pt)}`};
+  ${({ $pb }) => $pb !== undefined && `padding-bottom: ${getCssSize($pb)}`};
+  ${({ $adaptive, $customStyles, theme }) => $adaptive ? css`
     
     & > *:not(.ignore-inheritance) {
       max-width: 100%;
@@ -49,8 +51,6 @@ export const StyledLayout = styled.div<StyledLayoutProps>`
   ` : css`
     
     max-width: ${parseInt(theme?.maxContentWidth || 375) + parseInt(theme?.sidePadding || 0)*2}px;
-    ${$pt !== undefined && `padding-top: ${getCssSize($pt)}`};
-    ${$pb !== undefined && `padding-bottom: ${getCssSize($pb)}`};
     padding-right: ${theme?.sidePadding || 16}px;
     padding-left: ${theme?.sidePadding || 16}px;
     

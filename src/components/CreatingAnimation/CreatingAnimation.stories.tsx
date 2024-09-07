@@ -19,7 +19,7 @@ const meta: Meta<typeof CreatingAnimation> = {
   component: Wrapper,
   parameters: {
     controls: {
-      exclude: ['mt', 'mb', 'doneCallback'],
+      exclude: ['doneCallback'],
     },
   },
   argTypes: {
@@ -33,7 +33,11 @@ export const CircularProgressStoryTemplate: StoryObj<typeof meta> = {
   args: {
     theme: getTheme(),
     doneCallback: () => alert('Done!'),
-    duration: 10,
+    duration: 100,
+    size: 174,
+    mt: 0,
+    mb: 0,
+    customStyles: '',
   },
 };
 

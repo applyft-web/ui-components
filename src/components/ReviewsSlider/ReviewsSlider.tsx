@@ -1,7 +1,7 @@
 import React, { ReactNode, useEffect, useRef, useState } from 'react';
 import { useTheme } from 'styled-components';
+import { getFormattedStyles } from '../../utils';
 import * as S from './styled';
-import {getFormattedStyles} from "../../utils";
 
 // TODO draggable slider
 
