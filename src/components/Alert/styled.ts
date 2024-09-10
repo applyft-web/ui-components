@@ -46,7 +46,7 @@ export const CloseAlert = styled.div<{ $isArabic?: boolean }>`
   display: block;
   width: 24px;
   height: 24px;
-  position: absolute;
+  position: fixed;
   top: 50%;
   right: 16px;
   left: 16px;

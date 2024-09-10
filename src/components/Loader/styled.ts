@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
 
 export const spinning = keyframes`
   to {
@@ -6,7 +6,13 @@ export const spinning = keyframes`
   }
 `;
 
-export const StyledSpinner = styled.div<{ $transparent: boolean }>`
+interface StyledSpinnerProps {
+  $transparent: boolean;
+  $localPosition: boolean;
+  $customStyles?: string;
+}
+
+export const StyledSpinner = styled.div<StyledSpinnerProps>`
   width: 100%;
   height: 100%;
   display: flex;
@@ -20,11 +26,20 @@ export const StyledSpinner = styled.div<{ $transparent: boolean }>`
   -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
   z-index: 1000;
+  
+  ${({ $localPosition }) => $localPosition && css`
+    position: absolute;
+    background-color: transparent;
+    padding: 8px;
+  `};
+  
+  ${({ $customStyles }) => $customStyles};
 `;
 
 export const StyledSVG = styled.svg<{ $fill?: string }>`
   width: 48px;
   height: 48px;
+  flex-shrink: 0;
   animation: ${spinning} 1.5s linear infinite;
     
   circle, path {

@@ -1,16 +1,21 @@
 import React from 'react';
 import * as S from './styled';
 
-export interface LoaderProps {
-  show?: boolean;
-  message?: string;
-  transparent?: boolean;
+export interface SvgProps {
   type?: 'dotted' | 'solid';
   fill?: string;
   [propName: string]: any;
 }
 
-const SpinnerSvg = ({ type, fill, theme }: LoaderProps) => {
+export interface LoaderProps extends SvgProps {
+  show?: boolean;
+  message?: string;
+  transparent?: boolean;
+  localPosition?: boolean;
+  customStyles?: string;
+}
+
+const SpinnerSvg = ({ type, fill, theme }: SvgProps) => {
   switch (type) {
     case 'dotted': return (
       <S.StyledSVG width='48' height='48' viewBox='0 0 48 48' fill='none' xmlns='http://www.w3.org/2000/svg' theme={theme} $fill={fill}>
@@ -40,15 +45,23 @@ export const Loader = ({
   transparent = false,
   type = 'dotted',
   fill,
+  localPosition,
+  customStyles = '',
   ...rest
 }: LoaderProps) => {
   const theme = rest?.theme;
 
   if (show) {
     return (
-      <S.StyledSpinner id={'loading-element'} $transparent={transparent} theme={theme}>
+      <S.StyledSpinner
+        id={'loading-element'}
+        $transparent={transparent}
+        theme={theme}
+        $localPosition={localPosition}
+        $customStyles={customStyles}
+      >
         <SpinnerSvg type={type} fill={fill} theme={theme} />
-        <S.Message theme={theme}>{message}</S.Message>
+        {!localPosition && <S.Message theme={theme}>{message}</S.Message>}
       </S.StyledSpinner>
     );
   }

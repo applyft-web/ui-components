@@ -13,9 +13,12 @@ const Wrapper = (props: LoaderProps) => {
         <br/>
         <p>Lorem ipsum dolor, consectetur adipiscing elit. Nullam nec</p><br/>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing consectetur adipiscing elit. Nullam nec</p><br/>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec</p><br/>
+        <p style={{ position: 'relative' }}>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec consectetur adipiscing elit. Nullam nec consectetur adipiscing elit. Nullam nec
+          <Loader {...props} />
+        </p>
+        <br/>
       </MainLayout>
-      <Loader {...props} />
     </GlobalThemeProvider>
   );
 };
@@ -46,6 +49,8 @@ export const LoaderStoryTemplate: StoryObj<typeof meta> = {
     theme: getTheme(),
     transparent: false,
     message: 'Loading...',
+    localPosition: false,
+    customStyles: '',
   },
 };
 
