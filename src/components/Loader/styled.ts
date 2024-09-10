@@ -30,8 +30,8 @@ export const StyledSpinner = styled.div<StyledSpinnerProps>`
   ${({ $localPosition }) => $localPosition && css`
     position: absolute;
     background-color: transparent;
-    -webkit-backdrop-filter: blur(3px);
-    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
     padding: 8px;
   `};
   
