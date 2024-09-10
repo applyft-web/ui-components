@@ -9,7 +9,7 @@ export const StyledAlert = styled.div<{ $show: boolean; $isArabic?: boolean; $cu
   padding: 16px 40px;
   border-radius: 8px;
   background-color: #FF5B5B;
-  position: absolute;
+  position: fixed;
   left: 50%;
   top: 6%;
   transform: translate(-50%, -20%);
@@ -46,7 +46,7 @@ export const CloseAlert = styled.div<{ $isArabic?: boolean }>`
   display: block;
   width: 24px;
   height: 24px;
-  position: fixed;
+  position: absolute;
   top: 50%;
   right: 16px;
   left: 16px;
