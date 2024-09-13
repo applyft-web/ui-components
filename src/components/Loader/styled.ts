@@ -38,15 +38,16 @@ export const StyledSpinner = styled.div<StyledSpinnerProps>`
   ${({ $customStyles }) => $customStyles};
 `;
 
-export const StyledSVG = styled.svg<{ $fill?: string }>`
+export const StyledSVG = styled.svg<{ $fill?: string; $customStyles?: string }>`
   width: 48px;
   height: 48px;
-  flex-shrink: 0;
   animation: ${spinning} 1.5s linear infinite;
     
   circle, path {
     fill: ${({ theme, $fill }) => $fill || theme?.colors?.primary};
   }
+  
+  ${({ $customStyles }) => $customStyles};
 `;
 
 export const Message = styled.span`
