@@ -113,6 +113,7 @@ export const PlanCheck = styled.div<CommonProps>`
   `};
   position: relative;
   margin: ${({ $isArabic }) => $isArabic ? '0 0 0 16px' : '0 16px 0 0'};
+  flex-shrink: 0;
 
   .check-icon {
     position: absolute;
