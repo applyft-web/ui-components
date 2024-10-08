@@ -90,6 +90,7 @@ export const PlansListStoryTemplate: StoryObj<typeof meta> = {
         active: 'box-shadow: 0 6px 24px rgba(24,25,37,.1);',
       },
       label: '',
+      check: '',
       title: '',
       fullPrice: '',
       oldPrice: '',

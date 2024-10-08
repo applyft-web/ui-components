@@ -102,7 +102,7 @@ export const StyledPeriod = styled.div<CommonProps>`
   `}
 `;
 
-export const PlanCheck = styled.div<CommonProps>`
+export const PlanCheck = styled.div<CommonProps & StylesProps>`
   --check-size: 24px;
   width: var(--check-size);
   height: var(--check-size);
@@ -121,6 +121,8 @@ export const PlanCheck = styled.div<CommonProps>`
     left: 50%;
     transform: translate(-50%, -50%);
   }
+
+  ${({ $customStyles }) => $customStyles};
 `;
 
 export const PlanTitle = styled.div<CommonProps>`

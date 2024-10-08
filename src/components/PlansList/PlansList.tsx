@@ -8,6 +8,7 @@ interface CustomStylesProps {
   readonly container?: string;
   readonly item?: S.CustomStylesWithStatesProps | string;
   readonly label?: string;
+  readonly check?: string;
   readonly title?: string;
   readonly fullPrice?: string;
   readonly oldPrice?: string;
@@ -87,7 +88,11 @@ export const PlansList = ({
         $labelCustomStyles={styles?.label}
       >
         <S.StyledPeriod $isArabic={isArabic}>
-          <S.PlanCheck $isActive={isActive} $isArabic={isArabic}>
+          <S.PlanCheck
+            $isActive={isActive}
+            $isArabic={isArabic}
+            $customStyles={styles?.check}
+          >
             <CheckIcon customStyles={{path: `fill: ${currentTheme?.colors?.planItemCheckBg};`}} />
           </S.PlanCheck>
           <S.PlanTitle $isActive={isActive}>
