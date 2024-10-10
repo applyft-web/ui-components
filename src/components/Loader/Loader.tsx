@@ -68,7 +68,8 @@ export const Loader = ({
         $customStyles={styles?.container}
       >
         <SpinnerSvg
-          {...{ type, fill, theme }}
+          {...{ type, theme }}
+          $fill={fill}
           $customStyles={styles?.svg}
         />
         {!localPosition && <S.Message theme={theme}>{message}</S.Message>}
