@@ -61,7 +61,7 @@ export const Loader = ({
   if (show) {
     return (
       <S.StyledSpinner
-        id={'loading-element'}
+        id={!localPosition ? 'loading-element' : ''}
         $transparent={transparent}
         theme={theme}
         $localPosition={localPosition}
@@ -72,7 +72,7 @@ export const Loader = ({
           $fill={fill}
           $customStyles={styles?.svg}
         />
-        {!localPosition && <S.Message theme={theme}>{message}</S.Message>}
+        {!localPosition && message && <S.Message theme={theme}>{message}</S.Message>}
       </S.StyledSpinner>
     );
   }

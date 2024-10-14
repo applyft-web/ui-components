@@ -49,6 +49,8 @@ const ScrollableContainer = styled.div<ScrollableContainerProps>`
 
 interface GradientScrollableProps {
   children?: any;
+  customStyles?: string;
+  customRef?: React.RefObject<HTMLDivElement>;
   [propName: string]: any;
 }
 

@@ -51,7 +51,7 @@ export const LoaderStoryTemplate: StoryObj<typeof meta> = {
     message: 'Loading...',
     localPosition: false,
     customStyles: {
-      container: 'background-color: rgba(0,0,0,.7)',
+      container: '',
       svg: '',
     },
   },
