@@ -21,6 +21,7 @@ export interface ReviewsSliderProps {
   mt?: number | string;
   mb?: number | string;
   interval?: number;
+  sideMargin?: number;
   staticMode?: boolean;
   isArabic?: boolean;
   customStyles?: CustomStylesProps | string;
@@ -32,6 +33,7 @@ export const ReviewsSlider = ({
   mt,
   mb,
   interval = 2,
+  sideMargin,
   staticMode = false,
   isArabic = false,
   customStyles,
@@ -52,6 +54,7 @@ export const ReviewsSlider = ({
         $isArabic={isArabic}
         theme={theme}
         $customStyles={styles?.item}
+        $sideMargin={sideMargin}
         key={index}
       >
         { (React.isValidElement(r) || typeof r === 'string') ? r : (
@@ -111,7 +114,7 @@ export const ReviewsSlider = ({
 
     const sliderItem = slider.children[0] as HTMLElement;
     const sliderItemWidth = sliderItem.offsetWidth;
-    const sliderItemMargin = currentTheme?.sidePadding || 16;
+    const sliderItemMargin = sideMargin ?? currentTheme?.sidePadding ?? 16;
 
     const updateSlidePosition = () => {
       slider.style.cssText = `

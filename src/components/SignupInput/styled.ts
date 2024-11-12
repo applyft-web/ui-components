@@ -67,7 +67,7 @@ export const Input = styled.input<InputProps & CommonProps>`
   &:active {
     outline: none;
     border: none;
-    box-shadow: inset 0 0 0 1px ${({ theme, $error }) => `1px solid ${!$error ? theme?.colors?.primary : '#E55656'}`};
+    box-shadow: inset 0 0 0 1px ${({ theme, $error }) => !$error ? theme?.colors?.primary : '#E55656'};
   }
   
   ${({ $customStyles }) => $customStyles};

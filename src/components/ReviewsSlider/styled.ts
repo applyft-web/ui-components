@@ -32,7 +32,7 @@ export const ReviewsBlock = styled.div`
   transition: transform 0.5s ease;
 `;
 
-export const ReviewsItem = styled.div<CommonProps & { $isArabic?: boolean }>`
+export const ReviewsItem = styled.div<CommonProps & { $isArabic?: boolean; $sideMargin?: number }>`
   background-color: ${({ theme }) => theme?.colors?.reviewItemBg};
   border: 1px solid #DEDEDE;
   border-radius: 12px;
@@ -43,10 +43,10 @@ export const ReviewsItem = styled.div<CommonProps & { $isArabic?: boolean }>`
   transition: transform 0.5s ease;
   
   &:not(:last-child) {
-    ${({ $staticMode, theme }) => $staticMode ? `
+    ${({ $staticMode, theme, $sideMargin }) => $staticMode ? `
       margin-bottom: 12px;
     ` : `
-      margin-right: ${theme?.sidePadding || 16}px
+      margin-right: ${$sideMargin ?? theme?.sidePadding ?? 16}px
     `};
   }
   
