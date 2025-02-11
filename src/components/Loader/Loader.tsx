@@ -66,6 +66,7 @@ export const Loader = ({
         theme={theme}
         $localPosition={localPosition}
         $customStyles={styles?.container}
+        {...rest}
       >
         <SpinnerSvg
           {...{ type, theme }}
