@@ -18,6 +18,8 @@ interface CustomStylesProps {
 }
 
 export interface SignupInputProps {
+  type?: string;
+  autoComplete?: string;
   value: string;
   placeholder: string;
   isValid: boolean;
@@ -34,6 +36,8 @@ export interface SignupInputProps {
 }
 
 export const SignupInput = ({
+  type = 'email',
+  autoComplete = 'email',
   value,
   placeholder,
   isValid,
@@ -119,8 +123,8 @@ export const SignupInput = ({
         $placeholderStyles={styles?.placeholder}
       >
         <S.Input
-          type="email"
-          autoComplete="email"
+          type={type}
+          autoComplete={autoComplete}
           value={value}
           onChange={onChangeHandler}
           onBlur={onBlurHandler}
