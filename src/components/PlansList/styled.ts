@@ -43,21 +43,22 @@ export const PlanLi = styled.li<PlanItemProps>`
   ${({ theme, $withLabel, $isActive, $isArabic, $gap, $labelCustomStyles }) => css`
     --border-width: 1px;
     --border-radius: ${theme?.planItemBorderRadius || '8px'};
+    --label-height: ${$withLabel ? '18px' : '0px'};
     display: flex;
     flex-direction: ${$isArabic ? 'row-reverse' : 'row'};
     justify-content: space-between;
     align-items: center;
     background-color: ${theme?.colors?.planItemBg};
     border: var(--border-width) solid ${theme?.colors?.[$isActive ? 'primary' : 'planItemBorder']};
-    border-radius: var(--border-radius);
+    border-radius: ${$withLabel ? '0 0' : ''} var(--border-radius) var(--border-radius);
     width: 100%;
-    height: 86px;
-    padding: ${$withLabel ? '18px' : 0} 16px 0;
+    height: 82px;
+    padding: 0 16px;
     position: relative;
     cursor: pointer;
   
-    &:not(:last-child) {
-      margin-bottom: ${$gap !== undefined ? getCssSize($gap) : '8px'};
+    &:not(:first-child) {
+      margin-top: calc(${$gap !== undefined ? getCssSize($gap) : '8px'} + (var(--label-height)));
     }
     
     ${$withLabel && css`
@@ -65,9 +66,9 @@ export const PlanLi = styled.li<PlanItemProps>`
         content: attr(data-label);
         display: block;
         width: calc(100% + (var(--border-width)*2));
-        height: 19px;
+        height: var(--label-height);
         position: absolute;
-        top: calc(var(--border-width)*(-1));
+        bottom: 100%;
         left: calc(var(--border-width)*(-1));
         background-color: ${theme?.colors?.[$isActive ? 'primary' : 'planItemLabelBg']};
         border: var(--border-width) solid ${theme?.colors?.[$isActive ? 'primary' : 'planItemBorder']};
@@ -75,12 +76,12 @@ export const PlanLi = styled.li<PlanItemProps>`
         border-radius: var(--border-radius) var(--border-radius) 0 0;
         font-weight: 600;
         font-size: 12px;
-        line-height: 18px;
+        line-height: var(--line-height);
         box-sizing: border-box;
         
         ${$labelCustomStyles};
       }
-    `}
+    `};
   `}
   
   ${({ $customStyles, $isActive }) => {
