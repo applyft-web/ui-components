@@ -15,6 +15,7 @@ const plans = [
     fullPrice: '6.99',
     oldFullPrice: '14.99',
     currencySign: '$',
+    label: 'Most popular',
   },
   {
     id: '1-month',

@@ -44,6 +44,7 @@ export const PlanLi = styled.li<PlanItemProps>`
     --border-width: 1px;
     --border-radius: ${theme?.planItemBorderRadius || '8px'};
     --label-height: ${$withLabel ? '18px' : '0px'};
+    --plan-mt: ${$gap !== undefined ? getCssSize($gap) : '8px'};
     display: flex;
     flex-direction: ${$isArabic ? 'row-reverse' : 'row'};
     justify-content: space-between;
@@ -56,9 +57,10 @@ export const PlanLi = styled.li<PlanItemProps>`
     padding: 0 16px;
     position: relative;
     cursor: pointer;
+    margin-top: calc(var(--plan-mt) + (var(--label-height)));
   
-    &:not(:first-child) {
-      margin-top: calc(${$gap !== undefined ? getCssSize($gap) : '8px'} + (var(--label-height)));
+    &:first-child {
+      --plan-mt: 0px;
     }
     
     ${$withLabel && css`
