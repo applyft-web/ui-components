@@ -1,1 +1,5 @@
-export { ReviewsSlider, type ReviewProps } from './ReviewsSlider'
+export {
+  ReviewsSlider,
+  type ReviewProps,
+  type ReviewsSliderProps,
+} from './ReviewsSlider';
