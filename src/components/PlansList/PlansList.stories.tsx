@@ -19,7 +19,7 @@ const plans = [
   },
   {
     id: '1-month',
-    duration: '1 month',
+    duration: '1 month very long title',
     price: '0.36',
     oldPrice: '0.50',
     period: 'per day',

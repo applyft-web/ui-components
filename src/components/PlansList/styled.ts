@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { getCssSize, getFormattedStyles } from '../../utils';
+import {getCssSize, getFormattedStyles, getTextAlign} from '../../utils';
 
 interface StylesProps {
   readonly $customStyles?: string;
@@ -97,12 +97,11 @@ export const PlanLi = styled.li<PlanItemProps>`
 
 export const StyledPeriod = styled.div<CommonProps>`
   display: flex;
-  flex-direction: ${({ $isArabic }) => $isArabic ? 'row-reverse' : 'row'};
+  ${({ $isArabic }) => css`
+    flex-direction: ${$isArabic ? 'row-reverse' : 'row'};
+    text-align: ${getTextAlign($isArabic)};
+  `};
   align-items: center;
-  ${({ $isArabic }) => $isArabic && `
-    justify-content: space-between;
-    width: 51%;
-  `}
 `;
 
 export const PlanCheck = styled.div<CommonProps & StylesProps>`
@@ -132,7 +131,7 @@ export const PlanTitle = styled.div<CommonProps>`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
+  align-items: flex-${({ $isArabic }) => $isArabic ? 'end' : 'start'};
   font-weight: 700;
   font-size: 16px;
   line-height: 24px;
@@ -217,4 +216,5 @@ export const PerDay = styled.div`
   font-size: 8px;
   line-height: 12px;
   margin-top: 5px;
+  white-space: nowrap;
 `;
