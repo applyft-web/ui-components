@@ -86,6 +86,7 @@ export const ReviewsSliderStoryTemplate: StoryObj<typeof meta> = {
     interval: 3,
     sideMargin: 16,
     staticMode: true,
+    isArabic: false,
     customStyles: {
       container: '',
       item: '',

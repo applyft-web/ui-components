@@ -31,7 +31,7 @@ export interface OptionsItemProps {
 export const OptionsItem = ({
   children = 'Other',
   onClick,
-  isArabic = false,
+  isArabic,
   isActive = false,
   multiChoice = false,
   img = '',

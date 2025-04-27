@@ -78,6 +78,7 @@ export const GlobalThemeProviderStoryTemplate: StoryObj<typeof meta> = {
   args: {
     projectTheme: 'geozilla',
     // projectTheme: customTheme,
+    isArabic: false,
     customTheme,
     children: <Test />,
   },

@@ -37,6 +37,7 @@ export const ProgressBarStoryTemplate: StoryObj<typeof meta> = {
     totalCount: 15,
     currentRoute: 5,
     skipButton: 'skip',
+    isArabic: false,
     customStyles: {
       container: '',
       bar: '',

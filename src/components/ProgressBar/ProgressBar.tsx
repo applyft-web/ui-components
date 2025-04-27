@@ -17,6 +17,7 @@ export interface ProgressBarProps {
   customStyles?: CustomStylesProps | string;
   staticPosition?: boolean;
   onContinueClick?: () => void;
+  isArabic?: boolean;
   [propName: string]: any;
 }
 
@@ -27,6 +28,7 @@ export const ProgressBar = ({
   skipButton,
   customStyles,
   staticPosition = false,
+  isArabic,
   ...rest
 }: ProgressBarProps) => {
   const theme = rest?.theme;
@@ -48,6 +50,7 @@ export const ProgressBar = ({
     <S.StyledContainer
       $customStyles={styles?.container}
       $staticPosition={staticPosition}
+      $isArabic={isArabic}
       theme={theme}
     >
       <S.StyledBar
@@ -61,6 +64,7 @@ export const ProgressBar = ({
         <S.StyledSkip
           onClick={rest?.onContinueClick}
           theme={theme}
+          $isArabic={isArabic}
           $customStyles={styles?.skip}
         >
           {skipButton}

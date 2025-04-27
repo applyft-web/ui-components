@@ -12,43 +12,47 @@ interface StyledSpinnerProps {
   $customStyles?: string;
 }
 
-export const StyledSpinner = styled.div<StyledSpinnerProps>`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  ${({ $transparent }) => !$transparent && 'background-color: rgba(0,0,0,.3)'};
-  -webkit-backdrop-filter: blur(5px);
-  backdrop-filter: blur(5px);
-  z-index: 1000;
-  
-  ${({ $localPosition }) => $localPosition && css`
-    position: absolute;
-    background-color: transparent;
-    -webkit-backdrop-filter: none;
-    backdrop-filter: none;
-    padding: 8px;
-  `};
-  
-  ${({ $customStyles }) => $customStyles};
-`;
+export const StyledSpinner = styled.div<StyledSpinnerProps>(
+  ({ $transparent, $localPosition, $customStyles }) => css`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    ${!$transparent && 'background-color: rgba(0,0,0,.3)'};
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
 
-export const StyledSVG = styled.svg<{ $fill?: string; $customStyles?: string }>`
-  width: 48px;
-  height: 48px;
-  animation: ${spinning} 1.5s linear infinite;
-    
-  circle, path {
-    fill: ${({ theme, $fill }) => $fill || theme?.colors?.primary};
-  }
-  
-  ${({ $customStyles }) => $customStyles};
-`;
+    ${$localPosition && css`
+      position: absolute;
+      background-color: transparent;
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+      padding: 8px;
+    `};
+
+    ${$customStyles};
+  `
+);
+
+export const StyledSVG = styled.svg<{ $fill?: string; $customStyles?: string }>(
+  ({ theme, $fill, $customStyles }) => css`
+    width: 48px;
+    height: 48px;
+    animation: ${spinning} 1.5s linear infinite;
+
+    circle, path {
+      fill: ${$fill || theme?.colors?.primary};
+    }
+
+    ${$customStyles};
+  `
+);
 
 export const Message = styled.span`
   font-size: 16px;

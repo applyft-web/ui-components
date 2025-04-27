@@ -14,7 +14,7 @@ export const Alert = ({
   show,
   message,
   clearError,
-  isArabic = false,
+  isArabic,
   customStyles,
   ...rest
 }: AlertProps) => {

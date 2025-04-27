@@ -24,9 +24,16 @@ interface ProviderComponentProps {
   projectTheme: string | Theme;
   customGlobalStyles?: string;
   customTheme?: {[propName: string]: string};
+  isArabic?: boolean;
 }
 
-export const GlobalThemeProvider = ({ children, projectTheme = fallback, customTheme = {}, customGlobalStyles }: ProviderComponentProps) => {
+export const GlobalThemeProvider = ({
+  children,
+  projectTheme = fallback,
+  customTheme = {},
+  customGlobalStyles,
+  isArabic = false,
+}: ProviderComponentProps) => {
   const currentTheme = typeof projectTheme === 'string'
     ? getTheme(namesList[projectTheme.toLowerCase()] ?? fallback)
     : projectTheme;
@@ -35,7 +42,7 @@ export const GlobalThemeProvider = ({ children, projectTheme = fallback, customT
 
   return (
     <>
-      <ThemeProvider theme={{ ...currentTheme, ...{ custom: customTheme } }}>
+      <ThemeProvider theme={{ ...currentTheme, isArabic, ...{ custom: customTheme } }}>
         <GlobalStyles $customStyles={customGlobalStyles} />
         {children}
       </ThemeProvider>
