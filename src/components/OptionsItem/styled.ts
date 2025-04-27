@@ -42,6 +42,7 @@ export const StyledOption = styled.button<StyledOptionProps>(
     font-size: 16px;
     line-height: 1.5;
     color: ${theme?.colors?.text};
+    text-align: ${getTextAlign($isArabic)};
     position: relative;
     transition: .3s;
     cursor: pointer;
