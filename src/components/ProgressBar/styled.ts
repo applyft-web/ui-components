@@ -73,7 +73,7 @@ export const StyledBarItem = styled.div<StyledBarItemProps & CommonProps>(
     background-color: ${theme?.colors?.[`progressBar${$isActive ? 'Active' : 'Bg'}`]};
     ${!$isLastActive
       ? `box-shadow: 1px 0 0 ${theme?.colors?.[`progressBar${$isActive ? 'Active' : 'Bg'}`]};`
-      : 'border-radius: 0 14px 14px 0;'
+      : `border-radius: ${theme.isArabic ? '14px 0 0 14px' : '0 14px 14px 0'};`
     };
     transition: background-color 300ms;
 
@@ -81,7 +81,7 @@ export const StyledBarItem = styled.div<StyledBarItemProps & CommonProps>(
       border-radius: 14px;
   
       &:not(:first-child) {
-        margin-left: 5px;
+        margin-${getTextAlign(theme.isArabic)}: 5px;
       }
     `};
 
