@@ -55,6 +55,7 @@ export const StyledSkip = styled.div<CommonProps>(
 export const StyledBar = styled.div<StyledBarProps & CommonProps>(
   ({ theme, $isSegmented, $customStyles }) => css`
     display: flex;
+    flex-direction: ${theme.isArabic ? 'row-reverse' : 'row'};
     flex: 1 0 auto;
     height: 8px;
     border-radius: 20px;

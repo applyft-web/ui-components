@@ -3,7 +3,7 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/applyft-web"
   },
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "a library with basic css rules and ui react components",
   "main": "dist/esm/index.js",
   "module": "dist/cjs/index.js",
