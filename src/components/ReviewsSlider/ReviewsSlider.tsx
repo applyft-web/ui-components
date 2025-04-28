@@ -59,7 +59,13 @@ export const ReviewsSlider = ({
       >
         { (React.isValidElement(r) || typeof r === 'string') ? r : (
           <>
-            <S.Reviewer $image={img} theme={theme}>{name || '\u00A0'}</S.Reviewer>
+            <S.Reviewer
+              $image={img}
+              theme={theme}
+              $isArabic={isArabic}
+            >
+              {name || '\u00A0'}
+            </S.Reviewer>
             <S.ReviewText theme={theme}>{text}</S.ReviewText>
           </>
         )}

@@ -57,12 +57,13 @@ export const ReviewsItem = styled.div<CommonProps & { $isArabic?: boolean; $side
   `
 );
 
-export const Reviewer = styled.div<{ $image?: string }>(
-  ({ theme, $image }) => css`
+export const Reviewer = styled.div<{ $image?: string; $isArabic?: boolean }>(
+  ({ theme, $isArabic = theme.isArabic, $image }) => css`
     display: flex;
+    flex-direction: ${$isArabic ? 'row-reverse' : 'row'};
     align-items: center;
     margin-bottom: 8px;
-    padding-left: 38px;
+    padding-${getTextAlign($isArabic)}: 38px;
     font-weight: 600;
     font-size: 14px;
     line-height: 30px;
@@ -78,7 +79,7 @@ export const Reviewer = styled.div<{ $image?: string }>(
       background-color: ${theme?.colors?.bodyBackground};
       position: absolute;
       top: 0;
-      left: 0;
+      ${getTextAlign($isArabic)}: 0;
     }
   `
 );
