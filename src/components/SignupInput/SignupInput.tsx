@@ -43,7 +43,7 @@ export const SignupInput = ({
   isValid,
   setValue,
   submitEmail,
-  isArabic = false,
+  isArabic,
   customStyles = '',
   autoFocus = true,
   customId = 'sign-up-input',

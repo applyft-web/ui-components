@@ -35,7 +35,7 @@ export const ReviewsSlider = ({
   interval = 2,
   sideMargin,
   staticMode = false,
-  isArabic = false,
+  isArabic,
   customStyles,
   ...rest
 }: ReviewsSliderProps) => {
