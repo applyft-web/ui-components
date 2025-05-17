@@ -1,15 +1,11 @@
-interface Colors {
-  [propName: string]: string;
-}
+type Colors = Record<string, string>;
 
 export interface Theme {
-  colors?: Colors;
+  colors: Colors;
   [propName: string]: any;
 }
 
-export interface ThemesObject {
-  [key: string]: Theme;
-}
+export type ThemesObject = Record<string, Theme>;
 
 export type ProjectName = 'geozilla' | 'family-locator' | 'familo' | 'brainbloom';
 
