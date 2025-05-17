@@ -20,7 +20,7 @@ module.exports = [
         interop: 'compat',
       }
     ],
-    external: ['react', 'styled-components'],
+    external: ['react', 'styled-components', 'react-i18next'],
     plugins: [
       typescript({
         tsconfig: './tsconfig.json',

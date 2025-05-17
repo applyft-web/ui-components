@@ -1,7 +1,7 @@
 type Colors = Record<string, string>;
 
 export interface Theme {
-  colors: Colors;
+  colors?: Colors;
   [propName: string]: any;
 }
 

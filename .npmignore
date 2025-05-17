@@ -1,6 +1,7 @@
 /src
 /node_modules
 /.idea
+/.github
 storybook-static
 package-lock.json
 webpack.config.js

@@ -1,5 +1,9 @@
 import React from 'react';
-import { ContinueButton, type ContinueButtonProps, type ButtonCustomStylesWithStatesProps } from '../../index';
+import {
+  ContinueButton,
+  type ContinueButtonProps,
+  type ButtonCustomStylesWithStatesProps,
+} from '../ContinueButton';
 import { PaypalIcon } from '../../Icons';
 import { mergeStyleObjects, getFormattedStyles } from '../../../utils';
 
