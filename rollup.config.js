@@ -6,6 +6,7 @@ const url = require('@rollup/plugin-url')
 const svgr = require('@svgr/rollup')
 
 module.exports = [
+  // — library
   {
     input: 'src/index.ts',
     output: [
@@ -31,6 +32,7 @@ module.exports = [
       svgr({ icon: true }),
     ]
   },
+  // — types
   {
     input: 'dist/esm/types/index.d.ts',
     output: [{ file: packageJson.types, format: 'esm' }],
