@@ -1,7 +1,7 @@
 type Colors = Record<string, string>;
 
 export interface Theme {
-  colors?: Colors;
+  colors: Colors;
   [propName: string]: any;
 }
 
@@ -139,7 +139,7 @@ const mergeKeys = (k: string, obj: ThemesObject): object => {
   } : {};
 };
 
-export const getTheme = (projectName: ProjectName = 'geozilla'): object => {
+export const getTheme = (projectName: ProjectName = 'geozilla') => {
   const currentTheme = themes[projectName.toLowerCase()];
   const mergedTheme = Object.keys(currentTheme).reduce((acc, key) => {
     return { ...acc, ...mergeKeys(key, currentTheme) };
