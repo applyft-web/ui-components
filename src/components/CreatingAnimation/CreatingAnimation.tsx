@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { CircularProgress } from '../../components';
+import { CircularProgress } from '../CircularProgress';
 import * as S from './styled';
 
 export interface CreatingAnimationProps {

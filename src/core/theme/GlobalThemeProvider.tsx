@@ -1,11 +1,13 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
-import { getTheme, GlobalStyles, type Theme, type ProjectName, useDynamicHeight } from '../../core/theme';
+import { getTheme, type Theme, type ProjectName } from './theme';
+import { GlobalStyles, useDynamicHeight } from './globalStyles';
 
 const GZ = 'geozilla';
 const FL = 'family-locator';
 const FO = 'familo';
 const BB = 'brainbloom';
+
 const namesList: {[key: string]: ProjectName} = {
   geozilla: GZ,
   gz: GZ,

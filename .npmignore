@@ -1,10 +1,12 @@
 /src
 /node_modules
 /.idea
+/.github
 storybook-static
 package-lock.json
 webpack.config.js
 rollup.config.js
+release.config.js
 .editorconfig
 .eslintignore
 .eslintrc.js

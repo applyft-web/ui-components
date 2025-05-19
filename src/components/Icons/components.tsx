@@ -1,5 +1,6 @@
 import React from 'react';
-import styled, { DefaultTheme } from 'styled-components';
+import styled from 'styled-components';
+import { Theme } from '../../core';
 import { getFormattedStyles } from '../../utils';
 
 interface CommonProps {
@@ -24,7 +25,7 @@ export interface CheckIconStyledProps {
 
 interface CheckIconProps {
   isActive?: boolean;
-  theme?: DefaultTheme;
+  theme?: Theme;
   customStyles?: CheckIconStyledProps | string;
 }
 

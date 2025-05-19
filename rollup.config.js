@@ -6,6 +6,7 @@ const url = require('@rollup/plugin-url')
 const svgr = require('@svgr/rollup')
 
 module.exports = [
+  // — library
   {
     input: 'src/index.ts',
     output: [
@@ -20,7 +21,7 @@ module.exports = [
         interop: 'compat',
       }
     ],
-    external: ['react', 'styled-components'],
+    external: ['react', 'styled-components', 'react-i18next'],
     plugins: [
       typescript({
         tsconfig: './tsconfig.json',
@@ -31,6 +32,7 @@ module.exports = [
       svgr({ icon: true }),
     ]
   },
+  // — types
   {
     input: 'dist/esm/types/index.d.ts',
     output: [{ file: packageJson.types, format: 'esm' }],

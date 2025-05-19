@@ -9,14 +9,14 @@ const Wrapper = (props: LoaderProps) => {
   return (
     <GlobalThemeProvider projectTheme={props.theme}>
       <MainLayout>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. consectetur adipiscing elit. Nullam nec</p><br/>
+        <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. consectetur adipiscing elit. Nullam nec</div><br/>
         <br/>
-        <p>Lorem ipsum dolor, consectetur adipiscing elit. Nullam nec</p><br/>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing consectetur adipiscing elit. Nullam nec</p><br/>
-        <p style={{ position: 'relative' }}>
+        <div>Lorem ipsum dolor, consectetur adipiscing elit. Nullam nec</div><br/>
+        <div>Lorem ipsum dolor sit amet, consectetur adipiscing consectetur adipiscing elit. Nullam nec</div><br/>
+        <div style={{ position: 'relative' }}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec consectetur adipiscing elit. Nullam nec consectetur adipiscing elit. Nullam nec
           <Loader {...props} />
-        </p>
+        </div>
         <br/>
       </MainLayout>
     </GlobalThemeProvider>
