@@ -7,7 +7,7 @@ interface ScrollableContainerProps {
   $customStyles?: string;
 }
 
-const ScrollableContainer = styled.div<ScrollableContainerProps>`
+const ScrollableContainer = styled('div')<ScrollableContainerProps>`
   overflow-x: auto;
   overflow-y: auto;
   position: relative;

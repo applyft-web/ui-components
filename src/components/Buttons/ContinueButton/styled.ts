@@ -13,7 +13,7 @@ interface StyledButtonProps {
   readonly $mb?: number | string;
 }
 
-export const FixedButtonWrapper = styled.div<{ $customStyles?: string }>(
+export const FixedButtonWrapper = styled('div')<{ $customStyles?: string }>(
   ({ theme, $customStyles }) => css`
     width: 100%;
     position: fixed;
@@ -26,7 +26,7 @@ export const FixedButtonWrapper = styled.div<{ $customStyles?: string }>(
   `
 );
 
-export const StyledButton = styled.button<StyledButtonProps>(
+export const StyledButton = styled('button')<StyledButtonProps>(
   ({ theme, $customStyles, $mt, $mb }) => css`
     display: block;
     width: 100%;

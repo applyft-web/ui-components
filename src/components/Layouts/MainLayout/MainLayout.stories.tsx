@@ -6,7 +6,7 @@ import { getTheme, GlobalThemeProvider } from '../../../core';
 import styled from 'styled-components';
 import { ProgressBar, ContinueButton } from '../../../components';
 
-const ChildComponent = styled.div`
+const ChildComponent = styled('div')`
   flex-grow: 1;
   background-color: rgb(109 138 184);
   display: flex;
@@ -15,7 +15,7 @@ const ChildComponent = styled.div`
   align-items: center;
 `;
 
-const LegendBlock = styled.div`
+const LegendBlock = styled('div')`
   display: flex;
   justify-content: center;
   align-items: center;

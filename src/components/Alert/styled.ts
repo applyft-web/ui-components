@@ -7,7 +7,7 @@ interface StyledAlertProps {
   $customStyles?: string;
 }
 
-export const StyledAlert = styled.div<StyledAlertProps>(
+export const StyledAlert = styled('div')<StyledAlertProps>(
   ({ theme, $isArabic = theme.isArabic, $show, $customStyles }) => css`
     width: 90%;
     height: auto;
@@ -47,7 +47,7 @@ export const StyledAlert = styled.div<StyledAlertProps>(
   `
 );
 
-export const CloseAlert = styled.div<{ $isArabic?: boolean }>`
+export const CloseAlert = styled('div')<{ $isArabic?: boolean }>`
   content: '×';
   display: block;
   width: 24px;

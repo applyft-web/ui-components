@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Loader } from '../Loader';
 
-const FallBackWrapper = styled.div`
+const FallBackWrapper = styled('div')`
   width: 100vw;
   height: 100vh;
   height: 100dvh;
