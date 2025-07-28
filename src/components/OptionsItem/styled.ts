@@ -31,7 +31,7 @@ interface StyledImgProps extends StyledProps {
   readonly $size?: SizeProps;
 }
 
-export const StyledOption = styled.button<StyledOptionProps>(
+export const StyledOption = styled('button')<StyledOptionProps>(
   ({ theme, $isArabic = theme.isArabic, $isActive, $multiChoice, $mt, $mb, $customStyles }) => css`
     display: flex;
     flex-direction: ${($isArabic) ? 'row-reverse' : 'row'};
@@ -101,7 +101,7 @@ export const StyledOption = styled.button<StyledOptionProps>(
   `
 );
 
-export const StyledImg = styled.div<StyledImgProps & CommonProps>(
+export const StyledImg = styled('div')<StyledImgProps & CommonProps>(
   ({ theme, $isArabic = theme.isArabic, $isActive, $size, $imgSrc, $customStyles }) => css`
     width: ${getCssSize($size?.[0] || 64)};
     height: ${getCssSize($size?.[1] || 64)};
@@ -122,7 +122,7 @@ export const StyledImg = styled.div<StyledImgProps & CommonProps>(
   `
 );
 
-export const StyledCheckIcon = styled.div<StyledProps & CommonProps>(
+export const StyledCheckIcon = styled('div')<StyledProps & CommonProps>(
   ({ theme, $isArabic = theme.isArabic, $isActive, $customStyles }) => css`
     display: flex;
     justify-content: center;
@@ -143,7 +143,7 @@ export const StyledCheckIcon = styled.div<StyledProps & CommonProps>(
   `
 );
 
-export const ThreeDots = styled.div<CommonProps & { $size?: SizeProps }>(
+export const ThreeDots = styled('div')<CommonProps & { $size?: SizeProps }>(
   ({ theme, $customStyles, $size }) => css`
     width: 8px;
     height: 8px;

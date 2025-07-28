@@ -8,7 +8,7 @@ interface ProgressWrapperProps {
   readonly $mb?: number | string;
 }
 
-export const ProgressWrapper = styled.div<ProgressWrapperProps>(
+export const ProgressWrapper = styled('div')<ProgressWrapperProps>(
   ({ theme, $size, $mt, $mb, $customStyles }) => css`
     ${$size && css`
       width: ${$size}px!important;
@@ -24,7 +24,7 @@ export const ProgressWrapper = styled.div<ProgressWrapperProps>(
   `
 );
 
-export const StyledSvg = styled.svg<{ $size: number }>(
+export const StyledSvg = styled('svg')<{ $size: number }>(
   ({ theme, $size }) => css`
     stroke: ${theme?.colors?.primary};
     stroke-linecap: round;
@@ -37,7 +37,7 @@ export const StyledSvg = styled.svg<{ $size: number }>(
   `
 );
 
-export const StyledCircle = styled.circle<{ $small: boolean }>`
+export const StyledCircle = styled('circle')<{ $small: boolean }>`
   transition: stroke-dashoffset 300ms linear 0ms;
   opacity: .38;
 

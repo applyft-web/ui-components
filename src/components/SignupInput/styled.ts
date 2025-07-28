@@ -17,11 +17,11 @@ interface InputProps {
   readonly $isArabic?: boolean;
 }
 
-export const Wrapper = styled.div<CommonProps>`
+export const Wrapper = styled('div')<CommonProps>`
   ${({ $customStyles }) => $customStyles};
 `;
 
-export const InputWrapper = styled.label<LabelProps & CommonProps>(
+export const InputWrapper = styled('label')<LabelProps & CommonProps>(
   ({ theme, $isArabic = theme.isArabic, $showPlaceholder, $placeholderStyles, $customStyles }) => css`
     --side-padding: 16px;
     display: block;
@@ -52,7 +52,7 @@ export const InputWrapper = styled.label<LabelProps & CommonProps>(
   `
 );
 
-export const Input = styled.input<InputProps & CommonProps>(
+export const Input = styled('input')<InputProps & CommonProps>(
   ({ theme, $error, $isArabic = theme.isArabic, $customStyles }) => css`
     width: 100%;
     border-radius: 12px;
@@ -77,7 +77,7 @@ export const Input = styled.input<InputProps & CommonProps>(
   `
 );
 
-export const ErrorState = styled.div<CommonProps>`
+export const ErrorState = styled('div')<CommonProps>`
   font-size: 14px;
   line-height: 19px;
   text-align: left;
@@ -90,7 +90,7 @@ export const ErrorState = styled.div<CommonProps>`
   ${({ $customStyles }) => $customStyles};
 `;
 
-export const BtnContainer = styled.div<{ $isArabic?: boolean } & CommonProps>(
+export const BtnContainer = styled('div')<{ $isArabic?: boolean } & CommonProps>(
   ({ theme, $isArabic = theme.isArabic, $customStyles }) => css`
     width: 100%;
     display: flex;
@@ -110,7 +110,7 @@ export const BtnContainer = styled.div<{ $isArabic?: boolean } & CommonProps>(
   `
 );
 
-export const DomainBtn = styled.button<CommonProps>`
+export const DomainBtn = styled('button')<CommonProps>`
   flex: 1 0 90px;
   height: 28px;
   min-width: 90px;

@@ -8,11 +8,11 @@ interface CommonProps {
   readonly $customStyles?: string;
 }
 
-const StyledSVG = styled.svg<CommonProps>`
+const StyledSVG = styled('svg')<CommonProps>`
   ${({ $customStyles }) => $customStyles};
 `;
 
-const StyledPath = styled.path<CommonProps>`
+const StyledPath = styled('path')<CommonProps>`
   fill: ${({ theme, $isActive }) => theme?.colors?.[`option${$isActive ? 'Active' : 'Inactive'}`] ?? '#fff'};
 
   ${({ $customStyles }) => $customStyles};

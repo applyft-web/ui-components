@@ -27,7 +27,7 @@ interface PlanItemProps extends CommonProps {
   readonly $labelCustomStyles?: string;
 }
 
-export const PlansBlock = styled.ul<MarginProps & StylesProps>(
+export const PlansBlock = styled('ul')<MarginProps & StylesProps>(
   ({ $mt, $mb, $customStyles }) => css`
     display: flex;
     flex-direction: column;
@@ -41,7 +41,7 @@ export const PlansBlock = styled.ul<MarginProps & StylesProps>(
   `
 );
 
-export const PlanLi = styled.li<PlanItemProps>(
+export const PlanLi = styled('li')<PlanItemProps>(
   ({ theme, $withLabel, $isActive, $isArabic = theme.isArabic, $gap, $labelCustomStyles, $customStyles }) => {
     const styles = getFormattedStyles($customStyles, 'default');
     return css`
@@ -95,7 +95,7 @@ export const PlanLi = styled.li<PlanItemProps>(
   }
 );
 
-export const StyledPeriod = styled.div<CommonProps>(
+export const StyledPeriod = styled('div')<CommonProps>(
   ({ theme, $isArabic = theme.isArabic }) => css`
     display: flex;
     flex-direction: ${$isArabic ? 'row-reverse' : 'row'};
@@ -104,7 +104,7 @@ export const StyledPeriod = styled.div<CommonProps>(
   `
 );
 
-export const PlanCheck = styled.div<CommonProps & StylesProps>(
+export const PlanCheck = styled('div')<CommonProps & StylesProps>(
   ({ theme, $isActive, $isArabic = theme.isArabic, $customStyles }) => css`
     --check-size: 24px;
     width: var(--check-size);
@@ -128,7 +128,7 @@ export const PlanCheck = styled.div<CommonProps & StylesProps>(
   `
 );
 
-export const PlanTitle = styled.div<CommonProps>(
+export const PlanTitle = styled('div')<CommonProps>(
   ({ theme, $isActive, $isArabic = theme.isArabic }) => css`
     display: flex;
     flex-direction: column;
@@ -141,11 +141,11 @@ export const PlanTitle = styled.div<CommonProps>(
   `
 );
 
-export const PlanTitleText = styled.div<StylesProps>`
+export const PlanTitleText = styled('div')<StylesProps>`
   ${({ $customStyles }) => $customStyles};
 `;
 
-export const StyledFullPrice = styled.div<StylesProps>(
+export const StyledFullPrice = styled('div')<StylesProps>(
   ({ theme, $customStyles }) => css`
     font-weight: 500;
     font-size: 14px;
@@ -162,11 +162,11 @@ export const StyledFullPrice = styled.div<StylesProps>(
 `
 );
 
-export const Strike = styled.span`
+export const Strike = styled('span')`
   text-decoration: line-through;
 `;
 
-export const StyledPriceWrapper = styled.div`
+export const StyledPriceWrapper = styled('div')`
   display: flex;
 `;
 
@@ -183,7 +183,7 @@ export const OldPrice = styled(Strike)<StylesProps>(
   `
 );
 
-export const PriceWrapper = styled.div<CommonProps & StylesProps>(
+export const PriceWrapper = styled('div')<CommonProps & StylesProps>(
   ({ theme, $isActive, $customStyles }) => css`
     display: flex;
     font-weight: 600;
@@ -208,11 +208,11 @@ export const PriceWrapper = styled.div<CommonProps & StylesProps>(
   `
 );
 
-export const Price = styled.div`
+export const Price = styled('div')`
   min-width: 40px;
 `;
 
-export const SmallItemsWrapper = styled.div`
+export const SmallItemsWrapper = styled('div')`
   font-weight: 600;
   font-size: 16px;
   line-height: 15px;
@@ -220,7 +220,7 @@ export const SmallItemsWrapper = styled.div`
   margin-left: 2px;
 `;
 
-export const PerDay = styled.div`
+export const PerDay = styled('div')`
   font-weight: 600;
   font-size: 8px;
   line-height: 12px;
