@@ -1,14 +1,14 @@
-import React from 'react';
-import { ThemeProvider } from 'styled-components';
-import { getTheme, type Theme, type ProjectName } from './theme';
-import { GlobalStyles, useDynamicHeight } from './globalStyles';
+import React, { type ReactNode, type ReactElement } from 'react'
+import { ThemeProvider } from 'styled-components'
+import { getTheme, type Theme, type ProjectName } from './theme'
+import { GlobalStyles, useDynamicHeight } from './globalStyles'
 
-const GZ = 'geozilla';
-const FL = 'family-locator';
-const FO = 'familo';
-const BB = 'brainbloom';
+const GZ = 'geozilla'
+const FL = 'family-locator'
+const FO = 'familo'
+const BB = 'brainbloom'
 
-const namesList: {[key: string]: ProjectName} = {
+const namesList: Record<string, ProjectName> = {
   geozilla: GZ,
   gz: GZ,
   'family-locator': FL,
@@ -16,17 +16,17 @@ const namesList: {[key: string]: ProjectName} = {
   familo: FO,
   fo: FO,
   brainbloom: BB,
-  bb: BB,
-};
+  bb: BB
+}
 
-const fallback = namesList['gz'];
+const fallback = namesList.gz
 
 interface ProviderComponentProps {
-  children?: React.ReactNode | string;
-  projectTheme: string | Theme;
-  customGlobalStyles?: string;
-  customTheme?: {[propName: string]: string};
-  isArabic?: boolean;
+  children?: ReactNode | string
+  projectTheme: string | Theme
+  customGlobalStyles?: string
+  customTheme?: Record<string, string>
+  isArabic?: boolean
 }
 
 export const GlobalThemeProvider = ({
@@ -34,20 +34,20 @@ export const GlobalThemeProvider = ({
   projectTheme = fallback,
   customTheme = {},
   customGlobalStyles,
-  isArabic = false,
-}: ProviderComponentProps) => {
+  isArabic = false
+}: ProviderComponentProps): ReactElement => {
   const currentTheme = typeof projectTheme === 'string'
     ? getTheme(namesList[projectTheme.toLowerCase()] ?? fallback)
-    : projectTheme;
+    : projectTheme
 
-  useDynamicHeight();
+  useDynamicHeight()
 
   return (
     <>
       <ThemeProvider theme={{ ...currentTheme, isArabic, ...{ custom: customTheme } }}>
-        <GlobalStyles $customStyles={customGlobalStyles} />
+        <GlobalStyles $customStyles={customGlobalStyles} $isArabic={isArabic} />
         {children}
       </ThemeProvider>
     </>
-  );
-};
+  )
+}
