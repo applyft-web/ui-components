@@ -44,7 +44,7 @@ export const getCssSize = (val: string | number = 0): string => {
   return val.toString()
 }
 
-export const mergeStyleObjects = (obj1: object = {}, obj2: object = {}): object => {
+export const mergeStyleObjects = (obj1: Record<string, any> = {}, obj2: Record<string, any> = {}): object => {
   const mergedTheme = Object.keys(obj1).reduce((acc, key) => {
     return { ...acc, ...{ [key]: [obj1[key], obj2[key]].join(';') } }
   }, {})
@@ -52,14 +52,14 @@ export const mergeStyleObjects = (obj1: object = {}, obj2: object = {}): object 
   return { ...obj1, ...obj2, ...mergedTheme }
 }
 
-export const getFormattedStyles = (styles: string | object, defaultKey: string): object => {
+export const getFormattedStyles = <T extends Record<string, any>>(styles: T | string, defaultKey: string): T => {
   if (styles) {
     if (typeof styles === 'string') {
-      return { [defaultKey]: styles }
+      return { [defaultKey]: styles } as T
     } else {
       return styles
     }
   } else {
-    return { [defaultKey]: '' }
+    return { [defaultKey]: '' } as T
   }
 }
