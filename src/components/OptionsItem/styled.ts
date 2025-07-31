@@ -34,7 +34,7 @@ interface StyledImgProps extends StyledProps {
 export const StyledOption = styled('button')<StyledOptionProps>(
   ({ theme, $isArabic = theme.isArabic, $isActive, $multiChoice, $mt, $mb, $customStyles }) => css`
     display: flex;
-    flex-direction: ${($isArabic) ? 'row-reverse' : 'row'};
+    flex-direction: ${($isArabic && !theme.enableRTL) ? 'row-reverse' : 'row'};
     align-items: center;
     gap: 16px;
     column-gap: 16px;

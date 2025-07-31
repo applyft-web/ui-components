@@ -46,7 +46,7 @@ export const GlobalThemeProvider = ({
 
   return (
     <>
-      <ThemeProvider theme={{ ...currentTheme, isArabic, ...{ custom: customTheme } }}>
+      <ThemeProvider theme={{ ...currentTheme, isArabic, enableRTL, ...{ custom: customTheme } }}>
         <GlobalStyles $customStyles={customGlobalStyles} $isArabic={isArabic && enableRTL} />
         {children}
       </ThemeProvider>
