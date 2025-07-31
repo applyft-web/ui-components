@@ -1,14 +1,14 @@
-import styled, { css } from 'styled-components';
-import { getCssSize, getTextAlign } from '../../utils';
+import styled, { css } from 'styled-components'
+import { getCssSize, getTextAlign } from '../../utils'
 
 interface CommonProps {
-  readonly $customStyles?: string;
-  readonly $staticMode?: boolean;
+  readonly $customStyles?: string
+  readonly $staticMode?: boolean
 }
 
 interface MarginProps {
-  readonly $mt?: string | number;
-  readonly $mb?: string | number;
+  readonly $mt?: string | number
+  readonly $mb?: string | number
 }
 
 export const ReviewsContainer = styled('div')<MarginProps & CommonProps>(
@@ -22,17 +22,18 @@ export const ReviewsContainer = styled('div')<MarginProps & CommonProps>(
     ${$mb !== undefined && `margin-bottom: ${getCssSize($mb)}`};
     position: relative;
     flex-shrink: 0;
-    ${$staticMode && `flex-direction: column;`};
+    ${$staticMode && css`flex-direction: column;`};
 
     ${$customStyles};
   `
-);
+)
 
 export const ReviewsBlock = styled('div')`
   width: 100%;
   display: flex;
   transition: transform 0.5s ease;
-`;
+  direction: ltr;
+`
 
 export const ReviewsItem = styled('div')<CommonProps & { $isArabic?: boolean; $sideMargin?: number }>(
   ({ theme, $staticMode, $isArabic = theme.isArabic, $sideMargin, $customStyles }) => css`
@@ -46,18 +47,17 @@ export const ReviewsItem = styled('div')<CommonProps & { $isArabic?: boolean; $s
     transition: transform 0.5s ease;
 
     &:not(:last-child) {
-      ${$staticMode ? `
-        margin-bottom: 12px;
-      ` : `
-        margin-right: ${$sideMargin ?? theme?.sidePadding ?? 16}px
-      `};
+      ${$staticMode
+        ? css`margin-bottom: 12px;`
+        : css`margin-right: ${$sideMargin ?? theme?.sidePadding ?? 16}px`
+      };
     }
 
     ${$customStyles};
   `
-);
+)
 
-export const Reviewer = styled('div')<{ $image?: string; $isArabic?: boolean }>(
+export const Reviewer = styled('div')<{ $image?: string, $isArabic?: boolean }>(
   ({ theme, $isArabic = theme.isArabic, $image }) => css`
     display: flex;
     flex-direction: ${$isArabic ? 'row-reverse' : 'row'};
@@ -82,9 +82,9 @@ export const Reviewer = styled('div')<{ $image?: string; $isArabic?: boolean }>(
       ${getTextAlign($isArabic)}: 0;
     }
   `
-);
+)
 
 export const ReviewText = styled('div')`
   font-size: 14px;
   line-height: 19px;
-`;
+`
