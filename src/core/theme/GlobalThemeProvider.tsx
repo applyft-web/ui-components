@@ -27,6 +27,7 @@ interface ProviderComponentProps {
   customGlobalStyles?: string
   customTheme?: Record<string, string>
   isArabic?: boolean
+  enableRTL?: boolean
 }
 
 export const GlobalThemeProvider = ({
@@ -34,7 +35,8 @@ export const GlobalThemeProvider = ({
   projectTheme = fallback,
   customTheme = {},
   customGlobalStyles,
-  isArabic = false
+  isArabic = false,
+  enableRTL = false // temp
 }: ProviderComponentProps): ReactElement => {
   const currentTheme = typeof projectTheme === 'string'
     ? getTheme(namesList[projectTheme.toLowerCase()] ?? fallback)
@@ -44,8 +46,8 @@ export const GlobalThemeProvider = ({
 
   return (
     <>
-      <ThemeProvider theme={{ ...currentTheme, isArabic, ...{ custom: customTheme } }}>
-        <GlobalStyles $customStyles={customGlobalStyles} $isArabic={isArabic} />
+      <ThemeProvider theme={{ ...currentTheme, isArabic, enableRTL, ...{ custom: customTheme } }}>
+        <GlobalStyles $customStyles={customGlobalStyles} $isArabic={isArabic && enableRTL} />
         {children}
       </ThemeProvider>
     </>

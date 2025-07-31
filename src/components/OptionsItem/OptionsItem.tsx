@@ -1,31 +1,31 @@
-import React from 'react';
-import { CheckIcon, type CheckIconStyledProps } from '../Icons';
-import type { Theme } from '../../core';
-import { getFormattedStyles } from '../../utils';
-import * as S from './styled';
+import React from 'react'
+import { CheckIcon, type CheckIconStyledProps } from '../Icons'
+import type { Theme } from '../../core'
+import { getFormattedStyles } from '../../utils'
+import * as S from './styled'
 
 interface CustomStylesProps {
-  option?: S.CustomStylesWithStatesProps | string,
-  img?: string,
-  dots?: string,
-  check?: string,
-  checkIcon?: CheckIconStyledProps | string,
+  option?: S.CustomStylesWithStatesProps | string
+  img?: string
+  dots?: string
+  check?: string
+  checkIcon?: CheckIconStyledProps | string
 }
 
 export interface OptionsItemProps {
-  children?: any;
-  onClick: () => void;
-  isArabic?: boolean;
-  isActive?: boolean;
-  img?: string;
-  imgSize?: S.SizeProps | string | number;
-  multiChoice?: boolean;
-  customId?: string;
-  mt?: string | number;
-  mb?: string | number;
-  theme?: Theme;
-  customStyles?: CustomStylesProps | string;
-  [propName: string]: any;
+  children?: any
+  onClick: () => void
+  isArabic?: boolean
+  isActive?: boolean
+  img?: string
+  imgSize?: S.SizeProps | string | number
+  multiChoice?: boolean
+  customId?: string
+  mt?: string | number
+  mb?: string | number
+  theme?: Theme
+  customStyles?: CustomStylesProps | string
+  [propName: string]: any
 }
 
 export const OptionsItem = ({
@@ -42,16 +42,16 @@ export const OptionsItem = ({
   customStyles,
   ...rest
 }: OptionsItemProps) => {
-  const theme = rest?.theme;
-  const imgSrc: string | null = img ? img.trim() : null;
-  const styles = getFormattedStyles(customStyles, 'option');
-  const optionStyles: S.CustomStylesWithStatesProps = getFormattedStyles(styles.option, 'default');
+  const theme = rest?.theme
+  const imgSrc: string | null = img ? img.trim() : null
+  const styles = getFormattedStyles(customStyles, 'option')
+  const optionStyles: S.CustomStylesWithStatesProps = getFormattedStyles(styles.option, 'default')
   const size = (): S.SizeProps => {
     if (typeof imgSize === 'string' || typeof imgSize === 'number') {
-      return [imgSize, imgSize];
+      return [imgSize, imgSize]
     }
-    return imgSize;
-  };
+    return imgSize
+  }
 
   return (
     <S.StyledOption
@@ -91,5 +91,5 @@ export const OptionsItem = ({
         </S.StyledCheckIcon>
       )}
     </S.StyledOption>
-  );
-};
+  )
+}

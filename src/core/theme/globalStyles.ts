@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle, css } from 'styled-components'
 
 export const GlobalStyles = createGlobalStyle<{ $isArabic?: boolean, $customStyles?: string }>`
   :root {
@@ -14,7 +14,10 @@ export const GlobalStyles = createGlobalStyle<{ $isArabic?: boolean, $customStyl
     -webkit-tap-highlight-color: transparent;
     -webkit-text-size-adjust: none;
     overscroll-behavior: none;
-    direction: ${({ $isArabic }) => $isArabic ? 'rtl' : 'ltr'};
+    ${({ $isArabic }) => $isArabic && css`
+      direction: rtl;
+      unicode-bidi: bidi-override;
+    `};
 
     &::-webkit-scrollbar {
       width: 0;

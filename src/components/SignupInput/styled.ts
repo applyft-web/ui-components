@@ -1,25 +1,25 @@
-import styled, { css } from 'styled-components';
-import { getTextAlign } from '../../utils';
+import styled, { css } from 'styled-components'
+import { getTextAlign } from '../../utils'
 
 interface CommonProps {
-  readonly $customStyles?: string;
+  readonly $customStyles?: string
 }
 
 interface LabelProps {
-  readonly $error?: boolean;
-  readonly $isArabic?: boolean;
-  readonly $showPlaceholder: boolean;
-  readonly $placeholderStyles?: string;
+  readonly $error?: boolean
+  readonly $isArabic?: boolean
+  readonly $showPlaceholder: boolean
+  readonly $placeholderStyles?: string
 }
 
 interface InputProps {
-  readonly $error?: boolean;
-  readonly $isArabic?: boolean;
+  readonly $error?: boolean
+  readonly $isArabic?: boolean
 }
 
 export const Wrapper = styled('div')<CommonProps>`
   ${({ $customStyles }) => $customStyles};
-`;
+`
 
 export const InputWrapper = styled('label')<LabelProps & CommonProps>(
   ({ theme, $isArabic = theme.isArabic, $showPlaceholder, $placeholderStyles, $customStyles }) => css`
@@ -50,7 +50,7 @@ export const InputWrapper = styled('label')<LabelProps & CommonProps>(
 
     ${$customStyles};
   `
-);
+)
 
 export const Input = styled('input')<InputProps & CommonProps>(
   ({ theme, $error, $isArabic = theme.isArabic, $customStyles }) => css`
@@ -75,7 +75,7 @@ export const Input = styled('input')<InputProps & CommonProps>(
 
     ${$customStyles};
   `
-);
+)
 
 export const ErrorState = styled('div')<CommonProps>`
   font-size: 14px;
@@ -88,14 +88,14 @@ export const ErrorState = styled('div')<CommonProps>`
   top: calc(var(--input-height) + 2px);
 
   ${({ $customStyles }) => $customStyles};
-`;
+`
 
 export const BtnContainer = styled('div')<{ $isArabic?: boolean } & CommonProps>(
   ({ theme, $isArabic = theme.isArabic, $customStyles }) => css`
     width: 100%;
     display: flex;
     justify-content: space-between;
-    flex-direction: ${$isArabic ? 'row-reverse' : 'row'};
+    flex-direction: ${($isArabic && !theme.enableRTL) ? 'row-reverse' : 'row'};
     margin-top: 16px;
     height: 28px;
     gap: 12px;
@@ -108,7 +108,7 @@ export const BtnContainer = styled('div')<{ $isArabic?: boolean } & CommonProps>
 
     ${$customStyles};
   `
-);
+)
 
 export const DomainBtn = styled('button')<CommonProps>`
   flex: 1 0 90px;
@@ -131,4 +131,4 @@ export const DomainBtn = styled('button')<CommonProps>`
   }
   
   ${({ $customStyles }) => $customStyles};
-`;
+`
