@@ -1,34 +1,34 @@
-import styled, { css } from 'styled-components';
-import { getTextAlign, getCssSize } from '../../utils';
+import styled, { css } from 'styled-components'
+import { getTextAlign, getCssSize } from '../../utils'
 
 interface CommonProps {
-  $customStyles?: string;
+  $customStyles?: string
 }
 
 export interface CustomStylesWithStatesProps {
-  readonly default?: string;
-  readonly disabled?: string;
-  readonly hover?: string;
-  readonly active?: string;
+  readonly default?: string
+  readonly disabled?: string
+  readonly hover?: string
+  readonly active?: string
 }
 
-export type SizeProps = [number | string, number | string];
+export type SizeProps = [number | string, number | string]
 
 interface StyledProps {
-  readonly $isArabic?: boolean;
-  readonly $isActive?: boolean;
+  readonly $isArabic?: boolean
+  readonly $isActive?: boolean
 }
 
 interface StyledOptionProps extends StyledProps {
-  readonly $multiChoice?: boolean;
-  readonly $mt?: number | string,
-  readonly $mb?: number | string,
-  readonly $customStyles?: CustomStylesWithStatesProps;
+  readonly $multiChoice?: boolean
+  readonly $mt?: number | string
+  readonly $mb?: number | string
+  readonly $customStyles?: CustomStylesWithStatesProps
 }
 
 interface StyledImgProps extends StyledProps {
-  readonly $imgSrc?: string;
-  readonly $size?: SizeProps;
+  readonly $imgSrc?: string
+  readonly $size?: SizeProps
 }
 
 export const StyledOption = styled('button')<StyledOptionProps>(
@@ -36,6 +36,8 @@ export const StyledOption = styled('button')<StyledOptionProps>(
     display: flex;
     flex-direction: ${($isArabic) ? 'row-reverse' : 'row'};
     align-items: center;
+    gap: 16px;
+    column-gap: 16px;
     width: 100%;
     max-width: ${theme?.maxContentWidth}px;
     border-radius: 12px;
@@ -53,8 +55,8 @@ export const StyledOption = styled('button')<StyledOptionProps>(
       padding: 16px 56px;
       padding-${getTextAlign($isArabic)}: 16px;
     `};
-    background-color: ${theme?.colors?.[`option${$isActive ? 'A' : 'Ina'}ctive`]};
-    border: 1px solid ${theme?.colors?.[`optionBorder${$isActive ? 'A' : 'Ina'}ctive`]};
+    background-color: ${theme?.colors?.[`option${$isActive ? 'Active' : 'Inactive'}`]};
+    border: 1px solid ${theme?.colors?.[`optionBorder${$isActive ? 'Active' : 'Inactive'}`]};
     color: ${theme?.colors?.[$isActive ? 'optionActiveText' : 'text']};
     ${$mt !== undefined && `margin-top: ${getCssSize($mt)}`};
     ${$mb !== undefined && `margin-bottom: ${getCssSize($mb)}`};
@@ -99,10 +101,10 @@ export const StyledOption = styled('button')<StyledOptionProps>(
       }
     }
   `
-);
+)
 
 export const StyledImg = styled('div')<StyledImgProps & CommonProps>(
-  ({ theme, $isArabic = theme.isArabic, $isActive, $size, $imgSrc, $customStyles }) => css`
+  ({ theme, $isActive, $size, $imgSrc, $customStyles }) => css`
     width: ${getCssSize($size?.[0] || 64)};
     height: ${getCssSize($size?.[1] || 64)};
     border-radius: 7px;
@@ -113,14 +115,12 @@ export const StyledImg = styled('div')<StyledImgProps & CommonProps>(
       background-position: center;
       background-repeat: no-repeat;
     `};
-    margin: 0 16px;
-    margin-${getTextAlign($isArabic)}: 0;
     position: relative;
     transition: background-color .3s;
   
     ${$customStyles};
   `
-);
+)
 
 export const StyledCheckIcon = styled('div')<StyledProps & CommonProps>(
   ({ theme, $isArabic = theme.isArabic, $isActive, $customStyles }) => css`
@@ -173,4 +173,4 @@ export const ThreeDots = styled('div')<CommonProps & { $size?: SizeProps }>(
   
     ${$customStyles};
   `
-);
+)
