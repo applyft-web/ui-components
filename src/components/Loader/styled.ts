@@ -12,7 +12,7 @@ interface StyledSpinnerProps {
   $customStyles?: string;
 }
 
-export const StyledSpinner = styled.div<StyledSpinnerProps>(
+export const StyledSpinner = styled('div')<StyledSpinnerProps>(
   ({ $transparent, $localPosition, $customStyles }) => css`
     width: 100%;
     height: 100%;
@@ -40,7 +40,7 @@ export const StyledSpinner = styled.div<StyledSpinnerProps>(
   `
 );
 
-export const StyledSVG = styled.svg<{ $fill?: string; $customStyles?: string }>(
+export const StyledSVG = styled('svg')<{ $fill?: string; $customStyles?: string }>(
   ({ theme, $fill, $customStyles }) => css`
     width: 48px;
     height: 48px;
@@ -54,7 +54,7 @@ export const StyledSVG = styled.svg<{ $fill?: string; $customStyles?: string }>(
   `
 );
 
-export const Message = styled.span`
+export const Message = styled('span')`
   font-size: 16px;
   line-height: 19px;
   text-align: center;

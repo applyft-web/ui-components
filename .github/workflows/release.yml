@@ -34,3 +34,12 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm run release
+
+      - name: Cleanup old dev/stage tags
+        if: success()
+        run: |
+          git fetch --tags && \
+          for p in dev stage; do \
+            git tag -l "*-$p.*" | sort -V | head -n -1 | \
+              xargs -r -n1 -I{} sh -c 'git push origin --delete "{}" && git tag -d "{}"'; \
+          done

@@ -16,7 +16,7 @@ interface StyledBarItemProps {
   readonly $isSegmented: boolean;
 }
 
-export const StyledContainer = styled.div<CommonProps & { $staticPosition: boolean }>(
+export const StyledContainer = styled('div')<CommonProps & { $staticPosition: boolean }>(
   ({ theme, $isArabic = theme.isArabic, $customStyles, $staticPosition }) => css`
     display: flex;
     align-items: center;
@@ -35,7 +35,7 @@ export const StyledContainer = styled.div<CommonProps & { $staticPosition: boole
   `
 );
 
-export const StyledSkip = styled.div<CommonProps>(
+export const StyledSkip = styled('div')<CommonProps>(
   ({ theme, $isArabic = theme.isArabic, $customStyles }) => css`
     font-size: 16px;
     line-height: 20px;
@@ -52,7 +52,7 @@ export const StyledSkip = styled.div<CommonProps>(
   `
 );
 
-export const StyledBar = styled.div<StyledBarProps & CommonProps>(
+export const StyledBar = styled('div')<StyledBarProps & CommonProps>(
   ({ theme, $isSegmented, $customStyles }) => css`
     display: flex;
     flex-direction: ${theme.isArabic ? 'row-reverse' : 'row'};
@@ -67,7 +67,7 @@ export const StyledBar = styled.div<StyledBarProps & CommonProps>(
   `
 );
 
-export const StyledBarItem = styled.div<StyledBarItemProps & CommonProps>(
+export const StyledBarItem = styled('div')<StyledBarItemProps & CommonProps>(
   ({ theme, $isActive, $isLastActive, $isSegmented, $customStyles }) => css`
     flex-grow: 1;
     background-color: ${theme?.colors?.[`progressBar${$isActive ? 'Active' : 'Bg'}`]};

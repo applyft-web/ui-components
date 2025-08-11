@@ -14,7 +14,7 @@ interface StyledLayoutProps {
   readonly $customStyles?: MainLayoutCustomStylesWithStatesProps;
 }
 
-export const StyledLayout = styled.div<StyledLayoutProps>(
+export const StyledLayout = styled('div')<StyledLayoutProps>(
   ({ theme, $pt, $pb, $adaptive, $customStyles }) => css`
     width: 100%;
     height: 100%;

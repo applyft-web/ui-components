@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Percentage = styled.p`
+export const Percentage = styled('p')`
   font-weight: 700;
   font-size: 40px;
   line-height: 1;
