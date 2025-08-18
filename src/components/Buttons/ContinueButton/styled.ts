@@ -1,16 +1,16 @@
-import styled, { css } from 'styled-components';
-import { getCssSize } from '../../../utils';
+import styled, { css } from 'styled-components'
+import { getCssSize } from '../../../utils'
 
 export interface ButtonCustomStylesWithStatesProps {
-  readonly default?: string;
-  readonly disabled?: string;
-  readonly hover?: string;
+  readonly default?: string
+  readonly disabled?: string
+  readonly hover?: string
 }
 
 interface StyledButtonProps {
-  readonly $customStyles?: ButtonCustomStylesWithStatesProps;
-  readonly $mt?: number | string;
-  readonly $mb?: number | string;
+  readonly $customStyles?: ButtonCustomStylesWithStatesProps
+  readonly $mt?: number | string
+  readonly $mb?: number | string
 }
 
 export const FixedButtonWrapper = styled('div')<{ $customStyles?: string }>(
@@ -24,7 +24,7 @@ export const FixedButtonWrapper = styled('div')<{ $customStyles?: string }>(
   
     ${$customStyles};
   `
-);
+)
 
 export const StyledButton = styled('button')<StyledButtonProps>(
   ({ theme, $customStyles, $mt, $mb }) => css`
@@ -74,4 +74,4 @@ export const StyledButton = styled('button')<StyledButtonProps>(
 
     ${$customStyles?.default};
   `
-);
+)

@@ -5,5 +5,5 @@ export {
   useDynamicHeight,
   getTheme,
   type Theme,
-  type ProjectName,
-} from './theme';
+  type ProjectName
+} from './theme'
