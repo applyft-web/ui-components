@@ -1,26 +1,26 @@
-import styled, { css } from 'styled-components';
-import { getTextAlign } from '../../utils';
+import styled, { css } from 'styled-components'
+import { getTextAlign } from '../../utils'
 
 interface CommonProps {
-  readonly $customStyles?: string;
-  readonly $isArabic?: boolean;
+  readonly $customStyles?: string
+  readonly $isArabic?: boolean
 }
 
 interface StyledBarProps {
-  readonly $isSegmented?: boolean;
+  readonly $isSegmented?: boolean
 }
 
 interface StyledBarItemProps {
-  readonly $isActive: boolean;
-  readonly $isLastActive: boolean;
-  readonly $isSegmented: boolean;
+  readonly $isActive: boolean
+  readonly $isLastActive: boolean
+  readonly $isSegmented: boolean
 }
 
 export const StyledContainer = styled('div')<CommonProps & { $staticPosition: boolean }>(
   ({ theme, $isArabic = theme.isArabic, $customStyles, $staticPosition }) => css`
     display: flex;
     align-items: center;
-    flex-direction: ${$isArabic ? 'row-reverse' : 'row'};
+    flex-direction: ${($isArabic && !theme.enableRTL) ? 'row-reverse' : 'row'};
     max-width: ${theme?.maxContentWidth}px;
     height: 20px;
     ${!$staticPosition && css`
@@ -33,7 +33,7 @@ export const StyledContainer = styled('div')<CommonProps & { $staticPosition: bo
 
     ${$customStyles};
   `
-);
+)
 
 export const StyledSkip = styled('div')<CommonProps>(
   ({ theme, $isArabic = theme.isArabic, $customStyles }) => css`
@@ -50,12 +50,14 @@ export const StyledSkip = styled('div')<CommonProps>(
 
     ${$customStyles};
   `
-);
+)
 
 export const StyledBar = styled('div')<StyledBarProps & CommonProps>(
-  ({ theme, $isSegmented, $customStyles }) => css`
+  ({ theme, $isArabic = theme.isArabic, $isSegmented, $customStyles }) => css`
     display: flex;
-    flex-direction: ${theme.isArabic ? 'row-reverse' : 'row'};
+    flex-direction: ${($isArabic && !theme.enableRTL) ? 'row-reverse' : 'row'};
+    gap: 5px;
+    column-gap: 5px;
     flex: 1 0 auto;
     height: 8px;
     border-radius: 20px;
@@ -65,7 +67,7 @@ export const StyledBar = styled('div')<StyledBarProps & CommonProps>(
 
     ${$customStyles};
   `
-);
+)
 
 export const StyledBarItem = styled('div')<StyledBarItemProps & CommonProps>(
   ({ theme, $isActive, $isLastActive, $isSegmented, $customStyles }) => css`
@@ -79,12 +81,8 @@ export const StyledBarItem = styled('div')<StyledBarItemProps & CommonProps>(
 
     ${$isSegmented && css`
       border-radius: 14px;
-  
-      &:not(:first-child) {
-        margin-${getTextAlign(theme.isArabic)}: 5px;
-      }
     `};
 
     ${$customStyles};
   `
-);
+)

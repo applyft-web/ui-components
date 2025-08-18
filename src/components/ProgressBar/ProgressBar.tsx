@@ -1,24 +1,24 @@
-import React from 'react';
-import { getFormattedStyles } from '../../utils';
-import * as S from './styled';
+import React from 'react'
+import { getFormattedStyles } from '../../utils'
+import * as S from './styled'
 
 interface CustomStylesProps {
-  readonly container?: string;
-  readonly bar?: string;
-  readonly segment?: string;
-  readonly skip?: string;
+  readonly container?: string
+  readonly bar?: string
+  readonly segment?: string
+  readonly skip?: string
 }
 
 export interface ProgressBarProps {
-  isSegmented?: boolean;
-  totalCount: number;
-  currentRoute: number;
-  skipButton?: string;
-  customStyles?: CustomStylesProps | string;
-  staticPosition?: boolean;
-  onContinueClick?: () => void;
-  isArabic?: boolean;
-  [propName: string]: any;
+  isSegmented?: boolean
+  totalCount: number
+  currentRoute: number
+  skipButton?: string
+  customStyles?: CustomStylesProps | string
+  staticPosition?: boolean
+  onContinueClick?: () => void
+  isArabic?: boolean
+  [propName: string]: any
 }
 
 export const ProgressBar = ({
@@ -31,11 +31,11 @@ export const ProgressBar = ({
   isArabic,
   ...rest
 }: ProgressBarProps) => {
-  const theme = rest?.theme;
-  const pages = new Array(totalCount).fill(0);
-  const styles: CustomStylesProps = getFormattedStyles(customStyles, 'container');
+  const theme = rest?.theme
+  const pages = Array.from({ length: totalCount }, (_, i) => i)
+  const styles: CustomStylesProps = getFormattedStyles(customStyles, 'container')
 
-  const renderProgress = (_: any, i: number) => (
+  const renderProgress = (i: number) => (
     <S.StyledBarItem
       $isActive={i <= currentRoute}
       $isLastActive={i === currentRoute}
@@ -44,7 +44,7 @@ export const ProgressBar = ({
       $customStyles={styles?.segment}
       key={i}
     />
-  );
+  )
 
   return (
     <S.StyledContainer
@@ -55,8 +55,9 @@ export const ProgressBar = ({
     >
       <S.StyledBar
         $isSegmented={isSegmented}
-        theme={theme}
         $customStyles={styles?.bar}
+        $isArabic={isArabic}
+        theme={theme}
       >
         {pages.map(renderProgress)}
       </S.StyledBar>
@@ -71,5 +72,5 @@ export const ProgressBar = ({
         </S.StyledSkip>
       )}
     </S.StyledContainer>
-  );
-};
+  )
+}

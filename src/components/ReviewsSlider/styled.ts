@@ -60,7 +60,7 @@ export const ReviewsItem = styled('div')<CommonProps & { $isArabic?: boolean; $s
 export const Reviewer = styled('div')<{ $image?: string, $isArabic?: boolean }>(
   ({ theme, $isArabic = theme.isArabic, $image }) => css`
     display: flex;
-    flex-direction: ${$isArabic ? 'row-reverse' : 'row'};
+    flex-direction: ${($isArabic && !theme.enableRTL) ? 'row-reverse' : 'row'};
     align-items: center;
     margin-bottom: 8px;
     padding-${getTextAlign($isArabic)}: 38px;
