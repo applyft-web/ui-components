@@ -1,9 +1,9 @@
-import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
-import { ContinueButton, type ContinueButtonProps } from './ContinueButton';
-import { themesToControls } from '../../../stories';
-import { getTheme, GlobalThemeProvider } from '../../../core';
-import { MainLayout } from '../../Layouts';
+import React from 'react'
+import type { Meta, StoryObj } from '@storybook/react'
+import { ContinueButton, type ContinueButtonProps } from './ContinueButton'
+import { themesToControls } from '../../../stories'
+import { getTheme, GlobalThemeProvider } from '../../../core'
+import { MainLayout } from '../../Layouts'
 
 const Wrapper = (props: ContinueButtonProps) => {
   return (
@@ -12,20 +12,20 @@ const Wrapper = (props: ContinueButtonProps) => {
         <ContinueButton {...props} />
       </MainLayout>
     </GlobalThemeProvider>
-  );
-};
+  )
+}
 
 const meta: Meta<typeof ContinueButton> = {
   component: Wrapper,
   parameters: {
     controls: {
-      exclude: ['onClick'],
-    },
+      exclude: ['onClick']
+    }
   },
   argTypes: {
-    ...themesToControls,
-  },
-};
+    ...themesToControls
+  }
+}
 
 export default meta;
 
@@ -40,9 +40,9 @@ export const ContinueButtonStoryTemplate: StoryObj<typeof meta> = {
     customStyles: {
       default: '',
       disabled: '',
-      hover: '',
-    },
-  },
-};
+      hover: ''
+    }
+  }
+}
 
-ContinueButtonStoryTemplate.storyName = 'ContinueButton';
+ContinueButtonStoryTemplate.storyName = 'ContinueButton'

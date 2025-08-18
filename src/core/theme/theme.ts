@@ -1,15 +1,15 @@
-type Colors = Record<string, string>;
+type Colors = Record<string, string>
 
 export interface Theme {
-  colors: Colors;
-  [propName: string]: any;
+  colors: Colors
+  [propName: string]: any
 }
 
-export type ThemesObject = Record<string, Theme>;
+export type ThemesObject = Record<string, Theme>
 
-export type ProjectName = 'geozilla' | 'family-locator' | 'familo' | 'brainbloom';
+export type ProjectName = 'geozilla' | 'family-locator' | 'familo' | 'brainbloom'
 
-const defaultTheme: {[key: string]: any} = {
+const defaultTheme: Record<string, any> = {
   colors: {
     text: '#323232',
     bodyBackground: '#fff',
@@ -24,7 +24,7 @@ const defaultTheme: {[key: string]: any} = {
     planItemTextColorInactive: '#7F84A7',
     planItemCheckBg: '#fff',
     planItemLabelColorActive: '#fff',
-    planItemLabelColorInactive: '#323232',
+    planItemLabelColorInactive: '#323232'
   },
   mobileWidth: '350',
   tabletMinWidth: '432',
@@ -33,8 +33,8 @@ const defaultTheme: {[key: string]: any} = {
   sidePadding: '16',
   buttonBorderRadius: '12px',
   buttonBottomPosition: '24px',
-  planItemBorderRadius: '8px',
-};
+  planItemBorderRadius: '8px'
+}
 
 export const themes: ThemesObject = {
   geozilla: {
@@ -54,8 +54,8 @@ export const themes: ThemesObject = {
       progressBarActive: '#00bfa5',
       progressBarBg: '#f0efef',
       planItemCheckBorder: '#00BFA5',
-      planItemLabelBg: '#E5F6F3',
-    },
+      planItemLabelBg: '#E5F6F3'
+    }
   },
   'family-locator': {
     colors: {
@@ -74,8 +74,8 @@ export const themes: ThemesObject = {
       progressBarActive: '#3393ec',
       progressBarBg: '#f3f3f3',
       planItemCheckBorder: '#3393EC',
-      planItemLabelBg: '#EBF3FE',
-    },
+      planItemLabelBg: '#EBF3FE'
+    }
   },
   familo: {
     colors: {
@@ -94,8 +94,8 @@ export const themes: ThemesObject = {
       progressBarActive: '#f58a3c',
       progressBarBg: '#f3f3f3',
       planItemCheckBorder: '#F58A3C',
-      planItemLabelBg: '#FEF3EB',
-    },
+      planItemLabelBg: '#FEF3EB'
+    }
   },
   brainbloom: {
     colors: {
@@ -127,22 +127,27 @@ export const themes: ThemesObject = {
       planItemCheckBorder: '#CF9B08',
       planItemCheckBg: '#292C44',
       planItemLabelColorActive: '#292C44',
-      planItemLabelColorInactive: '#8A8FB2',
-    },
-  },
-};
+      planItemLabelColorInactive: '#8A8FB2'
+    }
+  }
+}
 
 const mergeKeys = (k: string, obj: ThemesObject): object => {
-  const currentValue = obj[k];
-  return typeof(currentValue) === 'object' ? {
-    [k]: {...defaultTheme[k], ...obj[k]},
-  } : {};
-};
+  const currentValue = obj[k]
+  return typeof currentValue === 'object'
+    ? {
+        [k]: {
+          ...defaultTheme[k],
+          ...obj[k]
+        }
+      }
+    : {}
+}
 
 export const getTheme = (projectName: ProjectName = 'geozilla') => {
-  const currentTheme = themes[projectName.toLowerCase()];
+  const currentTheme = themes[projectName.toLowerCase()]
   const mergedTheme = Object.keys(currentTheme).reduce((acc, key) => {
-    return { ...acc, ...mergeKeys(key, currentTheme) };
-  }, {});
-  return { ...defaultTheme, ...currentTheme, ...mergedTheme };
-};
+    return { ...acc, ...mergeKeys(key, currentTheme) }
+  }, {})
+  return { ...defaultTheme, ...currentTheme, ...mergedTheme }
+}
