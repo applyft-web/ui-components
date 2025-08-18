@@ -56,14 +56,17 @@ export const StyledBar = styled('div')<StyledBarProps & CommonProps>(
   ({ theme, $isArabic = theme.isArabic, $isSegmented, $customStyles }) => css`
     display: flex;
     flex-direction: ${($isArabic && !theme.enableRTL) ? 'row-reverse' : 'row'};
-    gap: 5px;
-    column-gap: 5px;
     flex: 1 0 auto;
     height: 8px;
     border-radius: 20px;
-    background-color: ${$isSegmented ? 'transparent' : theme?.colors?.progressBarBg || '#fff'};
+    background-color: ${theme?.colors?.progressBarBg || '#fff'};
     transition: background-color 300ms;
     overflow: hidden;
+    ${$isSegmented && css`
+      gap: 5px;
+      column-gap: 5px;
+      background-color: transparent;
+    `}
 
     ${$customStyles};
   `

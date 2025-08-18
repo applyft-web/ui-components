@@ -43,7 +43,8 @@ export const PlansBlock = styled('ul')<MarginProps & StylesProps>(
 
 export const PlanLi = styled('li')<PlanItemProps>(
   ({ theme, $withLabel, $isActive, $isArabic = theme.isArabic, $gap, $labelCustomStyles, $customStyles }) => {
-    const styles = getFormattedStyles($customStyles, 'default');
+    const styles = getFormattedStyles($customStyles, 'default')
+
     return css`
       --border-width: 1px;
       --border-radius: ${theme?.planItemBorderRadius || '8px'};
