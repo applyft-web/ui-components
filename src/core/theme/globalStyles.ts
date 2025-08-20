@@ -17,7 +17,6 @@ export const GlobalStyles = createGlobalStyle<{ $isArabic?: boolean, $customStyl
     ${({ $isArabic }) => $isArabic && css`
       direction: rtl;
       //unicode-bidi: bidi-override;
-      //unicode-bidi: bidi-override;
     `};
 
     &::-webkit-scrollbar {
