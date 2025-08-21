@@ -3,7 +3,7 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/applyft-web"
   },
-  "version": "1.5.1-stage.1",
+  "version": "1.5.2",
   "description": "a library with basic css rules and ui react components",
   "main": "dist/esm/index.js",
   "module": "dist/cjs/index.js",
@@ -27,8 +27,8 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "deploy-storybook": "npm run build-storybook && gh-pages -d storybook-static",
-    "release": "npm run build && semantic-release --config release.config.js",
-    "pre-release": "npm run build && semantic-release --config release.dev.config.js"
+    "release": "npm run build && semantic-release --extends ./release.main.config.js",
+    "pre-release": "npm run build && semantic-release --extends ./release.dev.config.js"
   },
   "devDependencies": {
     "@rollup/plugin-terser": "^0.4.4",
