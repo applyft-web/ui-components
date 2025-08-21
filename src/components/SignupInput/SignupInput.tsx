@@ -32,6 +32,7 @@ export interface SignupInputProps {
   withDomainButtons?: boolean
   withWrapper?: boolean
   withError?: boolean
+  isDev?: boolean
   [propName: string]: any
 }
 
@@ -50,13 +51,17 @@ export const SignupInput = ({
   withDomainButtons = true,
   withWrapper = false,
   withError = false,
+  isDev = false,
   ...rest
 }: SignupInputProps) => {
   const { t } = useTranslation()
   const theme = rest?.theme
   const [selected, setSelected] = useState<null | string>(null)
   const [error, setError] = useState(false)
-  const DOMAINS = useMemo(() => ['gmail.com', 'yahoo.com', 'hotmail.com'], [])
+  const DOMAINS = useMemo(() => isDev
+    ? ['mailinator.com', 'yopmail.com', 'temp-mail.org']
+    : ['gmail.com', 'yahoo.com', 'hotmail.com'],
+  [])
   const DomainsList = ({ customStyles }: { customStyles?: ButtonsCustomStylesProps | string }) => {
     if (!withDomainButtons) return null
 
