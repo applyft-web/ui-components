@@ -13,12 +13,12 @@ module.exports = [
       {
         file: packageJson.module,
         format: 'cjs',
-        interop: 'compat',
+        interop: 'compat'
       },
       {
         file: packageJson.main,
         format: 'esm',
-        interop: 'compat',
+        interop: 'compat'
       }
     ],
     external: ['react', 'styled-components', 'react-i18next'],
@@ -29,7 +29,7 @@ module.exports = [
       }),
       terser(),
       url(),
-      svgr({ icon: true }),
+      svgr({ icon: true })
     ]
   },
   // — types
