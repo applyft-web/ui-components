@@ -6,7 +6,7 @@ storybook-static
 package-lock.json
 webpack.config.js
 rollup.config.js
-release.config.js
+release.main.config.js
 release.dev.config.js
 .editorconfig
 .eslintignore
