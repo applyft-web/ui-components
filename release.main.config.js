@@ -1,8 +1,6 @@
 module.exports = {
-  branches: [
-    { name: 'main' }
-  ],
-  repositoryUrl: 'https://github.com/applyft-web/utils.git',
+  branches: [{ name: 'main' }],
+  repositoryUrl: 'https://github.com/applyft-web/ui-components.git',
   plugins: [
     '@semantic-release/commit-analyzer',
     '@semantic-release/npm',

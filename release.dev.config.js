@@ -3,7 +3,7 @@ module.exports = {
     { name: 'dev', channel: 'dev', prerelease: 'dev', tagFormat: false },
     { name: 'stage', channel: 'stage', prerelease: 'stage', tagFormat: false }
   ],
-  repositoryUrl: 'https://github.com/applyft-web/utils.git',
+  repositoryUrl: 'https://github.com/applyft-web/ui-components.git',
   plugins: [
     '@semantic-release/commit-analyzer',
     '@semantic-release/npm'
