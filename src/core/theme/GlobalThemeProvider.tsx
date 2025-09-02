@@ -1,4 +1,4 @@
-import React, { type ReactNode, type ReactElement } from 'react'
+import React, { type ReactNode, type ReactElement, useEffect } from 'react'
 import { ThemeProvider } from 'styled-components'
 import { getTheme, type Theme, type ProjectName } from './theme'
 import { GlobalStyles, useDynamicHeight } from './globalStyles'
@@ -26,7 +26,7 @@ interface ProviderComponentProps {
   projectTheme: string | Theme
   customGlobalStyles?: string
   customTheme?: Record<string, string>
-  isArabic?: boolean
+  isArabic?: boolean // isRtl
   enableRTL?: boolean
 }
 
@@ -43,6 +43,13 @@ export const GlobalThemeProvider = ({
     : projectTheme
 
   useDynamicHeight()
+
+  useEffect(() => {
+    if (typeof document !== 'undefined') {
+      document.documentElement.setAttribute('dir', isArabic ? 'rtl' : 'ltr')
+      // document.documentElement.dir = isArabic ? 'rtl' : 'ltr';
+    }
+  }, [isArabic])
 
   return (
     <>
