@@ -1,7 +1,8 @@
 import React, { type ReactNode, type ReactElement, useEffect } from 'react'
 import { ThemeProvider } from 'styled-components'
 import { getTheme, type Theme, type ProjectName } from './theme'
-import { GlobalStyles, useDynamicHeight } from './globalStyles'
+import { GlobalStyles } from './globalStyles'
+import { useDynamicHeight } from '../../utils'
 
 const GZ = 'geozilla'
 const FL = 'family-locator'
@@ -26,7 +27,8 @@ interface ProviderComponentProps {
   projectTheme: string | Theme
   customGlobalStyles?: string
   customTheme?: Record<string, string>
-  isArabic?: boolean // isRtl
+  isArabic?: boolean // replace with isRtl when all projects are updated
+  isRtl?: boolean
   enableRTL?: boolean
 }
 
@@ -36,7 +38,8 @@ export const GlobalThemeProvider = ({
   customTheme = {},
   customGlobalStyles,
   isArabic = false,
-  enableRTL = false // temp
+  isRtl = isArabic,
+  enableRTL = false // remove when all projects are updated
 }: ProviderComponentProps): ReactElement => {
   const currentTheme = typeof projectTheme === 'string'
     ? getTheme(namesList[projectTheme.toLowerCase()] ?? fallback)
@@ -46,15 +49,21 @@ export const GlobalThemeProvider = ({
 
   useEffect(() => {
     if (typeof document !== 'undefined') {
-      document.documentElement.setAttribute('dir', isArabic ? 'rtl' : 'ltr')
+      document.documentElement.setAttribute('dir', isArabic && enableRTL ? 'rtl' : 'ltr')
       // document.documentElement.dir = isArabic ? 'rtl' : 'ltr';
     }
-  }, [isArabic])
+  }, [isArabic, enableRTL])
 
   return (
     <>
-      <ThemeProvider theme={{ ...currentTheme, isArabic, enableRTL, ...{ custom: customTheme } }}>
-        <GlobalStyles $customStyles={customGlobalStyles} $isArabic={isArabic && enableRTL} />
+      <ThemeProvider theme={{
+        ...currentTheme,
+        isArabic,
+        isRtl,
+        enableRTL,
+        ...{ custom: customTheme }
+      }}>
+        <GlobalStyles $customStyles={customGlobalStyles} />
         {children}
       </ThemeProvider>
     </>
