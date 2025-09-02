@@ -30,9 +30,6 @@ interface ProviderComponentProps {
   projectTheme: string | Theme
   customGlobalStyles?: string
   customTheme?: Record<string, string>
-  /**
-   * @deprecated use `isRtl` instead of `isArabic` (still working for backward compatibility)
-   */
   isArabic?: boolean
   isRtl?: boolean
   enableRTL?: boolean
@@ -42,12 +39,14 @@ interface ProviderComponentProps {
  * @param {ProviderComponentProps} props
  * @param {ReactNode | string} props.children
  * @param {string | Theme} [props.projectTheme = 'geozilla'] - project name or theme object
- * @param {string} [props.customGlobalStyles] – custom global styles
- * @param {Record<string, string>} [props.customTheme] – custom theme variables
- * @param {boolean} [props.isArabic=false] – deprecated: use `isRtl`
- * @param {boolean} [props.isRtl=props.isArabic] – right-to-left mode (e.g., Arabic)
- * @param {boolean} [props.enableRTL=false] – use in projects with `dir` attribute in `<html>` tag
+ * @param {string} [props.customGlobalStyles] - custom global styles
+ * @param {Record<string, string>} [props.customTheme] - custom theme variables
+ * @param {boolean} [props.isArabic=false] - deprecated: use `isRtl`
+ * @param {boolean} [props.isRtl=props.isArabic] - right-to-left mode (e.g., Arabic)
+ * @param {boolean} [props.enableRTL=false] - use in projects with `dir` attribute in `<html>` tag
  * @returns {JSX.Element}
+ *
+ * @deprecated use `isRtl` instead of `isArabic` (still working for backward compatibility)
  */
 export const GlobalThemeProvider = ({
   children,
