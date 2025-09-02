@@ -1,15 +1,15 @@
-import styled, { keyframes, css } from 'styled-components';
+import styled, { keyframes, css } from 'styled-components'
 
 export const spinning = keyframes`
   to {
     transform: rotate(360deg);
   }
-`;
+`
 
 interface StyledSpinnerProps {
-  $transparent: boolean;
-  $localPosition: boolean;
-  $customStyles?: string;
+  $transparent: boolean
+  $localPosition: boolean
+  $customStyles?: string
 }
 
 export const StyledSpinner = styled('div')<StyledSpinnerProps>(
@@ -38,9 +38,9 @@ export const StyledSpinner = styled('div')<StyledSpinnerProps>(
 
     ${$customStyles};
   `
-);
+)
 
-export const StyledSVG = styled('svg')<{ $fill?: string; $customStyles?: string }>(
+export const StyledSVG = styled('svg')<{ $fill?: string, $customStyles?: string }>(
   ({ theme, $fill, $customStyles }) => css`
     width: 48px;
     height: 48px;
@@ -52,7 +52,7 @@ export const StyledSVG = styled('svg')<{ $fill?: string; $customStyles?: string 
 
     ${$customStyles};
   `
-);
+)
 
 export const Message = styled('span')`
   font-size: 16px;
@@ -60,4 +60,4 @@ export const Message = styled('span')`
   text-align: center;
   white-space: break-spaces;
   margin-top: 32px;
-`;
+`

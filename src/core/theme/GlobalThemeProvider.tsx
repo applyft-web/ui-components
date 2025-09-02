@@ -40,7 +40,6 @@ interface ProviderComponentProps {
    * @since 1.5.1
    * @experimental use in projects with `dir` attribute in `<html>` tag
    */
-  isArabicRTL?: boolean
   enableRTL?: boolean
 }
 

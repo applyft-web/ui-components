@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { type ReactElement } from 'react'
 import { CheckIcon, type CheckIconStyledProps } from '../Icons'
 import type { Theme } from '../../core'
 import { getFormattedStyles } from '../../utils'
@@ -13,9 +13,14 @@ interface CustomStylesProps {
 }
 
 export interface OptionsItemProps {
-  children?: any
+  children?: ReactElement | string
   onClick: () => void
+  /**
+   * @since 1.5.4
+   * @deprecated use `isRtl` instead. or use GlobalThemeProvider with `isRtl` flag
+   */
   isArabic?: boolean
+  isRtl?: boolean
   isActive?: boolean
   img?: string
   imgSize?: S.SizeProps | string | number
@@ -32,6 +37,7 @@ export const OptionsItem = ({
   children = 'Other',
   onClick,
   isArabic,
+  isRtl = isArabic,
   isActive = false,
   multiChoice = false,
   img = '',
@@ -41,7 +47,7 @@ export const OptionsItem = ({
   mb,
   customStyles,
   ...rest
-}: OptionsItemProps) => {
+}: OptionsItemProps): ReactElement => {
   const theme = rest?.theme
   const imgSrc: string | null = img ? img.trim() : null
   const styles = getFormattedStyles(customStyles, 'option')
@@ -56,7 +62,7 @@ export const OptionsItem = ({
   return (
     <S.StyledOption
       onClick={onClick}
-      $isArabic={isArabic}
+      $isRtl={isRtl}
       $isActive={isActive}
       $multiChoice={multiChoice}
       id={customId}
@@ -70,7 +76,7 @@ export const OptionsItem = ({
           className={'option-img'}
           $imgSrc={imgSrc}
           $size={size()}
-          $isArabic={isArabic}
+          $isRtl={isRtl}
           $isActive={isActive}
           theme={theme}
           $customStyles={styles?.img}
@@ -82,7 +88,7 @@ export const OptionsItem = ({
       {multiChoice && (
         <S.StyledCheckIcon
           className={'check-element'}
-          $isArabic={isArabic}
+          $isRtl={isRtl}
           $isActive={isActive}
           theme={theme}
           $customStyles={styles?.check}

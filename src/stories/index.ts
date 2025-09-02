@@ -1,16 +1,22 @@
-import { getTheme, themes, type ThemesObject, type ProjectName } from '../core/theme';
+import {
+  type ThemesObject,
+  type ProjectName,
+  getTheme,
+  themes
+} from '../core/theme'
 
 const themesMapping = (): object => {
-  let obj: ThemesObject = {};
-  Object.keys(themes).map((k: string) => obj[k] = getTheme(k as ProjectName));
-  return obj;
-};
+  return Object.keys(themes).reduce((acc, k): ThemesObject => {
+    acc[k] = getTheme(k as ProjectName)
+    return acc
+  }, {})
+}
 
 // spread to "argTypes"
 export const themesToControls = {
   theme: {
     options: Object.keys(themes),
     mapping: themesMapping(),
-    control: 'inline-radio',
-  },
-};
+    control: 'inline-radio'
+  }
+}

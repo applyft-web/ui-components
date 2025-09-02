@@ -11,6 +11,11 @@ interface MarginProps {
   readonly $mb?: string | number
 }
 
+interface ReviewItemProps extends CommonProps {
+  readonly $isRtl?: boolean
+  readonly $sideMargin?: number
+}
+
 export const ReviewsContainer = styled('div')<MarginProps & CommonProps>(
   ({ theme, $mt, $mb, $staticMode, $customStyles }) => css`
     display: flex;
@@ -35,15 +40,15 @@ export const ReviewsBlock = styled('div')`
   direction: ltr;
 `
 
-export const ReviewsItem = styled('div')<CommonProps & { $isArabic?: boolean; $sideMargin?: number }>(
-  ({ theme, $staticMode, $isArabic = theme.isRtl, $sideMargin, $customStyles }) => css`
+export const ReviewsItem = styled('div')<ReviewItemProps>(
+  ({ theme, $staticMode, $isRtl = Boolean(theme.isRtl), $sideMargin, $customStyles }) => css`
     background-color: ${theme?.colors?.reviewItemBg};
     border: 1px solid #DEDEDE;
     border-radius: 12px;
-    ${!$staticMode && `flex: 1 0 calc(100vw - ${(theme?.sidePadding || 16)*2}px);`};
+    ${!$staticMode && `flex: 1 0 calc(100vw - ${(theme?.sidePadding || 16) * 2}px);`};
     max-width: ${theme?.maxContentWidth}px;
     padding: 12px 16px;
-    text-align: ${getTextAlign($isArabic)};
+    text-align: ${getTextAlign($isRtl)};
     transition: transform 0.5s ease;
 
     &:not(:last-child) {
@@ -57,13 +62,13 @@ export const ReviewsItem = styled('div')<CommonProps & { $isArabic?: boolean; $s
   `
 )
 
-export const Reviewer = styled('div')<{ $image?: string, $isArabic?: boolean }>(
-  ({ theme, $isArabic = theme.isRtl, $image }) => css`
+export const Reviewer = styled('div')<{ $image?: string, $isRtl?: boolean }>(
+  ({ theme, $isRtl = Boolean(theme.isRtl), $image }) => css`
     display: flex;
-    flex-direction: ${($isArabic && !theme.enableRTL) ? 'row-reverse' : 'row'};
+    flex-direction: ${($isRtl && !theme.enableRTL) ? 'row-reverse' : 'row'};
     align-items: center;
     margin-bottom: 8px;
-    padding-${getTextAlign($isArabic)}: 38px;
+    padding-${getTextAlign($isRtl)}: 38px;
     font-weight: 600;
     font-size: 14px;
     line-height: 30px;
@@ -79,7 +84,7 @@ export const Reviewer = styled('div')<{ $image?: string, $isArabic?: boolean }>(
       background-color: ${theme?.colors?.bodyBackground};
       position: absolute;
       top: 0;
-      ${getTextAlign($isArabic)}: 0;
+      ${getTextAlign($isRtl)}: 0;
     }
   `
 )

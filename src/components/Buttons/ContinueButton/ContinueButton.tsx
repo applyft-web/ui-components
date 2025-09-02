@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { type ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
 import { getFormattedStyles } from '../../../utils'
 import type { Theme } from '../../../core'
@@ -25,7 +25,7 @@ export const ContinueButton = ({
   staticPosition,
   customStyles,
   ...rest
-}: ContinueButtonProps) => {
+}: ContinueButtonProps): ReactElement => {
   const { t } = useTranslation()
   const styles: S.ButtonCustomStylesWithStatesProps = getFormattedStyles(customStyles, 'default')
   const extractPositioningRules = (cssString: string): string => {

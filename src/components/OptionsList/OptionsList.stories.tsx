@@ -1,23 +1,21 @@
-import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
-import { OptionsItem } from '../OptionsItem';
-import { OptionsList, type OptionsListProps } from './OptionsList';
-import { themesToControls } from '../../stories';
-import { getTheme, GlobalThemeProvider } from '../../core';
-import { MainLayout } from '../Layouts';
+import React, { type ReactElement } from 'react'
+import type { Meta, StoryObj } from '@storybook/react'
+import { OptionsItem } from '../OptionsItem'
+import { OptionsList, type OptionsListProps } from './OptionsList'
+import { themesToControls } from '../../stories'
+import { getTheme, GlobalThemeProvider } from '../../core'
+import { MainLayout } from '../Layouts'
 
-const Wrapper = (props: OptionsListProps) => {
-  return (
-    <GlobalThemeProvider projectTheme={props.theme}>
-      <MainLayout>
-        <OptionsList {...props} />
-      </MainLayout>
-    </GlobalThemeProvider>
-  );
-};
+const Wrapper = (props: OptionsListProps): ReactElement => (
+  <GlobalThemeProvider projectTheme={props.theme}>
+    <MainLayout>
+      <OptionsList {...props} />
+    </MainLayout>
+  </GlobalThemeProvider>
+)
 
-const test = () => {
-  const options = new Array(4).fill(0);
+const test = (): ReactElement[] => {
+  const options = new Array(4).fill(0)
   return options.map((el, i) => (
     <OptionsItem
       onClick={null}
@@ -27,27 +25,28 @@ const test = () => {
       }
       multiChoice
       isActive={i > 0}
-      imgSize={i*40}
+      imgSize={i * 40}
+      key={i}
       {...el}
     >
-      {i===1 ? <div><div>Test 123</div><div>Test 321</div></div> : undefined}
+      {i === 1 ? <div><div>Test 123</div><div>Test 321</div></div> : undefined}
     </OptionsItem>
   ))
-};
+}
 
 const meta: Meta<typeof OptionsList> = {
   component: Wrapper,
   parameters: {
     controls: {
       exclude: ['children']
-    },
+    }
   },
   argTypes: {
-    ...themesToControls,
-  },
-};
+    ...themesToControls
+  }
+}
 
-export default meta;
+export default meta
 
 export const OptionsItemStoryTemplate: StoryObj<typeof meta> = {
   args: {
@@ -57,9 +56,9 @@ export const OptionsItemStoryTemplate: StoryObj<typeof meta> = {
     scrollable: true,
     customStyles: {
       wrapper: '',
-      list: '',
+      list: ''
     }
-  },
-};
+  }
+}
 
-OptionsItemStoryTemplate.storyName = 'OptionsList';
+OptionsItemStoryTemplate.storyName = 'OptionsList'

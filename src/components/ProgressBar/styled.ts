@@ -3,7 +3,7 @@ import { getTextAlign } from '../../utils'
 
 interface CommonProps {
   readonly $customStyles?: string
-  readonly $isArabic?: boolean
+  readonly $isRtl?: boolean
 }
 
 interface StyledBarProps {
@@ -17,10 +17,10 @@ interface StyledBarItemProps {
 }
 
 export const StyledContainer = styled('div')<CommonProps & { $staticPosition: boolean }>(
-  ({ theme, $isArabic = theme.isRtl, $customStyles, $staticPosition }) => css`
+  ({ theme, $isRtl = Boolean(theme.isRtl), $customStyles, $staticPosition }) => css`
     display: flex;
     align-items: center;
-    flex-direction: ${($isArabic && !theme.enableRTL) ? 'row-reverse' : 'row'};
+    flex-direction: ${($isRtl && !theme.enableRTL) ? 'row-reverse' : 'row'};
     max-width: ${theme?.maxContentWidth}px;
     height: 20px;
     ${!$staticPosition && css`
@@ -36,10 +36,10 @@ export const StyledContainer = styled('div')<CommonProps & { $staticPosition: bo
 )
 
 export const StyledSkip = styled('div')<CommonProps>(
-  ({ theme, $isArabic = theme.isRtl, $customStyles }) => css`
+  ({ theme, $isRtl = Boolean(theme.isRtl), $customStyles }) => css`
     font-size: 16px;
     line-height: 20px;
-    margin-${getTextAlign($isArabic)}: 20px;
+    margin-${getTextAlign($isRtl)}: 20px;
     cursor: pointer;
 
     @media screen and (min-width: ${theme?.tabletMinWidth}px) and (hover: hover) {
@@ -53,9 +53,9 @@ export const StyledSkip = styled('div')<CommonProps>(
 )
 
 export const StyledBar = styled('div')<StyledBarProps & CommonProps>(
-  ({ theme, $isArabic = theme.isRtl, $isSegmented, $customStyles }) => css`
+  ({ theme, $isRtl = Boolean(theme.isRtl), $isSegmented, $customStyles }) => css`
     display: flex;
-    flex-direction: ${($isArabic && !theme.enableRTL) ? 'row-reverse' : 'row'};
+    flex-direction: ${($isRtl && !theme.enableRTL) ? 'row-reverse' : 'row'};
     flex: 1 0 auto;
     height: 8px;
     border-radius: 20px;

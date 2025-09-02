@@ -1,14 +1,14 @@
-import styled, { css } from 'styled-components';
-import { getTextAlign } from '../../utils';
+import styled, { css } from 'styled-components'
+import { getTextAlign } from '../../utils'
 
 interface StyledAlertProps {
-  $show: boolean;
-  $isArabic?: boolean;
-  $customStyles?: string;
+  $show: boolean
+  $isRtl?: boolean
+  $customStyles?: string
 }
 
 export const StyledAlert = styled('div')<StyledAlertProps>(
-  ({ theme, $isArabic = theme.isRtl, $show, $customStyles }) => css`
+  ({ theme, $isRtl = Boolean(theme.isRtl), $show, $customStyles }) => css`
     width: 90%;
     height: auto;
     max-width: ${theme?.maxContentWidth}px;
@@ -23,8 +23,8 @@ export const StyledAlert = styled('div')<StyledAlertProps>(
     font-size: 14px;
     line-height: 18px;
     color: #fff;
-    text-align: ${getTextAlign($isArabic)};
-    padding-${getTextAlign($isArabic)}: 16px;
+    text-align: ${getTextAlign($isRtl)};
+    padding-${getTextAlign($isRtl)}: 16px;
     z-index: 100;
     ${$show
       ? css`
@@ -45,9 +45,9 @@ export const StyledAlert = styled('div')<StyledAlertProps>(
   
     ${$customStyles};
   `
-);
+)
 
-export const CloseAlert = styled('div')<{ $isArabic?: boolean }>`
+export const CloseAlert = styled('div')<{ $isRtl?: boolean }>`
   content: '×';
   display: block;
   width: 24px;
@@ -56,11 +56,11 @@ export const CloseAlert = styled('div')<{ $isArabic?: boolean }>`
   top: 50%;
   right: 16px;
   left: 16px;
-  ${({ theme, $isArabic = theme.isRtl }) => `${getTextAlign($isArabic)}: auto`};
+  ${({ theme, $isRtl = Boolean(theme.isRtl) }) => `${getTextAlign($isRtl)}: auto`};
   margin-top: -12px;
   font-size: 24px;
   line-height: 1;
   color: #fff;
   text-align: center;
   cursor: pointer;
-`;
+`

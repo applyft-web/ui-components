@@ -1,6 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
-import { Loader } from '../Loader';
+import React, { type ReactElement } from 'react'
+import styled from 'styled-components'
+import { Loader } from '../Loader'
 
 const FallBackWrapper = styled('div')`
   width: 100vw;
@@ -12,10 +12,10 @@ const FallBackWrapper = styled('div')`
   position: fixed;
   top: 0;
   left: 0;
-`;
+`
 
-export const FallBack = (props: any) => (
-  <FallBackWrapper theme={props?.theme}>
-    <Loader show={true} transparent={true} theme={props?.theme} />
+export const FallBack = (): ReactElement => (
+  <FallBackWrapper>
+    <Loader show={true} transparent={true} />
   </FallBackWrapper>
-);
+)

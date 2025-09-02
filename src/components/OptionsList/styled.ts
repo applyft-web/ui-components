@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export interface StyledOptionsListProps {
-  readonly $customStyles?: string;
+  readonly $customStyles?: string
 }
 
 export const StyledOptionsList = styled('div')<StyledOptionsListProps>`
@@ -10,4 +10,4 @@ export const StyledOptionsList = styled('div')<StyledOptionsListProps>`
   overflow: auto;
 
   ${({ $customStyles }) => $customStyles};
-`;
+`
