@@ -30,23 +30,37 @@ interface ProviderComponentProps {
   projectTheme: string | Theme
   customGlobalStyles?: string
   customTheme?: Record<string, string>
+  /**
+   * @since 1.5.4
+   * @deprecated use `isRtl` instead of `isArabic` (still working for backward compatibility)
+   */
   isArabic?: boolean
   isRtl?: boolean
+  /**
+   * @since 1.5.1
+   * @experimental use in projects with `dir` attribute in `<html>` tag
+   */
+  isArabicRTL?: boolean
   enableRTL?: boolean
 }
 
 /**
- * @param {ProviderComponentProps} props
- * @param {ReactNode | string} props.children
- * @param {string | Theme} [props.projectTheme = 'geozilla'] - project name or theme object
- * @param {string} [props.customGlobalStyles] - custom global styles
- * @param {Record<string, string>} [props.customTheme] - custom theme variables
- * @param {boolean} [props.isArabic=false] - deprecated: use `isRtl`
- * @param {boolean} [props.isRtl=props.isArabic] - right-to-left mode (e.g., Arabic)
- * @param {boolean} [props.enableRTL=false] - use in projects with `dir` attribute in `<html>` tag
- * @returns {JSX.Element}
+ * Lets you wrap your app with theme context using {@link ThemeProvider}.
  *
- * @deprecated use `isRtl` instead of `isArabic` (still working for backward compatibility)
+ * @example
+ *
+ * ```tsx
+ * import { GlobalThemeProvider } from '@applyft-web/ui-components';
+ *
+ * <GlobalThemeProvider
+ *   projectTheme={'GZ'}
+ *   customGlobalStyles={'body { background-color: red; }'}
+ *   isRtl={true}
+ *   enableRTL={true}
+ * >
+ *  <App />
+ * </GlobalThemeProvider>
+ * ```
  */
 export const GlobalThemeProvider = ({
   children,
