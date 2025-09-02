@@ -1,13 +1,13 @@
-import React, { type ReactNode, type ReactElement, useEffect } from 'react'
+import React, { type ReactNode, type JSX, useLayoutEffect } from 'react'
 import { ThemeProvider } from 'styled-components'
 import { getTheme, type Theme, type ProjectName } from './theme'
 import { GlobalStyles } from './globalStyles'
 import { useDynamicHeight } from '../../utils'
 
-const GZ = 'geozilla'
-const FL = 'family-locator'
-const FO = 'familo'
-const BB = 'brainbloom'
+const GZ: ProjectName = 'geozilla'
+const FL: ProjectName = 'family-locator'
+const FO: ProjectName = 'familo'
+const BB: ProjectName = 'brainbloom'
 
 const namesList: Record<string, ProjectName> = {
   geozilla: GZ,
@@ -39,7 +39,15 @@ interface ProviderComponentProps {
 }
 
 /**
- * @param {enableRTL} - use in projects with `dir` attribute in `html` tag
+ * @param {ProviderComponentProps} props
+ * @param {ReactNode | string} props.children
+ * @param {string | Theme} [props.projectTheme = 'geozilla'] - project name or theme object
+ * @param {string} [props.customGlobalStyles] – custom global styles
+ * @param {Record<string, string>} [props.customTheme] – custom theme variables
+ * @param {boolean} [props.isArabic=false] – deprecated: use `isRtl`
+ * @param {boolean} [props.isRtl=props.isArabic] – right-to-left mode (e.g., Arabic)
+ * @param {boolean} [props.enableRTL=false] – use in projects with `dir` attribute in `<html>` tag
+ * @returns {JSX.Element}
  */
 export const GlobalThemeProvider = ({
   children,
@@ -49,14 +57,14 @@ export const GlobalThemeProvider = ({
   isArabic = false,
   isRtl = isArabic,
   enableRTL = false
-}: ProviderComponentProps): ReactElement => {
+}: ProviderComponentProps): JSX.Element => {
   const currentTheme = typeof projectTheme === 'string'
     ? getTheme(namesList[projectTheme.toLowerCase()] ?? fallback)
     : projectTheme
 
   useDynamicHeight()
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (typeof document !== 'undefined') {
       document.documentElement.setAttribute('dir', isRtl && enableRTL ? 'rtl' : 'ltr')
       // document.documentElement.dir = isRtl && enableRTL ? 'rtl' : 'ltr';
