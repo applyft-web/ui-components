@@ -32,7 +32,7 @@ interface StyledImgProps extends StyledProps {
 }
 
 export const StyledOption = styled('button')<StyledOptionProps>(
-  ({ theme, $isArabic = theme.isArabic, $isActive, $multiChoice, $mt, $mb, $customStyles }) => css`
+  ({ theme, $isArabic = theme.isRtl, $isActive, $multiChoice, $mt, $mb, $customStyles }) => css`
     display: flex;
     flex-direction: ${($isArabic && !theme.enableRTL) ? 'row-reverse' : 'row'};
     align-items: center;
@@ -123,7 +123,7 @@ export const StyledImg = styled('div')<StyledImgProps & CommonProps>(
 )
 
 export const StyledCheckIcon = styled('div')<StyledProps & CommonProps>(
-  ({ theme, $isArabic = theme.isArabic, $isActive, $customStyles }) => css`
+  ({ theme, $isArabic = theme.isRtl, $isActive, $customStyles }) => css`
     display: flex;
     justify-content: center;
     align-items: center;

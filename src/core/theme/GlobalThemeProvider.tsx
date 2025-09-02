@@ -22,16 +22,25 @@ const namesList: Record<string, ProjectName> = {
 
 const fallback = namesList.gz
 
+// TODO: replace `isArabic` with `isRtl` when all projects are updated + components refactoring
+// TODO: remove `enableRTL` when all projects are updated
+
 interface ProviderComponentProps {
   children?: ReactNode | string
   projectTheme: string | Theme
   customGlobalStyles?: string
   customTheme?: Record<string, string>
-  isArabic?: boolean // replace with isRtl when all projects are updated
+  /**
+   * @deprecated use `isRtl` instead of `isArabic` (still working for backward compatibility)
+   */
+  isArabic?: boolean
   isRtl?: boolean
   enableRTL?: boolean
 }
 
+/**
+ * @param {enableRTL} - use in projects with `dir` attribute in `html` tag
+ */
 export const GlobalThemeProvider = ({
   children,
   projectTheme = fallback,
@@ -39,7 +48,7 @@ export const GlobalThemeProvider = ({
   customGlobalStyles,
   isArabic = false,
   isRtl = isArabic,
-  enableRTL = false // remove when all projects are updated
+  enableRTL = false
 }: ProviderComponentProps): ReactElement => {
   const currentTheme = typeof projectTheme === 'string'
     ? getTheme(namesList[projectTheme.toLowerCase()] ?? fallback)
@@ -49,17 +58,17 @@ export const GlobalThemeProvider = ({
 
   useEffect(() => {
     if (typeof document !== 'undefined') {
-      document.documentElement.setAttribute('dir', isArabic && enableRTL ? 'rtl' : 'ltr')
-      // document.documentElement.dir = isArabic ? 'rtl' : 'ltr';
+      document.documentElement.setAttribute('dir', isRtl && enableRTL ? 'rtl' : 'ltr')
+      // document.documentElement.dir = isRtl && enableRTL ? 'rtl' : 'ltr';
     }
-  }, [isArabic, enableRTL])
+  }, [isRtl, enableRTL])
 
   return (
     <>
       <ThemeProvider theme={{
         ...currentTheme,
-        isArabic,
         isRtl,
+        isArabic: isRtl,
         enableRTL,
         ...{ custom: customTheme }
       }}>

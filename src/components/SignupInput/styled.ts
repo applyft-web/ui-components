@@ -22,7 +22,7 @@ export const Wrapper = styled('div')<CommonProps>`
 `
 
 export const InputWrapper = styled('label')<LabelProps & CommonProps>(
-  ({ theme, $isArabic = theme.isArabic, $showPlaceholder, $placeholderStyles, $customStyles }) => css`
+  ({ theme, $isArabic = theme.isRtl, $showPlaceholder, $placeholderStyles, $customStyles }) => css`
     --side-padding: 16px;
     display: block;
     position: relative;
@@ -53,7 +53,7 @@ export const InputWrapper = styled('label')<LabelProps & CommonProps>(
 )
 
 export const Input = styled('input')<InputProps & CommonProps>(
-  ({ theme, $error, $isArabic = theme.isArabic, $customStyles }) => css`
+  ({ theme, $error, $isArabic = theme.isRtl, $customStyles }) => css`
     width: 100%;
     border-radius: 12px;
     border: none;
@@ -91,7 +91,7 @@ export const ErrorState = styled('div')<CommonProps>`
 `
 
 export const BtnContainer = styled('div')<{ $isArabic?: boolean } & CommonProps>(
-  ({ theme, $isArabic = theme.isArabic, $customStyles }) => css`
+  ({ theme, $isArabic = theme.isRtl, $customStyles }) => css`
     width: 100%;
     display: flex;
     justify-content: space-between;

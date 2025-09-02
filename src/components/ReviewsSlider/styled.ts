@@ -36,7 +36,7 @@ export const ReviewsBlock = styled('div')`
 `
 
 export const ReviewsItem = styled('div')<CommonProps & { $isArabic?: boolean; $sideMargin?: number }>(
-  ({ theme, $staticMode, $isArabic = theme.isArabic, $sideMargin, $customStyles }) => css`
+  ({ theme, $staticMode, $isArabic = theme.isRtl, $sideMargin, $customStyles }) => css`
     background-color: ${theme?.colors?.reviewItemBg};
     border: 1px solid #DEDEDE;
     border-radius: 12px;
@@ -58,7 +58,7 @@ export const ReviewsItem = styled('div')<CommonProps & { $isArabic?: boolean; $s
 )
 
 export const Reviewer = styled('div')<{ $image?: string, $isArabic?: boolean }>(
-  ({ theme, $isArabic = theme.isArabic, $image }) => css`
+  ({ theme, $isArabic = theme.isRtl, $image }) => css`
     display: flex;
     flex-direction: ${($isArabic && !theme.enableRTL) ? 'row-reverse' : 'row'};
     align-items: center;

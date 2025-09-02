@@ -42,7 +42,7 @@ export const PlansBlock = styled('ul')<MarginProps & StylesProps>(
 )
 
 export const PlanLi = styled('li')<PlanItemProps>(
-  ({ theme, $withLabel, $isActive, $isArabic = theme.isArabic, $gap, $labelCustomStyles, $customStyles }) => {
+  ({ theme, $withLabel, $isActive, $isArabic = theme.isRtl, $gap, $labelCustomStyles, $customStyles }) => {
     const styles = getFormattedStyles($customStyles, 'default')
 
     return css`
@@ -97,7 +97,7 @@ export const PlanLi = styled('li')<PlanItemProps>(
 )
 
 export const StyledPeriod = styled('div')<CommonProps>(
-  ({ theme, $isArabic = theme.isArabic }) => css`
+  ({ theme, $isArabic = theme.isRtl }) => css`
     display: flex;
     flex-direction: ${($isArabic && !theme.enableRTL) ? 'row-reverse' : 'row'};
     text-align: ${getTextAlign($isArabic)};
@@ -106,7 +106,7 @@ export const StyledPeriod = styled('div')<CommonProps>(
 )
 
 export const PlanCheck = styled('div')<CommonProps & StylesProps>(
-  ({ theme, $isActive, $isArabic = theme.isArabic, $customStyles }) => css`
+  ({ theme, $isActive, $isArabic = theme.isRtl, $customStyles }) => css`
     --check-size: 24px;
     width: var(--check-size);
     height: var(--check-size);
@@ -130,7 +130,7 @@ export const PlanCheck = styled('div')<CommonProps & StylesProps>(
 )
 
 export const PlanTitle = styled('div')<CommonProps>(
-  ({ theme, $isActive, $isArabic = theme.isArabic }) => css`
+  ({ theme, $isActive, $isArabic = theme.isRtl }) => css`
     display: flex;
     flex-direction: column;
     justify-content: center;
