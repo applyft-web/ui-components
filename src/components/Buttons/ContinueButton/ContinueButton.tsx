@@ -1,11 +1,10 @@
-import React, { type ReactElement } from 'react'
+import React, { type ReactElement, type PropsWithChildren } from 'react'
 import { useTranslation } from 'react-i18next'
 import { getFormattedStyles } from '../../../utils'
 import type { Theme } from '../../../core'
 import * as S from './styled'
 
 export interface ContinueButtonProps {
-  children?: React.ReactNode | string
   onClick: () => void
   customId?: string
   mt?: string | number
@@ -25,7 +24,7 @@ export const ContinueButton = ({
   staticPosition,
   customStyles,
   ...rest
-}: ContinueButtonProps): ReactElement => {
+}: PropsWithChildren<ContinueButtonProps>): ReactElement => {
   const { t } = useTranslation()
   const styles: S.ButtonCustomStylesWithStatesProps = getFormattedStyles(customStyles, 'default')
   const extractPositioningRules = (cssString: string): string => {

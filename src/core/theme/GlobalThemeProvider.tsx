@@ -1,4 +1,4 @@
-import React, { type ReactNode, type JSX, useLayoutEffect } from 'react'
+import React, { type PropsWithChildren, type JSX, useLayoutEffect } from 'react'
 import { ThemeProvider } from 'styled-components'
 import { getTheme, type Theme, type ProjectName } from './theme'
 import { GlobalStyles } from './globalStyles'
@@ -26,7 +26,6 @@ const fallback = namesList.gz
 // TODO: remove `enableRTL` when all projects are updated
 
 interface ProviderComponentProps {
-  children?: ReactNode | string
   projectTheme: string | Theme
   customGlobalStyles?: string
   customTheme?: Record<string, string>
@@ -69,7 +68,7 @@ export const GlobalThemeProvider = ({
   isArabic = false,
   isRtl = isArabic,
   enableRTL = false
-}: ProviderComponentProps): JSX.Element => {
+}: PropsWithChildren<ProviderComponentProps>): JSX.Element => {
   const currentTheme = typeof projectTheme === 'string'
     ? getTheme(namesList[projectTheme.toLowerCase()] ?? fallback)
     : projectTheme

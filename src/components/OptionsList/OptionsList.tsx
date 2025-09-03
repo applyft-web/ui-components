@@ -1,4 +1,8 @@
-import React, { type HTMLAttributes, type ReactElement } from 'react'
+import React, {
+  type HTMLAttributes,
+  type ReactElement,
+  type PropsWithChildren
+} from 'react'
 import { getFormattedStyles, reactChildrenMapping } from '../../utils'
 import { GradientScrollable, type Theme } from '../../core'
 import * as S from './styled'
@@ -9,7 +13,6 @@ interface CustomStylesProps {
 }
 
 export interface OptionsListProps extends HTMLAttributes<HTMLDivElement> {
-  children?: React.ReactNode | string
   gap?: number
   customStyles?: CustomStylesProps | string
   theme?: Theme
@@ -23,7 +26,7 @@ export const OptionsList = ({
   scrollable = true,
   theme,
   ...rest
-}: OptionsListProps): ReactElement => {
+}: PropsWithChildren<OptionsListProps>): ReactElement => {
   const styles: CustomStylesProps = getFormattedStyles(customStyles, scrollable ? 'wrapper' : 'list')
   const content = (
     <S.StyledOptionsList

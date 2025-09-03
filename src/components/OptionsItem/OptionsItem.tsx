@@ -1,4 +1,4 @@
-import React, { type ReactElement } from 'react'
+import React, { type ReactElement, type PropsWithChildren } from 'react'
 import { CheckIcon, type CheckIconStyledProps } from '../Icons'
 import type { Theme } from '../../core'
 import { getFormattedStyles } from '../../utils'
@@ -13,7 +13,6 @@ interface CustomStylesProps {
 }
 
 export interface OptionsItemProps {
-  children?: ReactElement | string
   onClick: () => void
   /**
    * @since 1.5.4
@@ -47,7 +46,7 @@ export const OptionsItem = ({
   mb,
   customStyles,
   ...rest
-}: OptionsItemProps): ReactElement => {
+}: PropsWithChildren<OptionsItemProps>): ReactElement => {
   const theme = rest?.theme
   const imgSrc: string | null = img ? img.trim() : null
   const styles = getFormattedStyles(customStyles, 'option')

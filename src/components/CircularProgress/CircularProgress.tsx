@@ -1,9 +1,8 @@
-import React, { type ReactElement } from 'react'
+import React, { type ReactElement, type PropsWithChildren } from 'react'
 import { type Theme } from 'core'
 import * as S from './styled'
 
 export interface CircularProgressProps {
-  children?: React.ReactNode | string
   size?: number
   progress?: number | number[]
   mt?: string | number
@@ -20,7 +19,7 @@ export const CircularProgress = ({
   mb,
   customStyles,
   ...rest
-}: CircularProgressProps): ReactElement => {
+}: PropsWithChildren<CircularProgressProps>): ReactElement => {
   const theme = rest?.theme as Theme
   const isSmall = size < 100
 

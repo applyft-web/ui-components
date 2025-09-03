@@ -1,9 +1,8 @@
-import React, { type ReactElement } from 'react'
+import React, { type ReactElement, type PropsWithChildren } from 'react'
 import { getFormattedStyles } from '../../../utils'
 import * as S from './styled'
 
 export interface MainLayoutProps {
-  children?: any
   pt?: string | number
   pb?: string | number
   customStyles?: S.MainLayoutCustomStylesWithStatesProps | string
@@ -18,7 +17,7 @@ export const MainLayout = ({
   customStyles,
   adaptive = false,
   ...rest
-}: MainLayoutProps): ReactElement => {
+}: PropsWithChildren<MainLayoutProps>): ReactElement => {
   const styles: S.MainLayoutCustomStylesWithStatesProps = getFormattedStyles(customStyles, 'default')
 
   return (

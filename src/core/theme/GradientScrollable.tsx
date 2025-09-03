@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  type PropsWithChildren,
+  type ReactElement
+} from 'react'
 import styled from 'styled-components'
 
 interface ScrollableContainerProps {
@@ -48,13 +54,12 @@ const ScrollableContainer = styled('div')<ScrollableContainerProps>`
 `
 
 interface GradientScrollableProps {
-  children?: any
   customStyles?: string
   customRef?: React.RefObject<HTMLDivElement>
   [propName: string]: any
 }
 
-export const GradientScrollable = ({ children, customStyles, customRef, ...rest }: GradientScrollableProps) => {
+export const GradientScrollable = ({ children, customStyles, customRef, ...rest }: PropsWithChildren<GradientScrollableProps>): ReactElement => {
   const [topGradient, setTopGradient] = useState(false)
   const [bottomGradient, setBottomGradient] = useState(false)
   const ref = customRef || useRef<HTMLDivElement>(null)

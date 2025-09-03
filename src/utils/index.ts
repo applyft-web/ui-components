@@ -1,20 +1,26 @@
-import React, { useEffect } from 'react'
+import {
+  type ReactNode,
+  useEffect,
+  isValidElement,
+  cloneElement,
+  Children
+} from 'react'
 
 export const getTextAlign = (isRtl: boolean = false): string => {
   return isRtl ? 'right' : 'left'
 }
 
-export const reactChildrenMapping = (children: React.ReactNode, customProps: object = {}) => {
+export const reactChildrenMapping = (children: ReactNode, customProps: object = {}) => {
   if (children) {
     return (
-      React.Children.map(children, (child, index) => {
-        if (React.isValidElement(child)) {
+      Children.map(children, (child, index) => {
+        if (isValidElement(child)) {
           const props = {
             key: index,
             ...customProps,
             ...child.props
           }
-          return React.cloneElement(child, props)
+          return cloneElement(child, props)
         }
       })
     )
