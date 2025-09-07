@@ -1,23 +1,23 @@
-import React from 'react';
+import React, { type ReactElement } from 'react'
 import {
   ContinueButton,
   type ContinueButtonProps,
-  type ButtonCustomStylesWithStatesProps,
-} from '../ContinueButton';
-import { PaypalIcon } from '../../Icons';
-import { mergeStyleObjects, getFormattedStyles } from '../../../utils';
+  type ButtonCustomStylesWithStatesProps
+} from '../ContinueButton'
+import { PaypalIcon } from '../../Icons'
+import { mergeStyleObjects, getFormattedStyles } from '../../../utils'
 
 const typeStyles: ButtonCustomStylesWithStatesProps = {
   default: 'background-color:#F9C456;padding:0 20px;border-radius:12px;',
-  hover: 'background-color:#F9C456;',
-};
+  hover: 'background-color:#F9C456;'
+}
 const transparentStyles: ButtonCustomStylesWithStatesProps = {
   default: 'background-color:rgba(0,157,225,.13);border:1px solid #009DE1;border-radius:12px;',
-  hover: 'background-color:rgba(0,157,225,.13);',
-};
+  hover: 'background-color:rgba(0,157,225,.13);'
+}
 
 export interface PaypalButtonProps extends ContinueButtonProps {
-  transparentStyle?: boolean;
+  transparentStyle?: boolean
 }
 
 export const PaypalButton = ({
@@ -25,9 +25,9 @@ export const PaypalButton = ({
   onClick,
   customStyles,
   ...rest
-}: PaypalButtonProps) => {
-  const localStyles = mergeStyleObjects(typeStyles, transparentStyle ? transparentStyles : {});
-  const styles: ButtonCustomStylesWithStatesProps = getFormattedStyles(customStyles, 'default');
+}: PaypalButtonProps): ReactElement => {
+  const localStyles = mergeStyleObjects(typeStyles, transparentStyle ? transparentStyles : {})
+  const styles: ButtonCustomStylesWithStatesProps = getFormattedStyles(customStyles, 'default')
 
   return (
     <ContinueButton
@@ -39,5 +39,5 @@ export const PaypalButton = ({
     >
       <PaypalIcon />
     </ContinueButton>
-  );
-};
+  )
+}

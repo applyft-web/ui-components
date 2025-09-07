@@ -1,6 +1,6 @@
-import { createGlobalStyle, css } from 'styled-components'
+import { createGlobalStyle } from 'styled-components'
 
-export const GlobalStyles = createGlobalStyle<{ $isArabic?: boolean, $customStyles?: string }>`
+export const GlobalStyles = createGlobalStyle<{ $customStyles?: string }>`
   :root {
     --system-ui: Arial, system-ui, "Segoe UI", Roboto, Helvetica, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   }
@@ -14,10 +14,6 @@ export const GlobalStyles = createGlobalStyle<{ $isArabic?: boolean, $customStyl
     -webkit-tap-highlight-color: transparent;
     -webkit-text-size-adjust: none;
     overscroll-behavior: none;
-    ${({ $isArabic }) => $isArabic && css`
-      direction: rtl;
-      //unicode-bidi: bidi-override;
-    `};
 
     &::-webkit-scrollbar {
       width: 0;
@@ -83,5 +79,3 @@ export const GlobalStyles = createGlobalStyle<{ $isArabic?: boolean, $customStyl
   
   ${({ $customStyles }) => $customStyles};
 `
-
-export { useDynamicHeight } from '../../utils'

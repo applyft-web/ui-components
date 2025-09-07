@@ -1,12 +1,13 @@
-import React, { type ReactNode, type ReactElement } from 'react'
+import React, { type PropsWithChildren, type JSX, useLayoutEffect } from 'react'
 import { ThemeProvider } from 'styled-components'
 import { getTheme, type Theme, type ProjectName } from './theme'
-import { GlobalStyles, useDynamicHeight } from './globalStyles'
+import { GlobalStyles } from './globalStyles'
+import { useDynamicHeight } from '../../utils'
 
-const GZ = 'geozilla'
-const FL = 'family-locator'
-const FO = 'familo'
-const BB = 'brainbloom'
+const GZ: ProjectName = 'geozilla'
+const FL: ProjectName = 'family-locator'
+const FO: ProjectName = 'familo'
+const BB: ProjectName = 'brainbloom'
 
 const namesList: Record<string, ProjectName> = {
   geozilla: GZ,
@@ -21,33 +22,76 @@ const namesList: Record<string, ProjectName> = {
 
 const fallback = namesList.gz
 
+// TODO: replace `isArabic` with `isRtl` when all projects are updated + components refactoring
+// TODO: remove `enableRTL` when all projects are updated
+
 interface ProviderComponentProps {
-  children?: ReactNode | string
   projectTheme: string | Theme
   customGlobalStyles?: string
   customTheme?: Record<string, string>
+  /**
+   * @since 1.5.4
+   * @deprecated use `isRtl` instead of `isArabic` (still working for backward compatibility)
+   */
   isArabic?: boolean
+  isRtl?: boolean
+  /**
+   * @since 1.5.1
+   * @experimental use in projects with `dir` attribute in `<html>` tag
+   */
   enableRTL?: boolean
 }
 
+/**
+ * Lets you wrap your app with theme context using {@link ThemeProvider}.
+ *
+ * @example
+ *
+ * ```tsx
+ * import { GlobalThemeProvider } from '@applyft-web/ui-components';
+ *
+ * <GlobalThemeProvider
+ *   projectTheme={'GZ'}
+ *   customGlobalStyles={'body { background-color: red; }'}
+ *   isRtl={true}
+ *   enableRTL={true}
+ * >
+ *  <App />
+ * </GlobalThemeProvider>
+ * ```
+ */
 export const GlobalThemeProvider = ({
   children,
   projectTheme = fallback,
   customTheme = {},
   customGlobalStyles,
   isArabic = false,
-  enableRTL = false // temp
-}: ProviderComponentProps): ReactElement => {
+  isRtl = isArabic,
+  enableRTL = false
+}: PropsWithChildren<ProviderComponentProps>): JSX.Element => {
   const currentTheme = typeof projectTheme === 'string'
     ? getTheme(namesList[projectTheme.toLowerCase()] ?? fallback)
     : projectTheme
 
   useDynamicHeight()
 
+  useLayoutEffect(() => {
+    if (typeof document !== 'undefined') {
+      document.documentElement.setAttribute('dir', isRtl && enableRTL ? 'rtl' : 'ltr')
+      // document.documentElement.dir = isRtl && enableRTL ? 'rtl' : 'ltr';
+    }
+  }, [isRtl, enableRTL])
+
   return (
     <>
-      <ThemeProvider theme={{ ...currentTheme, isArabic, enableRTL, ...{ custom: customTheme } }}>
-        <GlobalStyles $customStyles={customGlobalStyles} $isArabic={isArabic && enableRTL} />
+      <ThemeProvider theme={{
+        ...currentTheme,
+        isRtl,
+        isArabic: isRtl,
+        enableRTL,
+        ...{ custom: customTheme }
+      }}>
+        <GlobalStyles $customStyles={customGlobalStyles} />
         {children}
       </ThemeProvider>
     </>

@@ -1,44 +1,46 @@
-import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
-import { type ReviewProps, type ReviewsSliderProps, ReviewsSlider } from './ReviewsSlider';
-import { themesToControls } from '../../stories';
-import { getTheme, GlobalThemeProvider, GradientScrollable } from '../../core';
-import { MainLayout } from '../Layouts';
+import React, { type ReactElement, type ReactNode } from 'react'
+import type { Meta, StoryObj } from '@storybook/react'
+import { type ReviewProps, type ReviewsSliderProps, ReviewsSlider } from './ReviewsSlider'
+import { themesToControls } from '../../stories'
+import { getTheme, GlobalThemeProvider, GradientScrollable } from '../../core'
+import { MainLayout } from '../Layouts'
 
+/*
 const reviewsList: ReviewProps[] = [
   {
     name: 'John Saymont',
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nunc. Nulla facilisi.',
-    img: 'https://quiz-stage.brainbloom.me/assets/images/reviewers/review_1.png',
+    img: 'https://quiz-stage.brainbloom.me/assets/images/reviewers/review_1.png'
   },
   {
     name: 'Erica Hilertoff',
     text: 'lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nunc. Nulla facilisi.',
-    img: 'https://quiz-stage.brainbloom.me/assets/images/reviewers/review_2.png',
+    img: 'https://quiz-stage.brainbloom.me/assets/images/reviewers/review_2.png'
   },
   {
     name: 'Yan Frunder',
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nunc. Nulla facilisi.',
-    img: 'https://quiz-stage.brainbloom.me/assets/images/reviewers/review_3.png',
+    img: 'https://quiz-stage.brainbloom.me/assets/images/reviewers/review_3.png'
   },
   {
     name: 'Kiara Martínez',
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nunc. Nulla facilisi.',
-    img: 'https://quiz-stage.brainbloom.me/assets/images/reviewers/review_4.png',
+    img: 'https://quiz-stage.brainbloom.me/assets/images/reviewers/review_4.png'
   },
   {
     name: 'Wesley Everson',
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nunc. Nulla facilisi.',
-    img: 'https://quiz-stage.brainbloom.me/assets/images/reviewers/review_5.png',
+    img: 'https://quiz-stage.brainbloom.me/assets/images/reviewers/review_5.png'
   },
   {
     name: 'Shanon Burges',
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nunc. Nulla facilisi.',
-    img: 'https://quiz-stage.brainbloom.me/assets/images/reviewers/review_6.png',
-  },
-];
+    img: 'https://quiz-stage.brainbloom.me/assets/images/reviewers/review_6.png'
+  }
+]
+*/
 
-const reviewsList2 = [
+const reviewsList2: ReviewProps[] | ReactNode[] = [
   <>
     <span>1</span>
     <span>2</span>
@@ -49,36 +51,49 @@ const reviewsList2 = [
     <div>5</div>
     <span>6</span>
   </>,
-  <img src={'https://placehold.co/100x100'} width={100} height={100} alt={'placeholder'}/>,
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nunc. Nulla facilisi.',
-];
+  <img
+    src={'https://placehold.co/100x100'}
+    width={100}
+    height={100}
+    alt={'placeholder'}
+    key={'img'}
+  />,
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nunc. Nulla facilisi.'
+]
 
-const Wrapper = (props: ReviewsSliderProps) => {
+const Wrapper = (props: ReviewsSliderProps): ReactElement => {
   return (
     <GlobalThemeProvider projectTheme={props.theme}>
       <MainLayout>
         <GradientScrollable>
           <ReviewsSlider {...props} reviewsList={reviewsList2} />
         </GradientScrollable>
-        <div style={{fontSize:'12px',whiteSpace:'nowrap',color:'gray',marginTop:30}}>{'Edit ReviewsSlider.stories.tsx to see classic reviews'}</div>
+        <div style={{
+          fontSize: 12,
+          whiteSpace: 'nowrap',
+          color: 'gray',
+          marginTop: 30
+        }}>
+          {'Edit ReviewsSlider.stories.tsx to see classic reviews'}
+        </div>
       </MainLayout>
     </GlobalThemeProvider>
-  );
+  )
 }
 
 const meta: Meta<typeof ReviewsSlider> = {
   component: Wrapper,
   parameters: {
     controls: {
-      exclude: ['mt', 'mb'],
-    },
+      exclude: ['mt', 'mb']
+    }
   },
   argTypes: {
-    ...themesToControls,
-  },
-};
+    ...themesToControls
+  }
+}
 
-export default meta;
+export default meta
 
 export const ReviewsSliderStoryTemplate: StoryObj<typeof meta> = {
   args: {
@@ -86,12 +101,12 @@ export const ReviewsSliderStoryTemplate: StoryObj<typeof meta> = {
     interval: 3,
     sideMargin: 16,
     staticMode: true,
-    isArabic: false,
+    isRtl: false,
     customStyles: {
       container: '',
-      item: '',
-    },
-  },
-};
+      item: ''
+    }
+  }
+}
 
-ReviewsSliderStoryTemplate.storyName = 'ReviewsSlider';
+ReviewsSliderStoryTemplate.storyName = 'ReviewsSlider'

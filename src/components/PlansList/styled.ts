@@ -6,7 +6,7 @@ interface StylesProps {
 }
 
 interface CommonProps {
-  readonly $isArabic?: boolean
+  readonly $isRtl?: boolean
   readonly $isActive?: boolean
 }
 
@@ -42,7 +42,7 @@ export const PlansBlock = styled('ul')<MarginProps & StylesProps>(
 )
 
 export const PlanLi = styled('li')<PlanItemProps>(
-  ({ theme, $withLabel, $isActive, $isArabic = theme.isArabic, $gap, $labelCustomStyles, $customStyles }) => {
+  ({ theme, $withLabel, $isActive, $isRtl = Boolean(theme.isRtl), $gap, $labelCustomStyles, $customStyles }) => {
     const styles = getFormattedStyles($customStyles, 'default')
 
     return css`
@@ -51,7 +51,7 @@ export const PlanLi = styled('li')<PlanItemProps>(
       --label-height: ${$withLabel ? '18px' : '0px'};
       --plan-mt: ${$gap !== undefined ? getCssSize($gap) : '8px'};
       display: flex;
-      flex-direction: ${($isArabic && !theme.enableRTL) ? 'row-reverse' : 'row'};
+      flex-direction: ${($isRtl && !theme.enableRTL) ? 'row-reverse' : 'row'};
       justify-content: space-between;
       align-items: center;
       background-color: ${theme?.colors?.planItemBg};
@@ -97,16 +97,16 @@ export const PlanLi = styled('li')<PlanItemProps>(
 )
 
 export const StyledPeriod = styled('div')<CommonProps>(
-  ({ theme, $isArabic = theme.isArabic }) => css`
+  ({ theme, $isRtl = Boolean(theme.isRtl) }) => css`
     display: flex;
-    flex-direction: ${($isArabic && !theme.enableRTL) ? 'row-reverse' : 'row'};
-    text-align: ${getTextAlign($isArabic)};
+    flex-direction: ${($isRtl && !theme.enableRTL) ? 'row-reverse' : 'row'};
+    text-align: ${getTextAlign($isRtl)};
     align-items: center;
   `
 )
 
 export const PlanCheck = styled('div')<CommonProps & StylesProps>(
-  ({ theme, $isActive, $isArabic = theme.isArabic, $customStyles }) => css`
+  ({ theme, $isActive, $isRtl = Boolean(theme.isRtl), $customStyles }) => css`
     --check-size: 24px;
     width: var(--check-size);
     height: var(--check-size);
@@ -115,7 +115,7 @@ export const PlanCheck = styled('div')<CommonProps & StylesProps>(
     background-color: ${theme?.colors?.[$isActive ? 'primary' : 'bodyBackground']};
     position: relative;
     margin: 0 16px;
-    margin-${getTextAlign($isArabic)}: 0;
+    margin-${getTextAlign($isRtl)}: 0;
     flex-shrink: 0;
 
     .check-icon {
@@ -130,11 +130,11 @@ export const PlanCheck = styled('div')<CommonProps & StylesProps>(
 )
 
 export const PlanTitle = styled('div')<CommonProps>(
-  ({ theme, $isActive, $isArabic = theme.isArabic }) => css`
+  ({ theme, $isActive, $isRtl = Boolean(theme.isRtl) }) => css`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-${$isArabic ? 'end' : 'start'};
+    align-items: flex-${$isRtl ? 'end' : 'start'};
     font-weight: 700;
     font-size: 16px;
     line-height: 24px;

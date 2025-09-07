@@ -1,40 +1,40 @@
-import React from 'react';
-import styled from 'styled-components';
-import { Theme } from '../../core';
-import { getFormattedStyles } from '../../utils';
+import React, { type ReactElement } from 'react'
+import styled from 'styled-components'
+import { type Theme } from '../../core'
+import { getFormattedStyles } from '../../utils'
 
 interface CommonProps {
-  readonly $isActive: boolean;
-  readonly $customStyles?: string;
+  readonly $isActive: boolean
+  readonly $customStyles?: string
 }
 
 const StyledSVG = styled('svg')<CommonProps>`
   ${({ $customStyles }) => $customStyles};
-`;
+`
 
 const StyledPath = styled('path')<CommonProps>`
   fill: ${({ theme, $isActive }) => theme?.colors?.[`option${$isActive ? 'Active' : 'Inactive'}`] ?? '#fff'};
 
   ${({ $customStyles }) => $customStyles};
-`;
+`
 
 export interface CheckIconStyledProps {
-  svg?: string;
-  path?: string;
+  svg?: string
+  path?: string
 }
 
 interface CheckIconProps {
-  isActive?: boolean;
-  theme?: Theme;
-  customStyles?: CheckIconStyledProps | string;
+  isActive?: boolean
+  theme?: Theme
+  customStyles?: CheckIconStyledProps | string
 }
 
 export const CheckIcon = ({
   isActive,
   theme,
-  customStyles,
-}: CheckIconProps) => {
-  const styles: CheckIconStyledProps = getFormattedStyles(customStyles, 'svg');
+  customStyles
+}: CheckIconProps): ReactElement => {
+  const styles: CheckIconStyledProps = getFormattedStyles(customStyles, 'svg')
 
   return (
     <StyledSVG
@@ -57,5 +57,5 @@ export const CheckIcon = ({
         theme={theme}
       />
     </StyledSVG>
-  );
-};
+  )
+}

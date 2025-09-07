@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useMemo } from 'react'
+import React, { useState, useEffect, useMemo, type ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
+import { type Theme } from '../../core'
 import { getFormattedStyles } from '../../utils'
 import * as S from './styled'
 
@@ -25,7 +26,12 @@ export interface SignupInputProps {
   isValid: boolean
   setValue: React.Dispatch<React.SetStateAction<string>>
   submitEmail: () => void
+  /**
+   * @since 1.5.4
+   * @deprecated use `isRtl` instead. or use GlobalThemeProvider with `isRtl` flag
+   */
   isArabic?: boolean
+  isRtl?: boolean
   customStyles?: CustomStylesProps | string
   autoFocus?: boolean
   customId?: string
@@ -45,6 +51,7 @@ export const SignupInput = ({
   setValue,
   submitEmail,
   isArabic,
+  isRtl = isArabic,
   customStyles = '',
   autoFocus = true,
   customId = 'sign-up-input',
@@ -53,26 +60,26 @@ export const SignupInput = ({
   withError = false,
   isDev = false,
   ...rest
-}: SignupInputProps) => {
+}: SignupInputProps): ReactElement => {
   const { t } = useTranslation()
-  const theme = rest?.theme
+  const theme = rest?.theme as Theme
   const [selected, setSelected] = useState<null | string>(null)
   const [error, setError] = useState(false)
   const DOMAINS = useMemo(() => isDev
     ? ['mailinator.com', 'yopmail.com', 'temp-mail.org']
     : ['gmail.com', 'yahoo.com', 'hotmail.com'],
   [])
-  const DomainsList = ({ customStyles }: { customStyles?: ButtonsCustomStylesProps | string }) => {
+  const DomainsList = ({ customStyles }: { customStyles?: ButtonsCustomStylesProps | string }): ReactElement => {
     if (!withDomainButtons) return null
 
     const buttonsStyles: ButtonsCustomStylesProps = getFormattedStyles(customStyles, 'wrapper')
-    const onAddDomainClick = (domain: string) => {
+    const onAddDomainClick = (domain: string): void => {
       if (!value) return
       setValue((prevState) => (prevState.split('@')[0] += domain))
       setSelected(domain)
       setError(isValid)
     }
-    const renderDomainItem = (d: string, index: number) => (
+    const renderDomainItem = (d: string, index: number): ReactElement => (
       <S.DomainBtn
         onClick={() => { onAddDomainClick('@' + d) }}
         id={'domain-button-' + (index + 1)}
@@ -88,21 +95,21 @@ export const SignupInput = ({
     const list = DOMAINS.filter((d) => (value && selected) ? d === selected : true)
 
     return (
-      <S.BtnContainer $isArabic={isArabic} $customStyles={buttonsStyles?.wrapper}>
+      <S.BtnContainer $isRtl={isRtl} $customStyles={buttonsStyles?.wrapper}>
         {list.map(renderDomainItem)}
       </S.BtnContainer>
     )
   }
-  const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setValue(event.target.value)
     setError(false)
   }
-  const onBlurHandler = (event: React.FocusEvent<HTMLInputElement>) => {
+  const onBlurHandler = (event: React.FocusEvent<HTMLInputElement>): void => {
     if (!event.relatedTarget?.id?.includes('domain')) {
       setError(!!value && !isValid)
     }
   }
-  const onKeyPressHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const onKeyPressHandler = (e: React.KeyboardEvent<HTMLInputElement>): void => {
     if (e.key === 'Enter' && isValid) {
       e.preventDefault()
       submitEmail()
@@ -120,7 +127,7 @@ export const SignupInput = ({
   const content = (
     <>
       <S.InputWrapper
-        $isArabic={isArabic}
+        $isRtl={isRtl}
         $showPlaceholder={!value}
         data-placeholder={placeholder}
         $error={error}
@@ -136,7 +143,7 @@ export const SignupInput = ({
           onKeyDown={onKeyPressHandler}
           id={customId}
           $error={error}
-          $isArabic={isArabic}
+          $isRtl={isRtl}
           $customStyles={styles?.input}
           theme={theme}
           autoFocus={autoFocus}

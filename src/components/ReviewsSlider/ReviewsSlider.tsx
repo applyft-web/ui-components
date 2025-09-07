@@ -1,5 +1,13 @@
-import React, { type ReactNode, useEffect, useRef, useState } from 'react'
+import React, {
+  type HTMLAttributes,
+  type ReactElement,
+  type ReactNode,
+  useEffect,
+  useRef,
+  useState
+} from 'react'
 import { useTheme } from 'styled-components'
+import { type Theme } from '../../core'
 import { getFormattedStyles } from '../../utils'
 import * as S from './styled'
 
@@ -16,16 +24,21 @@ interface CustomStylesProps {
   readonly item?: string
 }
 
-export interface ReviewsSliderProps {
+export interface ReviewsSliderProps extends HTMLAttributes<HTMLDivElement> {
   reviewsList: ReviewProps[] | ReactNode[]
   mt?: number | string
   mb?: number | string
   interval?: number
   sideMargin?: number
   staticMode?: boolean
+  /**
+   * @since 1.5.4
+   * @deprecated use `isRtl` instead. or use GlobalThemeProvider with `isRtl` flag
+   */
   isArabic?: boolean
+  isRtl?: boolean
   customStyles?: CustomStylesProps | string
-  [propName: string]: any
+  theme?: Theme
 }
 
 export const ReviewsSlider = ({
@@ -36,22 +49,23 @@ export const ReviewsSlider = ({
   sideMargin,
   staticMode = false,
   isArabic,
+  isRtl = isArabic,
   customStyles,
+  theme,
   ...rest
-}: ReviewsSliderProps) => {
-  const theme = rest?.theme
+}: ReviewsSliderProps): ReactElement => {
   const currentTheme = useTheme()
   const styles: CustomStylesProps = getFormattedStyles(customStyles, 'container')
   const sliderInterval = interval * 1000
   const sliderRef = useRef<HTMLDivElement>(null)
   const [stopAutoScroll, setStopAutoScroll] = useState(false)
   const [lastItemAdded, setLastItemAdded] = useState(false)
-  const renderReviews = (r: ReviewProps | ReactNode, index: number) => {
+  const renderReviews = (r: ReviewProps | ReactNode, index: number): ReactElement => {
     const { name, text, img } = r as ReviewProps
     return (
       <S.ReviewsItem
         $staticMode={staticMode}
-        $isArabic={isArabic}
+        $isRtl={isRtl}
         theme={theme}
         $customStyles={styles?.item}
         $sideMargin={sideMargin}
@@ -64,7 +78,7 @@ export const ReviewsSlider = ({
                 <S.Reviewer
                   $image={img}
                   theme={theme}
-                  $isArabic={isArabic}
+                  $isRtl={isRtl}
                 >
                   {name || '\u00A0'}
                 </S.Reviewer>
@@ -76,7 +90,7 @@ export const ReviewsSlider = ({
     )
   }
   const items = reviewsList.map(renderReviews)
-  const touchMoveHandler = (e: React.TouchEvent) => {
+  const touchMoveHandler = (e: React.TouchEvent): void => {
     /*
     if (staticMode) return;
 
@@ -93,11 +107,11 @@ export const ReviewsSlider = ({
     }
     */
   }
-  const touchStartHandler = (e: React.TouchEvent) => {
+  const touchStartHandler = (e: React.TouchEvent): void => {
     if (staticMode) return
     setStopAutoScroll(true)
   }
-  const touchEndHandler = (e: React.TouchEvent) => {
+  const touchEndHandler = (e: React.TouchEvent): void => {
     if (staticMode) return
     setStopAutoScroll(false)
   }
@@ -118,7 +132,7 @@ export const ReviewsSlider = ({
 
     let counter = 0
 
-    const nextSlide = () => {
+    const nextSlide = (): void => {
       if (stopAutoScroll) return
       counter++
       updateSlidePosition()
@@ -126,9 +140,9 @@ export const ReviewsSlider = ({
 
     const sliderItem = slider.children[0] as HTMLElement
     const sliderItemWidth = sliderItem.offsetWidth
-    const sliderItemMargin = sideMargin ?? currentTheme?.sidePadding ?? 16
+    const sliderItemMargin = sideMargin ?? parseInt(currentTheme?.sidePadding as string) ?? 16
 
-    const updateSlidePosition = () => {
+    const updateSlidePosition = (): void => {
       slider.style.cssText = `
         transform: translateX(calc(-${counter * sliderItemWidth}px - ${counter * sliderItemMargin}px))
       `

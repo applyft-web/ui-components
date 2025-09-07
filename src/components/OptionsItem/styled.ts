@@ -15,7 +15,7 @@ export interface CustomStylesWithStatesProps {
 export type SizeProps = [number | string, number | string]
 
 interface StyledProps {
-  readonly $isArabic?: boolean
+  readonly $isRtl?: boolean
   readonly $isActive?: boolean
 }
 
@@ -32,9 +32,9 @@ interface StyledImgProps extends StyledProps {
 }
 
 export const StyledOption = styled('button')<StyledOptionProps>(
-  ({ theme, $isArabic = theme.isArabic, $isActive, $multiChoice, $mt, $mb, $customStyles }) => css`
+  ({ theme, $isRtl = Boolean(theme.isRtl), $isActive, $multiChoice, $mt, $mb, $customStyles }) => css`
     display: flex;
-    flex-direction: ${($isArabic && !theme.enableRTL) ? 'row-reverse' : 'row'};
+    flex-direction: ${($isRtl && !theme.enableRTL) ? 'row-reverse' : 'row'};
     align-items: center;
     gap: 16px;
     column-gap: 16px;
@@ -44,7 +44,7 @@ export const StyledOption = styled('button')<StyledOptionProps>(
     font-size: 16px;
     line-height: 1.5;
     color: ${theme?.colors?.text};
-    text-align: ${getTextAlign($isArabic)};
+    text-align: ${getTextAlign($isRtl)};
     position: relative;
     transition: .3s;
     cursor: pointer;
@@ -53,7 +53,7 @@ export const StyledOption = styled('button')<StyledOptionProps>(
     margin-right: auto;
     ${$multiChoice && `
       padding: 16px 56px;
-      padding-${getTextAlign($isArabic)}: 16px;
+      padding-${getTextAlign($isRtl)}: 16px;
     `};
     background-color: ${theme?.colors?.[`option${$isActive ? 'Active' : 'Inactive'}`]};
     border: 1px solid ${theme?.colors?.[`optionBorder${$isActive ? 'Active' : 'Inactive'}`]};
@@ -123,7 +123,7 @@ export const StyledImg = styled('div')<StyledImgProps & CommonProps>(
 )
 
 export const StyledCheckIcon = styled('div')<StyledProps & CommonProps>(
-  ({ theme, $isArabic = theme.isArabic, $isActive, $customStyles }) => css`
+  ({ theme, $isRtl = Boolean(theme.isRtl), $isActive, $customStyles }) => css`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -135,13 +135,13 @@ export const StyledCheckIcon = styled('div')<StyledProps & CommonProps>(
     top: 50%;
     left: 16px;
     right: 16px;
-    ${getTextAlign($isArabic)}: auto;
+    ${getTextAlign($isRtl)}: auto;
     transform: translateY(-50%);
     transition: background-color .3s;
 
     ${$customStyles};
   `
-);
+)
 
 export const ThreeDots = styled('div')<CommonProps & { $size?: SizeProps }>(
   ({ theme, $customStyles, $size }) => css`

@@ -1,17 +1,18 @@
-import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import React, { type ReactElement } from 'react'
+import type { Meta, StoryObj } from '@storybook/react'
 import {
   ContinueButton,
   MainLayout,
   OptionsItem,
   OptionsList,
-  ProgressBar,
-} from '../../components';
-import { GlobalThemeProvider } from '../../core';
-import { themes } from './theme';
+  ProgressBar
+} from '../../components'
+import { GlobalThemeProvider } from '../../core'
+import { themes } from './theme'
 
-const Test = () => {
-  const options = new Array(5).fill(0);
+const Test = (): ReactElement => {
+  const options = new Array(5).fill(0)
+
   return (
     <MainLayout pt={56} pb={88}>
       <ProgressBar
@@ -42,8 +43,8 @@ const Test = () => {
       </OptionsList>
       <ContinueButton onClick={null} mt={16} />
     </MainLayout>
-  );
-};
+  )
+}
 
 const meta: Meta<typeof GlobalThemeProvider> = {
   title: 'core/GlobalThemeProvider',
@@ -51,17 +52,17 @@ const meta: Meta<typeof GlobalThemeProvider> = {
   argTypes: {
     projectTheme: {
       options: Object.keys(themes),
-      control: 'inline-radio',
-    },
+      control: 'inline-radio'
+    }
   },
   parameters: {
     controls: {
       exclude: ['children', 'customTheme']
-    },
-  },
-};
+    }
+  }
+}
 
-export default meta;
+export default meta
 
 const customTheme = {
   property1: '#F0EFEF',
@@ -71,17 +72,17 @@ const customTheme = {
   property5: '744',
   property6: '1280',
   property7: '343',
-  property8: '343',
-};
+  property8: '343'
+}
 
 export const GlobalThemeProviderStoryTemplate: StoryObj<typeof meta> = {
   args: {
     projectTheme: 'geozilla',
     // projectTheme: customTheme,
-    isArabic: false,
+    isRtl: false,
     customTheme,
-    children: <Test />,
-  },
-};
+    children: <Test />
+  }
+}
 
-GlobalThemeProviderStoryTemplate.storyName = 'GlobalThemeProvider';
+GlobalThemeProviderStoryTemplate.storyName = 'GlobalThemeProvider'

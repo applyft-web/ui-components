@@ -1,19 +1,17 @@
-import React from 'react'
+import React, { type ReactElement } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { OptionsItem, type OptionsItemProps } from './OptionsItem'
 import { themesToControls } from '../../stories'
 import { getTheme, GlobalThemeProvider } from '../../core'
 import { MainLayout } from '../Layouts'
 
-const Wrapper = (props: OptionsItemProps) => {
-  return (
-    <GlobalThemeProvider projectTheme={props.theme}>
-      <MainLayout>
-        <OptionsItem {...props} />
-      </MainLayout>
-    </GlobalThemeProvider>
-  )
-}
+const Wrapper = (props: OptionsItemProps): ReactElement => (
+  <GlobalThemeProvider projectTheme={props.theme}>
+    <MainLayout>
+      <OptionsItem {...props} />
+    </MainLayout>
+  </GlobalThemeProvider>
+)
 
 const meta: Meta<typeof OptionsItem> = {
   component: Wrapper,
@@ -39,7 +37,7 @@ export const OptionsItemStoryTemplate: StoryObj<typeof meta> = {
       console.log('test')
     },
     theme: getTheme(),
-    isArabic: false,
+    isRtl: false,
     isActive: false,
     multiChoice: false,
     img: 'https://placehold.co/100x100',

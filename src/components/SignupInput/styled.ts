@@ -7,14 +7,14 @@ interface CommonProps {
 
 interface LabelProps {
   readonly $error?: boolean
-  readonly $isArabic?: boolean
+  readonly $isRtl?: boolean
   readonly $showPlaceholder: boolean
   readonly $placeholderStyles?: string
 }
 
 interface InputProps {
   readonly $error?: boolean
-  readonly $isArabic?: boolean
+  readonly $isRtl?: boolean
 }
 
 export const Wrapper = styled('div')<CommonProps>`
@@ -22,7 +22,7 @@ export const Wrapper = styled('div')<CommonProps>`
 `
 
 export const InputWrapper = styled('label')<LabelProps & CommonProps>(
-  ({ theme, $isArabic = theme.isArabic, $showPlaceholder, $placeholderStyles, $customStyles }) => css`
+  ({ theme, $isRtl = Boolean(theme.isRtl), $showPlaceholder, $placeholderStyles, $customStyles }) => css`
     --side-padding: 16px;
     display: block;
     position: relative;
@@ -41,8 +41,8 @@ export const InputWrapper = styled('label')<LabelProps & CommonProps>(
         transform: translateY(-50%);
         right: var(--side-padding);
         left: var(--side-padding);
-        //padding-${getTextAlign($isArabic)}: 5px;
-        text-align: ${getTextAlign($isArabic)};
+        //padding-${getTextAlign($isRtl)}: 5px;
+        text-align: ${getTextAlign($isRtl)};
 
         ${$placeholderStyles};
       }
@@ -53,7 +53,7 @@ export const InputWrapper = styled('label')<LabelProps & CommonProps>(
 )
 
 export const Input = styled('input')<InputProps & CommonProps>(
-  ({ theme, $error, $isArabic = theme.isArabic, $customStyles }) => css`
+  ({ theme, $error, $isRtl = Boolean(theme.isRtl), $customStyles }) => css`
     width: 100%;
     border-radius: 12px;
     border: none;
@@ -63,7 +63,7 @@ export const Input = styled('input')<InputProps & CommonProps>(
     font-size: 16px;
     line-height: 32px;
     color: ${theme?.colors?.text};
-    text-align: ${getTextAlign($isArabic)};
+    text-align: ${getTextAlign($isRtl)};
     position: relative;
 
     &:focus,
@@ -90,12 +90,12 @@ export const ErrorState = styled('div')<CommonProps>`
   ${({ $customStyles }) => $customStyles};
 `
 
-export const BtnContainer = styled('div')<{ $isArabic?: boolean } & CommonProps>(
-  ({ theme, $isArabic = theme.isArabic, $customStyles }) => css`
+export const BtnContainer = styled('div')<{ $isRtl?: boolean } & CommonProps>(
+  ({ theme, $isRtl = Boolean(theme.isRtl), $customStyles }) => css`
     width: 100%;
     display: flex;
     justify-content: space-between;
-    flex-direction: ${($isArabic && !theme.enableRTL) ? 'row-reverse' : 'row'};
+    flex-direction: ${($isRtl && !theme.enableRTL) ? 'row-reverse' : 'row'};
     margin-top: 16px;
     height: 28px;
     gap: 12px;
