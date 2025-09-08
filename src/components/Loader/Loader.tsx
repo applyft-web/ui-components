@@ -1,4 +1,4 @@
-import React, { type ReactElement } from 'react'
+import React, { type HTMLAttributes, type ReactElement } from 'react'
 import { getFormattedStyles } from '../../utils'
 import * as S from './styled'
 
@@ -11,7 +11,7 @@ interface CommonProps {
   type?: 'dotted' | 'solid'
 }
 
-export interface LoaderProps extends CommonProps {
+export interface LoaderProps extends HTMLAttributes<HTMLDivElement>, CommonProps {
   show?: boolean
   message?: string
   transparent?: boolean

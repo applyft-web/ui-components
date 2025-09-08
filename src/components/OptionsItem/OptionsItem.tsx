@@ -1,7 +1,7 @@
 import React, {
   type ReactElement,
   type PropsWithChildren,
-  type HTMLAttributes
+  type ButtonHTMLAttributes
 } from 'react'
 import { CheckIcon, type CheckIconStyledProps } from '../Icons'
 import { getFormattedStyles } from '../../utils'
@@ -15,7 +15,7 @@ interface CustomStylesProps {
   checkIcon?: CheckIconStyledProps | string
 }
 
-export interface OptionsItemProps extends HTMLAttributes<HTMLButtonElement> {
+export interface OptionsItemProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   onClick: () => void
   /**
    * @since 1.5.4
