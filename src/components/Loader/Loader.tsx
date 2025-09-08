@@ -1,5 +1,4 @@
 import React, { type ReactElement } from 'react'
-import { type Theme } from 'core'
 import { getFormattedStyles } from '../../utils'
 import * as S from './styled'
 
@@ -8,21 +7,20 @@ interface CustomStylesProps {
   readonly svg?: string
 }
 
-export interface SvgProps {
+interface CommonProps {
   type?: 'dotted' | 'solid'
-  fill?: string
-  [propName: string]: any
 }
 
-export interface LoaderProps extends SvgProps {
+export interface LoaderProps extends CommonProps {
   show?: boolean
   message?: string
   transparent?: boolean
   localPosition?: boolean
+  fill?: string
   customStyles?: CustomStylesProps | string
 }
 
-const SpinnerSvg = ({ type, ...rest }: SvgProps): ReactElement => {
+const SpinnerSvg = ({ type, ...rest }: CommonProps & S.StyledSVGProps): ReactElement => {
   switch (type) {
     case 'dotted': return (
       <S.StyledSVG width='48' height='48' viewBox='0 0 48 48' fill='none' xmlns='http://www.w3.org/2000/svg' {...rest}>
@@ -56,7 +54,6 @@ export const Loader = ({
   customStyles = '',
   ...rest
 }: LoaderProps): ReactElement => {
-  const theme = rest?.theme as Theme
   const styles = getFormattedStyles(customStyles, 'container')
 
   if (show) {
@@ -64,17 +61,16 @@ export const Loader = ({
       <S.StyledSpinner
         id={!localPosition ? 'loading-element' : ''}
         $transparent={transparent}
-        theme={theme}
         $localPosition={localPosition}
         $customStyles={styles?.container}
         {...rest}
       >
         <SpinnerSvg
-          {...{ type, theme }}
+          type={type}
           $fill={fill}
           $customStyles={styles?.svg}
         />
-        {!localPosition && message && <S.Message theme={theme}>{message}</S.Message>}
+        {!localPosition && message && <S.Message>{message}</S.Message>}
       </S.StyledSpinner>
     )
   }

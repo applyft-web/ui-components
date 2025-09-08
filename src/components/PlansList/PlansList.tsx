@@ -1,7 +1,6 @@
-import React, { type ReactElement } from 'react'
+import React, { type ReactElement, type HTMLAttributes } from 'react'
 import { useTheme } from 'styled-components'
 import { CheckIcon } from '../Icons'
-import { type Theme } from '../../core'
 import { getFormattedStyles } from '../../utils'
 import * as S from './styled'
 
@@ -29,7 +28,7 @@ export interface PlanProps {
   readonly label?: string
 }
 
-export interface PlansListProps {
+export interface PlansListProps extends HTMLAttributes<HTMLUListElement> {
   activePlan: string
   plans: PlanProps[]
   onPlanClick: (plan: PlanProps) => void
@@ -43,7 +42,6 @@ export interface PlansListProps {
   mt?: string | number
   mb?: string | number
   customStyles?: CustomStylesProps | string
-  [propName: string]: any
 }
 
 export const PlansList = ({
@@ -58,7 +56,6 @@ export const PlansList = ({
   customStyles,
   ...rest
 }: PlansListProps): ReactElement => {
-  const theme = rest?.theme as Theme
   const currentTheme = useTheme()
   const styles: CustomStylesProps = getFormattedStyles(customStyles, 'container')
   const renderPlans = (planInfo: PlanProps, index: number): ReactElement => {
@@ -136,8 +133,8 @@ export const PlansList = ({
     <S.PlansBlock
       $mt={mt}
       $mb={mb}
-      theme={theme}
       $customStyles={styles?.container}
+      {...rest}
     >
       {plans.map(renderPlans)}
     </S.PlansBlock>

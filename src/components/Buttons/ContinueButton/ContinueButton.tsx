@@ -1,18 +1,24 @@
-import React, { type ReactElement, type PropsWithChildren } from 'react'
+import React, {
+  type ReactElement,
+  type PropsWithChildren,
+  type ButtonHTMLAttributes
+} from 'react'
 import { useTranslation } from 'react-i18next'
 import { getFormattedStyles } from '../../../utils'
-import type { Theme } from '../../../core'
+import {
+  extractPositioningRules,
+  extractPositioningRulesFromObject
+} from './utils'
 import * as S from './styled'
 
-export interface ContinueButtonProps {
+export interface ContinueButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   onClick: () => void
   customId?: string
   mt?: string | number
   mb?: string | number
+  centered?: boolean
   staticPosition?: boolean
   customStyles?: S.ButtonCustomStylesWithStatesProps | string
-  theme?: string | Theme
-  [propName: string]: any
 }
 
 export const ContinueButton = ({
@@ -21,30 +27,13 @@ export const ContinueButton = ({
   customId = 'continue-button',
   mt,
   mb,
+  centered = true,
   staticPosition,
   customStyles,
   ...rest
 }: PropsWithChildren<ContinueButtonProps>): ReactElement => {
   const { t } = useTranslation()
   const styles: S.ButtonCustomStylesWithStatesProps = getFormattedStyles(customStyles, 'default')
-  const extractPositioningRules = (cssString: string): string => {
-    const positioningRules = cssString.match(/(position|top|right|bottom|left|z-index)\s*:\s*[^;]+;?/g)
-    return positioningRules ? positioningRules.join(' ') : ''
-  }
-  const extractPositioningRulesFromObject = (style: Record<string, any>): Record<string, any> => {
-    if (!style) return {}
-
-    const positioningProperties = ['position', 'top', 'right', 'bottom', 'left', 'zIndex']
-    const extractedStyles: Record<string, any> = {}
-
-    for (const property in style) {
-      if (positioningProperties.includes(property)) {
-        extractedStyles[property] = style[property]
-      }
-    }
-
-    return extractedStyles
-  }
 
   const btn = (
     <S.StyledButton
@@ -52,6 +41,7 @@ export const ContinueButton = ({
       id={customId}
       $mt={mt}
       $mb={mb}
+      $centered={centered}
       $customStyles={styles}
       {...rest}
     >
@@ -64,7 +54,7 @@ export const ContinueButton = ({
     : (
         <S.FixedButtonWrapper
           $customStyles={extractPositioningRules(styles.default)}
-          style={extractPositioningRulesFromObject(rest?.style)}
+          style={extractPositioningRulesFromObject(rest.style)}
         >
           {btn}
         </S.FixedButtonWrapper>

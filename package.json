@@ -26,6 +26,8 @@
     "package-publish": "npm publish",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
+    "lint": "eslint . --ext .ts,.tsx",
+    "type-check": "tsc --noEmit",
     "deploy-storybook": "npm run build-storybook && gh-pages -d storybook-static",
     "release": "npm run build && semantic-release --extends ./release.main.config.js",
     "pre-release": "npm run build && semantic-release --extends ./release.dev.config.js"

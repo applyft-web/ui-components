@@ -1,19 +1,21 @@
 import React, { type ReactElement } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { CircularProgress, type CircularProgressProps } from './CircularProgress'
-import { themesToControls } from '../../stories'
-import { getTheme, GlobalThemeProvider } from '../../core'
+import { type StoryWrapperType, themesToControls } from '../../stories'
+import { GlobalThemeProvider } from '../../core'
 import { MainLayout } from '../Layouts'
 
-const Wrapper = (props: CircularProgressProps): ReactElement => (
-  <GlobalThemeProvider projectTheme={props.theme}>
+type WrapperType = StoryWrapperType<CircularProgressProps>
+
+const Wrapper = ({ theme, isRtl, ...rest }: WrapperType): ReactElement => (
+  <GlobalThemeProvider projectTheme={theme} isRtl={isRtl} enableRTL={true}>
     <MainLayout>
-      <CircularProgress {...props} />
+      <CircularProgress {...rest} />
     </MainLayout>
   </GlobalThemeProvider>
 )
 
-const meta: Meta<typeof CircularProgress> = {
+const meta: Meta<WrapperType> = {
   component: Wrapper,
   parameters: {
     controls: {
@@ -32,7 +34,7 @@ export default meta
 
 export const CircularProgressStoryTemplate: StoryObj<typeof meta> = {
   args: {
-    theme: getTheme(),
+    theme: '',
     size: 174,
     progress: 35,
     mt: 0,

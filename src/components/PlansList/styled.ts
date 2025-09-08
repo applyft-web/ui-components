@@ -134,7 +134,7 @@ export const PlanTitle = styled('div')<CommonProps>(
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-${$isRtl ? 'end' : 'start'};
+    ${($isRtl && !theme.enableRTL) && css`align-items: flex-end;`};
     font-weight: 700;
     font-size: 16px;
     line-height: 24px;

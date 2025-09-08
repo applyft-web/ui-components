@@ -1,21 +1,21 @@
 import React, { type ReactElement } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { MarketsButton, type MarketsButtonProps } from './MarketsButton'
-import { themesToControls } from '../../../stories'
-import { getTheme, GlobalThemeProvider } from '../../../core'
+import { themesToControls, type StoryWrapperType } from '../../../stories'
+import { GlobalThemeProvider } from '../../../core'
 import { MainLayout } from '../../Layouts'
 
-const Wrapper = (props: MarketsButtonProps): ReactElement => (
-  <GlobalThemeProvider projectTheme={props.theme}>
+type WrapperType = StoryWrapperType<MarketsButtonProps>
+
+const Wrapper = ({ theme, isRtl, ...rest }: WrapperType): ReactElement => (
+  <GlobalThemeProvider projectTheme={theme} isRtl={isRtl} enableRTL={true}>
     <MainLayout>
-      <div>
-        <MarketsButton {...props} />
-      </div>
+      <MarketsButton {...rest} />
     </MainLayout>
   </GlobalThemeProvider>
 )
 
-const meta: Meta<typeof MarketsButton> = {
+const meta: Meta<WrapperType> = {
   component: Wrapper,
   parameters: {
     controls: {
@@ -35,7 +35,7 @@ export default meta
 
 export const MarketsButtonStoryTemplate: StoryObj<typeof meta> = {
   args: {
-    theme: getTheme(),
+    theme: '',
     onClick: () => { console.log('test') },
     marketName: 'google'
   }

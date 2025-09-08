@@ -1,1 +1,1 @@
-export { CircularProgress } from './CircularProgress'
+export { CircularProgress, type CircularProgressProps } from './CircularProgress'

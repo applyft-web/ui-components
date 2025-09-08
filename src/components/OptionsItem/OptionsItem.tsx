@@ -1,6 +1,9 @@
-import React, { type ReactElement, type PropsWithChildren } from 'react'
+import React, {
+  type ReactElement,
+  type PropsWithChildren,
+  type HTMLAttributes
+} from 'react'
 import { CheckIcon, type CheckIconStyledProps } from '../Icons'
-import type { Theme } from '../../core'
 import { getFormattedStyles } from '../../utils'
 import * as S from './styled'
 
@@ -12,7 +15,7 @@ interface CustomStylesProps {
   checkIcon?: CheckIconStyledProps | string
 }
 
-export interface OptionsItemProps {
+export interface OptionsItemProps extends HTMLAttributes<HTMLButtonElement> {
   onClick: () => void
   /**
    * @since 1.5.4
@@ -24,12 +27,14 @@ export interface OptionsItemProps {
   img?: string
   imgSize?: S.SizeProps | string | number
   multiChoice?: boolean
+  /**
+   * @since 1.5.4
+   * @deprecated use `id` instead.
+   */
   customId?: string
   mt?: string | number
   mb?: string | number
-  theme?: Theme
   customStyles?: CustomStylesProps | string
-  [propName: string]: any
 }
 
 export const OptionsItem = ({
@@ -42,12 +47,12 @@ export const OptionsItem = ({
   img = '',
   imgSize,
   customId = 'option-1',
+  id = customId,
   mt,
   mb,
   customStyles,
   ...rest
 }: PropsWithChildren<OptionsItemProps>): ReactElement => {
-  const theme = rest?.theme
   const imgSrc: string | null = img ? img.trim() : null
   const styles = getFormattedStyles(customStyles, 'option')
   const optionStyles: S.CustomStylesWithStatesProps = getFormattedStyles(styles.option, 'default')
@@ -64,7 +69,7 @@ export const OptionsItem = ({
       $isRtl={isRtl}
       $isActive={isActive}
       $multiChoice={multiChoice}
-      id={customId}
+      id={id}
       $mt={mt}
       $mb={mb}
       $customStyles={optionStyles}
@@ -77,10 +82,9 @@ export const OptionsItem = ({
           $size={size()}
           $isRtl={isRtl}
           $isActive={isActive}
-          theme={theme}
           $customStyles={styles?.img}
         >
-          {!imgSrc && <S.ThreeDots theme={theme} $customStyles={styles?.dots} $size={size()} />}
+          {!imgSrc && <S.ThreeDots $customStyles={styles?.dots} $size={size()} />}
         </S.StyledImg>
       )}
       {children}
@@ -89,10 +93,9 @@ export const OptionsItem = ({
           className={'check-element'}
           $isRtl={isRtl}
           $isActive={isActive}
-          theme={theme}
           $customStyles={styles?.check}
         >
-          <CheckIcon isActive={isActive} theme={theme} customStyles={styles?.checkIcon} />
+          <CheckIcon isActive={isActive} customStyles={styles?.checkIcon} />
         </S.StyledCheckIcon>
       )}
     </S.StyledOption>

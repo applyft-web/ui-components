@@ -1,8 +1,12 @@
-import React, { type ReactElement, useEffect, useState } from 'react'
-import { type Theme } from 'core'
+import React, {
+  type ReactElement,
+  type HTMLAttributes,
+  useEffect,
+  useState
+} from 'react'
 import * as S from './styled'
 
-export interface AlertProps {
+export interface AlertProps extends HTMLAttributes<HTMLDivElement> {
   show: boolean
   message: string
   clearError: () => void
@@ -13,7 +17,6 @@ export interface AlertProps {
   isArabic?: boolean
   isRtl?: boolean
   customStyles?: string
-  [propName: string]: any
 }
 
 export const Alert = ({
@@ -25,7 +28,6 @@ export const Alert = ({
   customStyles,
   ...rest
 }: AlertProps): ReactElement => {
-  const theme = rest?.theme as Theme
   const [clear, setClear] = useState(false)
 
   useEffect(() => {
@@ -50,12 +52,11 @@ export const Alert = ({
       $show={show}
       $isRtl={isRtl}
       $customStyles={customStyles}
-      theme={theme}
       {...rest}
     >
       <p>{message}</p>
       {show && (
-        <S.CloseAlert onClick={onCloseClick} $isRtl={isRtl} theme={theme}>×</S.CloseAlert>
+        <S.CloseAlert onClick={onCloseClick} $isRtl={isRtl}>×</S.CloseAlert>
       )}
     </S.StyledAlert>
   )

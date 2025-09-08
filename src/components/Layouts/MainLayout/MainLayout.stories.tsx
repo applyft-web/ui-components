@@ -1,8 +1,8 @@
 import React, { type ReactElement } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { MainLayout, type MainLayoutProps } from './MainLayout'
-import { themesToControls } from '../../../stories'
-import { getTheme, GlobalThemeProvider } from '../../../core'
+import { type StoryWrapperType, themesToControls } from '../../../stories'
+import { GlobalThemeProvider } from '../../../core'
 import styled from 'styled-components'
 import { ProgressBar, ContinueButton } from '../../../components'
 
@@ -29,22 +29,24 @@ const LegendBlock = styled('div')`
   }
 `
 
-const Wrapper = (props: MainLayoutProps): ReactElement => (
-  <GlobalThemeProvider projectTheme={props.theme}>
-    <MainLayout {...props}>
-        <ProgressBar totalCount={15} currentRoute={5} />
-        <ChildComponent>
-          <h1>Content</h1>
-          <LegendBlock>
-            <div /> &mdash; padding
-          </LegendBlock>
-        </ChildComponent>
-        <ContinueButton onClick={() => null} />
+type WrapperType = StoryWrapperType<MainLayoutProps>
+
+const Wrapper = ({ theme, isRtl, ...rest }: WrapperType): ReactElement => (
+  <GlobalThemeProvider projectTheme={theme} isRtl={isRtl} enableRTL={true}>
+    <MainLayout {...rest}>
+      <ProgressBar totalCount={15} currentRoute={5} />
+      <ChildComponent>
+        <h1>Content</h1>
+        <LegendBlock>
+          <div /> &mdash; padding
+        </LegendBlock>
+      </ChildComponent>
+      <ContinueButton onClick={() => null} />
     </MainLayout>
   </GlobalThemeProvider>
 )
 
-const meta: Meta<typeof MainLayout> = {
+const meta: Meta<WrapperType> = {
   component: Wrapper,
   parameters: {
     controls: {
@@ -66,7 +68,7 @@ export default meta
 
 export const MainLayoutStoryTemplate: StoryObj<typeof meta> = {
   args: {
-    theme: getTheme(),
+    theme: '',
     customStyles: 'background-color: rgb(162 220 150); height: 100%;',
     pt: 52,
     pb: 88,

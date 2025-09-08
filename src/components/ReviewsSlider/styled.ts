@@ -50,6 +50,7 @@ export const ReviewsItem = styled('div')<ReviewItemProps>(
     padding: 12px 16px;
     text-align: ${getTextAlign($isRtl)};
     transition: transform 0.5s ease;
+    ${$isRtl && css`direction: rtl;`};
 
     &:not(:last-child) {
       ${$staticMode

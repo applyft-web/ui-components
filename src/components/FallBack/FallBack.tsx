@@ -1,4 +1,4 @@
-import React, { type ReactElement } from 'react'
+import React, { type HTMLAttributes, type ReactElement } from 'react'
 import styled from 'styled-components'
 import { Loader } from '../Loader'
 
@@ -14,7 +14,7 @@ const FallBackWrapper = styled('div')`
   left: 0;
 `
 
-export const FallBack = (): ReactElement => (
+export const FallBack: React.FC<HTMLAttributes<HTMLDivElement>> = (): ReactElement => (
   <FallBackWrapper>
     <Loader show={true} transparent={true} />
   </FallBackWrapper>
