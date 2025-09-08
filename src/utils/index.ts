@@ -1,5 +1,6 @@
 import {
   type ReactNode,
+  type ReactElement,
   useEffect,
   isValidElement,
   cloneElement,
@@ -10,21 +11,27 @@ export const getTextAlign = (isRtl: boolean = false): string => {
   return isRtl ? 'right' : 'left'
 }
 
-export const reactChildrenMapping = (children: ReactNode, customProps: object = {}) => {
+export const reactChildrenMapping = (
+  children: ReactNode,
+  customProps: Record<string, unknown> = {}
+): ReactNode | undefined => {
   if (children) {
     return (
       Children.map(children, (child, index) => {
         if (isValidElement(child)) {
-          const props = {
+          const element = child as ReactElement<Record<string, unknown>>
+          const props: Record<string, unknown> = {
             key: index,
             ...customProps,
-            ...child.props
+            ...element.props
           }
-          return cloneElement(child, props)
+          return cloneElement(element, props)
         }
+        return null
       })
     )
   }
+  return undefined
 }
 
 export const useDynamicHeight = (): void => {
@@ -50,15 +57,20 @@ export const getCssSize = (val: string | number = 0): string => {
   return val.toString()
 }
 
-export const mergeStyleObjects = (obj1: Record<string, any> = {}, obj2: Record<string, any> = {}): object => {
-  const mergedTheme = Object.keys(obj1).reduce((acc, key) => {
-    return { ...acc, ...{ [key]: [obj1[key], obj2[key]].join(';') } }
+type StyleObject = Record<string, string | number | undefined>
+
+export const mergeStyleObjects = (
+  obj1: StyleObject = {},
+  obj2: StyleObject = {}
+): StyleObject => {
+  const mergedTheme = Object.keys(obj1).reduce<StyleObject>((acc, key) => {
+    return { ...acc, [key]: [obj1[key], obj2[key]].join(';') }
   }, {})
 
   return { ...obj1, ...obj2, ...mergedTheme }
 }
 
-export const getFormattedStyles = <T extends Record<string, any>>(styles: T | string, defaultKey: string): T => {
+export const getFormattedStyles = <T extends Record<string, unknown>>(styles: T | string, defaultKey: string): T => {
   if (styles) {
     if (typeof styles === 'string') {
       return { [defaultKey]: styles } as T

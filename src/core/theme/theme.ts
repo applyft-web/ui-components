@@ -2,7 +2,7 @@ type Colors = Record<string, string>
 
 export interface Theme {
   colors: Colors
-  [propName: string]: any
+  [propName: string]: string | Colors
 }
 
 export type ThemesObject = Record<string, Theme>
@@ -132,13 +132,13 @@ export const themes: ThemesObject = {
   }
 }
 
-const mergeKeys = (k: string, obj: ThemesObject): object => {
+const mergeKeys = (k: keyof Theme, obj: Theme): Record<string, unknown> => {
   const currentValue = obj[k]
   return typeof currentValue === 'object'
     ? {
         [k]: {
-          ...defaultTheme[k],
-          ...obj[k]
+          ...(defaultTheme[k] as Record<string, unknown>),
+          ...(obj[k] as Record<string, unknown>)
         }
       }
     : {}
@@ -146,8 +146,8 @@ const mergeKeys = (k: string, obj: ThemesObject): object => {
 
 export const getTheme = (projectName: ProjectName = 'geozilla'): Theme => {
   const currentTheme = themes[projectName.toLowerCase()]
-  const mergedTheme = Object.keys(currentTheme).reduce((acc, key) => {
+  const mergedTheme = (Object.keys(currentTheme) as Array<keyof Theme>).reduce<Record<string, unknown>>((acc, key) => {
     return { ...acc, ...mergeKeys(key, currentTheme) }
   }, {})
-  return { ...defaultTheme, ...currentTheme, ...mergedTheme }
+  return { ...defaultTheme, ...currentTheme, ...mergedTheme } as Theme
 }
