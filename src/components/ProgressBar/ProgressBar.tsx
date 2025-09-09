@@ -1,5 +1,4 @@
 import React, { type ReactElement } from 'react'
-import { type Theme } from '../../core'
 import { getFormattedStyles } from '../../utils'
 import * as S from './styled'
 
@@ -24,7 +23,6 @@ export interface ProgressBarProps {
    */
   isArabic?: boolean
   isRtl?: boolean
-  [propName: string]: any
 }
 
 export const ProgressBar = ({
@@ -38,7 +36,6 @@ export const ProgressBar = ({
   isRtl = isArabic,
   ...rest
 }: ProgressBarProps): ReactElement => {
-  const theme = rest?.theme as Theme
   const pages = Array.from({ length: totalCount }, (_, i) => i)
   const styles: CustomStylesProps = getFormattedStyles(customStyles, 'container')
 
@@ -47,7 +44,6 @@ export const ProgressBar = ({
       $isActive={i <= currentRoute}
       $isLastActive={i === currentRoute}
       $isSegmented={isSegmented}
-      theme={theme}
       $customStyles={styles?.segment}
       key={i}
     />
@@ -58,20 +54,17 @@ export const ProgressBar = ({
       $customStyles={styles?.container}
       $staticPosition={staticPosition}
       $isRtl={isRtl}
-      theme={theme}
     >
       <S.StyledBar
         $isSegmented={isSegmented}
         $customStyles={styles?.bar}
         $isRtl={isRtl}
-        theme={theme}
       >
         {pages.map(renderProgress)}
       </S.StyledBar>
       {skipButton && (
         <S.StyledSkip
           onClick={rest?.onContinueClick}
-          theme={theme}
           $isRtl={isRtl}
           $customStyles={styles?.skip}
         >

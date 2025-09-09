@@ -1,12 +1,14 @@
 import React, { type ReactElement } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { Loader, type LoaderProps } from './Loader'
-import { themesToControls } from '../../stories'
-import { getTheme, GlobalThemeProvider } from '../../core'
+import { type StoryWrapperType, themesToControls } from '../../stories'
+import { GlobalThemeProvider } from '../../core'
 import { MainLayout } from '../Layouts'
 
-const Wrapper = (props: LoaderProps): ReactElement => (
-  <GlobalThemeProvider projectTheme={props.theme}>
+type WrapperType = StoryWrapperType<LoaderProps>
+
+const Wrapper = ({ theme, isRtl, ...rest }: WrapperType): ReactElement => (
+  <GlobalThemeProvider projectTheme={theme} isRtl={isRtl} enableRTL={true}>
     <MainLayout>
       <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. consectetur adipiscing elit. Nullam nec</div><br/>
       <br/>
@@ -14,14 +16,14 @@ const Wrapper = (props: LoaderProps): ReactElement => (
       <div>Lorem ipsum dolor sit amet, consectetur adipiscing consectetur adipiscing elit. Nullam nec</div><br/>
       <div style={{ position: 'relative' }}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec consectetur adipiscing elit. Nullam nec consectetur adipiscing elit. Nullam nec
-        <Loader {...props} />
+        <Loader {...rest} />
       </div>
       <br/>
     </MainLayout>
   </GlobalThemeProvider>
 )
 
-const meta: Meta<typeof Loader> = {
+const meta: Meta<WrapperType> = {
   component: Wrapper,
   parameters: {
     controls: {
@@ -44,7 +46,7 @@ export default meta
 
 export const LoaderStoryTemplate: StoryObj<typeof meta> = {
   args: {
-    theme: getTheme(),
+    theme: '',
     transparent: false,
     message: 'Loading...',
     localPosition: false,

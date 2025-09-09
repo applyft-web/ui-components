@@ -1,5 +1,6 @@
 import {
   type ReactNode,
+  type ReactElement,
   useEffect,
   isValidElement,
   cloneElement,
@@ -10,21 +11,27 @@ export const getTextAlign = (isRtl: boolean = false): string => {
   return isRtl ? 'right' : 'left'
 }
 
-export const reactChildrenMapping = (children: ReactNode, customProps: object = {}) => {
+export const reactChildrenMapping = (
+  children: ReactNode,
+  customProps: Record<string, unknown> = {}
+): ReactNode | undefined => {
   if (children) {
     return (
       Children.map(children, (child, index) => {
         if (isValidElement(child)) {
-          const props = {
+          const element = child as ReactElement<Record<string, unknown>>
+          const props: Record<string, unknown> = {
             key: index,
             ...customProps,
-            ...child.props
+            ...element.props
           }
-          return cloneElement(child, props)
+          return cloneElement(element, props)
         }
+        return null
       })
     )
   }
+  return undefined
 }
 
 export const useDynamicHeight = (): void => {

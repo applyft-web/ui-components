@@ -1,19 +1,21 @@
 import React, { type ReactElement } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { type CreatingAnimationProps, CreatingAnimation } from './CreatingAnimation'
-import { themesToControls } from '../../stories'
-import { getTheme, GlobalThemeProvider } from '../../core'
+import { type StoryWrapperType, themesToControls } from '../../stories'
+import { GlobalThemeProvider } from '../../core'
 import { MainLayout } from '../Layouts'
 
-const Wrapper = (props: CreatingAnimationProps): ReactElement => (
-  <GlobalThemeProvider projectTheme={props.theme}>
+type WrapperType = StoryWrapperType<CreatingAnimationProps>
+
+const Wrapper = ({ theme, isRtl, ...rest }: WrapperType): ReactElement => (
+  <GlobalThemeProvider projectTheme={theme} isRtl={isRtl} enableRTL={true}>
     <MainLayout>
-      <CreatingAnimation {...props} />
+      <CreatingAnimation {...rest} />
     </MainLayout>
   </GlobalThemeProvider>
 )
 
-const meta: Meta<typeof CreatingAnimation> = {
+const meta: Meta<WrapperType> = {
   component: Wrapper,
   parameters: {
     controls: {
@@ -29,7 +31,7 @@ export default meta
 
 export const CircularProgressStoryTemplate: StoryObj<typeof meta> = {
   args: {
-    theme: getTheme(),
+    theme: '',
     doneCallback: () => { alert('Done!') },
     duration: 100,
     size: 174,

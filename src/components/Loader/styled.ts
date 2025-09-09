@@ -40,7 +40,12 @@ export const StyledSpinner = styled('div')<StyledSpinnerProps>(
   `
 )
 
-export const StyledSVG = styled('svg')<{ $fill?: string, $customStyles?: string }>(
+export interface StyledSVGProps {
+  $fill?: string
+  $customStyles?: string
+}
+
+export const StyledSVG = styled('svg')<StyledSVGProps>(
   ({ theme, $fill, $customStyles }) => css`
     width: 48px;
     height: 48px;

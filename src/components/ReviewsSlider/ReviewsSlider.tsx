@@ -7,7 +7,6 @@ import React, {
   useState
 } from 'react'
 import { useTheme } from 'styled-components'
-import { type Theme } from '../../core'
 import { getFormattedStyles } from '../../utils'
 import * as S from './styled'
 
@@ -38,7 +37,6 @@ export interface ReviewsSliderProps extends HTMLAttributes<HTMLDivElement> {
   isArabic?: boolean
   isRtl?: boolean
   customStyles?: CustomStylesProps | string
-  theme?: Theme
 }
 
 export const ReviewsSlider = ({
@@ -51,7 +49,6 @@ export const ReviewsSlider = ({
   isArabic,
   isRtl = isArabic,
   customStyles,
-  theme,
   ...rest
 }: ReviewsSliderProps): ReactElement => {
   const currentTheme = useTheme()
@@ -66,7 +63,6 @@ export const ReviewsSlider = ({
       <S.ReviewsItem
         $staticMode={staticMode}
         $isRtl={isRtl}
-        theme={theme}
         $customStyles={styles?.item}
         $sideMargin={sideMargin}
         key={index}
@@ -77,12 +73,11 @@ export const ReviewsSlider = ({
               <>
                 <S.Reviewer
                   $image={img}
-                  theme={theme}
                   $isRtl={isRtl}
                 >
                   {name || '\u00A0'}
                 </S.Reviewer>
-                <S.ReviewText theme={theme}>{text}</S.ReviewText>
+                <S.ReviewText>{text}</S.ReviewText>
               </>
             )
         }
@@ -178,7 +173,6 @@ export const ReviewsSlider = ({
               onTouchStart={touchStartHandler}
               onTouchMove={touchMoveHandler}
               onTouchEnd={touchEndHandler}
-              theme={theme}
             >
               {items}
             </S.ReviewsBlock>

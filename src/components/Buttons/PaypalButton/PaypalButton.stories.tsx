@@ -1,19 +1,21 @@
 import React, { type ReactElement } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { PaypalButton, type PaypalButtonProps } from './PaypalButton'
-import { themesToControls } from '../../../stories'
-import { getTheme, GlobalThemeProvider } from '../../../core'
+import { type StoryWrapperType, themesToControls } from '../../../stories'
+import { GlobalThemeProvider } from '../../../core'
 import { MainLayout } from '../../Layouts'
 
-const Wrapper = (props: PaypalButtonProps): ReactElement => (
-  <GlobalThemeProvider projectTheme={props.theme}>
+type WrapperType = StoryWrapperType<PaypalButtonProps>
+
+const Wrapper = ({ theme, isRtl, ...rest }: WrapperType): ReactElement => (
+  <GlobalThemeProvider projectTheme={theme} isRtl={isRtl} enableRTL={true}>
     <MainLayout>
-      <PaypalButton {...props} />
+      <PaypalButton {...rest} />
     </MainLayout>
   </GlobalThemeProvider>
 )
 
-const meta: Meta<typeof PaypalButton> = {
+const meta: Meta<WrapperType> = {
   component: Wrapper,
   parameters: {
     controls: {
@@ -29,7 +31,7 @@ export default meta
 
 export const PaypalButtonStoryTemplate: StoryObj<typeof meta> = {
   args: {
-    theme: getTheme(),
+    theme: '',
     onClick: () => { console.log('test') },
     transparentStyle: false
   }

@@ -1,13 +1,16 @@
-import React, { type ReactElement, type PropsWithChildren } from 'react'
+import React, {
+  type ReactElement,
+  type PropsWithChildren,
+  type HTMLAttributes
+} from 'react'
 import { getFormattedStyles } from '../../../utils'
 import * as S from './styled'
 
-export interface MainLayoutProps {
+export interface MainLayoutProps extends HTMLAttributes<HTMLDivElement> {
   pt?: string | number
   pb?: string | number
   customStyles?: S.MainLayoutCustomStylesWithStatesProps | string
   adaptive?: boolean
-  [propName: string]: any
 }
 
 export const MainLayout = ({

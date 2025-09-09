@@ -1,6 +1,16 @@
-import React, { useState, useEffect, useMemo, type ReactElement } from 'react'
+import React, {
+  useState,
+  useEffect,
+  useMemo,
+  type ReactElement,
+  type Dispatch,
+  type SetStateAction,
+  type InputHTMLAttributes,
+  type ChangeEvent,
+  type FocusEvent,
+  type KeyboardEvent
+} from 'react'
 import { useTranslation } from 'react-i18next'
-import { type Theme } from '../../core'
 import { getFormattedStyles } from '../../utils'
 import * as S from './styled'
 
@@ -18,13 +28,13 @@ interface CustomStylesProps {
   readonly buttons?: ButtonsCustomStylesProps | string
 }
 
-export interface SignupInputProps {
+export interface SignupInputProps extends InputHTMLAttributes<HTMLInputElement> {
   type?: string
   autoComplete?: string
   value: string
   placeholder: string
   isValid: boolean
-  setValue: React.Dispatch<React.SetStateAction<string>>
+  setValue: Dispatch<SetStateAction<string>>
   submitEmail: () => void
   /**
    * @since 1.5.4
@@ -39,7 +49,6 @@ export interface SignupInputProps {
   withWrapper?: boolean
   withError?: boolean
   isDev?: boolean
-  [propName: string]: any
 }
 
 export const SignupInput = ({
@@ -62,7 +71,6 @@ export const SignupInput = ({
   ...rest
 }: SignupInputProps): ReactElement => {
   const { t } = useTranslation()
-  const theme = rest?.theme as Theme
   const [selected, setSelected] = useState<null | string>(null)
   const [error, setError] = useState(false)
   const DOMAINS = useMemo(() => isDev
@@ -85,7 +93,6 @@ export const SignupInput = ({
         id={'domain-button-' + (index + 1)}
         tabIndex={index}
         key={d}
-        theme={theme}
         $customStyles={buttonsStyles?.button}
       >
         @{d}
@@ -100,16 +107,16 @@ export const SignupInput = ({
       </S.BtnContainer>
     )
   }
-  const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>): void => {
+  const onChangeHandler = (event: ChangeEvent<HTMLInputElement>): void => {
     setValue(event.target.value)
     setError(false)
   }
-  const onBlurHandler = (event: React.FocusEvent<HTMLInputElement>): void => {
+  const onBlurHandler = (event: FocusEvent<HTMLInputElement>): void => {
     if (!event.relatedTarget?.id?.includes('domain')) {
       setError(!!value && !isValid)
     }
   }
-  const onKeyPressHandler = (e: React.KeyboardEvent<HTMLInputElement>): void => {
+  const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>): void => {
     if (e.key === 'Enter' && isValid) {
       e.preventDefault()
       submitEmail()
@@ -145,8 +152,8 @@ export const SignupInput = ({
           $error={error}
           $isRtl={isRtl}
           $customStyles={styles?.input}
-          theme={theme}
           autoFocus={autoFocus}
+          {...rest}
         />
         {withError && (
           <S.ErrorState $customStyles={styles?.error}>

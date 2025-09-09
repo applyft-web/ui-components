@@ -2,14 +2,16 @@ import React, { type ReactElement } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { OptionsItem } from '../OptionsItem'
 import { OptionsList, type OptionsListProps } from './OptionsList'
-import { themesToControls } from '../../stories'
-import { getTheme, GlobalThemeProvider } from '../../core'
+import { type StoryWrapperType, themesToControls } from '../../stories'
+import { GlobalThemeProvider } from '../../core'
 import { MainLayout } from '../Layouts'
 
-const Wrapper = (props: OptionsListProps): ReactElement => (
-  <GlobalThemeProvider projectTheme={props.theme}>
+type WrapperType = StoryWrapperType<OptionsListProps>
+
+const Wrapper = ({ theme, isRtl, ...rest }: WrapperType): ReactElement => (
+  <GlobalThemeProvider projectTheme={theme} isRtl={isRtl} enableRTL={true}>
     <MainLayout>
-      <OptionsList {...props} />
+      <OptionsList {...rest} />
     </MainLayout>
   </GlobalThemeProvider>
 )
@@ -34,7 +36,7 @@ const test = (): ReactElement[] => {
   ))
 }
 
-const meta: Meta<typeof OptionsList> = {
+const meta: Meta<WrapperType> = {
   component: Wrapper,
   parameters: {
     controls: {
@@ -50,7 +52,7 @@ export default meta
 
 export const OptionsItemStoryTemplate: StoryObj<typeof meta> = {
   args: {
-    theme: getTheme(),
+    theme: '',
     children: test(),
     gap: 12,
     scrollable: true,

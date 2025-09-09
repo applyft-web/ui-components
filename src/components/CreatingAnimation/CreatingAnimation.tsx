@@ -1,16 +1,14 @@
 import React, { type ReactElement, useEffect, useState } from 'react'
-import { CircularProgress } from '../CircularProgress'
-import { type Theme } from 'core'
+import { CircularProgress, type CircularProgressProps } from '../CircularProgress'
 import * as S from './styled'
 
-export interface CreatingAnimationProps {
+export interface CreatingAnimationProps extends CircularProgressProps {
   duration?: number
   doneCallback?: (a: boolean) => void
   size?: number
   mt?: string | number
   mb?: string | number
   customStyles?: string
-  [propName: string]: any
 }
 
 export const CreatingAnimation = ({
@@ -22,7 +20,6 @@ export const CreatingAnimation = ({
   customStyles,
   ...rest
 }: CreatingAnimationProps): ReactElement => {
-  const theme = rest?.theme as Theme
   const [progress, setProgress] = useState(0)
   const timeout = duration * 1000 / 100 // "* convert to milliseconds / 100 for 100%"
 
@@ -49,11 +46,11 @@ export const CreatingAnimation = ({
       progress={progress}
       size={size}
       customStyles={customStyles}
-      theme={theme}
       mt={mt}
       mb={mb}
+      {...rest}
     >
-      <S.Percentage theme={theme}>{progress}<span>%</span></S.Percentage>
+      <S.Percentage>{progress}<span>%</span></S.Percentage>
     </CircularProgress>
   )
 }

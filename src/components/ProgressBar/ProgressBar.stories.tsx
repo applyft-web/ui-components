@@ -1,19 +1,21 @@
 import React, { type ReactElement } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { ProgressBar, type ProgressBarProps } from './ProgressBar'
-import { themesToControls } from '../../stories'
-import { getTheme, GlobalThemeProvider } from '../../core'
+import { type StoryWrapperType, themesToControls } from '../../stories'
+import { GlobalThemeProvider } from '../../core'
 import { MainLayout } from '../Layouts'
 
-const Wrapper = (props: ProgressBarProps): ReactElement => (
-  <GlobalThemeProvider projectTheme={props.theme}>
+type WrapperType = StoryWrapperType<ProgressBarProps>
+
+const Wrapper = ({ theme, isRtl, ...rest }: WrapperType): ReactElement => (
+  <GlobalThemeProvider projectTheme={theme} isRtl={isRtl} enableRTL={true}>
     <MainLayout>
-      <ProgressBar {...props} />
+      <ProgressBar {...rest} />
     </MainLayout>
   </GlobalThemeProvider>
 )
 
-const meta: Meta<typeof ProgressBar> = {
+const meta: Meta<WrapperType> = {
   component: Wrapper,
   parameters: {
     controls: {
@@ -29,7 +31,7 @@ export default meta
 
 export const ProgressBarStoryTemplate: StoryObj<typeof meta> = {
   args: {
-    theme: getTheme(),
+    theme: '',
     isSegmented: true,
     staticPosition: false,
     totalCount: 15,
