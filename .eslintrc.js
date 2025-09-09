@@ -31,11 +31,6 @@ module.exports = {
   plugins: [
     'react'
   ],
-  settings: {
-    react: {
-      version: 'detect'
-    }
-  },
   rules: {
     '@typescript-eslint/prefer-nullish-coalescing': 'off',
     'react/display-name': 'off',
