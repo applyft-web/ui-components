@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { type ReactElement } from 'react'
 import { getFormattedStyles } from '../../utils'
 import * as S from './styled'
 
@@ -17,8 +17,12 @@ export interface ProgressBarProps {
   customStyles?: CustomStylesProps | string
   staticPosition?: boolean
   onContinueClick?: () => void
+  /**
+   * @since 1.5.4
+   * @deprecated use `isRtl` instead. or use GlobalThemeProvider with `isRtl` flag
+   */
   isArabic?: boolean
-  [propName: string]: any
+  isRtl?: boolean
 }
 
 export const ProgressBar = ({
@@ -29,18 +33,17 @@ export const ProgressBar = ({
   customStyles,
   staticPosition = false,
   isArabic,
+  isRtl = isArabic,
   ...rest
-}: ProgressBarProps) => {
-  const theme = rest?.theme
+}: ProgressBarProps): ReactElement => {
   const pages = Array.from({ length: totalCount }, (_, i) => i)
   const styles: CustomStylesProps = getFormattedStyles(customStyles, 'container')
 
-  const renderProgress = (i: number) => (
+  const renderProgress = (i: number): ReactElement => (
     <S.StyledBarItem
       $isActive={i <= currentRoute}
       $isLastActive={i === currentRoute}
       $isSegmented={isSegmented}
-      theme={theme}
       $customStyles={styles?.segment}
       key={i}
     />
@@ -50,22 +53,19 @@ export const ProgressBar = ({
     <S.StyledContainer
       $customStyles={styles?.container}
       $staticPosition={staticPosition}
-      $isArabic={isArabic}
-      theme={theme}
+      $isRtl={isRtl}
     >
       <S.StyledBar
         $isSegmented={isSegmented}
         $customStyles={styles?.bar}
-        $isArabic={isArabic}
-        theme={theme}
+        $isRtl={isRtl}
       >
         {pages.map(renderProgress)}
       </S.StyledBar>
       {skipButton && (
         <S.StyledSkip
           onClick={rest?.onContinueClick}
-          theme={theme}
-          $isArabic={isArabic}
+          $isRtl={isRtl}
           $customStyles={styles?.skip}
         >
           {skipButton}

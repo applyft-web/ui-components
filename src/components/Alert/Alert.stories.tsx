@@ -1,42 +1,43 @@
-import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
-import { Alert, type AlertProps } from './Alert';
-import { themesToControls } from '../../stories';
-import { getTheme, GlobalThemeProvider } from '../../core';
-import { MainLayout } from '../Layouts';
+import React, { type ReactElement } from 'react'
+import type { Meta, StoryObj } from '@storybook/react'
+import { Alert, type AlertProps } from './Alert'
+import { themesToControls, type StoryWrapperType } from '../../stories'
+import { GlobalThemeProvider } from '../../core'
+import { MainLayout } from '../Layouts'
 
-const Wrapper = (props: AlertProps) => {
-  return (
-    <GlobalThemeProvider projectTheme={props.theme}>
-      <MainLayout>
-        <Alert {...props} />
-      </MainLayout>
-    </GlobalThemeProvider>
-  );
-}
+type WrapperType = StoryWrapperType<AlertProps>
 
-const meta: Meta<typeof Alert> = {
+const Wrapper = ({ theme, isRtl, ...rest }: WrapperType): ReactElement => (
+  <GlobalThemeProvider projectTheme={theme} isRtl={isRtl} enableRTL={true}>
+    <MainLayout>
+      <Alert {...rest} />
+    </MainLayout>
+  </GlobalThemeProvider>
+)
+
+const meta: Meta<WrapperType> = {
   component: Wrapper,
   parameters: {
     controls: {
-      exclude: ['show', 'clearError'],
-    },
+      exclude: ['show', 'clearError']
+    }
   },
   argTypes: {
-    ...themesToControls,
-  },
-};
+    ...themesToControls
+  }
+}
 
-export default meta;
+export default meta
 
 export const AlertStoryTemplate: StoryObj<typeof meta> = {
   args: {
-    theme: getTheme(),
+    theme: '',
     show: true,
     message: 'This is an alert message',
-    isArabic: false,
+    isRtl: false,
     customStyles: '',
-  },
-};
+    clearError: () => { console.log('closed!') }
+  }
+}
 
-AlertStoryTemplate.storyName = 'Alert';
+AlertStoryTemplate.storyName = 'Alert'

@@ -1,46 +1,44 @@
-import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
-import { MarketsButton, type MarketsButtonProps } from './MarketsButton';
-import { themesToControls } from '../../../stories';
-import { getTheme, GlobalThemeProvider } from '../../../core';
-import { MainLayout } from '../../Layouts';
+import React, { type ReactElement } from 'react'
+import type { Meta, StoryObj } from '@storybook/react'
+import { MarketsButton, type MarketsButtonProps } from './MarketsButton'
+import { themesToControls, type StoryWrapperType } from '../../../stories'
+import { GlobalThemeProvider } from '../../../core'
+import { MainLayout } from '../../Layouts'
 
-const Wrapper = (props: MarketsButtonProps) => {
-  return (
-    <GlobalThemeProvider projectTheme={props.theme}>
-      <MainLayout>
-        <div>
-          <MarketsButton {...props} />
-        </div>
-      </MainLayout>
-    </GlobalThemeProvider>
-  );
-};
+type WrapperType = StoryWrapperType<MarketsButtonProps>
 
-const meta: Meta<typeof MarketsButton> = {
+const Wrapper = ({ theme, isRtl, ...rest }: WrapperType): ReactElement => (
+  <GlobalThemeProvider projectTheme={theme} isRtl={isRtl} enableRTL={true}>
+    <MainLayout>
+      <MarketsButton {...rest} />
+    </MainLayout>
+  </GlobalThemeProvider>
+)
+
+const meta: Meta<WrapperType> = {
   component: Wrapper,
   parameters: {
     controls: {
-      include: ['theme', 'marketName', 'customStyles'],
-    },
+      include: ['theme', 'marketName', 'customStyles']
+    }
   },
   argTypes: {
     ...themesToControls,
     marketName: {
       options: ['google', 'apple'],
-      control: 'inline-radio',
-    },
-  },
-};
+      control: 'inline-radio'
+    }
+  }
+}
 
-export default meta;
+export default meta
 
 export const MarketsButtonStoryTemplate: StoryObj<typeof meta> = {
   args: {
-    theme: getTheme(),
-    onClick: () => console.log('test'),
-    marketName: 'google',
-  },
-};
+    theme: '',
+    onClick: () => { console.log('test') },
+    marketName: 'google'
+  }
+}
 
-MarketsButtonStoryTemplate.storyName = 'MarketsButton';
+MarketsButtonStoryTemplate.storyName = 'MarketsButton'

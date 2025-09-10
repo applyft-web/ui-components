@@ -1,44 +1,44 @@
-import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
-import { type CreatingAnimationProps, CreatingAnimation } from './CreatingAnimation';
-import { themesToControls } from '../../stories';
-import { getTheme, GlobalThemeProvider } from '../../core';
-import {MainLayout} from "../Layouts";
+import React, { type ReactElement } from 'react'
+import type { Meta, StoryObj } from '@storybook/react'
+import { type CreatingAnimationProps, CreatingAnimation } from './CreatingAnimation'
+import { type StoryWrapperType, themesToControls } from '../../stories'
+import { GlobalThemeProvider } from '../../core'
+import { MainLayout } from '../Layouts'
 
-const Wrapper = (props: CreatingAnimationProps) => {
-  return (
-    <GlobalThemeProvider projectTheme={props.theme}>
-      <MainLayout>
-        <CreatingAnimation {...props} />
-      </MainLayout>
-    </GlobalThemeProvider>
-  );
-}
+type WrapperType = StoryWrapperType<CreatingAnimationProps>
 
-const meta: Meta<typeof CreatingAnimation> = {
+const Wrapper = ({ theme, isRtl, ...rest }: WrapperType): ReactElement => (
+  <GlobalThemeProvider projectTheme={theme} isRtl={isRtl} enableRTL={true}>
+    <MainLayout>
+      <CreatingAnimation {...rest} />
+    </MainLayout>
+  </GlobalThemeProvider>
+)
+
+const meta: Meta<WrapperType> = {
   component: Wrapper,
   parameters: {
     controls: {
-      exclude: ['doneCallback'],
-    },
+      exclude: ['doneCallback']
+    }
   },
   argTypes: {
-    ...themesToControls,
-  },
-};
+    ...themesToControls
+  }
+}
 
-export default meta;
+export default meta
 
 export const CircularProgressStoryTemplate: StoryObj<typeof meta> = {
   args: {
-    theme: getTheme(),
-    doneCallback: () => alert('Done!'),
+    theme: '',
+    doneCallback: () => { alert('Done!') },
     duration: 100,
     size: 174,
     mt: 0,
     mb: 0,
-    customStyles: '',
-  },
-};
+    customStyles: ''
+  }
+}
 
-CircularProgressStoryTemplate.storyName = 'CreatingAnimation';
+CircularProgressStoryTemplate.storyName = 'CreatingAnimation'

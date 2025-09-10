@@ -1,14 +1,16 @@
-import React from 'react';
-import * as S from './styled';
-import { getFormattedStyles } from '../../../utils';
+import React, {
+  type ReactElement,
+  type PropsWithChildren,
+  type HTMLAttributes
+} from 'react'
+import { getFormattedStyles } from '../../../utils'
+import * as S from './styled'
 
-export interface MainLayoutProps {
-  children?: any;
-  pt?: string | number;
-  pb?: string | number;
-  customStyles?: S.MainLayoutCustomStylesWithStatesProps | string;
-  adaptive?: boolean;
-  [propName: string]: any;
+export interface MainLayoutProps extends HTMLAttributes<HTMLDivElement> {
+  pt?: string | number
+  pb?: string | number
+  customStyles?: S.MainLayoutCustomStylesWithStatesProps | string
+  adaptive?: boolean
 }
 
 export const MainLayout = ({
@@ -18,8 +20,8 @@ export const MainLayout = ({
   customStyles,
   adaptive = false,
   ...rest
-}: MainLayoutProps) => {
-  const styles: S.MainLayoutCustomStylesWithStatesProps = getFormattedStyles(customStyles, 'default');
+}: PropsWithChildren<MainLayoutProps>): ReactElement => {
+  const styles: S.MainLayoutCustomStylesWithStatesProps = getFormattedStyles(customStyles, 'default')
 
   return (
     <S.StyledLayout
@@ -31,5 +33,5 @@ export const MainLayout = ({
     >
       {children}
     </S.StyledLayout>
-);
-};
+  )
+}

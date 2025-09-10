@@ -1,50 +1,50 @@
-import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
-import { ProgressBar, type ProgressBarProps } from './ProgressBar';
-import { themesToControls } from '../../stories';
-import { getTheme, GlobalThemeProvider } from '../../core';
-import { MainLayout } from '../Layouts';
+import React, { type ReactElement } from 'react'
+import type { Meta, StoryObj } from '@storybook/react'
+import { ProgressBar, type ProgressBarProps } from './ProgressBar'
+import { type StoryWrapperType, themesToControls } from '../../stories'
+import { GlobalThemeProvider } from '../../core'
+import { MainLayout } from '../Layouts'
 
-const Wrapper = (props: ProgressBarProps) => {
-  return (
-    <GlobalThemeProvider projectTheme={props.theme}>
-      <MainLayout>
-        <ProgressBar {...props} />
-      </MainLayout>
-    </GlobalThemeProvider>
-  );
-};
+type WrapperType = StoryWrapperType<ProgressBarProps>
 
-const meta: Meta<typeof ProgressBar> = {
+const Wrapper = ({ theme, isRtl, ...rest }: WrapperType): ReactElement => (
+  <GlobalThemeProvider projectTheme={theme} isRtl={isRtl} enableRTL={true}>
+    <MainLayout>
+      <ProgressBar {...rest} />
+    </MainLayout>
+  </GlobalThemeProvider>
+)
+
+const meta: Meta<WrapperType> = {
   component: Wrapper,
   parameters: {
     controls: {
-      exclude: ['onContinueClick'],
-    },
+      exclude: ['onContinueClick']
+    }
   },
   argTypes: {
-    ...themesToControls,
-  },
-};
+    ...themesToControls
+  }
+}
 
-export default meta;
+export default meta
 
 export const ProgressBarStoryTemplate: StoryObj<typeof meta> = {
   args: {
-    theme: getTheme(),
+    theme: '',
     isSegmented: true,
     staticPosition: false,
     totalCount: 15,
     currentRoute: 5,
     skipButton: 'skip',
-    isArabic: false,
+    isRtl: false,
     customStyles: {
       container: '',
       bar: '',
       segment: '',
-      skip: '',
-    },
-  },
-};
+      skip: ''
+    }
+  }
+}
 
-ProgressBarStoryTemplate.storyName = 'ProgressBar';
+ProgressBarStoryTemplate.storyName = 'ProgressBar'

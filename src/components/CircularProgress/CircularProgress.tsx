@@ -1,14 +1,16 @@
-import React from 'react';
-import * as S from './styled';
+import React, {
+  type ReactElement,
+  type PropsWithChildren,
+  type HTMLAttributes
+} from 'react'
+import * as S from './styled'
 
-export interface CircularProgressProps {
-  children?: React.ReactNode | string;
-  size?: number;
-  progress?: number | number[];
-  mt?: string | number;
-  mb?: string | number;
-  customStyles?: string;
-  [propName: string]: any;
+export interface CircularProgressProps extends HTMLAttributes<HTMLDivElement> {
+  size?: number
+  progress?: number | number[]
+  mt?: string | number
+  mb?: string | number
+  customStyles?: string
 }
 
 export const CircularProgress = ({
@@ -19,9 +21,8 @@ export const CircularProgress = ({
   mb,
   customStyles,
   ...rest
-}: CircularProgressProps) => {
-  const theme = rest?.theme;
-  const isSmall = size < 100;
+}: PropsWithChildren<CircularProgressProps>): ReactElement => {
+  const isSmall = size < 100
 
   return (
     <S.ProgressWrapper
@@ -29,14 +30,13 @@ export const CircularProgress = ({
       $customStyles={customStyles}
       $mt={mt}
       $mb={mb}
-      theme={theme}
+      {...rest}
     >
       {children}
       <S.StyledSvg
-        viewBox={`${size/6} ${size/6} ${size/3} ${size/3}`}
+        viewBox={`${size / 6} ${size / 6} ${size / 3} ${size / 3}`}
         xmlns="http://www.w3.org/2000/svg"
         $size={size}
-        theme={theme}
       >
         {(typeof progress === 'number' ? [progress] : progress).map((el: number, i: number) => (
           <S.StyledCircle
@@ -46,13 +46,12 @@ export const CircularProgress = ({
             fill="none"
             strokeWidth={isSmall ? 2 : 4}
             strokeDasharray={`${size}px`}
-            strokeDashoffset={`${size * (1 - el/100)}px`}
+            strokeDashoffset={`${size * (1 - el / 100)}px`}
             key={i}
             $small={isSmall}
-            theme={theme}
           />
         ))}
       </S.StyledSvg>
     </S.ProgressWrapper>
-  );
-};
+  )
+}

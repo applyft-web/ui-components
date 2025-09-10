@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Percentage = styled('p')`
   font-weight: 700;
@@ -10,8 +10,8 @@ export const Percentage = styled('p')`
   left: 50%;
   transform: translate(-50%, -50%);
   margin: 0;
-  
+
   span {
     font-size: 24px;
   }
-`;
+`

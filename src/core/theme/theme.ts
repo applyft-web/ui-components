@@ -9,7 +9,7 @@ export type ThemesObject = Record<string, Theme>
 
 export type ProjectName = 'geozilla' | 'family-locator' | 'familo' | 'brainbloom'
 
-const defaultTheme: Record<string, any> = {
+const defaultTheme: Theme = {
   colors: {
     text: '#323232',
     bodyBackground: '#fff',
@@ -144,7 +144,7 @@ const mergeKeys = (k: string, obj: ThemesObject): object => {
     : {}
 }
 
-export const getTheme = (projectName: ProjectName = 'geozilla') => {
+export const getTheme = (projectName: ProjectName = 'geozilla'): Theme => {
   const currentTheme = themes[projectName.toLowerCase()]
   const mergedTheme = Object.keys(currentTheme).reduce((acc, key) => {
     return { ...acc, ...mergeKeys(key, currentTheme) }

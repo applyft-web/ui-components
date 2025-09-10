@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { CircularProgress } from '../CircularProgress';
-import * as S from './styled';
+import React, { type ReactElement, useEffect, useState } from 'react'
+import { CircularProgress, type CircularProgressProps } from '../CircularProgress'
+import * as S from './styled'
 
-export interface CreatingAnimationProps {
-  duration?: number;
-  doneCallback?: (a: boolean) => void;
-  size?: number;
-  mt?: string | number;
-  mb?: string | number;
-  customStyles?: string;
-  [propName: string]: any;
+export interface CreatingAnimationProps extends CircularProgressProps {
+  duration?: number
+  doneCallback?: (a: boolean) => void
+  size?: number
+  mt?: string | number
+  mb?: string | number
+  customStyles?: string
 }
 
 export const CreatingAnimation = ({
@@ -20,37 +19,38 @@ export const CreatingAnimation = ({
   mb,
   customStyles,
   ...rest
-}: CreatingAnimationProps ) => {
-  const theme = rest?.theme;
-  const [progress, setProgress] = useState(0);
-  const timeout = duration * 1000 / 100; // "* convert to milliseconds / 100 for 100%"
+}: CreatingAnimationProps): ReactElement => {
+  const [progress, setProgress] = useState(0)
+  const timeout = duration * 1000 / 100 // "* convert to milliseconds / 100 for 100%"
 
   useEffect(() => {
     if (doneCallback && progress === 100) {
       doneCallback(true)
     }
-  }, [progress, doneCallback]);
+  }, [progress, doneCallback])
 
   useEffect(() => {
     const timer = setInterval(() => {
       setProgress((prevProgress) =>
         prevProgress >= 100 ? 100 : prevProgress + 1
       )
-    }, timeout);
+    }, timeout)
 
-    return () => clearInterval(timer);
-  }, [timeout]);
+    return () => {
+      clearInterval(timer)
+    }
+  }, [timeout])
 
   return (
     <CircularProgress
       progress={progress}
       size={size}
       customStyles={customStyles}
-      theme={theme}
       mt={mt}
       mb={mb}
+      {...rest}
     >
-      <S.Percentage theme={theme}>{progress}<span>%</span></S.Percentage>
+      <S.Percentage>{progress}<span>%</span></S.Percentage>
     </CircularProgress>
-  );
-};
+  )
+}

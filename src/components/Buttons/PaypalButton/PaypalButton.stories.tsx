@@ -1,40 +1,40 @@
-import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
-import { PaypalButton, type PaypalButtonProps } from './PaypalButton';
-import { themesToControls } from '../../../stories';
-import { getTheme, GlobalThemeProvider } from '../../../core';
-import { MainLayout } from '../../Layouts';
+import React, { type ReactElement } from 'react'
+import type { Meta, StoryObj } from '@storybook/react'
+import { PaypalButton, type PaypalButtonProps } from './PaypalButton'
+import { type StoryWrapperType, themesToControls } from '../../../stories'
+import { GlobalThemeProvider } from '../../../core'
+import { MainLayout } from '../../Layouts'
 
-const Wrapper = (props: PaypalButtonProps) => {
-  return (
-    <GlobalThemeProvider projectTheme={props.theme}>
-      <MainLayout>
-        <PaypalButton {...props} />
-      </MainLayout>
-    </GlobalThemeProvider>
-  );
-};
+type WrapperType = StoryWrapperType<PaypalButtonProps>
 
-const meta: Meta<typeof PaypalButton> = {
+const Wrapper = ({ theme, isRtl, ...rest }: WrapperType): ReactElement => (
+  <GlobalThemeProvider projectTheme={theme} isRtl={isRtl} enableRTL={true}>
+    <MainLayout>
+      <PaypalButton {...rest} />
+    </MainLayout>
+  </GlobalThemeProvider>
+)
+
+const meta: Meta<WrapperType> = {
   component: Wrapper,
   parameters: {
     controls: {
-      include: ['theme', 'transparentStyle', 'customStyles'],
-    },
+      include: ['theme', 'transparentStyle', 'customStyles']
+    }
   },
   argTypes: {
-    ...themesToControls,
-  },
-};
+    ...themesToControls
+  }
+}
 
-export default meta;
+export default meta
 
 export const PaypalButtonStoryTemplate: StoryObj<typeof meta> = {
   args: {
-    theme: getTheme(),
-    onClick: () => console.log('test'),
-    transparentStyle: false,
-  },
-};
+    theme: '',
+    onClick: () => { console.log('test') },
+    transparentStyle: false
+  }
+}
 
-PaypalButtonStoryTemplate.storyName = 'PaypalButton';
+PaypalButtonStoryTemplate.storyName = 'PaypalButton'

@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import { getCssSize } from '../../../utils'
+import { getCssSize, getTextAlign } from '../../../utils'
 
 export interface ButtonCustomStylesWithStatesProps {
   readonly default?: string
@@ -11,6 +11,7 @@ interface StyledButtonProps {
   readonly $customStyles?: ButtonCustomStylesWithStatesProps
   readonly $mt?: number | string
   readonly $mb?: number | string
+  readonly $centered: boolean
 }
 
 export const FixedButtonWrapper = styled('div')<{ $customStyles?: string }>(
@@ -27,7 +28,7 @@ export const FixedButtonWrapper = styled('div')<{ $customStyles?: string }>(
 )
 
 export const StyledButton = styled('button')<StyledButtonProps>(
-  ({ theme, $customStyles, $mt, $mb }) => css`
+  ({ theme, $customStyles, $mt, $mb, $centered }) => css`
     display: block;
     width: 100%;
     max-width: ${theme?.maxContentWidth}px;
@@ -45,6 +46,7 @@ export const StyledButton = styled('button')<StyledButtonProps>(
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    text-align: ${$centered ? 'center' : getTextAlign(Boolean(theme.isRtl))};
     transition: .3s;
     cursor: pointer;
     margin-left: auto;

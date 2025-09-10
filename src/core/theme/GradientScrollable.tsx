@@ -1,10 +1,19 @@
-import React, { useState, useEffect, useRef } from 'react';
-import styled from 'styled-components';
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  type PropsWithChildren,
+  type ReactElement,
+  type HTMLAttributes,
+  type RefObject,
+  type UIEvent
+} from 'react'
+import styled from 'styled-components'
 
 interface ScrollableContainerProps {
-  $topGradient: boolean;
-  $bottomGradient: boolean;
-  $customStyles?: string;
+  $topGradient: boolean
+  $bottomGradient: boolean
+  $customStyles?: string
 }
 
 const ScrollableContainer = styled('div')<ScrollableContainerProps>`
@@ -12,13 +21,13 @@ const ScrollableContainer = styled('div')<ScrollableContainerProps>`
   overflow-y: auto;
   position: relative;
   padding: 10px 0;
-  
+
   &::-webkit-scrollbar {
     width: 0;
     height: 0;
     display: none;
   }
-  
+
   &:before, &:after {
     content: '';
     position: sticky;
@@ -26,50 +35,53 @@ const ScrollableContainer = styled('div')<ScrollableContainerProps>`
     left: 0;
     display: block;
     min-height: 1px;
-    background-color: ${({theme}) => theme?.colors?.bodyBackground || '#fff'};
-    box-shadow: 0 0 30px 30px ${({theme}) => theme?.colors?.bodyBackground || '#fff'};
+    background-color: ${({ theme }) => theme?.colors?.bodyBackground || '#fff'};
+    box-shadow: 0 0 30px 30px ${({ theme }) => theme?.colors?.bodyBackground || '#fff'};
     pointer-events: none;
     z-index: 10;
     transition: opacity 400ms ease;
   }
-  
+
   &:before {
     opacity: ${({ $topGradient }) => $topGradient ? 1 : 0};
     top: -10px;
   }
-  
+
   &:after {
     opacity: ${({ $bottomGradient }) => $bottomGradient ? 1 : 0};
     bottom: -10px;
     transform: rotate(180deg);
   }
-  
-  ${({ $customStyles }) => $customStyles};
-`;
 
-interface GradientScrollableProps {
-  children?: any;
-  customStyles?: string;
-  customRef?: React.RefObject<HTMLDivElement>;
-  [propName: string]: any;
+  ${({ $customStyles }) => $customStyles};
+`
+
+interface GradientScrollableProps extends HTMLAttributes<HTMLDivElement> {
+  customStyles?: string
+  customRef?: RefObject<HTMLDivElement>
 }
 
-export const GradientScrollable = ({ children, customStyles, customRef, ...rest }: GradientScrollableProps) => {
-  const [topGradient, setTopGradient] = useState(false);
-  const [bottomGradient, setBottomGradient] = useState(false);
-  const ref = customRef || useRef<HTMLDivElement>(null);
-  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
-    const { scrollTop, scrollHeight, clientHeight } = e.target as HTMLDivElement;
-    setTopGradient(scrollTop > 1);
-    setBottomGradient(scrollTop + clientHeight + 1 < scrollHeight); // +1 to prevent flickering or non-disappearing bottom gradient
-  };
+export const GradientScrollable = ({
+  children,
+  customStyles,
+  customRef,
+  ...rest
+}: PropsWithChildren<GradientScrollableProps>): ReactElement => {
+  const [topGradient, setTopGradient] = useState(false)
+  const [bottomGradient, setBottomGradient] = useState(false)
+  const ref = customRef || useRef<HTMLDivElement>(null)
+  const handleScroll = (e: UIEvent<HTMLDivElement>): void => {
+    const { scrollTop, scrollHeight, clientHeight } = e.target as HTMLDivElement
+    setTopGradient(scrollTop > 1)
+    setBottomGradient(scrollTop + clientHeight + 1 < scrollHeight) // +1 to prevent flickering or non-disappearing bottom gradient
+  }
 
   useEffect(() => {
     if (ref.current) {
-      const { scrollHeight, clientHeight } = ref.current;
-      setBottomGradient(scrollHeight !== clientHeight);
+      const { scrollHeight, clientHeight } = ref.current
+      setBottomGradient(scrollHeight !== clientHeight)
     }
-  }, []);
+  }, [])
 
   return (
     <ScrollableContainer
@@ -82,5 +94,5 @@ export const GradientScrollable = ({ children, customStyles, customRef, ...rest 
     >
       {children}
     </ScrollableContainer>
-  );
-};
+  )
+}

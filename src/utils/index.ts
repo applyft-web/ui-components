@@ -1,24 +1,37 @@
-import React, { useEffect } from 'react'
+import {
+  type ReactNode,
+  type ReactElement,
+  useEffect,
+  isValidElement,
+  cloneElement,
+  Children
+} from 'react'
 
-export const getTextAlign = (isArabic: boolean = false): string => {
-  return isArabic ? 'right' : 'left'
+export const getTextAlign = (isRtl: boolean = false): string => {
+  return isRtl ? 'right' : 'left'
 }
 
-export const reactChildrenMapping = (children: React.ReactNode, customProps: object = {}) => {
+export const reactChildrenMapping = (
+  children: ReactNode,
+  customProps: Record<string, unknown> = {}
+): ReactNode | undefined => {
   if (children) {
     return (
-      React.Children.map(children, (child, index) => {
-        if (React.isValidElement(child)) {
-          const props = {
+      Children.map(children, (child, index) => {
+        if (isValidElement(child)) {
+          const element = child as ReactElement<Record<string, unknown>>
+          const props: Record<string, unknown> = {
             key: index,
             ...customProps,
-            ...child.props
+            ...element.props
           }
-          return React.cloneElement(child, props)
+          return cloneElement(element, props)
         }
+        return null
       })
     )
   }
+  return undefined
 }
 
 export const useDynamicHeight = (): void => {

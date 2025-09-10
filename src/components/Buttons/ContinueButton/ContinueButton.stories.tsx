@@ -1,21 +1,21 @@
-import React from 'react'
+import React, { type ReactElement } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { ContinueButton, type ContinueButtonProps } from './ContinueButton'
-import { themesToControls } from '../../../stories'
-import { getTheme, GlobalThemeProvider } from '../../../core'
+import { themesToControls, type StoryWrapperType } from '../../../stories'
+import { GlobalThemeProvider } from '../../../core'
 import { MainLayout } from '../../Layouts'
 
-const Wrapper = (props: ContinueButtonProps) => {
-  return (
-    <GlobalThemeProvider projectTheme={props.theme}>
-      <MainLayout>
-        <ContinueButton {...props} />
-      </MainLayout>
-    </GlobalThemeProvider>
-  )
-}
+type WrapperType = StoryWrapperType<ContinueButtonProps>
 
-const meta: Meta<typeof ContinueButton> = {
+const Wrapper = ({ theme, isRtl, ...rest }: WrapperType): ReactElement => (
+  <GlobalThemeProvider projectTheme={theme} isRtl={isRtl} enableRTL={true}>
+    <MainLayout>
+      <ContinueButton {...rest} />
+    </MainLayout>
+  </GlobalThemeProvider>
+)
+
+const meta: Meta<WrapperType> = {
   component: Wrapper,
   parameters: {
     controls: {
@@ -27,12 +27,12 @@ const meta: Meta<typeof ContinueButton> = {
   }
 }
 
-export default meta;
+export default meta
 
 export const ContinueButtonStoryTemplate: StoryObj<typeof meta> = {
   args: {
     children: 'Test!',
-    theme: getTheme(),
+    theme: '',
     disabled: false,
     staticPosition: false,
     mt: 0,
@@ -41,7 +41,9 @@ export const ContinueButtonStoryTemplate: StoryObj<typeof meta> = {
       default: '',
       disabled: '',
       hover: ''
-    }
+    },
+    isRtl: false,
+    centered: true
   }
 }
 

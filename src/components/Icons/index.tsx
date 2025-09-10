@@ -1,2 +1,2 @@
-export * from './static';
-export * from './components';
+export * from './static'
+export * from './components'
