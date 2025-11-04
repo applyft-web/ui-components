@@ -76,7 +76,7 @@ export const SignupInput = ({
   const DOMAINS = useMemo(() => isDev
     ? ['mailinator.com', 'yopmail.com', 'temp-mail.org']
     : ['gmail.com', 'yahoo.com', 'hotmail.com'],
-  [])
+  [isDev])
   const DomainsList = ({ customStyles }: { customStyles?: ButtonsCustomStylesProps | string }): ReactElement => {
     if (!withDomainButtons) return null
 

@@ -127,7 +127,7 @@ export const DomainBtn = styled('button')<CommonProps>`
   cursor: pointer;
   
   &:only-child {
-    max-width: 90px;
+    max-width: 30%;
   }
   
   ${({ $customStyles }) => $customStyles};
