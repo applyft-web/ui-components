@@ -9,7 +9,7 @@ const FL: ProjectName = 'family-locator'
 const FO: ProjectName = 'familo'
 const BB: ProjectName = 'brainbloom'
 
-const namesList: Record<string, ProjectName> = {
+const aliases: Record<string, ProjectName> = {
   geozilla: GZ,
   gz: GZ,
   'family-locator': FL,
@@ -20,7 +20,7 @@ const namesList: Record<string, ProjectName> = {
   bb: BB
 }
 
-const fallback = namesList.gz
+const fallback = aliases.gz
 
 // TODO: replace `isArabic` with `isRtl` when all projects are updated + components refactoring
 // TODO: remove `enableRTL` when all projects are updated
@@ -70,7 +70,7 @@ export const GlobalThemeProvider = ({
   enableRTL = false
 }: PropsWithChildren<ProviderComponentProps>): JSX.Element => {
   const currentTheme = typeof projectTheme === 'string'
-    ? getTheme(namesList[projectTheme.toLowerCase()] ?? fallback)
+    ? getTheme(aliases[projectTheme.toLowerCase()] ?? fallback)
     : projectTheme
 
   useDynamicHeight()
