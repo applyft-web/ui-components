@@ -2,7 +2,7 @@ type Colors = Record<string, string>
 
 export interface Theme {
   colors: Colors
-  [propName: string]: string | boolean | Colors
+  [propName: string]: any
 }
 
 export type ProjectName = 'geozilla' | 'family-locator' | 'familo' | 'brainbloom'
