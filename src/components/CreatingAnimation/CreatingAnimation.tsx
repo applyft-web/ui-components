@@ -3,6 +3,9 @@ import { CircularProgress, type CircularProgressProps } from '../CircularProgres
 import * as S from './styled'
 
 export interface CreatingAnimationProps extends CircularProgressProps {
+  /**
+   * Duration of the animation in seconds
+   */
   duration?: number
   doneCallback?: (a: boolean) => void
   size?: number
@@ -21,7 +24,7 @@ export const CreatingAnimation = ({
   ...rest
 }: CreatingAnimationProps): ReactElement => {
   const [progress, setProgress] = useState(0)
-  const timeout = duration * 1000 / 100 // "* convert to milliseconds / 100 for 100%"
+  const interval = duration * 1000 / 100 // "* convert to milliseconds / 100 for 100%"
 
   useEffect(() => {
     if (doneCallback && progress === 100) {
@@ -34,12 +37,12 @@ export const CreatingAnimation = ({
       setProgress((prevProgress) =>
         prevProgress >= 100 ? 100 : prevProgress + 1
       )
-    }, timeout)
+    }, interval)
 
     return () => {
       clearInterval(timer)
     }
-  }, [timeout])
+  }, [interval])
 
   return (
     <CircularProgress
