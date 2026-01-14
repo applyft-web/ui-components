@@ -13,7 +13,7 @@ const StyledSVG = styled('svg')<CommonProps>`
 `
 
 const StyledPath = styled('path')<CommonProps>`
-  fill: ${({ theme, $isActive }) => theme?.colors?.[`option${$isActive ? 'Active' : 'Inactive'}`] ?? '#fff'};
+  fill: ${({ theme, $isActive }) => theme.colors[$isActive ? 'optionActive' : 'optionInactive'] ?? '#fff'};
 
   ${({ $customStyles }) => $customStyles};
 `
