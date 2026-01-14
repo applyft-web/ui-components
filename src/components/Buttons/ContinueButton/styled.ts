@@ -35,14 +35,14 @@ export const StyledButton = styled('button')<StyledButtonProps>(
     height: 56px;
     min-height: 30px;
     flex-shrink: 0;
-    background-color: ${theme.colors.primary};
+    background-color: ${theme.colors?.primary};
     border-radius: ${theme.buttonBorderRadius};
     border: none;
     padding: 0 10px;
     font-weight: 500;
     font-size: 16px;
     line-height: 1;
-    color: ${theme.colors.buttonColor || theme.colors.bodyBackground};
+    color: ${theme.colors?.buttonColor || theme.colors?.bodyBackground};
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -55,8 +55,8 @@ export const StyledButton = styled('button')<StyledButtonProps>(
     ${$mb !== undefined && `margin-bottom: ${getCssSize($mb)}`};
   
     &:disabled {
-      background-color: ${theme.colors.buttonDisabled};
-      color: ${theme.colors.buttonDisabledTextColor};
+      background-color: ${theme.colors?.buttonDisabled};
+      color: ${theme.colors?.buttonDisabledTextColor};
       pointer-events: none;
 
       ${$customStyles?.disabled};
@@ -68,7 +68,7 @@ export const StyledButton = styled('button')<StyledButtonProps>(
 
     @media screen and (min-width: ${theme.desktopMinWidth}px) and (hover: hover) {
       &:hover {
-        background-color: ${theme.colors.buttonHover};
+        background-color: ${theme.colors?.buttonHover};
 
         ${$customStyles?.hover};
       }

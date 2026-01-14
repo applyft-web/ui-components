@@ -58,11 +58,11 @@ export const Input = styled('input')<InputProps & CommonProps>(
     border-radius: 12px;
     border: none;
     box-shadow: inset 0 0 0 1px ${$error ? '#FF5B5B' : 'rgb(229,229,229)'};
-    background-color: ${theme.colors.inputBg};
+    background-color: ${theme.colors?.inputBg};
     padding: 12px var(--side-padding);
     font-size: 16px;
     line-height: 32px;
-    color: ${theme.colors.text};
+    color: ${theme.colors?.text};
     text-align: ${getTextAlign($isRtl)};
     position: relative;
 
@@ -70,7 +70,7 @@ export const Input = styled('input')<InputProps & CommonProps>(
     &:active {
       outline: none;
       border: none;
-      box-shadow: inset 0 0 0 1px ${!$error ? theme.colors.primary : '#E55656'};
+      box-shadow: inset 0 0 0 1px ${!$error ? theme.colors?.primary : '#E55656'};
     }
 
     ${$customStyles};
