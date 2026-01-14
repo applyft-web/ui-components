@@ -4,7 +4,7 @@ export const Percentage = styled('p')`
   font-weight: 700;
   font-size: 40px;
   line-height: 1;
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }) => theme.colors?.text};
   position: absolute;
   top: 50%;
   left: 50%;

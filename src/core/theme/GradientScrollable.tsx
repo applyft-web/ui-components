@@ -35,8 +35,8 @@ const ScrollableContainer = styled('div')<ScrollableContainerProps>`
     left: 0;
     display: block;
     min-height: 1px;
-    background-color: ${({ theme }) => theme.colors.bodyBackground || '#fff'};
-    box-shadow: 0 0 30px 30px ${({ theme }) => theme.colors.bodyBackground || '#fff'};
+    background-color: ${({ theme }) => theme.colors?.bodyBackground || '#fff'};
+    box-shadow: 0 0 30px 30px ${({ theme }) => theme.colors?.bodyBackground || '#fff'};
     pointer-events: none;
     z-index: 10;
     transition: opacity 400ms ease;

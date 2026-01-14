@@ -43,7 +43,7 @@ export const StyledOption = styled('button')<StyledOptionProps>(
     border-radius: 12px;
     font-size: 16px;
     line-height: 1.5;
-    color: ${theme.colors.text};
+    color: ${theme.colors?.text};
     text-align: ${getTextAlign($isRtl)};
     position: relative;
     transition: .3s;
@@ -81,20 +81,20 @@ export const StyledOption = styled('button')<StyledOptionProps>(
   
     @media screen and (min-width: ${theme.desktopMinWidth}px ) and (hover: hover) {
       &:hover {
-        background-color: ${theme.colors.optionActive};
-        border-color: ${theme.colors.optionBorderActive};
-        color: ${theme.colors.optionActiveText};
+        background-color: ${theme.colors?.optionActive};
+        border-color: ${theme.colors?.optionBorderActive};
+        color: ${theme.colors?.optionActiveText};
 
         .check-element {
-          background-color: ${theme.colors.optionCheckActive};
+          background-color: ${theme.colors?.optionCheckActive};
 
           path {
-            fill: ${theme.colors.optionActive};
+            fill: ${theme.colors?.optionActive};
           }
         }
 
         .option-img {
-          background-color: ${theme.colors.optionImgActive};
+          background-color: ${theme.colors?.optionImgActive};
         }
 
         ${$customStyles?.hover};
@@ -148,7 +148,7 @@ export const ThreeDots = styled('div')<CommonProps & { $size?: SizeProps }>(
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: ${theme.colors.threeDots};
+    background-color: ${theme.colors?.threeDots};
     position: absolute;
     top: 50%;
     left: 50%;

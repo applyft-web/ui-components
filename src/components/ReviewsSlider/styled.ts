@@ -42,7 +42,7 @@ export const ReviewsBlock = styled('div')`
 
 export const ReviewsItem = styled('div')<ReviewItemProps>(
   ({ theme, $staticMode, $isRtl = Boolean(theme.isRtl), $sideMargin, $customStyles }) => css`
-    background-color: ${theme.colors.reviewItemBg};
+    background-color: ${theme.colors?.reviewItemBg};
     border: 1px solid #DEDEDE;
     border-radius: 12px;
     ${!$staticMode && `flex: 1 0 calc(100vw - ${(parseInt(theme.sidePadding) || 16) * 2}px);`};
@@ -82,7 +82,7 @@ export const Reviewer = styled('div')<{ $image?: string, $isRtl?: boolean }>(
       height: 30px;
       border-radius: 50%;
       ${$image && `background: url(${$image}) center / contain no-repeat`};
-      background-color: ${theme.colors.bodyBackground};
+      background-color: ${theme.colors?.bodyBackground};
       position: absolute;
       top: 0;
       ${getTextAlign($isRtl)}: 0;

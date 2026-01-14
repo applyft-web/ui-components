@@ -54,7 +54,7 @@ export const PlanLi = styled('li')<PlanItemProps>(
       flex-direction: ${($isRtl && !theme.enableRTL) ? 'row-reverse' : 'row'};
       justify-content: space-between;
       align-items: center;
-      background-color: ${theme.colors.planItemBg};
+      background-color: ${theme.colors?.planItemBg};
       border: var(--border-width) solid ${theme.colors[$isActive ? 'primary' : 'planItemBorder']};
       border-radius: ${$withLabel ? '0 0' : ''} var(--border-radius) var(--border-radius);
       width: 100%;
@@ -151,12 +151,12 @@ export const StyledFullPrice = styled('div')<StylesProps>(
     font-weight: 500;
     font-size: 14px;
     line-height: 21px;
-    color: ${theme.colors.planItemTextColorInactive};
+    color: ${theme.colors?.planItemTextColorInactive};
     margin-top: 2px;
 
     span {
       margin-right: 6px;
-      color: ${theme.colors.planItemTextColorInactive};
+      color: ${theme.colors?.planItemTextColorInactive};
     }
 
     ${$customStyles};
@@ -173,7 +173,7 @@ export const StyledPriceWrapper = styled('div')`
 
 export const OldPrice = styled(Strike)<StylesProps>(
   ({ theme, $customStyles }) => css`
-    color: ${theme.colors.planItemTextColorInactive};
+    color: ${theme.colors?.planItemTextColorInactive};
     font-weight: 500;
     font-size: 14px;
     line-height: 21px;

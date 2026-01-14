@@ -59,7 +59,7 @@ export const StyledBar = styled('div')<StyledBarProps & CommonProps>(
     flex: 1 0 auto;
     height: 8px;
     border-radius: 20px;
-    background-color: ${theme.colors.progressBarBg || '#fff'};
+    background-color: ${theme.colors?.progressBarBg || '#fff'};
     transition: background-color 300ms;
     overflow: hidden;
     ${$isSegmented && css`

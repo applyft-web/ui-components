@@ -8,7 +8,7 @@ const FallBackWrapper = styled('div')`
   height: 100dvh;
   height: 100svh;
   height: calc(var(--vh,1svh) * 100);
-  background-color: ${({ theme }) => theme.colors.bodyBackground};
+  background-color: ${({ theme }) => theme.colors?.bodyBackground};
   position: fixed;
   top: 0;
   left: 0;
