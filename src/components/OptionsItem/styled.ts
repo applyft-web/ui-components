@@ -39,11 +39,11 @@ export const StyledOption = styled('button')<StyledOptionProps>(
     gap: 16px;
     column-gap: 16px;
     width: 100%;
-    max-width: ${theme?.maxContentWidth}px;
+    max-width: ${theme.maxContentWidth}px;
     border-radius: 12px;
     font-size: 16px;
     line-height: 1.5;
-    color: ${theme?.colors?.text};
+    color: ${theme.colors.text};
     text-align: ${getTextAlign($isRtl)};
     position: relative;
     transition: .3s;
@@ -55,9 +55,9 @@ export const StyledOption = styled('button')<StyledOptionProps>(
       padding: 16px 56px;
       padding-${getTextAlign($isRtl)}: 16px;
     `};
-    background-color: ${theme?.colors?.[`option${$isActive ? 'Active' : 'Inactive'}`]};
-    border: 1px solid ${theme?.colors?.[`optionBorder${$isActive ? 'Active' : 'Inactive'}`]};
-    color: ${theme?.colors?.[$isActive ? 'optionActiveText' : 'text']};
+    background-color: ${theme.colors[$isActive ? 'optionActive' : 'optionInactive']};
+    border: 1px solid ${theme.colors[$isActive ? 'optionBorderActive' : 'optionBorderInactive']};
+    color: ${theme.colors[$isActive ? 'optionActiveText' : 'text']};
     ${$mt !== undefined && `margin-top: ${getCssSize($mt)}`};
     ${$mb !== undefined && `margin-bottom: ${getCssSize($mb)}`};
   
@@ -79,22 +79,22 @@ export const StyledOption = styled('button')<StyledOptionProps>(
       ${$customStyles?.active};
     }
   
-    @media screen and (min-width: ${theme?.desktopMinWidth}px ) and (hover: hover) {
+    @media screen and (min-width: ${theme.desktopMinWidth}px ) and (hover: hover) {
       &:hover {
-        background-color: ${theme?.colors?.optionActive};
-        border-color: ${theme?.colors?.optionBorderActive};
-        color: ${theme?.colors?.optionActiveText};
+        background-color: ${theme.colors.optionActive};
+        border-color: ${theme.colors.optionBorderActive};
+        color: ${theme.colors.optionActiveText};
 
         .check-element {
-          background-color: ${theme?.colors?.optionCheckActive};
+          background-color: ${theme.colors.optionCheckActive};
 
           path {
-            fill: ${theme?.colors?.optionActive};
+            fill: ${theme.colors.optionActive};
           }
         }
 
         .option-img {
-          background-color: ${theme?.colors?.optionImgActive};
+          background-color: ${theme.colors.optionImgActive};
         }
 
         ${$customStyles?.hover};
@@ -108,7 +108,7 @@ export const StyledImg = styled('div')<StyledImgProps & CommonProps>(
     width: ${getCssSize($size?.[0] || 64)};
     height: ${getCssSize($size?.[1] || 64)};
     border-radius: 7px;
-    background-color: ${theme?.colors?.[`optionImg${$isActive ? 'Active' : 'Inactive'}`]};
+    background-color: ${theme.colors[$isActive ? 'optionImgActive' : 'optionImgInactive']};
     ${$imgSrc && css`
       background-image: url(${$imgSrc});
       background-size: cover;
@@ -130,7 +130,7 @@ export const StyledCheckIcon = styled('div')<StyledProps & CommonProps>(
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background-color: ${theme?.colors?.[`optionCheck${$isActive ? 'Active' : 'Inactive'}`]};
+    background-color: ${theme.colors[$isActive ? 'optionCheckActive' : 'optionCheckInactive']};
     position: absolute;
     top: 50%;
     left: 16px;
@@ -148,7 +148,7 @@ export const ThreeDots = styled('div')<CommonProps & { $size?: SizeProps }>(
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: ${theme?.colors?.threeDots};
+    background-color: ${theme.colors.threeDots};
     position: absolute;
     top: 50%;
     left: 50%;

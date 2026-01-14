@@ -36,7 +36,7 @@ export const StyledLayout = styled('div')<StyledLayoutProps>(
           margin-right: auto;
         }
 
-        @media screen and (min-width: ${theme?.tabletMinWidth}px) {
+        @media screen and (min-width: ${theme.tabletMinWidth}px) {
           & > *:not(.ignore-inheritance) {
             max-width: 432px;
           }
@@ -44,7 +44,7 @@ export const StyledLayout = styled('div')<StyledLayoutProps>(
           ${$customStyles?.tablet};
         }
 
-        @media screen and (min-width: ${theme?.desktopMinWidth}px) {
+        @media screen and (min-width: ${theme.desktopMinWidth}px) {
           & > *:not(.ignore-inheritance) {
             max-width: 960px;
             padding-left: 0;
@@ -52,28 +52,28 @@ export const StyledLayout = styled('div')<StyledLayoutProps>(
           }
         }
 
-        @media screen and (max-width: ${theme?.mobileWidth}px) {
+        @media screen and (max-width: ${theme.mobileWidth}px) {
           ${$customStyles?.mobile};
         }
 
     `
       : css`
 
-        max-width: ${parseInt((theme?.maxContentWidth as string) || '375') + parseInt((theme?.sidePadding as string) || '0') * 2}px;
-        padding-right: ${theme?.sidePadding || 16}px;
-        padding-left: ${theme?.sidePadding || 16}px;
+        max-width: ${parseInt((theme.maxContentWidth) || '375') + parseInt((theme.sidePadding) || '0') * 2}px;
+        padding-right: ${theme.sidePadding || 16}px;
+        padding-left: ${theme.sidePadding || 16}px;
 
         & > * {
           width: 100%;
         }
 
-        @media screen and (min-width: ${theme?.tabletMinWidth}px) {
+        @media screen and (min-width: ${theme.tabletMinWidth}px) {
           justify-content: center;
 
           ${$customStyles?.tablet};
         }
 
-        @media screen and (max-width: ${theme?.mobileWidth}px) {
+        @media screen and (max-width: ${theme.mobileWidth}px) {
           ${$customStyles?.mobile};
         }
 

@@ -52,7 +52,7 @@ export const StyledSVG = styled('svg')<StyledSVGProps>(
     animation: ${spinning} 1.5s linear infinite;
 
     circle, path {
-      fill: ${$fill || theme?.colors?.primary};
+      fill: ${$fill || theme.colors.primary};
     }
 
     ${$customStyles};
