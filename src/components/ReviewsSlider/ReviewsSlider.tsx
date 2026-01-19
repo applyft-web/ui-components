@@ -135,7 +135,7 @@ export const ReviewsSlider = ({
 
     const sliderItem = slider.children[0] as HTMLElement
     const sliderItemWidth = sliderItem.offsetWidth
-    const sliderItemMargin = sideMargin ?? parseInt(currentTheme?.sidePadding) ?? 16
+    const sliderItemMargin = sideMargin ?? parseInt(currentTheme.sidePadding) ?? 16
 
     const updateSlidePosition = (): void => {
       slider.style.cssText = `

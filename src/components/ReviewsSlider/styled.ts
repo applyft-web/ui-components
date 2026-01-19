@@ -20,7 +20,7 @@ export const ReviewsContainer = styled('div')<MarginProps & CommonProps>(
   ({ theme, $mt, $mb, $staticMode, $customStyles }) => css`
     display: flex;
     width: 100%;
-    max-width: ${theme?.maxContentWidth}px;
+    max-width: ${theme.maxContentWidth}px;
     margin: 0 auto;
     overflow: hidden;
     ${$mt !== undefined && `margin-top: ${getCssSize($mt)}`};
@@ -42,11 +42,11 @@ export const ReviewsBlock = styled('div')`
 
 export const ReviewsItem = styled('div')<ReviewItemProps>(
   ({ theme, $staticMode, $isRtl = Boolean(theme.isRtl), $sideMargin, $customStyles }) => css`
-    background-color: ${theme?.colors?.reviewItemBg};
+    background-color: ${theme.colors?.reviewItemBg};
     border: 1px solid #DEDEDE;
     border-radius: 12px;
-    ${!$staticMode && `flex: 1 0 calc(100vw - ${parseInt(theme?.sidePadding || '16') * 2}px);`};
-    max-width: ${theme?.maxContentWidth}px;
+    ${!$staticMode && `flex: 1 0 calc(100vw - ${(parseInt(theme.sidePadding) || 16) * 2}px);`};
+    max-width: ${theme.maxContentWidth}px;
     padding: 12px 16px;
     text-align: ${getTextAlign($isRtl)};
     transition: transform 0.5s ease;
@@ -55,7 +55,7 @@ export const ReviewsItem = styled('div')<ReviewItemProps>(
     &:not(:last-child) {
       ${$staticMode
         ? css`margin-bottom: 12px;`
-        : css`margin-right: ${$sideMargin ?? theme?.sidePadding ?? 16}px`
+        : css`margin-right: ${$sideMargin ?? theme.sidePadding ?? 16}px`
       };
     }
 
@@ -82,7 +82,7 @@ export const Reviewer = styled('div')<{ $image?: string, $isRtl?: boolean }>(
       height: 30px;
       border-radius: 50%;
       ${$image && `background: url(${$image}) center / contain no-repeat`};
-      background-color: ${theme?.colors?.bodyBackground};
+      background-color: ${theme.colors?.bodyBackground};
       position: absolute;
       top: 0;
       ${getTextAlign($isRtl)}: 0;

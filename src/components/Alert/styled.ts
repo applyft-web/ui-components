@@ -11,7 +11,7 @@ export const StyledAlert = styled('div')<StyledAlertProps>(
   ({ theme, $isRtl = Boolean(theme.isRtl), $show, $customStyles }) => css`
     width: 90%;
     height: auto;
-    max-width: ${theme?.maxContentWidth}px;
+    max-width: ${theme.maxContentWidth}px;
     min-height: 50px;
     padding: 16px 40px;
     border-radius: 8px;
