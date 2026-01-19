@@ -5,6 +5,8 @@ export interface Theme {
   [propName: string]: any
 }
 
+export type ThemesObject = Record<string, Theme>
+
 export type ProjectName = 'geozilla' | 'family-locator' | 'familo' | 'brainbloom'
 
 const defaultTheme: Theme = {
@@ -34,7 +36,7 @@ const defaultTheme: Theme = {
   planItemBorderRadius: '8px'
 }
 
-export const themes: Record<ProjectName, Theme> = {
+export const themes: ThemesObject = {
   geozilla: {
     colors: {
       primary: '#00BFA5',
@@ -130,15 +132,22 @@ export const themes: Record<ProjectName, Theme> = {
   }
 }
 
-export const getTheme = (projectName: ProjectName = 'geozilla'): Theme => {
-  const currentTheme = themes[projectName]
+const mergeKeys = (k: string, obj: ThemesObject): object => {
+  const currentValue = obj[k]
+  return typeof currentValue === 'object'
+    ? {
+        [k]: {
+          ...defaultTheme[k],
+          ...obj[k]
+        }
+      }
+    : {}
+}
 
-  return {
-    ...defaultTheme,
-    ...currentTheme,
-    colors: {
-      ...defaultTheme.colors,
-      ...(currentTheme.colors ?? {})
-    }
-  }
+export const getTheme = (projectName: ProjectName = 'geozilla'): Theme => {
+  const currentTheme = themes[projectName.toLowerCase()]
+  const mergedTheme = Object.keys(currentTheme).reduce((acc, key) => {
+    return { ...acc, ...mergeKeys(key, currentTheme) }
+  }, {})
+  return { ...defaultTheme, ...currentTheme, ...mergedTheme }
 }
