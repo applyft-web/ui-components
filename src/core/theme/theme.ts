@@ -1,17 +1,8 @@
+type Colors = Record<string, string>
+
 export interface Theme {
-  colors: Record<string, string>
-  mobileWidth?: string
-  tabletMinWidth?: string
-  desktopMinWidth?: string
-  maxContentWidth?: string
-  sidePadding?: string
-  buttonBorderRadius?: string
-  buttonBottomPosition?: string
-  planItemBorderRadius?: string
-  isRtl?: boolean
-  isArabic?: boolean
-  enableRTL?: boolean
-  custom?: Record<string, string>
+  colors: Colors
+  [propName: string]: any
 }
 
 export type ProjectName = 'geozilla' | 'family-locator' | 'familo' | 'brainbloom'
