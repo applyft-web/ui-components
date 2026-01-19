@@ -98,7 +98,7 @@ export const PlansList = ({
             $customStyles={styles?.check}
           >
             <CheckIcon customStyles={{
-              path: `fill: ${currentTheme.colors?.planItemCheckBg};`
+              path: `fill: ${currentTheme?.colors?.planItemCheckBg};`
             }} />
           </S.PlanCheck>
           <S.PlanTitle

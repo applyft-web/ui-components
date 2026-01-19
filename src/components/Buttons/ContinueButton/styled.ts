@@ -18,10 +18,10 @@ export const FixedButtonWrapper = styled('div')<{ $customStyles?: string }>(
   ({ theme, $customStyles }) => css`
     width: 100%;
     position: fixed;
-    bottom: ${theme.buttonBottomPosition};
+    bottom: ${theme?.buttonBottomPosition};
     left: 50%;
     transform: translateX(-50%);
-    padding: 0 ${theme.sidePadding || 16}px;
+    padding: 0 ${theme?.sidePadding || 16}px;
   
     ${$customStyles};
   `
@@ -31,18 +31,18 @@ export const StyledButton = styled('button')<StyledButtonProps>(
   ({ theme, $customStyles, $mt, $mb, $centered }) => css`
     display: block;
     width: 100%;
-    max-width: ${theme.maxContentWidth}px;
+    max-width: ${theme?.maxContentWidth}px;
     height: 56px;
     min-height: 30px;
     flex-shrink: 0;
-    background-color: ${theme.colors?.primary};
-    border-radius: ${theme.buttonBorderRadius};
+    background-color: ${theme?.colors?.primary};
+    border-radius: ${theme?.buttonBorderRadius};
     border: none;
     padding: 0 10px;
     font-weight: 500;
     font-size: 16px;
     line-height: 1;
-    color: ${theme.colors?.buttonColor || theme.colors?.bodyBackground};
+    color: ${theme?.colors?.buttonColor || theme?.colors?.bodyBackground};
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -55,8 +55,8 @@ export const StyledButton = styled('button')<StyledButtonProps>(
     ${$mb !== undefined && `margin-bottom: ${getCssSize($mb)}`};
   
     &:disabled {
-      background-color: ${theme.colors?.buttonDisabled};
-      color: ${theme.colors?.buttonDisabledTextColor};
+      background-color: ${theme?.colors?.buttonDisabled};
+      color: ${theme?.colors?.buttonDisabledTextColor};
       pointer-events: none;
 
       ${$customStyles?.disabled};
@@ -66,9 +66,9 @@ export const StyledButton = styled('button')<StyledButtonProps>(
       outline: none;
     }
 
-    @media screen and (min-width: ${theme.desktopMinWidth}px) and (hover: hover) {
+    @media screen and (min-width: ${theme?.desktopMinWidth}px) and (hover: hover) {
       &:hover {
-        background-color: ${theme.colors?.buttonHover};
+        background-color: ${theme?.colors?.buttonHover};
 
         ${$customStyles?.hover};
       }

@@ -8,7 +8,7 @@ interface StyledAlertProps {
 }
 
 export const StyledAlert = styled('div')<StyledAlertProps>(
-  ({ theme, $isRtl = Boolean(theme?.isRtl), $show, $customStyles }) => css`
+  ({ theme, $isRtl = Boolean(theme.isRtl), $show, $customStyles }) => css`
     width: 90%;
     height: auto;
     max-width: ${theme?.maxContentWidth}px;
@@ -56,7 +56,7 @@ export const CloseAlert = styled('div')<{ $isRtl?: boolean }>`
   top: 50%;
   right: 16px;
   left: 16px;
-  ${({ theme, $isRtl = Boolean(theme?.isRtl) }) => `${getTextAlign($isRtl)}: auto`};
+  ${({ theme, $isRtl = Boolean(theme.isRtl) }) => `${getTextAlign($isRtl)}: auto`};
   margin-top: -12px;
   font-size: 24px;
   line-height: 1;

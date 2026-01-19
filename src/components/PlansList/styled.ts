@@ -47,15 +47,15 @@ export const PlanLi = styled('li')<PlanItemProps>(
 
     return css`
       --border-width: 1px;
-      --border-radius: ${theme.planItemBorderRadius || '8px'};
+      --border-radius: ${theme?.planItemBorderRadius || '8px'};
       --label-height: ${$withLabel ? '18px' : '0px'};
       --plan-mt: ${$gap !== undefined ? getCssSize($gap) : '8px'};
       display: flex;
       flex-direction: ${($isRtl && !theme.enableRTL) ? 'row-reverse' : 'row'};
       justify-content: space-between;
       align-items: center;
-      background-color: ${theme.colors?.planItemBg};
-      border: var(--border-width) solid ${theme.colors[$isActive ? 'primary' : 'planItemBorder']};
+      background-color: ${theme?.colors?.planItemBg};
+      border: var(--border-width) solid ${theme?.colors?.[$isActive ? 'primary' : 'planItemBorder']};
       border-radius: ${$withLabel ? '0 0' : ''} var(--border-radius) var(--border-radius);
       width: 100%;
       height: 82px;
@@ -77,9 +77,9 @@ export const PlanLi = styled('li')<PlanItemProps>(
           position: absolute;
           bottom: 100%;
           left: calc(var(--border-width)*(-1));
-          background-color: ${theme.colors[$isActive ? 'primary' : 'planItemLabelBg']};
-          border: var(--border-width) solid ${theme.colors[$isActive ? 'primary' : 'planItemBorder']};
-          color: ${theme.colors[$isActive ? 'planItemLabelColorActive' : 'planItemLabelColorInactive']};
+          background-color: ${theme?.colors?.[$isActive ? 'primary' : 'planItemLabelBg']};
+          border: var(--border-width) solid ${theme?.colors?.[$isActive ? 'primary' : 'planItemBorder']};
+          color: ${theme?.colors?.[`planItemLabelColor${$isActive ? 'Active' : 'Inactive'}`]};
           border-radius: var(--border-radius) var(--border-radius) 0 0;
           font-weight: 600;
           font-size: 12px;
@@ -111,8 +111,8 @@ export const PlanCheck = styled('div')<CommonProps & StylesProps>(
     width: var(--check-size);
     height: var(--check-size);
     border-radius: 50%;
-    border: 1px solid ${theme.colors[$isActive ? 'planItemCheckBorder' : 'planItemBorder']};
-    background-color: ${theme.colors[$isActive ? 'primary' : 'bodyBackground']};
+    border: 1px solid ${theme?.colors?.[$isActive ? 'planItemCheckBorder' : 'planItemBorder']};
+    background-color: ${theme?.colors?.[$isActive ? 'primary' : 'bodyBackground']};
     position: relative;
     margin: 0 16px;
     margin-${getTextAlign($isRtl)}: 0;
@@ -138,7 +138,7 @@ export const PlanTitle = styled('div')<CommonProps>(
     font-weight: 700;
     font-size: 16px;
     line-height: 24px;
-    color: ${theme.colors[$isActive ? 'text' : 'planItemTextColorInactive']};
+    color: ${theme?.colors?.[$isActive ? 'text' : 'planItemTextColorInactive']};
   `
 )
 
@@ -151,12 +151,12 @@ export const StyledFullPrice = styled('div')<StylesProps>(
     font-weight: 500;
     font-size: 14px;
     line-height: 21px;
-    color: ${theme.colors?.planItemTextColorInactive};
+    color: ${theme?.colors?.planItemTextColorInactive};
     margin-top: 2px;
 
     span {
       margin-right: 6px;
-      color: ${theme.colors?.planItemTextColorInactive};
+      color: ${theme?.colors?.planItemTextColorInactive};
     }
 
     ${$customStyles};
@@ -173,7 +173,7 @@ export const StyledPriceWrapper = styled('div')`
 
 export const OldPrice = styled(Strike)<StylesProps>(
   ({ theme, $customStyles }) => css`
-    color: ${theme.colors?.planItemTextColorInactive};
+    color: ${theme?.colors?.planItemTextColorInactive};
     font-weight: 500;
     font-size: 14px;
     line-height: 21px;
@@ -191,7 +191,7 @@ export const PriceWrapper = styled('div')<CommonProps & StylesProps>(
     font-size: 60px;
     line-height: 46px;
     text-align: center;
-    color: ${theme.colors[$isActive ? 'text' : 'planItemTextColorInactive']};
+    color: ${theme?.colors?.[$isActive ? 'text' : 'planItemTextColorInactive']};
     padding-left: 13px;
     position: relative;
 
