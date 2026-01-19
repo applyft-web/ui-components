@@ -89,7 +89,7 @@ export const GlobalThemeProvider = ({
         isRtl,
         isArabic: isRtl,
         enableRTL,
-        custom: customTheme
+        ...{ custom: customTheme }
       }}>
         <GlobalStyles $customStyles={customGlobalStyles} />
         {children}
