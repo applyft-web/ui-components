@@ -1,6 +1,18 @@
 export interface Theme {
   colors: Record<string, string>
-  [propName: string]: any
+  mobileWidth?: string
+  tabletMinWidth?: string
+  tabletMaxWidth?: string
+  desktopMinWidth?: string
+  maxContentWidth?: string
+  sidePadding?: string
+  buttonBorderRadius?: string
+  buttonBottomPosition?: string
+  planItemBorderRadius?: string
+  isRtl?: boolean
+  isArabic?: boolean
+  enableRTL?: boolean
+  custom?: Record<string, string>
 }
 
 export type ProjectName = 'geozilla' | 'family-locator' | 'familo' | 'brainbloom'

@@ -69,8 +69,8 @@
     "storybook": "^7.6.17",
     "typescript": "^5.3.3"
   },
-  "dependencies": {
+  "peerDependencies": {
     "react": ">=17",
-    "styled-components": ">=5"
+    "styled-components": ">=6 <7"
   }
 }
