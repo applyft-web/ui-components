@@ -1,21 +1,38 @@
 export interface Theme {
   colors: Record<string, string>
+  /**
+   * deprecated: use `breakpoints.mobile` instead.
+   */
   mobileWidth?: string
   /**
-   * deprecated: use `tabletMinWidth` instead.
+   * deprecated: use `breakpoints.tablet` instead.
    */
   mobileMaxWidth?: string
+  /**
+   * deprecated: use `breakpoints.tablet` instead.
+   */
   tabletMinWidth?: string
   /**
-   * deprecated: use `desktopMinWidth` instead.
+   * deprecated: use `breakpoints.desktop` instead.
    */
   tabletMaxWidth?: string
+  /**
+   * deprecated: use `breakpoints.desktop` instead.
+   */
   desktopMinWidth?: string
   maxContentWidth?: string
   sidePadding?: string
   buttonBorderRadius?: string
   buttonBottomPosition?: string
   planItemBorderRadius?: string
+  breakpoints?: {
+    /**
+     * useless for mobile-only development flow
+     */
+    mobile?: number
+    tablet?: number
+    desktop?: number
+  }
   isRtl?: boolean
   isArabic?: boolean
   enableRTL?: boolean
@@ -44,6 +61,11 @@ const defaultTheme: Theme = {
   mobileWidth: '350',
   tabletMinWidth: '432',
   desktopMinWidth: '992',
+  breakpoints: {
+    mobile: 350,
+    tablet: 432,
+    desktop: 992
+  },
   maxContentWidth: '343',
   sidePadding: '16',
   buttonBorderRadius: '12px',
