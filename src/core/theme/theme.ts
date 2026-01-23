@@ -1,7 +1,15 @@
 export interface Theme {
   colors: Record<string, string>
   mobileWidth?: string
+  /**
+   * deprecated: use `tabletMinWidth` instead.
+   */
+  mobileMaxWidth?: string
   tabletMinWidth?: string
+  /**
+   * deprecated: use `desktopMinWidth` instead.
+   */
+  tabletMaxWidth?: string
   desktopMinWidth?: string
   maxContentWidth?: string
   sidePadding?: string
