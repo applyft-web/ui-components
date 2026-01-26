@@ -27,7 +27,10 @@ export const ReviewsContainer = styled('div')<MarginProps & CommonProps>(
     ${$mb !== undefined && `margin-bottom: ${getCssSize($mb)}`};
     position: relative;
     flex-shrink: 0;
-    ${$staticMode && css`flex-direction: column;`};
+    ${$staticMode && css`
+      flex-direction: column;
+      overflow: initial;
+    `};
 
     ${$customStyles};
   `
