@@ -13,7 +13,6 @@ export const GlobalStyles = createGlobalStyle<{ $customStyles?: string }>`
     -webkit-tap-highlight-color: rgba(0,0,0,0);
     -webkit-tap-highlight-color: transparent;
     -webkit-text-size-adjust: none;
-    overscroll-behavior: none;
 
     &::-webkit-scrollbar {
       width: 0;
@@ -27,6 +26,7 @@ export const GlobalStyles = createGlobalStyle<{ $customStyles?: string }>`
 
   html {
     height: 100%;
+    overscroll-behavior: none;
   }
 
   body {
