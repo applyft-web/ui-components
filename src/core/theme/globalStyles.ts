@@ -13,7 +13,6 @@ export const GlobalStyles = createGlobalStyle<{ $customStyles?: string }>`
     -webkit-tap-highlight-color: rgba(0,0,0,0);
     -webkit-tap-highlight-color: transparent;
     -webkit-text-size-adjust: none;
-    overscroll-behavior: none;
 
     &::-webkit-scrollbar {
       width: 0;
@@ -22,11 +21,12 @@ export const GlobalStyles = createGlobalStyle<{ $customStyles?: string }>`
   }
 
   html, body {
-    background-color: ${({ theme }) => theme?.colors?.bodyBackground || '#fff'};
+    background-color: ${({ theme }) => theme.colors?.bodyBackground || '#fff'};
   }
 
   html {
     height: 100%;
+    overscroll-behavior: none;
   }
 
   body {
@@ -35,7 +35,7 @@ export const GlobalStyles = createGlobalStyle<{ $customStyles?: string }>`
     height: 100dvh;
     height: 100svh;
     height: calc(var(--vh,1svh) * 100);
-    color: ${({ theme }) => theme?.colors?.text || '#323232'};
+    color: ${({ theme }) => theme.colors?.text || '#323232'};
     user-select: none;
 
     > * {

@@ -14,7 +14,7 @@ export const ProgressWrapper = styled('div')<ProgressWrapperProps>(
       width: ${$size}px!important;
       height: ${$size}px!important;
     `};
-    color: ${theme?.colors?.circularProgressBg || '$fff'};
+    color: ${theme.colors?.circularProgressBg || '#fff'};
     box-shadow: inset 0 0 0 ${$size < 100 ? 6 : 12}px;
     border-radius: 50%;
     position: relative;
@@ -26,7 +26,7 @@ export const ProgressWrapper = styled('div')<ProgressWrapperProps>(
 
 export const StyledSvg = styled('svg')<{ $size: number }>(
   ({ theme, $size }) => css`
-    stroke: ${theme?.colors?.primary};
+    stroke: ${theme.colors?.primary};
     stroke-linecap: round;
     width: ${$size}px;
     height: ${$size}px;

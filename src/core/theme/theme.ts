@@ -1,11 +1,43 @@
-type Colors = Record<string, string>
-
 export interface Theme {
-  colors: Colors
-  [propName: string]: any
+  colors: Record<string, string>
+  /**
+   * deprecated: use `breakpoints.mobile` instead.
+   */
+  mobileWidth?: string
+  /**
+   * deprecated: use `breakpoints.tablet` instead.
+   */
+  mobileMaxWidth?: string
+  /**
+   * deprecated: use `breakpoints.tablet` instead.
+   */
+  tabletMinWidth?: string
+  /**
+   * deprecated: use `breakpoints.desktop` instead.
+   */
+  tabletMaxWidth?: string
+  /**
+   * deprecated: use `breakpoints.desktop` instead.
+   */
+  desktopMinWidth?: string
+  maxContentWidth?: string
+  sidePadding?: string
+  buttonBorderRadius?: string
+  buttonBottomPosition?: string
+  planItemBorderRadius?: string
+  breakpoints?: {
+    /**
+     * useless for mobile-only development flow
+     */
+    mobile?: number
+    tablet?: number
+    desktop?: number
+  }
+  isRtl?: boolean
+  isArabic?: boolean
+  enableRTL?: boolean
+  custom?: Record<string, string>
 }
-
-export type ThemesObject = Record<string, Theme>
 
 export type ProjectName = 'geozilla' | 'family-locator' | 'familo' | 'brainbloom'
 
@@ -29,6 +61,11 @@ const defaultTheme: Theme = {
   mobileWidth: '350',
   tabletMinWidth: '432',
   desktopMinWidth: '992',
+  breakpoints: {
+    mobile: 350,
+    tablet: 432,
+    desktop: 992
+  },
   maxContentWidth: '343',
   sidePadding: '16',
   buttonBorderRadius: '12px',
@@ -36,7 +73,7 @@ const defaultTheme: Theme = {
   planItemBorderRadius: '8px'
 }
 
-export const themes: ThemesObject = {
+export const themes: Record<ProjectName, Theme> = {
   geozilla: {
     colors: {
       primary: '#00BFA5',
@@ -132,22 +169,15 @@ export const themes: ThemesObject = {
   }
 }
 
-const mergeKeys = (k: string, obj: ThemesObject): object => {
-  const currentValue = obj[k]
-  return typeof currentValue === 'object'
-    ? {
-        [k]: {
-          ...defaultTheme[k],
-          ...obj[k]
-        }
-      }
-    : {}
-}
-
 export const getTheme = (projectName: ProjectName = 'geozilla'): Theme => {
-  const currentTheme = themes[projectName.toLowerCase()]
-  const mergedTheme = Object.keys(currentTheme).reduce((acc, key) => {
-    return { ...acc, ...mergeKeys(key, currentTheme) }
-  }, {})
-  return { ...defaultTheme, ...currentTheme, ...mergedTheme }
+  const currentTheme = themes[projectName]
+
+  return {
+    ...defaultTheme,
+    ...currentTheme,
+    colors: {
+      ...defaultTheme.colors,
+      ...(currentTheme.colors ?? {})
+    }
+  }
 }
