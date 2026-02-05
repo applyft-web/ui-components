@@ -114,7 +114,7 @@ export const PlanCheck = styled('div')<CommonProps & StylesProps>(
     border: 1px solid ${theme.colors[$isActive ? 'planItemCheckBorder' : 'planItemBorder']};
     background-color: ${theme.colors[$isActive ? 'primary' : 'bodyBackground']};
     position: relative;
-    margin-inline-end: 0;
+    margin-inline-end: 16px;
     flex-shrink: 0;
 
     .check-icon {
