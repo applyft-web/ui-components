@@ -192,7 +192,7 @@ export const PriceWrapper = styled('div')<CommonProps & StylesProps>(
     line-height: 46px;
     text-align: center;
     color: ${theme.colors[$isActive ? 'text' : 'planItemTextColorInactive']};
-    padding-left: 13px;
+    padding-inline-start: 13px;
     position: relative;
 
     &:before {
@@ -202,7 +202,7 @@ export const PriceWrapper = styled('div')<CommonProps & StylesProps>(
       line-height: 15px;
       position: absolute;
       top: 0;
-      left: 0;
+      inset-inline-start: 0;
     }
 
     ${$customStyles};
@@ -218,7 +218,7 @@ export const SmallItemsWrapper = styled('div')`
   font-size: 16px;
   line-height: 15px;
   text-align: left;
-  margin-left: 2px;
+  margin-inline-start: 2px;
 `
 
 export const PerDay = styled('div')`
@@ -226,5 +226,5 @@ export const PerDay = styled('div')`
   font-size: 8px;
   line-height: 12px;
   margin-top: 5px;
-  white-space: nowrap;
+  text-wrap: nowrap;
 `
